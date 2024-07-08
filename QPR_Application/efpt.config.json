@@ -1,0 +1,301 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "QPRContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models\/Entities",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "QPR_Application",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[adviceofcvcqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[againstchargedtable]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[agewisependency]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[allegation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[appellateauthoritytable]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cacasesqpr]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cdi_nom]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cmptable]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[complain]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[complaintsqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[complaintsqrs123]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cpa_complaint]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[csvupdate]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cvcadvicetable]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cvo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cvo_detail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cvomonthlyreport]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[departmentalproceedingsqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[existing_para_clause]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ficasesqpr]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[final]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[fnsstage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[forward]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[forward1]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[fstage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[fulltimecvo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[groupmap]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ind_det]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Login]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_details]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_history]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[logs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[morecomplainee]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[moreorganization]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[noting]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[notingdetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[org_name]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[orgadd]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[parttimecvo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[pend]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[pincode]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[preventivevigi_a_qpr]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[preventivevigi_b_qpr]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[preventivevigilanceqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[proprofile]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[prosecutionsanctionsqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[public_procurement]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[punitivevigilanceqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[qpr]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[qpr_new]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[registration]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sectiondetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sectiondetail_11072018]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sstage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[statusofpendencyqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[suggested_para_clause]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[transfer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[usercomplaintdetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[userregister_detail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vig_case]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vigilanceactivitiescvcqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[viginvestigationqrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vijclearancedetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vijclearanceofficerdetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[workex]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "desktop-oechbka.QPR.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": true,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
