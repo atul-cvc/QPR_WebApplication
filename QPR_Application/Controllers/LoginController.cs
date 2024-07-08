@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace QPR_Application.Controllers
 {
@@ -8,10 +12,13 @@ namespace QPR_Application.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILoginRepo _loginRepo;
-        public LoginController(ILogger<HomeController> logger, ILoginRepo loginRepo)
+        private readonly IHttpContextAccessor _httpContext;
+        public LoginController(ILogger<HomeController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _loginRepo = loginRepo;
+            _httpContext = httpContext;
+
         }
         public IActionResult Index()
         {
@@ -20,18 +27,22 @@ namespace QPR_Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Login login)
         {
-            Login User = new Login();
+            
+            registration User = new registration();
             User = await _loginRepo.Login(login);
-            //return RedirectToAction("UserDetails", User);
             if (User != null)
             {
-                if (User.Role == "ROLE_ADMIN")
+                string userObj = JsonSerializer.Serialize(User);
+                _httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
+                _httpContext.HttpContext.Session.SetString("UserName", User.name);
+                //HttpContext.Session.SetString("CurrentUser", userObj);
+                if (User.logintype == "ROLE_COORD")
                 {
-                    return RedirectToAction("Index", "Admin", User);
+                    return RedirectToAction("Index", "Admin");
                 }
-                if (User.Role == "ROLE_CVO")
+                if (User.logintype == "ROLE_CVO")
                 {
-                    return RedirectToAction("Index", "Home", User);
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return RedirectToAction("Index");

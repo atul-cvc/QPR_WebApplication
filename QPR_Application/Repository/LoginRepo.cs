@@ -10,12 +10,12 @@ namespace QPR_Application.Repository
         {
             _dbContext = DbContext;
         }
-        public async Task<Login> Login(Login user)
+        public async Task<registration> Login(Login user)
         {
-            var USER = await _dbContext.Login.FirstOrDefaultAsync(i => i.Username == user.Username);
+            var USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username);
             if (USER != null)
             {
-                if (user.Password == USER.Password)
+                if (user.Password == USER.password)
                 {
                     return USER;
                 }

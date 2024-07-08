@@ -2,8 +2,8 @@
 
 namespace QPR_Application.Repository
 {
-    public interface ILoginRepo
+    public interface IAdminRepo
     {
-        public Task<registration> Login(Login user);
+        
     }
 }
