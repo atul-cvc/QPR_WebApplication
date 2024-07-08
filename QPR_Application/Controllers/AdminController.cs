@@ -10,20 +10,14 @@ namespace QPR_Application.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IAdminRepo _adminRepo;
-        //private static string _userObj;
         private readonly IHttpContextAccessor _httpContext;
 
         //private registration _user;
         public AdminController(ILogger<HomeController> logger, IAdminRepo adminRepo, IHttpContextAccessor httpContext)
         {
-            // HttpContext.Session.GetString("CurrentUser").ToString();
-            //var user = JsonSerializer.Deserialize<registration>(_userObj);
             _logger = logger;
             _adminRepo = adminRepo;
             _httpContext = httpContext;
-
-            //var userObj = _httpContext.HttpContext.Session.GetString("CurrentUser");
-
         }
 
         // GET: Admin

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
-using QPR_Application.Models.Utility;
 
 namespace QPR_Application.Repository
 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
-using QPR_Application.Models.Utility;
 using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers

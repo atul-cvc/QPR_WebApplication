@@ -35,7 +35,7 @@ namespace QPR_Application.Controllers
                 string userObj = JsonSerializer.Serialize(User);
                 _httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
                 _httpContext.HttpContext.Session.SetString("UserName", User.name);
-                //HttpContext.Session.SetString("CurrentUser", userObj);
+
                 if (User.logintype == "ROLE_COORD")
                 {
                     return RedirectToAction("Index", "Admin");
