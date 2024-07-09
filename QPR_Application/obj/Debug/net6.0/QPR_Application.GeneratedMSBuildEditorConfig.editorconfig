@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = G:\Atul kumar\MY Web Application\New App 05JUL2024\GIT CLONE\QPR_WebApplication\QPR_Application
 build_property._RazorSourceGeneratorDebug = 
 
+[G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +38,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/User/AllUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxBbGxVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/User/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/Atul kumar/MY Web Application/New App 05JUL2024/GIT CLONE/QPR_WebApplication/QPR_Application/Views/_ViewImports.cshtml]

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xFr9HHnfDhG+KKEhWZWMlzi2AixHcaskG4abbnHQsSIrENDOTESFyhx6dzgEWhO2ALEIBoW8h7FT5GrYvKJR3w==",
+  "dgSpecHash": "fkq7KC6h/TFPfBCaJNbDpUZlaW0vZO8X58obmiDQ1xcDAYhY3sjzaVFRglspJKz5tULFtkVbePMVFi6+E2bD0Q==",
   "success": true,
   "projectFilePath": "G:\\Atul kumar\\MY Web Application\\New App 05JUL2024\\GIT CLONE\\QPR_WebApplication\\QPR_Application\\QPR_Application.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,8 @@
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\jquery\\3.7.1\\jquery.3.7.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\jquery.datatables\\1.10.15\\jquery.datatables.1.10.15.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
