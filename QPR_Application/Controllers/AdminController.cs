@@ -28,5 +28,16 @@ namespace QPR_Application.Controllers
             //var userName = ;
             return View();
         }
+
+        public async Task<IActionResult> QPR()
+        {
+            var qprList = await _adminRepo.GetAllQprs(); 
+            return View(qprList);
+        }
+
+        public IActionResult EditQPR()
+        {
+            return View();
+        }
     }
 }
