@@ -7,7 +7,7 @@
 <h1>AllUsers</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateUser">Create New</a>
 </p>
 
 <div class="table-responsive">
@@ -160,9 +160,11 @@
                         @Html.DisplayFor(modelItem => item.parttime)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.usercode">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.usercode">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.usercode">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.usercode">Edit</a> 
+                        @* | *@
+                        <a asp-action="Details" asp-route-id="@item.usercode">Details</a>
+                        @* | *@
+                        @* <a asp-action="Delete" asp-route-id="@item.usercode">Delete</a> *@
                     </td>
                 </tr>
             }

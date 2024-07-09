@@ -1,4 +1,5 @@
-﻿using QPR_Application.Models.Entities;
+﻿using NuGet.RuntimeModel;
+using QPR_Application.Models.Entities;
 
 namespace QPR_Application.Repository
 {
@@ -6,5 +7,7 @@ namespace QPR_Application.Repository
     {
         public Task<IEnumerable<registration>> GetAllUsers();
         public Task<registration> GetUserDetails(string Id);
+        public Boolean CreateUser(registration registration);
+        public void EditUser(registration registration);
     }
 }
