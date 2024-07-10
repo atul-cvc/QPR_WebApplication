@@ -5,19 +5,19 @@ using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
 {
-    public class UserController : Controller
+    public class ManageUserController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserRepo _userRepo;
-        public UserController(ILogger<HomeController> logger, IUserRepo userRepo)
+        public ManageUserController(ILogger<HomeController> logger, IUserRepo userRepo)
         {
             _logger = logger;
             _userRepo = userRepo;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         public async Task<ActionResult> AllUsers()
         {
             IEnumerable<registration> allUsers = await _userRepo.GetAllUsers();
@@ -28,7 +28,6 @@ namespace QPR_Application.Controllers
         {
             //Populate the dropdown options
             var loginTypes = new List<SelectListItem>{
-                //new SelectListItem { Value = "null", Text = "Select" },
                 new SelectListItem { Value = "ROLE_CVO", Text = "ROLE_CVO" },
                 new SelectListItem { Value = "ROLE_COORD", Text = "ROLE_COORD" },
                 new SelectListItem { Value = "ROLE_ADMIN", Text = "ROLE_ADMIN" }
@@ -67,7 +66,6 @@ namespace QPR_Application.Controllers
 
             //Populate the dropdown options
             var loginTypes = new List<SelectListItem>{
-                //new SelectListItem { Value = "null", Text = "Select" },
                 new SelectListItem { Value = "ROLE_CVO", Text = "ROLE_CVO" },
                 new SelectListItem { Value = "ROLE_COORD", Text = "ROLE_COORD" },
                 new SelectListItem { Value = "ROLE_ADMIN", Text = "ROLE_ADMIN" }

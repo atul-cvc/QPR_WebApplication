@@ -18,16 +18,13 @@ builder.Services.AddTransient<ILoginRepo, LoginRepo>();
 builder.Services.AddTransient<IAdminRepo, AdminRepo>();
 builder.Services.AddTransient<IUserRepo, UserRepo>();
 
-//builder.Services.AddTransient<IUserRepo, UserRepo>();
-//builder.Services.AddTransient<IAdviceOfCVCRepo, AdviceOfCVCRepo>();
-
 
 // Add services required for sessions
 //builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     // Configure session options here
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout period
+    options.IdleTimeout = TimeSpan.FromMinutes(15); // Session timeout period
     options.Cookie.HttpOnly = true; // Cookie settings
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });
