@@ -91,6 +91,8 @@ namespace QPR_Application.Models.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<qpr>().HasKey(q => q.referencenumber);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();
