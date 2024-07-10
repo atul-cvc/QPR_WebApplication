@@ -1,0 +1,173 @@
+﻿@model IEnumerable<QPR_Application.Models.Entities.orgadd>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Save">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orgcod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.depcod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mincod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orgnam1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orgnam2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addr1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addr2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addr3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addr4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addr5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ph_no_1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ph_no_2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grams)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ph_del_res)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.psucod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.selectd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.schlvl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jobcod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._checked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orgcod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depcod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mincod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orgnam1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orgnam2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addr1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addr2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addr3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addr4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addr5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ph_no_1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ph_no_2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grams)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ph_del_res)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.psucod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.selectd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.schlvl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.jobcod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._checked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

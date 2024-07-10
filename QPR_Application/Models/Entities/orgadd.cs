@@ -11,7 +11,9 @@ namespace QPR_Application.Models.Entities
     [Keyless]
     public partial class orgadd
     {
-        public int? section { get; set; }
+        [Key]
+        public long Id { get; set; }
+        public string section { get; set; }
         public string orgcod { get; set; }
         public string depcod { get; set; }
         public string mincod { get; set; }
