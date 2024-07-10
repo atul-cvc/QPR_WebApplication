@@ -1,12 +1,27 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     // var userName = ViewBag["UserName"];
 }
 
-<h1>Hi @ViewBag.UserName</h1>
-<h3>Index</h3>
+<style>
+    a{
+        text-decoration:none;
+    }
+</style>
+
+<h2>Admin</h2>
+@* <h3>Index</h3> *@
 <a asp-action="AllUsers" asp-controller="User">
-    Show All Users
+    <button class="btn btn-primary" >Show All Users</button>
+</a>
+@* <div ></div> *@
+&nbsp;
+
+<a asp-action="CreateUser" asp-controller="User">
+    <button class="btn btn-primary">Create User</button>
+</a>
+
+<a asp-action="QPR" asp-controller="Admin">
+    <button class="btn btn-primary">All QPR</button>
 </a>
 

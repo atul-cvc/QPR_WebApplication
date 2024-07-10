@@ -4,6 +4,7 @@ namespace QPR_Application.Repository
 {
     public interface IAdminRepo
     {
+        public Task<IEnumerable<qpr>> GetAllQprs();
         
     }
 }

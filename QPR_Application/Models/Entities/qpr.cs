@@ -17,21 +17,22 @@ namespace QPR_Application.Models.Entities
         public string orgname { get; set; }
         [StringLength(255)]
         public string orgcode { get; set; }
-        public double? qtrreport { get; set; }
-        public double? qtryear { get; set; }
-        public double? contactnumberoffice { get; set; }
-        public double? mobilenumber { get; set; }
-        [StringLength(255)]
+        public string? qtrreport { get; set; }
+        public string? qtryear { get; set; }
+        public string? contactnumberoffice { get; set; }
+        public string? mobilenumber { get; set; }
+        [StringLength(500)]
         public string emailid { get; set; }
-        public bool fulltime { get; set; }
-        public bool parttime { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? createdate { get; set; }
-        public double? referencenumber { get; set; }
+        public string fulltime { get; set; }
+        public string parttime { get; set; }
+        //[Column(TypeName = "datetime")]
+        public string? createdate { get; set; }
+        [Key]
+        public long? referencenumber { get; set; }
         [StringLength(255)]
         public string ip { get; set; }
-        public bool finalsubmit { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? finalsubmitdate { get; set; }
+        public string finalsubmit { get; set; }
+        //[Column(TypeName = "datetime")]
+        public string? finalsubmitdate { get; set; }
     }
 }
