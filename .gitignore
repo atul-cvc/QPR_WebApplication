@@ -11,3 +11,7 @@
 /QPR_Application/obj/Debug/net6.0/QPR_Application.csproj.CoreCompileInputs.cache
 /QPR_Application/obj/Debug/net6.0/QPR_Application.dll
 /QPR_Application/obj/Debug/net6.0/QPR_Application.pdb
+bin/
+obj/
+/QPR_Application/obj/Debug/net6.0/project.razor.vs.json
+/QPR_Application/obj/Debug/net6.0/QPR_Application.GeneratedMSBuildEditorConfig.editorconfig
