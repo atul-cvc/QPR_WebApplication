@@ -2,3 +2,24 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+
+//put code here to execute on page ready
+$(function () {
+    $('#example1').DataTable();
+    $('.datepicker').datepicker(
+        {
+        //    buttonText: "Select date",
+        //    showOn: "Button",
+            dateFormat: "dd/mm/yy",
+            shortYearCutoff: 1,
+            changeYear: true,
+            changeMonth: true,
+            //showWeek: false,
+            showOtherMonths: true,
+            selectOtherMonths: false,
+            minDate: '-100Y',
+            maxDate: '+100Y',
+
+        });
+});

@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<QPR_Application.Models.Entities.qpr>
 
 @{
-    ViewData["Title"] = "QPR";
+    ViewData["Title"] = "Index";
 }
 
 <h1>QPR</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="table-responsive">
-    <table id="example1" class="table table-striped table-bordered">
-        <thead>
+    <table id="example1" class="table table-striped table-bordered pt-1 ">
+        <thead class="table-primary">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.userid)
@@ -29,33 +26,21 @@
                     @Html.DisplayNameFor(model => model.qtryear)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.contactnumberoffice)
+                    @Html.DisplayNameFor(model => model.referencenumber)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.mobilenumber)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.emailid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fulltime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.parttime)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.createdate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ip)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.finalsubmit)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.finalsubmitdate)
+                @Html.DisplayNameFor(model => model.finalsubmitdate)
                 </th>
-                <th></th>
+                <th class="d-md-table-cell" >Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -78,47 +63,33 @@
                         @Html.DisplayFor(modelItem => item.qtryear)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.contactnumberoffice)
+                        @Html.DisplayFor(modelItem => item.referencenumber)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.mobilenumber)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.emailid)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fulltime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.parttime)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.createdate)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ip)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.finalsubmit)
+                        @if (item.finalsubmit == "t")
+                        {
+                            <div class="btn btn-primary">Submitted</div>
+                        }
+                        else if (item.finalsubmit == "f")
+                        {
+                            <div class="btn btn-secondary">Not Submitted</div>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.finalsubmitdate)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.referencenumber">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.referencenumber">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.referencenumber">Delete</a>
+                        @* <a class="btn btn-outline-primary" asp-action="EditQpr" asp-route-id="@item.referencenumber">Edit</a> | *@
+                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.referencenumber">Details</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#example1').DataTable();
-        });
-    </script>
-}

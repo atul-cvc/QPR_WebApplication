@@ -1,0 +1,102 @@
+﻿@model QPR_Application.Models.Entities.qpr
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>qpr</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.userid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.userid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orgname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orgname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orgcode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orgcode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.qtrreport)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.qtrreport)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.qtryear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.qtryear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.contactnumberoffice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.contactnumberoffice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.mobilenumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mobilenumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.emailid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.emailid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fulltime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fulltime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.parttime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.parttime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.createdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.createdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ip)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ip)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.finalsubmit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.finalsubmit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.finalsubmitdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.finalsubmitdate)
+        </dd>
+    </dl>
+</div>
+<div class="d-flex">
+    <a asp-action="EditQPR" class="btn btn-primary" asp-route-id="@Model?.referencenumber">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary ms-auto">Back to List</a>
+</div>

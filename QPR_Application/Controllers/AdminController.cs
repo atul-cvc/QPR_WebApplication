@@ -21,23 +21,23 @@ namespace QPR_Application.Controllers
         }
 
         // GET: Admin
-        public ActionResult Index()
+        public IActionResult Index()
         {
             if (HttpContext.Session.GetString("UserName") != null)
+            {
                 ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
-            //var userName = ;
+            }
+            else
+            {
+                myMethod();
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
 
-        public async Task<IActionResult> QPR()
+        public void myMethod()
         {
-            var qprList = await _adminRepo.GetAllQprs(); 
-            return View(qprList);
-        }
 
-        public IActionResult EditQPR()
-        {
-            return View();
         }
     }
 }

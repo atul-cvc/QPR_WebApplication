@@ -33,7 +33,7 @@ namespace QPR_Application.Controllers
             if (User != null)
             {
                 string userObj = JsonSerializer.Serialize(User);
-                _httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
+                //_httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
                 _httpContext.HttpContext.Session.SetString("UserName", User.name);
 
                 if (User.logintype == "ROLE_COORD")

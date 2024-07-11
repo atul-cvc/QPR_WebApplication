@@ -11,17 +11,16 @@
 
 <h2>Admin</h2>
 @* <h3>Index</h3> *@
-<a asp-action="AllUsers" asp-controller="User">
+<a asp-action="AllUsers" asp-controller="ManageUser">
     <button class="btn btn-primary" >Show All Users</button>
 </a>
 @* <div ></div> *@
-&nbsp;
 
-<a asp-action="CreateUser" asp-controller="User">
+<a class="ms-3" asp-action="CreateUser" asp-controller="ManageUser">
     <button class="btn btn-primary">Create User</button>
 </a>
 
-<a asp-action="QPR" asp-controller="Admin">
+<a class="ms-3" asp-action="Index" asp-controller="ManageQPR">
     <button class="btn btn-primary">All QPR</button>
 </a>
 

@@ -14,10 +14,7 @@ namespace QPR_Application.Controllers
             _logger = logger;
             _userRepo = userRepo;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+
         public async Task<ActionResult> AllUsers()
         {
             IEnumerable<registration> allUsers = await _userRepo.GetAllUsers();
@@ -82,7 +79,7 @@ namespace QPR_Application.Controllers
             try
             {
                 _userRepo.EditUser(User);
-                return RedirectToAction("Details", "User", new { id = User.usercode.ToString() });
+                return RedirectToAction("Details", new { id = User.usercode.ToString() });
             }
             catch (Exception ex)
             {
