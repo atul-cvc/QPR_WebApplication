@@ -136,6 +136,8 @@ namespace QPR_Application.Models.Entities
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();
             });
 
+
+            modelBuilder.Entity<orgadd>().HasKey(e=>e.Id);
             OnModelCreatingPartial(modelBuilder);
         }
 
