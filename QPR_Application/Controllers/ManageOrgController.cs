@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
+using System.Linq;
 
 namespace QPR_Application.Controllers
 {
@@ -21,7 +22,7 @@ namespace QPR_Application.Controllers
             //catch (Exception ex)
             //{
             //}
-            return View(orgadd);
+            return View(orgadd.OrderByDescending(n=>n.Id));
         }
         public IActionResult Details()
         {
@@ -31,15 +32,27 @@ namespace QPR_Application.Controllers
         {
             return View();
         }
-        public IActionResult Edit(string id)
+        public async Task<IActionResult> Edit(string id)
         {
-
-            return View();
+            var details=await orgRepo.GetOrgDetails(id);
+            return View(details);
         }
+
+        public IActionResult Edit1(orgadd orgadd)
+        {
+            var details =  orgRepo.EditSave(orgadd);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Delete(long id)
+        {
+            await orgRepo.Delete(id);
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> Save1(orgadd org)
         {
             await orgRepo.SaveOrg(org);
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

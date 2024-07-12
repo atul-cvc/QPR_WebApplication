@@ -6,6 +6,8 @@ namespace QPR_Application.Repository
     {
         public Task<IEnumerable<orgadd>> Getallorg();
         Task SaveOrg(orgadd orgadd);
-
+        public Task<orgadd> GetOrgDetails(string Id);
+        public Task<orgadd> EditSave(orgadd orgadd);
+        public Task Delete(long id);
     }
 }
