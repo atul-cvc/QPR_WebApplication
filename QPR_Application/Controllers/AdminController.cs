@@ -8,12 +8,12 @@ namespace QPR_Application.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<AdminController> _logger;
         private readonly IAdminRepo _adminRepo;
         private readonly IHttpContextAccessor _httpContext;
 
         //private registration _user;
-        public AdminController(ILogger<HomeController> logger, IAdminRepo adminRepo, IHttpContextAccessor httpContext)
+        public AdminController(ILogger<AdminController> logger, IAdminRepo adminRepo, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _adminRepo = adminRepo;
@@ -23,11 +23,7 @@ namespace QPR_Application.Controllers
         // GET: Admin
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("UserName") != null)
-            {
-                ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
-            }
-            else
+            if (HttpContext.Session.GetString("CurrentUser") == null)
             {
                 myMethod();
                 return RedirectToAction("Index", "Login");

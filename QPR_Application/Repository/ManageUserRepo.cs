@@ -4,10 +4,10 @@ using QPR_Application.Models.Entities;
 
 namespace QPR_Application.Repository
 {
-    public class UserRepo : IUserRepo
+    public class ManageUserRepo : IManageUserRepo
     {
         private readonly QPRContext _dbContext;
-        public UserRepo(QPRContext DbContext)
+        public ManageUserRepo(QPRContext DbContext)
         {
             _dbContext = DbContext;
         }

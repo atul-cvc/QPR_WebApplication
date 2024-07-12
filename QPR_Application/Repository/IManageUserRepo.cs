@@ -3,7 +3,7 @@ using QPR_Application.Models.Entities;
 
 namespace QPR_Application.Repository
 {
-    public interface IUserRepo
+    public interface IManageUserRepo
     {
         public Task<IEnumerable<registration>> GetAllUsers();
         public Task<registration> GetUserDetails(string Id);

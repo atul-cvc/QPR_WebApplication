@@ -1,0 +1,105 @@
+﻿@using QPR_Application.Models.DTO.Response;
+@*
+@using QPR_Application.Models.DTO.Request;
+ *@
+
+@model QPR_Application.Models.DTO.Request.GetQPR;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    IEnumerable<Years> years = (IEnumerable<Years>)ViewBag.Years;
+    var Quarters = (IEnumerable<SelectListItem>)ViewBag.Quarters;
+}
+
+<div class="">
+    <h1 class="display-6">Welcome @ViewBag.User.name</h1>
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
+    <form asp-action="Index">
+        <div class="row">
+            <div class="col-md-4">
+                <label>NAME OF MINISTRY/DEPTT/ORGANISATION : </label>
+            </div>
+
+            <div class="col-md-4 ">
+                <input class="p-1 rounded-1" style="border: 1px solid #ced4da" value="@ViewBag.User.organisation" readonly />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label>REPORT FOR THE QUARTER ENDING  : </label>
+            </div>
+            <div class="form-group col-md-2">
+                @Html.DropDownList("SelectedQuarter", new SelectList(Quarters,"Value", "Text"), "---- Select Quarter ----", new { @class = "form-control", id = "quarterDropdown" })
+            </div>
+            <div class="form-group col-md-2">
+                @Html.DropDownList("SelectedYear", new SelectList(years,"Year", "Year"), "------ Select Year ------", new { @class = "form-control", id = "yearDropdown" })
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label>CVO CONTACT NO. :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="tel" name="CVCContactNo" id="CVCContactNo" />
+            </div>
+            <div class="col-md-2">
+                <label>MOBILE NO. :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="tel" name="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label>Email : </label>
+            </div>
+            <div class="col-md-3">
+                <input type="email" name="CVOEmail" id="CVOEmail" value="@ViewBag.User.email" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label>Full Time : </label>
+            </div>
+            <div class="col-md-3">
+                @* <input type="checkbox" name="CVOFulltime" id="CVOFulltime" /> *@
+                @Html.CheckBoxFor(m => m.CVOFulltime, new {
+                    @onclick="",
+                    @class = "myCheckboxClass"
+                })
+                @Html.ValidationMessageFor(model => model.CVOFulltime)
+            </div>
+            <div class="col-md-2">
+                <label>Part Time : </label>
+            </div>
+            <div class="col-md-3">
+                @* <input type="checkbox" name="CVOParttime" id="CVOParttime" /> *@
+                @Html.CheckBoxFor(m => m.CVOParttime, new {
+                    @class = "myCheckboxClass"
+                })
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex mt-2 justify-content-center">
+            <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </form>
+</div>
+<script>
+    $('button[type="submit"]').click(function (e) {
+        debugger;
+        var selectedQuarter = $('#quarterDropdown').val();
+        var selectedQuarter = $('#quarterDropdown').val();
+        if (selectedQuarter === '') {
+            e.preventDefault(); // Prevent form submission
+            $('#quarterValidationMsg').show(); // Show validation message
+        }
+    });
+
+    $('.myCheckboxClass').click(function () {
+        $('.myCheckboxClass').not(this).prop('checked', false);
+    });
+
+</script>
+

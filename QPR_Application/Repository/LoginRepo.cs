@@ -12,13 +12,19 @@ namespace QPR_Application.Repository
         }
         public async Task<registration> Login(Login user)
         {
-            var USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username);
-            if (USER != null)
+            try
             {
-                if (user.Password == USER.password)
+                var USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
+                if (USER != null)
                 {
-                    return USER;
+                    if (user.Password == USER.password)
+                    {
+                        return USER;
+                    }
                 }
+            } catch (Exception ex)
+            {
+
             }
             return null;
         }

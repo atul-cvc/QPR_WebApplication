@@ -16,8 +16,9 @@ builder.Services.AddHttpContextAccessor();
 // Register repositories or services
 builder.Services.AddTransient<ILoginRepo, LoginRepo>();
 builder.Services.AddTransient<IAdminRepo, AdminRepo>();
-builder.Services.AddTransient<IUserRepo, UserRepo>();
+builder.Services.AddTransient<IManageUserRepo, ManageUserRepo>();
 builder.Services.AddTransient< IManageQprRepo, ManageQprRepo >();
+builder.Services.AddTransient< IQprRepo, QprRepo >();
 
 
 // Add services required for sessions

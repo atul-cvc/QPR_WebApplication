@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
+using System.Reflection;
 
 namespace QPR_Application.Repository
 {
@@ -16,7 +17,7 @@ namespace QPR_Application.Repository
             IEnumerable<qpr> myQrlist = null;
             try
             {
-                myQrlist = await _dbContext.qpr.Take(1500).ToListAsync();
+                myQrlist = await _dbContext.qpr.Take(100).ToListAsync();
                 return myQrlist;
             }
             catch (Exception ex)
@@ -41,7 +42,7 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex)
             {
-                //throw ex;
+                throw ex;
             }
         }
     }

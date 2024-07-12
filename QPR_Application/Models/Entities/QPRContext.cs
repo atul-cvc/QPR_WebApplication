@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using QPR_Application.Models.DTO.Response;
 
 namespace QPR_Application.Models.Entities
 {
@@ -79,18 +80,26 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<vijclearancedetail> vijclearancedetail { get; set; }
         public virtual DbSet<vijclearanceofficerdetail> vijclearanceofficerdetail { get; set; }
         public virtual DbSet<workex> workex { get; set; }
+        public virtual DbSet<Years> Years { get; set; }
+        public virtual DbSet<LoginUser> LoginUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=10.25.34.120;Initial Catalog=QPR;Persist Security Info=True;User ID=sa;Password=sa@123");
+                //optionsBuilder.UseSqlServer("Data Source=10.25.34.120;Initial Catalog=QPR;Persist Security Info=True;User ID=sa;Password=sa@123");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Login>().HasNoKey();
+
+            modelBuilder.Entity<Years>().HasNoKey();
+            
+            modelBuilder.Entity<LoginUser>().HasNoKey();
+
             modelBuilder.Entity<qpr>().HasKey(q => q.referencenumber);
 
             modelBuilder.Entity<cmptable>(entity =>

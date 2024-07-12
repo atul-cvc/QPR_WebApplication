@@ -12,11 +12,12 @@ namespace QPR_Application.Controllers
 {
     public class ManageQPRController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ManageQPRController> _logger;
         private readonly IManageQprRepo _manageQprRepo;
         private readonly IHttpContextAccessor _httpContext;
+        private qpr QPR;
 
-        public ManageQPRController(ILogger<HomeController> logger, IManageQprRepo manageQprRepo, IHttpContextAccessor httpContext)
+        public ManageQPRController(ILogger<ManageQPRController> logger, IManageQprRepo manageQprRepo, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _manageQprRepo = manageQprRepo;
@@ -36,15 +37,20 @@ namespace QPR_Application.Controllers
 
         public IActionResult EditQpr(string id)
         {
-            var qpr = _manageQprRepo.GetQPRByRef(id);
-            return View(qpr);
+            QPR = _manageQprRepo.GetQPRByRef(id);
+            return View(QPR);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditQpr(qpr qpr)
         {
-            
+            try
+            {
+                _manageQprRepo.UpdateQpr(qpr);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex) { }
             return View();
         }
 

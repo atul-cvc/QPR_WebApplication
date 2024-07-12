@@ -4,23 +4,25 @@
 }
 
 <style>
-    a{
-        text-decoration:none;
+    a {
+        text-decoration: none;
     }
 </style>
+<div class="container">
 
-<h2>Admin</h2>
-@* <h3>Index</h3> *@
-<a asp-action="AllUsers" asp-controller="ManageUser">
-    <button class="btn btn-primary" >Show All Users</button>
-</a>
-@* <div ></div> *@
+    <h2>Admin</h2>
+    @* <h3>Index</h3> *@
+    <a class="btn btn-primary" asp-action="AllUsers" asp-controller="ManageUser">
+        Show All Users
+    </a>
+    @* <div ></div> *@
 
-<a class="ms-3" asp-action="CreateUser" asp-controller="ManageUser">
-    <button class="btn btn-primary">Create User</button>
-</a>
+    <a class="ms-3 btn btn-primary" asp-action="CreateUser" asp-controller="ManageUser">
+        Create User
+    </a>
 
-<a class="ms-3" asp-action="Index" asp-controller="ManageQPR">
-    <button class="btn btn-primary">All QPR</button>
-</a>
+    <a class="ms-3 btn btn-primary" asp-action="Index" asp-controller="ManageQPR">
+        All QPR
+    </a>
+</div>
 

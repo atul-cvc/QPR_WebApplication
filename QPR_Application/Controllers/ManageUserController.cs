@@ -7,17 +7,17 @@ namespace QPR_Application.Controllers
 {
     public class ManageUserController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IUserRepo _userRepo;
-        public ManageUserController(ILogger<HomeController> logger, IUserRepo userRepo)
+        private readonly ILogger<ManageUserController> _logger;
+        private readonly IManageUserRepo _manageUserRepo;
+        public ManageUserController(ILogger<ManageUserController> logger, IManageUserRepo manageUserRepo)
         {
             _logger = logger;
-            _userRepo = userRepo;
+            _manageUserRepo = manageUserRepo;
         }
 
         public async Task<ActionResult> AllUsers()
         {
-            IEnumerable<registration> allUsers = await _userRepo.GetAllUsers();
+            IEnumerable<registration> allUsers = await _manageUserRepo.GetAllUsers();
             return View(allUsers);
         }
 
@@ -40,7 +40,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                _userRepo.CreateUser(registerUser);
+                _manageUserRepo.CreateUser(registerUser);
                 return RedirectToAction("AllUsers");
             }
             catch (Exception ex)
@@ -53,13 +53,13 @@ namespace QPR_Application.Controllers
         // GET: UserController/Details/5
         public async Task<IActionResult> Details(string Id)
         {
-            var User = await _userRepo.GetUserDetails(Id);
+            var User = await _manageUserRepo.GetUserDetails(Id);
             return View(User);
         }
 
         public async Task<IActionResult> Edit(string Id)
         {
-            var User = await _userRepo.GetUserDetails(Id);
+            var User = await _manageUserRepo.GetUserDetails(Id);
 
             //Populate the dropdown options
             var loginTypes = new List<SelectListItem>{
@@ -78,7 +78,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                _userRepo.EditUser(User);
+                _manageUserRepo.EditUser(User);
                 return RedirectToAction("Details", new { id = User.usercode.ToString() });
             }
             catch (Exception ex)
