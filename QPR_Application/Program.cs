@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
+
+var time = 30;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -28,10 +31,17 @@ builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddSession(options =>
 {
     // Configure session options here
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout period
+    options.IdleTimeout = TimeSpan.FromMinutes(time); // Session timeout period
     options.Cookie.HttpOnly = true; // Cookie settings
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Login/Index";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(time);
+    });
 
 var app = builder.Build();
 
@@ -43,10 +53,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseHttpsRedirection();
+
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

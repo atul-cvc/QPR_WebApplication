@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly ILogger<HomeController> _logger;

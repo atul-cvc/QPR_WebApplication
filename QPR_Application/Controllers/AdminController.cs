@@ -4,8 +4,14 @@ using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using System.Text.Json;
 
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+
+
 namespace QPR_Application.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,12 +27,18 @@ namespace QPR_Application.Controllers
         }
 
         // GET: Admin
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("UserName") != null)
+            //if (_httpContext.HttpContext.Session.GetString("UserName") != null)
                 ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
             //var userName = ;
             return View();
+        }
+        public IActionResult Logout()
+        {
+            _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //var userName = ;
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> QPR()
