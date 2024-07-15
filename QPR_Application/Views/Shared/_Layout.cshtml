@@ -9,6 +9,66 @@
     <link rel="stylesheet" href="~/QPR_Application.styles.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        /* Add hover effect for dropdown */
+        .navbar .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .navbar .dropdown-menu {
+            display: none;
+            margin-top: 0;
+        }
+
+        /* Custom styles for better design */
+        .navbar-inverse {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+
+            .navbar-inverse .navbar-brand {
+                color: #ecf0f1;
+            }
+
+            .navbar-inverse .navbar-nav > li > a {
+                color: #ecf0f1;
+            }
+
+            .navbar-inverse .navbar-nav > .dropdown > a:hover {
+                background-color: #34495e;
+            }
+
+            .navbar-inverse .navbar-nav > .dropdown > a .caret {
+                border-top-color: #ecf0f1;
+                border-bottom-color: #ecf0f1;
+            }
+
+        .dropdown-menu {
+            background-color: #34495e;
+            border-color: #34495e;
+        }
+
+            .dropdown-menu > li > a {
+                color: #ecf0f1;
+            }
+
+                .dropdown-menu > li > a:hover {
+                    background-color: white;
+                }
+                li a{
+                    color:white;
+                }
+                .nav-link{
+                    color:white;
+                }
+    </style>
     <script src="~/js/site.js" asp-append-version="false"></script>
     <link href="~/lib/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/lib/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" />
@@ -35,6 +95,31 @@
                     <ul>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li>
+                            <div class="navbar navbar-inverse navbar-fixed-top">
+                                <div class="container">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">My ASP.NET Application</a>
+                                    </div>
+                                    <div class="navbar-collapse collapse">
+                                        <ul class="nav navbar-nav">
+                                   @*          <li><a href="@Url.Action("Index", "Home")">Home</a></li> *@
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">ManageOrg <b class="caret"></b></a>
+                                                <ul class="dropdown-menu">
+                                                    <li style="color:white"><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Index">List</a></li>
+                                                    <li><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Save">Save</a></li>
+                                                    <li><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Save">Save</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
