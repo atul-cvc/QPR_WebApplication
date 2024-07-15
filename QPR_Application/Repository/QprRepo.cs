@@ -32,9 +32,9 @@ namespace QPR_Application.Repository
         {
             try
             {
-                var result = _dbContext.Database.SqlQuery<string>("EXEC GetReferenceNumber @qpr_qtr @qpr_year", qprDetails.SelectedQuarter, qprDetails.SelectedYear)).FirstOrDefault();
-                string referenceNumber = result ?? ""; // Handle null case if necessary
-                Console.WriteLine("Reference Number: " + referenceNumber);
+                //var result = _dbContext.Database.SqlQuery<string>("EXEC GetReferenceNumber @qpr_qtr @qpr_year", qprDetails.SelectedQuarter, qprDetails.SelectedYear).FirstOrDefault();
+                //string referenceNumber = result ?? ""; // Handle null case if necessary
+                //Console.WriteLine("Reference Number: " + referenceNumber);
                 //string refNum = await _dbContext.Database.ExecuteSqlCommand("EXEC GetReferenceNumber").ToListAsync();
             }
             catch (Exception ex) { }
