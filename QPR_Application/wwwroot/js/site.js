@@ -6,7 +6,10 @@
 
 //put code here to execute on page ready
 $(function () {
+    //Datatable
     $('#example1').DataTable();
+
+    //Datepicker
     $('.datepicker').datepicker(
         {
         //    buttonText: "Select date",
