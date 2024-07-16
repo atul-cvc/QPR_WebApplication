@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/QPR_Application/v17/.suo
+/.vs
 *.vsidx
 /QPR_Application/bin/Debug/net6.0/QPR_Application.dll
 /QPR_Application/bin/Debug/net6.0/QPR_Application.pdb
@@ -15,3 +15,7 @@ bin/
 obj/
 /QPR_Application/obj/Debug/net6.0/project.razor.vs.json
 /QPR_Application/obj/Debug/net6.0/QPR_Application.GeneratedMSBuildEditorConfig.editorconfig
+/bin/
+/.vs/ProjectEvaluation
+/.vs/ProjectEvaluation/qpr_application.metadata.v7.bin
+/.vs/ProjectEvaluation/qpr_application.projects.v7.bin
