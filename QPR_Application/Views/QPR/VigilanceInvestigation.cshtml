@@ -1,0 +1,719 @@
+﻿@model QPR_Application.Models.Entities.viginvestigationqrs
+
+@{
+    ViewData["Title"] = "VigilanceInvestigation";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h3>VigilanceInvestigation</h3>
+
+@* <h4>viginvestigationqrs</h4> *@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="VigilanceInvestigation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="viginvestigations_id" class="control-label"></label>
+                <input asp-for="viginvestigations_id" class="form-control" />
+                <span asp-validation-for="viginvestigations_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcopeningbalance" class="control-label"></label>
+                <input asp-for="viginvescvcopeningbalance" class="form-control" />
+                <span asp-validation-for="viginvescvcopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvctakeninvesqtr" class="control-label"></label>
+                <input asp-for="viginvescvctakeninvesqtr" class="form-control" />
+                <span asp-validation-for="viginvescvctakeninvesqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvctotal" class="control-label"></label>
+                <input asp-for="viginvescvctotal" class="form-control" />
+                <span asp-validation-for="viginvescvctotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcreportsrecivqtr" class="control-label"></label>
+                <input asp-for="viginvescvcreportsrecivqtr" class="form-control" />
+                <span asp-validation-for="viginvescvcreportsrecivqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcbalancepending" class="control-label"></label>
+                <input asp-for="viginvescvcbalancepending" class="form-control" />
+                <span asp-validation-for="viginvescvcbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcgreaterthree" class="control-label"></label>
+                <input asp-for="viginvescvcgreaterthree" class="form-control" />
+                <span asp-validation-for="viginvescvcgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcthreetosix" class="control-label"></label>
+                <input asp-for="viginvescvcthreetosix" class="form-control" />
+                <span asp-validation-for="viginvescvcthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvcsixtotwelve" class="control-label"></label>
+                <input asp-for="viginvescvcsixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvescvcsixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvclesstwelve" class="control-label"></label>
+                <input asp-for="viginvescvclesstwelve" class="form-control" />
+                <span asp-validation-for="viginvescvclesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvoopeningbalance" class="control-label"></label>
+                <input asp-for="viginvescvoopeningbalance" class="form-control" />
+                <span asp-validation-for="viginvescvoopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvotakeninvesqtr" class="control-label"></label>
+                <input asp-for="viginvescvotakeninvesqtr" class="form-control" />
+                <span asp-validation-for="viginvescvotakeninvesqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvototal" class="control-label"></label>
+                <input asp-for="viginvescvototal" class="form-control" />
+                <span asp-validation-for="viginvescvototal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvoreportsrecivqtr" class="control-label"></label>
+                <input asp-for="viginvescvoreportsrecivqtr" class="form-control" />
+                <span asp-validation-for="viginvescvoreportsrecivqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvobalancepending" class="control-label"></label>
+                <input asp-for="viginvescvobalancepending" class="form-control" />
+                <span asp-validation-for="viginvescvobalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvogreaterthree" class="control-label"></label>
+                <input asp-for="viginvescvogreaterthree" class="form-control" />
+                <span asp-validation-for="viginvescvogreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvothreetosix" class="control-label"></label>
+                <input asp-for="viginvescvothreetosix" class="form-control" />
+                <span asp-validation-for="viginvescvothreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvosixtotwelve" class="control-label"></label>
+                <input asp-for="viginvescvosixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvescvosixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvescvolesstwelve" class="control-label"></label>
+                <input asp-for="viginvescvolesstwelve" class="form-control" />
+                <span asp-validation-for="viginvescvolesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalopeningbalance" class="control-label"></label>
+                <input asp-for="viginvestotalopeningbalance" class="form-control" />
+                <span asp-validation-for="viginvestotalopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotaltakeninvesqtr" class="control-label"></label>
+                <input asp-for="viginvestotaltakeninvesqtr" class="form-control" />
+                <span asp-validation-for="viginvestotaltakeninvesqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotal" class="control-label"></label>
+                <input asp-for="viginvestotal" class="form-control" />
+                <span asp-validation-for="viginvestotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalreportsrecivqtr" class="control-label"></label>
+                <input asp-for="viginvestotalreportsrecivqtr" class="form-control" />
+                <span asp-validation-for="viginvestotalreportsrecivqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalbalancepending" class="control-label"></label>
+                <input asp-for="viginvestotalbalancepending" class="form-control" />
+                <span asp-validation-for="viginvestotalbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalgreaterthree" class="control-label"></label>
+                <input asp-for="viginvestotalgreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestotalgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalthreetosix" class="control-label"></label>
+                <input asp-for="viginvestotalthreetosix" class="form-control" />
+                <span asp-validation-for="viginvestotalthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotalsixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestotalsixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestotalsixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotallesstwelve" class="control-label"></label>
+                <input asp-for="viginvestotallesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestotallesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingopeningpending" class="control-label"></label>
+                <input asp-for="viginvespendingopeningpending" class="form-control" />
+                <span asp-validation-for="viginvespendingopeningpending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendinginvestqtr" class="control-label"></label>
+                <input asp-for="viginvespendinginvestqtr" class="form-control" />
+                <span asp-validation-for="viginvespendinginvestqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingtotal" class="control-label"></label>
+                <input asp-for="viginvespendingtotal" class="form-control" />
+                <span asp-validation-for="viginvespendingtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingreportio" class="control-label"></label>
+                <input asp-for="viginvespendingreportio" class="form-control" />
+                <span asp-validation-for="viginvespendingreportio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingbalancepending" class="control-label"></label>
+                <input asp-for="viginvespendingbalancepending" class="form-control" />
+                <span asp-validation-for="viginvespendingbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendinggreaterthree" class="control-label"></label>
+                <input asp-for="viginvespendinggreaterthree" class="form-control" />
+                <span asp-validation-for="viginvespendinggreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingthreetosix" class="control-label"></label>
+                <input asp-for="viginvespendingthreetosix" class="form-control" />
+                <span asp-validation-for="viginvespendingthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendingsixtotwelve" class="control-label"></label>
+                <input asp-for="viginvespendingsixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvespendingsixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbireceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestacbireceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestacbireceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbitotal" class="control-label"></label>
+                <input asp-for="viginvestacbitotal" class="form-control" />
+                <span asp-validation-for="viginvestacbitotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbidisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestacbidisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestacbidisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbibalancepending" class="control-label"></label>
+                <input asp-for="viginvestacbibalancepending" class="form-control" />
+                <span asp-validation-for="viginvestacbibalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbigreaterthree" class="control-label"></label>
+                <input asp-for="viginvestacbigreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestacbigreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbithreetosix" class="control-label"></label>
+                <input asp-for="viginvestacbithreetosix" class="form-control" />
+                <span asp-validation-for="viginvestacbithreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbisixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestacbisixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestacbisixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbilesstwelve" class="control-label"></label>
+                <input asp-for="viginvestacbilesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestacbilesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvoreportqtr" class="control-label"></label>
+                <input asp-for="viginvestacvoreportqtr" class="form-control" />
+                <span asp-validation-for="viginvestacvoreportqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvoreceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestacvoreceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestacvoreceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvototal" class="control-label"></label>
+                <input asp-for="viginvestacvototal" class="form-control" />
+                <span asp-validation-for="viginvestacvototal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvodisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestacvodisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestacvodisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvobalancepending" class="control-label"></label>
+                <input asp-for="viginvestacvobalancepending" class="form-control" />
+                <span asp-validation-for="viginvestacvobalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvogreaterthree" class="control-label"></label>
+                <input asp-for="viginvestacvogreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestacvogreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvothreetosix" class="control-label"></label>
+                <input asp-for="viginvestacvothreetosix" class="form-control" />
+                <span asp-validation-for="viginvestacvothreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvosixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestacvosixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestacvosixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacvolesstwelve" class="control-label"></label>
+                <input asp-for="viginvestacvolesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestacvolesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalreportqtr" class="control-label"></label>
+                <input asp-for="viginvestatotalreportqtr" class="form-control" />
+                <span asp-validation-for="viginvestatotalreportqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalreceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestatotalreceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestatotalreceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotal" class="control-label"></label>
+                <input asp-for="viginvestatotal" class="form-control" />
+                <span asp-validation-for="viginvestatotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotaldisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestatotaldisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestatotaldisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalbalancepending" class="control-label"></label>
+                <input asp-for="viginvestatotalbalancepending" class="form-control" />
+                <span asp-validation-for="viginvestatotalbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalgreaterthree" class="control-label"></label>
+                <input asp-for="viginvestatotalgreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestatotalgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalthreetosix" class="control-label"></label>
+                <input asp-for="viginvestatotalthreetosix" class="form-control" />
+                <span asp-validation-for="viginvestatotalthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotalsixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestatotalsixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestatotalsixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestatotallesstwelve" class="control-label"></label>
+                <input asp-for="viginvestatotallesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestatotallesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestardamajorpenalty" class="control-label"></label>
+                <input asp-for="viginvestardamajorpenalty" class="form-control" />
+                <span asp-validation-for="viginvestardamajorpenalty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestardaminorpenalty" class="control-label"></label>
+                <input asp-for="viginvestardaminorpenalty" class="form-control" />
+                <span asp-validation-for="viginvestardaminorpenalty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestadecisionadminaction" class="control-label"></label>
+                <input asp-for="viginvestadecisionadminaction" class="form-control" />
+                <span asp-validation-for="viginvestadecisionadminaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestadecisionclosurecase" class="control-label"></label>
+                <input asp-for="viginvestadecisionclosurecase" class="form-control" />
+                <span asp-validation-for="viginvestadecisionclosurecase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbireportbfqtr" class="control-label"></label>
+                <input asp-for="viginvestbcbireportbfqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcbireportbfqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbireceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestbcbireceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcbireceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbitotal" class="control-label"></label>
+                <input asp-for="viginvestbcbitotal" class="form-control" />
+                <span asp-validation-for="viginvestbcbitotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbisentdaaction" class="control-label"></label>
+                <input asp-for="viginvestbcbisentdaaction" class="form-control" />
+                <span asp-validation-for="viginvestbcbisentdaaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbidisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestbcbidisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcbidisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbibalancepending" class="control-label"></label>
+                <input asp-for="viginvestbcbibalancepending" class="form-control" />
+                <span asp-validation-for="viginvestbcbibalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbigreaterthree" class="control-label"></label>
+                <input asp-for="viginvestbcbigreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestbcbigreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbithreetosix" class="control-label"></label>
+                <input asp-for="viginvestbcbithreetosix" class="form-control" />
+                <span asp-validation-for="viginvestbcbithreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbisixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestbcbisixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestbcbisixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcbilesstwelve" class="control-label"></label>
+                <input asp-for="viginvestbcbilesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestbcbilesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvoreportbfqtr" class="control-label"></label>
+                <input asp-for="viginvestbcvoreportbfqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcvoreportbfqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvoreceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestbcvoreceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcvoreceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvototal" class="control-label"></label>
+                <input asp-for="viginvestbcvototal" class="form-control" />
+                <span asp-validation-for="viginvestbcvototal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvosentdaaction" class="control-label"></label>
+                <input asp-for="viginvestbcvosentdaaction" class="form-control" />
+                <span asp-validation-for="viginvestbcvosentdaaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvodisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestbcvodisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestbcvodisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvobalancepending" class="control-label"></label>
+                <input asp-for="viginvestbcvobalancepending" class="form-control" />
+                <span asp-validation-for="viginvestbcvobalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvogreaterthree" class="control-label"></label>
+                <input asp-for="viginvestbcvogreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestbcvogreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvothreetosix" class="control-label"></label>
+                <input asp-for="viginvestbcvothreetosix" class="form-control" />
+                <span asp-validation-for="viginvestbcvothreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvosixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestbcvosixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestbcvosixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbcvolesstwelve" class="control-label"></label>
+                <input asp-for="viginvestbcvolesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestbcvolesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalreportbfqtr" class="control-label"></label>
+                <input asp-for="viginvestbtotalreportbfqtr" class="form-control" />
+                <span asp-validation-for="viginvestbtotalreportbfqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalreceiveqtr" class="control-label"></label>
+                <input asp-for="viginvestbtotalreceiveqtr" class="form-control" />
+                <span asp-validation-for="viginvestbtotalreceiveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotal" class="control-label"></label>
+                <input asp-for="viginvestbtotal" class="form-control" />
+                <span asp-validation-for="viginvestbtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalsentdaaction" class="control-label"></label>
+                <input asp-for="viginvestbtotalsentdaaction" class="form-control" />
+                <span asp-validation-for="viginvestbtotalsentdaaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotaldisposedqtr" class="control-label"></label>
+                <input asp-for="viginvestbtotaldisposedqtr" class="form-control" />
+                <span asp-validation-for="viginvestbtotaldisposedqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalbalancepending" class="control-label"></label>
+                <input asp-for="viginvestbtotalbalancepending" class="form-control" />
+                <span asp-validation-for="viginvestbtotalbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalgreaterthree" class="control-label"></label>
+                <input asp-for="viginvestbtotalgreaterthree" class="form-control" />
+                <span asp-validation-for="viginvestbtotalgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalthreetosix" class="control-label"></label>
+                <input asp-for="viginvestbtotalthreetosix" class="form-control" />
+                <span asp-validation-for="viginvestbtotalthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotalsixtotwelve" class="control-label"></label>
+                <input asp-for="viginvestbtotalsixtotwelve" class="form-control" />
+                <span asp-validation-for="viginvestbtotalsixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbtotallesstwelve" class="control-label"></label>
+                <input asp-for="viginvestbtotallesstwelve" class="form-control" />
+                <span asp-validation-for="viginvestbtotallesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbrdamajorpenalty" class="control-label"></label>
+                <input asp-for="viginvestbrdamajorpenalty" class="form-control" />
+                <span asp-validation-for="viginvestbrdamajorpenalty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbrdaminorpenalty" class="control-label"></label>
+                <input asp-for="viginvestbrdaminorpenalty" class="form-control" />
+                <span asp-validation-for="viginvestbrdaminorpenalty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbdecisionadminaction" class="control-label"></label>
+                <input asp-for="viginvestbdecisionadminaction" class="form-control" />
+                <span asp-validation-for="viginvestbdecisionadminaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestbdecisionclosurecase" class="control-label"></label>
+                <input asp-for="viginvestbdecisionclosurecase" class="form-control" />
+                <span asp-validation-for="viginvestbdecisionclosurecase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreportbycvoqtr" class="control-label"></label>
+                <input asp-for="viginvestreportbycvoqtr" class="form-control" />
+                <span asp-validation-for="viginvestreportbycvoqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestmajorpp" class="control-label"></label>
+                <input asp-for="viginvestmajorpp" class="form-control" />
+                <span asp-validation-for="viginvestmajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestminorpp" class="control-label"></label>
+                <input asp-for="viginvestminorpp" class="form-control" />
+                <span asp-validation-for="viginvestminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestotheradmnaction" class="control-label"></label>
+                <input asp-for="viginvestotheradmnaction" class="form-control" />
+                <span asp-validation-for="viginvestotheradmnaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestclosure" class="control-label"></label>
+                <input asp-for="viginvestclosure" class="form-control" />
+                <span asp-validation-for="viginvestclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupcmajorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupcmajorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupcmajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupcminorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupcminorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupcminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupcotheraction" class="control-label"></label>
+                <input asp-for="viginvestreskgroupcotheraction" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupcotheraction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupcclosure" class="control-label"></label>
+                <input asp-for="viginvestreskgroupcclosure" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupcclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupctotal" class="control-label"></label>
+                <input asp-for="viginvestreskgroupctotal" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupctotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupbmajorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupbmajorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupbmajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupbminorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupbminorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupbminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupbotheraction" class="control-label"></label>
+                <input asp-for="viginvestreskgroupbotheraction" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupbotheraction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupbclosure" class="control-label"></label>
+                <input asp-for="viginvestreskgroupbclosure" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupbclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupbtotal" class="control-label"></label>
+                <input asp-for="viginvestreskgroupbtotal" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupbtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupamajorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupamajorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupamajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupaminorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupaminorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupaminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupaotheraction" class="control-label"></label>
+                <input asp-for="viginvestreskgroupaotheraction" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupaotheraction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupaclosure" class="control-label"></label>
+                <input asp-for="viginvestreskgroupaclosure" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupaclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupatotal" class="control-label"></label>
+                <input asp-for="viginvestreskgroupatotal" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupatotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupjsmajorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupjsmajorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupjsmajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupjsminorpp" class="control-label"></label>
+                <input asp-for="viginvestreskgroupjsminorpp" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupjsminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupjsotheraction" class="control-label"></label>
+                <input asp-for="viginvestreskgroupjsotheraction" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupjsotheraction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupjsclosure" class="control-label"></label>
+                <input asp-for="viginvestreskgroupjsclosure" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupjsclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestreskgroupjstotal" class="control-label"></label>
+                <input asp-for="viginvestreskgroupjstotal" class="form-control" />
+                <span asp-validation-for="viginvestreskgroupjstotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestresktotalmajorpp" class="control-label"></label>
+                <input asp-for="viginvestresktotalmajorpp" class="form-control" />
+                <span asp-validation-for="viginvestresktotalmajorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestresktotalminorpp" class="control-label"></label>
+                <input asp-for="viginvestresktotalminorpp" class="form-control" />
+                <span asp-validation-for="viginvestresktotalminorpp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestresktotalotheraction" class="control-label"></label>
+                <input asp-for="viginvestresktotalotheraction" class="form-control" />
+                <span asp-validation-for="viginvestresktotalotheraction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestresktotalclosure" class="control-label"></label>
+                <input asp-for="viginvestresktotalclosure" class="form-control" />
+                <span asp-validation-for="viginvestresktotalclosure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestresktotal" class="control-label"></label>
+                <input asp-for="viginvestresktotal" class="form-control" />
+                <span asp-validation-for="viginvestresktotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="create_date" class="control-label"></label>
+                <input asp-for="create_date" class="form-control" />
+                <span asp-validation-for="create_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="last_user_id" class="control-label"></label>
+                <input asp-for="last_user_id" class="form-control" />
+                <span asp-validation-for="last_user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qpr_id" class="control-label"></label>
+                <input asp-for="qpr_id" class="form-control" />
+                <span asp-validation-for="qpr_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ip" class="control-label"></label>
+                <input asp-for="ip" class="form-control" />
+                <span asp-validation-for="ip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvespendinglesstwelve" class="control-label"></label>
+                <input asp-for="viginvespendinglesstwelve" class="form-control" />
+                <span asp-validation-for="viginvespendinglesstwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="viginvestacbireportqtr" class="control-label"></label>
+                <input asp-for="viginvestacbireportqtr" class="form-control" />
+                <span asp-validation-for="viginvestacbireportqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

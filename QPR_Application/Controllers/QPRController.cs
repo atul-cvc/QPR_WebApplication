@@ -16,14 +16,15 @@ namespace QPR_Application.Controllers
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
         //private qpr QPR;
+        private readonly IComplaintsRepo _complaintsRepo;
         private registration userObject;
 
-        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext)
+        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
         {
             _logger = logger;
             _qprRepo = qprRepo;
             _httpContext = httpContext;
-
+            _complaintsRepo = complaintsRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -62,19 +63,140 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(GetQPR qprDetails)
+        public async Task<IActionResult> Index(GetQPR qprDetails)
         {
+            string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
             if (ModelState.IsValid)
             {
                 string qprDet = JsonSerializer.Serialize(qprDetails);
+                var refNum = await _qprRepo.GetReferenceNumber(qprDetails, UserId);
+                _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
 
-                //_httpContext.HttpContext.Session.SetString("QPRDetails", qprDet);
-                return RedirectToAction("Index", "Complaints");
+                return RedirectToAction("Complaints");
             }
             else
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        public async Task<IActionResult> Complaints()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var complaint = await _complaintsRepo.GetComplaintsData(refNum);
+                return View(complaint);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> VigilanceInvestigation()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var vigInv = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
+                return View(vigInv);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> ProsecutionSanctions()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var prosSec = await _complaintsRepo.GetProsecutionSanctionsData(refNum);
+                return View(prosSec);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> DepartmentalProceedings()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var deptProc = await _complaintsRepo.GetDepartmentalProceedingsData(refNum);
+                return View(deptProc);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> AdviceOfCVC()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var adviceOfCVC = await _complaintsRepo.GetAdviceOfCVCData(refNum);
+                return View(adviceOfCVC);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> StatusofPendencyFIandCACases()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var data = await _complaintsRepo.GetStatusPendencyData(refNum);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> PunitiveVigilance()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var data = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> PreventiveVigilance()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var data = await _complaintsRepo.GetPreventiveVigilanceData(refNum);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> PreventiveVigilanceActivities()
+        {
+            try
+            {
+                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                var data = await _complaintsRepo.GetPreventiveVigilanceActiviteiesData(refNum);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
         }
     }
 }

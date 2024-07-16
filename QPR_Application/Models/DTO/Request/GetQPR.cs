@@ -16,6 +16,7 @@ namespace QPR_Application.Models.DTO.Request
         public string CVOEmail { get; set; }
         [Required(ErrorMessage ="Please select")]
         public bool CVOFulltime { get; set; }
+        [Required(ErrorMessage ="Please select")]
         public bool CVOParttime { get; set; }
     }
 

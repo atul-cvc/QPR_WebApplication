@@ -1,0 +1,84 @@
+﻿@model QPR_Application.Models.Entities.vigilanceactivitiescvcqrs
+
+@{
+    ViewData["Title"] = "PreventiveVigilanceActivities";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>PreventiveVigilanceActivities</h1>
+
+<h4>vigilanceactivitiescvcqrs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PreventiveVigilanceActivities">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="vigilance_activites_id" class="control-label"></label>
+                <input asp-for="vigilance_activites_id" class="form-control" />
+                <span asp-validation-for="vigilance_activites_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vigilance_activites_upload_doc" class="control-label"></label>
+                <input asp-for="vigilance_activites_upload_doc" class="form-control" />
+                <span asp-validation-for="vigilance_activites_upload_doc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vigilance_activites_any_remark" class="control-label"></label>
+                <input asp-for="vigilance_activites_any_remark" class="form-control" />
+                <span asp-validation-for="vigilance_activites_any_remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vigilance_activites_place" class="control-label"></label>
+                <input asp-for="vigilance_activites_place" class="form-control" />
+                <span asp-validation-for="vigilance_activites_place" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vigilance_activites_date" class="control-label"></label>
+                <input asp-for="vigilance_activites_date" class="form-control" />
+                <span asp-validation-for="vigilance_activites_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="create_date" class="control-label"></label>
+                <input asp-for="create_date" class="form-control" />
+                <span asp-validation-for="create_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="last_user_id" class="control-label"></label>
+                <input asp-for="last_user_id" class="form-control" />
+                <span asp-validation-for="last_user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qpr_id" class="control-label"></label>
+                <input asp-for="qpr_id" class="form-control" />
+                <span asp-validation-for="qpr_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ip" class="control-label"></label>
+                <input asp-for="ip" class="form-control" />
+                <span asp-validation-for="ip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

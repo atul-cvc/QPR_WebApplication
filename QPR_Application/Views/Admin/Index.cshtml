@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Index";
-    // var userName = ViewBag["UserName"];
 }
 
 <style>
@@ -11,18 +10,21 @@
 <div class="container">
 
     <h2>Admin</h2>
-    @* <h3>Index</h3> *@
     <a class="btn btn-primary" asp-action="AllUsers" asp-controller="ManageUser">
-        Show All Users
+        Manage Users
     </a>
-    @* <div ></div> *@
-
+@* 
     <a class="ms-3 btn btn-primary" asp-action="CreateUser" asp-controller="ManageUser">
         Create User
-    </a>
+    </a> *@
 
     <a class="ms-3 btn btn-primary" asp-action="Index" asp-controller="ManageQPR">
-        All QPR
+        Manage QPR
     </a>
+
+    <a class="ms-3 btn btn-primary" asp-controller="ManageOrg" asp-action="Index">
+        Manage Organisations
+    </a>
+
 </div>
 

@@ -1,0 +1,484 @@
+﻿@model QPR_Application.Models.Entities.adviceofcvcqrs
+
+@{
+    ViewData["Title"] = "AdviceOfCVC";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>AdviceOfCVC</h1>
+
+<h4>adviceofcvcqrs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdviceOfCVC">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_id" class="control-label"></label>
+                <input asp-for="advice_cvc_id" class="form-control" />
+                <span asp-validation-for="advice_cvc_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_first_casespreviousqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_first_casespreviousqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_first_casespreviousqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_first_casesduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_first_casesduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_first_casesduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_first_adviceduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_first_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_first_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_first_adviceawaitedcvc" class="control-label"></label>
+                <input asp-for="advice_cvc_first_adviceawaitedcvc" class="form-control" />
+                <span asp-validation-for="advice_cvc_first_adviceawaitedcvc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_second_casespreviousqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_second_casespreviousqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_second_casespreviousqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_second_casesduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_second_casesduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_second_casesduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_second_adviceduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_second_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_second_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_second_adviceawaitedcvc" class="control-label"></label>
+                <input asp-for="advice_cvc_second_adviceawaitedcvc" class="form-control" />
+                <span asp-validation-for="advice_cvc_second_adviceawaitedcvc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_firstreconsider_casespreviousqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_firstreconsider_casespreviousqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_firstreconsider_casespreviousqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_firstreconsider_casesduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_firstreconsider_casesduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_firstreconsider_casesduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_firstreconsider_adviceduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_firstreconsider_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_firstreconsider_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="control-label"></label>
+                <input asp-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="form-control" />
+                <span asp-validation-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_secondreconsider_casespreviousqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_secondreconsider_casespreviousqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_secondreconsider_casespreviousqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_secondreconsider_casesduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_secondreconsider_casesduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_secondreconsider_casesduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_secondreconsider_adviceduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_secondreconsider_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_secondreconsider_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="control-label"></label>
+                <input asp-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="form-control" />
+                <span asp-validation-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_total_casespreviousqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_total_casespreviousqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_total_casespreviousqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_total_casesduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_total_casesduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_total_casesduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_total_adviceduringqtr" class="control-label"></label>
+                <input asp-for="advice_cvc_total_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="advice_cvc_total_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="advice_cvc_total_adviceawaitedcvc" class="control-label"></label>
+                <input asp-for="advice_cvc_total_adviceawaitedcvc" class="form-control" />
+                <span asp-validation-for="advice_cvc_total_adviceawaitedcvc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_openingbalance" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_openingbalance" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_openingbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_adviceduringqtr" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_disposed" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_disposed" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_disposed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_balancepending" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_balancepending" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_balancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_greaterone" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_greaterone" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_greaterone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_onetothree" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_onetothree" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_onetothree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_threetosix" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_threetosix" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_threetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstmajor_lesssix" class="control-label"></label>
+                <input asp-for="action_cvc_firstmajor_lesssix" class="form-control" />
+                <span asp-validation-for="action_cvc_firstmajor_lesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_openingbalance" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_openingbalance" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_openingbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_adviceduringqtr" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_disposed" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_disposed" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_disposed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_balancepending" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_balancepending" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_balancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_greaterone" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_greaterone" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_greaterone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_onetothree" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_onetothree" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_onetothree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_threetosix" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_threetosix" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_threetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_firstminor_lesssix" class="control-label"></label>
+                <input asp-for="action_cvc_firstminor_lesssix" class="form-control" />
+                <span asp-validation-for="action_cvc_firstminor_lesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_openingbalance" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_openingbalance" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_openingbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_adviceduringqtr" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_disposed" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_disposed" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_disposed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_balancepending" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_balancepending" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_balancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_greaterone" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_greaterone" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_greaterone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_onetothree" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_onetothree" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_onetothree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_threetosix" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_threetosix" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_threetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondmajor_lesssix" class="control-label"></label>
+                <input asp-for="action_cvc_secondmajor_lesssix" class="form-control" />
+                <span asp-validation-for="action_cvc_secondmajor_lesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_openingbalance" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_openingbalance" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_openingbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_adviceduringqtr" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_disposed" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_disposed" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_disposed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_balancepending" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_balancepending" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_balancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_greaterone" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_greaterone" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_greaterone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_onetothree" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_onetothree" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_onetothree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_threetosix" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_threetosix" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_threetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_secondminor_lesssix" class="control-label"></label>
+                <input asp-for="action_cvc_secondminor_lesssix" class="form-control" />
+                <span asp-validation-for="action_cvc_secondminor_lesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_openingbalance" class="control-label"></label>
+                <input asp-for="action_cvc_total_openingbalance" class="form-control" />
+                <span asp-validation-for="action_cvc_total_openingbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_adviceduringqtr" class="control-label"></label>
+                <input asp-for="action_cvc_total_adviceduringqtr" class="form-control" />
+                <span asp-validation-for="action_cvc_total_adviceduringqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_disposed" class="control-label"></label>
+                <input asp-for="action_cvc_total_disposed" class="form-control" />
+                <span asp-validation-for="action_cvc_total_disposed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_balancepending" class="control-label"></label>
+                <input asp-for="action_cvc_total_balancepending" class="form-control" />
+                <span asp-validation-for="action_cvc_total_balancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_greaterone" class="control-label"></label>
+                <input asp-for="action_cvc_total_greaterone" class="form-control" />
+                <span asp-validation-for="action_cvc_total_greaterone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_onetothree" class="control-label"></label>
+                <input asp-for="action_cvc_total_onetothree" class="form-control" />
+                <span asp-validation-for="action_cvc_total_onetothree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_threetosix" class="control-label"></label>
+                <input asp-for="action_cvc_total_threetosix" class="form-control" />
+                <span asp-validation-for="action_cvc_total_threetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action_cvc_total_lesssix" class="control-label"></label>
+                <input asp-for="action_cvc_total_lesssix" class="form-control" />
+                <span asp-validation-for="action_cvc_total_lesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_typecvcadvice" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_typecvcadvice" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_typecvcadvice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_cvcfilenumber" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_cvcfilenumber" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_cvcfilenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_dept_ref_number" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_dept_ref_number" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_dept_ref_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_name_designation" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_name_designation" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_name_designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_actiontaken_da" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_actiontaken_da" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_actiontaken_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_typecvcadvice" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_typecvcadvice" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_typecvcadvice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_dept_ref_number" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_dept_ref_number" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_dept_ref_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_name_designation" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_name_designation" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_name_designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_actiontaken_da" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_actiontaken_da" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_actiontaken_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_typecvcadvice" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_typecvcadvice" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_typecvcadvice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_cvcfilenumber" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_cvcfilenumber" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_cvcfilenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_dept_ref_number" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_dept_ref_number" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_dept_ref_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_name_designation" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_name_designation" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_name_designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_actiontaken_da" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_actiontaken_da" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_actiontaken_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_firststage_actiontaken_aa" class="control-label"></label>
+                <input asp-for="appellate_deviation_firststage_actiontaken_aa" class="form-control" />
+                <span asp-validation-for="appellate_deviation_firststage_actiontaken_aa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_typecvcadvice" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_typecvcadvice" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_typecvcadvice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_cvcfilenumber" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_cvcfilenumber" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_cvcfilenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_dept_ref_number" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_dept_ref_number" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_dept_ref_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_name_designation" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_name_designation" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_name_designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_actiontaken_da" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_actiontaken_da" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_actiontaken_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="appellate_deviation_secondstage_actiontaken_aa" class="control-label"></label>
+                <input asp-for="appellate_deviation_secondstage_actiontaken_aa" class="form-control" />
+                <span asp-validation-for="appellate_deviation_secondstage_actiontaken_aa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="create_date" class="control-label"></label>
+                <input asp-for="create_date" class="form-control" />
+                <span asp-validation-for="create_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="last_user_id" class="control-label"></label>
+                <input asp-for="last_user_id" class="form-control" />
+                <span asp-validation-for="last_user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qpr_id" class="control-label"></label>
+                <input asp-for="qpr_id" class="form-control" />
+                <span asp-validation-for="qpr_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ip" class="control-label"></label>
+                <input asp-for="ip" class="form-control" />
+                <span asp-validation-for="ip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_firststage_name_designation_da" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_firststage_name_designation_da" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_firststage_name_designation_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviation_cvc_advice_secondstage_name_designation_da" class="control-label"></label>
+                <input asp-for="deviation_cvc_advice_secondstage_name_designation_da" class="form-control" />
+                <span asp-validation-for="deviation_cvc_advice_secondstage_name_designation_da" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

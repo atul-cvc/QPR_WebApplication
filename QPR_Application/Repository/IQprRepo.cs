@@ -8,7 +8,7 @@ namespace QPR_Application.Repository
     {
         public Task<List<Years>> GetYears();
 
-        public Task<string> GetReferenceNumber(GetQPR qprDetails);
+        public Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

@@ -1,0 +1,354 @@
+﻿@model QPR_Application.Models.Entities.prosecutionsanctionsqrs
+
+@{
+    ViewData["Title"] = "GetProsecutionSanctionsData";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>GetProsecutionSanctionsData</h1>
+
+<h4>prosecutionsanctionsqrs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetProsecutionSanctionsData">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="prosecutionsanctions_id" class="control-label"></label>
+                <input asp-for="prosecutionsanctions_id" class="form-control" />
+                <span asp-validation-for="prosecutionsanctions_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcopeningbalance" class="control-label"></label>
+                <input asp-for="prosesanctgroupcopeningbalance" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcreciveqtr" class="control-label"></label>
+                <input asp-for="prosesanctgroupcreciveqtr" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcreciveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupctotal" class="control-label"></label>
+                <input asp-for="prosesanctgroupctotal" class="form-control" />
+                <span asp-validation-for="prosesanctgroupctotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcsanctiongranted" class="control-label"></label>
+                <input asp-for="prosesanctgroupcsanctiongranted" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcsanctiongranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcsanctionrefused" class="control-label"></label>
+                <input asp-for="prosesanctgroupcsanctionrefused" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcsanctionrefused" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcbalancepending" class="control-label"></label>
+                <input asp-for="prosesanctgroupcbalancepending" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcgreaterthree" class="control-label"></label>
+                <input asp-for="prosesanctgroupcgreaterthree" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupcthreetosix" class="control-label"></label>
+                <input asp-for="prosesanctgroupcthreetosix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupcthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupclesssix" class="control-label"></label>
+                <input asp-for="prosesanctgroupclesssix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupclesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbopeningbalance" class="control-label"></label>
+                <input asp-for="prosesanctgroupbopeningbalance" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbreciveqtr" class="control-label"></label>
+                <input asp-for="prosesanctgroupbreciveqtr" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbreciveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbtotal" class="control-label"></label>
+                <input asp-for="prosesanctgroupbtotal" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbsanctiongranted" class="control-label"></label>
+                <input asp-for="prosesanctgroupbsanctiongranted" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbsanctiongranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbsanctionrefused" class="control-label"></label>
+                <input asp-for="prosesanctgroupbsanctionrefused" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbsanctionrefused" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbbalancepending" class="control-label"></label>
+                <input asp-for="prosesanctgroupbbalancepending" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbgreaterthree" class="control-label"></label>
+                <input asp-for="prosesanctgroupbgreaterthree" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupbthreetosix" class="control-label"></label>
+                <input asp-for="prosesanctgroupbthreetosix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupbthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupblesssix" class="control-label"></label>
+                <input asp-for="prosesanctgroupblesssix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupblesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupaopeningbalance" class="control-label"></label>
+                <input asp-for="prosesanctgroupaopeningbalance" class="form-control" />
+                <span asp-validation-for="prosesanctgroupaopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupareciveqtr" class="control-label"></label>
+                <input asp-for="prosesanctgroupareciveqtr" class="form-control" />
+                <span asp-validation-for="prosesanctgroupareciveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupatotal" class="control-label"></label>
+                <input asp-for="prosesanctgroupatotal" class="form-control" />
+                <span asp-validation-for="prosesanctgroupatotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupasanctiongranted" class="control-label"></label>
+                <input asp-for="prosesanctgroupasanctiongranted" class="form-control" />
+                <span asp-validation-for="prosesanctgroupasanctiongranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupasanctionrefused" class="control-label"></label>
+                <input asp-for="prosesanctgroupasanctionrefused" class="form-control" />
+                <span asp-validation-for="prosesanctgroupasanctionrefused" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupabalancepending" class="control-label"></label>
+                <input asp-for="prosesanctgroupabalancepending" class="form-control" />
+                <span asp-validation-for="prosesanctgroupabalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupagreaterthree" class="control-label"></label>
+                <input asp-for="prosesanctgroupagreaterthree" class="form-control" />
+                <span asp-validation-for="prosesanctgroupagreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupathreetosix" class="control-label"></label>
+                <input asp-for="prosesanctgroupathreetosix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupathreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctgroupalesssix" class="control-label"></label>
+                <input asp-for="prosesanctgroupalesssix" class="form-control" />
+                <span asp-validation-for="prosesanctgroupalesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjsopeningbalance" class="control-label"></label>
+                <input asp-for="prosesanctjsopeningbalance" class="form-control" />
+                <span asp-validation-for="prosesanctjsopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjsreciveqtr" class="control-label"></label>
+                <input asp-for="prosesanctjsreciveqtr" class="form-control" />
+                <span asp-validation-for="prosesanctjsreciveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjstotal" class="control-label"></label>
+                <input asp-for="prosesanctjstotal" class="form-control" />
+                <span asp-validation-for="prosesanctjstotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjssanctiongranted" class="control-label"></label>
+                <input asp-for="prosesanctjssanctiongranted" class="form-control" />
+                <span asp-validation-for="prosesanctjssanctiongranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjssanctionrefused" class="control-label"></label>
+                <input asp-for="prosesanctjssanctionrefused" class="form-control" />
+                <span asp-validation-for="prosesanctjssanctionrefused" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjsbalancepending" class="control-label"></label>
+                <input asp-for="prosesanctjsbalancepending" class="form-control" />
+                <span asp-validation-for="prosesanctjsbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjsgreaterthree" class="control-label"></label>
+                <input asp-for="prosesanctjsgreaterthree" class="form-control" />
+                <span asp-validation-for="prosesanctjsgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjsthreetosix" class="control-label"></label>
+                <input asp-for="prosesanctjsthreetosix" class="form-control" />
+                <span asp-validation-for="prosesanctjsthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesanctjslesssix" class="control-label"></label>
+                <input asp-for="prosesanctjslesssix" class="form-control" />
+                <span asp-validation-for="prosesanctjslesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalopeningbalance" class="control-label"></label>
+                <input asp-for="prosesancttotalopeningbalance" class="form-control" />
+                <span asp-validation-for="prosesancttotalopeningbalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalreciveqtr" class="control-label"></label>
+                <input asp-for="prosesancttotalreciveqtr" class="form-control" />
+                <span asp-validation-for="prosesancttotalreciveqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotal" class="control-label"></label>
+                <input asp-for="prosesancttotal" class="form-control" />
+                <span asp-validation-for="prosesancttotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalsanctiongranted" class="control-label"></label>
+                <input asp-for="prosesancttotalsanctiongranted" class="form-control" />
+                <span asp-validation-for="prosesancttotalsanctiongranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalsanctionrefused" class="control-label"></label>
+                <input asp-for="prosesancttotalsanctionrefused" class="form-control" />
+                <span asp-validation-for="prosesancttotalsanctionrefused" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalbalancepending" class="control-label"></label>
+                <input asp-for="prosesancttotalbalancepending" class="form-control" />
+                <span asp-validation-for="prosesancttotalbalancepending" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalgreaterthree" class="control-label"></label>
+                <input asp-for="prosesancttotalgreaterthree" class="form-control" />
+                <span asp-validation-for="prosesancttotalgreaterthree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotalthreetosix" class="control-label"></label>
+                <input asp-for="prosesancttotalthreetosix" class="form-control" />
+                <span asp-validation-for="prosesancttotalthreetosix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosesancttotallesssix" class="control-label"></label>
+                <input asp-for="prosesancttotallesssix" class="form-control" />
+                <span asp-validation-for="prosesancttotallesssix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingserialnumber" class="control-label"></label>
+                <input asp-for="prosependingserialnumber" class="form-control" />
+                <span asp-validation-for="prosependingserialnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosevigiofficersuspension" class="control-label"></label>
+                <input asp-for="prosevigiofficersuspension" class="form-control" />
+                <span asp-validation-for="prosevigiofficersuspension" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosevigisuspensionordered" class="control-label"></label>
+                <input asp-for="prosevigisuspensionordered" class="form-control" />
+                <span asp-validation-for="prosevigisuspensionordered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosevigitotal" class="control-label"></label>
+                <input asp-for="prosevigitotal" class="form-control" />
+                <span asp-validation-for="prosevigitotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosevigisuspensionqtr" class="control-label"></label>
+                <input asp-for="prosevigisuspensionqtr" class="form-control" />
+                <span asp-validation-for="prosevigisuspensionqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosevigisuspensionendqtr" class="control-label"></label>
+                <input asp-for="prosevigisuspensionendqtr" class="form-control" />
+                <span asp-validation-for="prosevigisuspensionendqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="create_date" class="control-label"></label>
+                <input asp-for="create_date" class="form-control" />
+                <span asp-validation-for="create_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="last_user_id" class="control-label"></label>
+                <input asp-for="last_user_id" class="form-control" />
+                <span asp-validation-for="last_user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qpr_id" class="control-label"></label>
+                <input asp-for="qpr_id" class="form-control" />
+                <span asp-validation-for="qpr_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ip" class="control-label"></label>
+                <input asp-for="ip" class="form-control" />
+                <span asp-validation-for="ip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingnameauthority" class="control-label"></label>
+                <input asp-for="prosependingnameauthority" class="form-control" />
+                <span asp-validation-for="prosependingnameauthority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingnamedesig" class="control-label"></label>
+                <input asp-for="prosependingnamedesig" class="form-control" />
+                <span asp-validation-for="prosependingnamedesig" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingstatusrequest" class="control-label"></label>
+                <input asp-for="prosependingstatusrequest" class="form-control" />
+                <span asp-validation-for="prosependingstatusrequest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingdaterecommend" class="control-label"></label>
+                <input asp-for="prosependingdaterecommend" class="form-control" />
+                <span asp-validation-for="prosependingdaterecommend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingdatereceipt" class="control-label"></label>
+                <input asp-for="prosependingdatereceipt" class="form-control" />
+                <span asp-validation-for="prosependingdatereceipt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingcbifirno" class="control-label"></label>
+                <input asp-for="prosependingcbifirno" class="form-control" />
+                <span asp-validation-for="prosependingcbifirno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prosependingsanctionpc" class="control-label"></label>
+                <input asp-for="prosependingsanctionpc" class="form-control" />
+                <span asp-validation-for="prosependingsanctionpc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

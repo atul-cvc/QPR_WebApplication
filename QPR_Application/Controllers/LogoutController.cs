@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
@@ -14,6 +16,8 @@ namespace QPR_Application.Controllers
         public IActionResult Index()
         {
             _httpContext.HttpContext.Session.Remove("CurrentUser");
+            _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             return RedirectToAction("Index", "Login");
         }
     }

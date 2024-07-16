@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
 {
+    //[Authorize]
     public class ManageQPRController : Controller
     {
         private readonly ILogger<ManageQPRController> _logger;
@@ -30,9 +33,15 @@ namespace QPR_Application.Controllers
             return View(qprList);
         }
 
-        public IActionResult Search()
+        //public IActionResult Search()
+        //{
+        //    return View();
+        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Search(SearchById search)
         {
-            return View();
+            return RedirectToAction("EditQpr", new { id = search.Id });
         }
 
         public IActionResult EditQpr(string id)
@@ -60,67 +69,6 @@ namespace QPR_Application.Controllers
             return View(qpr);
         }
 
-
-        // GET: ManageQPR
-        //public async Task<IActionResult> Index()
-        //{
-        //      return _context.qpr != null ? 
-        //                  View(await _context.qpr.ToListAsync()) :
-        //                  Problem("Entity set 'QPRContext.qpr'  is null.");
-        //}
-
-        // GET: ManageQPR/Details/5
-        //public async Task<IActionResult> Details(long? id)
-        //{
-        //if (id == null || _context.qpr == null)
-        //{
-        //    return NotFound();
-        //}
-        //var qpr = await _context.qpr
-        //    .FirstOrDefaultAsync(m => m.referencenumber == id);
-        //if (qpr == null)
-        //{
-        //    return NotFound();
-        //}
-        //return View(qpr);
-        //}
-
-        // GET: ManageQPR/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: ManageQPR/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("userid,orgname,orgcode,qtrreport,qtryear,contactnumberoffice,mobilenumber,emailid,fulltime,parttime,createdate,referencenumber,ip,finalsubmit,finalsubmitdate")] qpr qpr)
-        //{
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    //    _context.Add(qpr);
-        //    //    await _context.SaveChangesAsync();
-        //    //    return RedirectToAction(nameof(Index));
-        //    //}
-        //    return View(qpr);
-        //}
-
-        // GET: ManageQPR/Edit/5
-        //public async Task<IActionResult> Edit(long? id)
-        //{
-        //    //if (id == null || _context.qpr == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-        //    //var qpr = await _context.qpr.FindAsync(id);
-        //    //if (qpr == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-        //    return View(qpr);
-        //}
 
         // POST: ManageQPR/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -154,24 +102,6 @@ namespace QPR_Application.Controllers
         //    }
         //    return RedirectToAction(nameof(Index));
         //}
-        //    return View(qpr);
-        //}
-
-        // GET: ManageQPR/Delete/5
-        //public async Task<IActionResult> Delete(long? id)
-        //{
-        //    //if (id == null || _context.qpr == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-
-        //    //var qpr = await _context.qpr
-        //    //    .FirstOrDefaultAsync(m => m.referencenumber == id);
-        //    //if (qpr == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-
         //    return View(qpr);
         //}
 

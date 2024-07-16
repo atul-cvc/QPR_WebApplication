@@ -3,15 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
+using System.Data;
 
 namespace QPR_Application.Repository
 {
     public class QprRepo : IQprRepo
     {
         private readonly QPRContext _dbContext;
-        public QprRepo(QPRContext DbContext)
+        private readonly IConfiguration _config;
+        public QprRepo(QPRContext DbContext, IConfiguration config)
         {
             _dbContext = DbContext;
+            _config = config;
         }
 
         public async Task<List<Years>> GetYears()
@@ -28,24 +31,30 @@ namespace QPR_Application.Repository
             return years;
         }
 
-        public async Task<string> GetReferenceNumber(GetQPR qprDetails)
+        public async Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
+            var connString = _config.GetConnectionString("SQLConnection");
+            SqlConnection conn = new SqlConnection(connString);
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+            string refNum = "" ;
             try
             {
-                //var result = _dbContext.Database.SqlQuery<string>("EXEC GetReferenceNumber @qpr_qtr @qpr_year", qprDetails.SelectedQuarter, qprDetails.SelectedYear).FirstOrDefault();
-                //string referenceNumber = result ?? ""; // Handle null case if necessary
-                //Console.WriteLine("Reference Number: " + referenceNumber);
-                //string refNum = await _dbContext.Database.ExecuteSqlCommand("EXEC GetReferenceNumber").ToListAsync();
+                string query = "select referencenumber from qpr where userid = \'"+ UserId +"\' and qtryear = 2019 and qtrreport = 1 ";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                var refNumber = cmd.ExecuteScalar();
+                if(refNumber != null)
+                {
+                    refNum = Convert.ToString(refNumber);
+                }
             }
             catch (Exception ex) { }
-            throw new NotImplementedException();
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+            return refNum;
         }
-
-
-        //public async Task<complaintsqrs> GetComplaintsqrs(GetQPR qprDetails)
-        //{
-        //    return await _dbContext.complaint
-        //}
-
     }
 }

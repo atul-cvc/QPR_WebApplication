@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace QPR_Application.Controllers
 {
@@ -23,17 +25,16 @@ namespace QPR_Application.Controllers
         // GET: Admin
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("CurrentUser") == null)
-            {
-                myMethod();
-                return RedirectToAction("Index", "Login");
-            }
+            //if (_httpContext.HttpContext.Session.GetString("UserName") != null)
+            ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
+            //var userName = ;
             return View();
         }
-
-        public void myMethod()
-        {
-
-        }
+        //public IActionResult Logout()
+        //{
+        //    _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    //var userName = ;
+        //    return RedirectToAction("Index");
+        //}
     }
 }

@@ -1,0 +1,364 @@
+﻿@model QPR_Application.Models.Entities.departmentalproceedingsqrs
+
+@{
+    ViewData["Title"] = "DepartmentalProceedings";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>DepartmentalProceedings</h1>
+
+<h4>departmentalproceedingsqrs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DepartmentalProceedings">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="departproceedings_id" class="control-label"></label>
+                <input asp-for="departproceedings_id" class="form-control" />
+                <span asp-validation-for="departproceedings_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_inquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_total" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_total" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_reportsio" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_enquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_greatersix" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_cvc_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_cvc_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_cvc_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_inquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_total" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_total" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_reportsio" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_enquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_greatersix" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_other_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_other_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_other_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_inquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_total" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_total" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_reportsio" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_enquiries" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_greatersix" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedingsmajor_total_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedingsmajor_total_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedingsmajor_total_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_inquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_total" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_total" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_reportsio" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_enquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_greatersix" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_cvc_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_cvc_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_cvc_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_inquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_total" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_total" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_reportsio" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_enquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_greatersix" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_other_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_other_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_other_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_lastqtr" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_lastqtr" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_lastqtr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_inquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_inquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_inquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_reportsio" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_reportsio" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_reportsio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_enquiries" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_enquiries" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_enquiries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_greatersix" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_greatersix" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_greatersix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_sixtotwelve" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_sixtotwelve" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_sixtotwelve" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_twelvetoeighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_twelvetoeighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_twelvetoeighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_minor_total_lesseighteen" class="control-label"></label>
+                <input asp-for="departproceedings_minor_total_lesseighteen" class="form-control" />
+                <span asp-validation-for="departproceedings_minor_total_lesseighteen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_serialnumber" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_serialnumber" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_serialnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_chargedofficer" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_chargedofficer" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_chargedofficer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_chargesheet" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_chargesheet" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_chargesheet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_ioappointment" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_ioappointment" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_ioappointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_superannuation" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_superannuation" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_superannuation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departproceedings_detailsinquiry_remarks" class="control-label"></label>
+                <input asp-for="departproceedings_detailsinquiry_remarks" class="form-control" />
+                <span asp-validation-for="departproceedings_detailsinquiry_remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="create_date" class="control-label"></label>
+                <input asp-for="create_date" class="form-control" />
+                <span asp-validation-for="create_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="last_user_id" class="control-label"></label>
+                <input asp-for="last_user_id" class="form-control" />
+                <span asp-validation-for="last_user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qpr_id" class="control-label"></label>
+                <input asp-for="qpr_id" class="form-control" />
+                <span asp-validation-for="qpr_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ip" class="control-label"></label>
+                <input asp-for="ip" class="form-control" />
+                <span asp-validation-for="ip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
