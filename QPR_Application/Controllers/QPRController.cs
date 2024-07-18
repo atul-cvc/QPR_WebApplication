@@ -7,17 +7,18 @@ using NuGet.Protocol;
 using System.Text.RegularExpressions;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QPR_Application.Controllers
 {
+    [Authorize(Roles = "ROLE_CVO")]
     public class QPRController : Controller
     {
         private readonly ILogger<QPRController> _logger;
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
-        //private qpr QPR;
         private readonly IComplaintsRepo _complaintsRepo;
-        private registration userObject;
+        private registration? userObject;
 
         public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
         {
@@ -26,7 +27,6 @@ namespace QPR_Application.Controllers
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
         }
-
         public async Task<IActionResult> Index()
         {
             try
@@ -60,7 +60,6 @@ namespace QPR_Application.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(GetQPR qprDetails)
@@ -79,7 +78,6 @@ namespace QPR_Application.Controllers
                 return RedirectToAction("Index");
             }
         }
-
         public async Task<IActionResult> Complaints()
         {
             try
@@ -93,7 +91,6 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> VigilanceInvestigation()
         {
             try

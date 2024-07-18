@@ -79,51 +79,26 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a  class="navbar-brand">QPR_Application</a>
+                <a class="navbar-brand">QPR_Application</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    @* <div class="ms-auto"> *@
-                    @* <ul class="navbar-nav flex-grow-1">
-                    </ul> *@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item ms-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
-                        </li>@*
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>  *@
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
                     </ul>
-                    @* <div class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container">
-                    <div class="navbar-header">
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">My ASP.NET Application</a>
+                    <div class="d-flex">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ManageOrg <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    <li style="color:white"><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Index">List</a></li>
-                    <li><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Save">Save</a></li>
-                    <li><a style="color:white" class="nav-link text-dark" asp-area="" asp-controller="ManageOrg" asp-action="Save">Save</a></li>
-                    </ul>
-                    </li>
-                    </ul>
-                    </div>
-                    </div>
-                    </div> *@
-                    @* </div> *@
                 </div>
+
             </div>
         </nav>
     </header>

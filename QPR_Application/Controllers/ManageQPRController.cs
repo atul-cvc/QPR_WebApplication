@@ -12,7 +12,7 @@ using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "ROLE_ADMIN,ROLE_COORD")]
     public class ManageQPRController : Controller
     {
         private readonly ILogger<ManageQPRController> _logger;

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using System.Linq;
 
 namespace QPR_Application.Controllers
 {
+    [Authorize(Roles = "ROLE_ADMIN,ROLE_COORD")]
     public class ManageOrgController : Controller
     {
         private readonly IOrgRepo orgRepo;

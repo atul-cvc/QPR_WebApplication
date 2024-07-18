@@ -5,9 +5,11 @@ using QPR_Application.Repository;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QPR_Application.Controllers
 {
+    [Authorize(Roles = "ROLE_ADMIN,ROLE_COORD")]
     public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;
