@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class complaintsqrs
     {
-        public int? complaints_id { get; set; }
+        [Key]
+        public int complaints_id { get; set; }
         public int? comcvcopeningbalance { get; set; }
         public int? comcvcreceived_during_quarter { get; set; }
         public int? comcvctotal { get; set; }
@@ -76,17 +76,17 @@ namespace QPR_Application.Models.Entities
         public int? cvcpidpiinvesquarteradvicereceive { get; set; }
         public int? cvcpidpiinvestotaladvicereceive { get; set; }
         public int? cvcpidpiinvesactionduringquarter { get; set; }
-        public bool? cvcpidpiinvesbalancegreterthreemonth { get; set; }
+        public int? cvcpidpiinvesbalancegreterthreemonth { get; set; }
         public int? cvcpidpiinvesbalancebetweenthreetosix { get; set; }
-        public bool? cvcpidpiinvesbalancebetweensixtotwelve { get; set; }
-        public bool? cvcpidpiinvesbalancelesstwelve { get; set; }
-        public bool? cvopidpiinvestadvicecvc { get; set; }
+        public int? cvcpidpiinvesbalancebetweensixtotwelve { get; set; }
+        public int? cvcpidpiinvesbalancelesstwelve { get; set; }
+        public int? cvopidpiinvestadvicecvc { get; set; }
         public int? cvopidpiinvesquarterreportbycvo { get; set; }
         public int? cvopidpiinvesquarteradvicereceive { get; set; }
         public int? cvopidpiinvestotaladvicereceive { get; set; }
         public int? cvopidpiinvesactionduringquarter { get; set; }
         public int? cvopidpiinvesbalancegreterthreemonth { get; set; }
-        public bool? cvopidpiinvesbalancebetweenthreetosix { get; set; }
+        public int? cvopidpiinvesbalancebetweenthreetosix { get; set; }
         public int? cvopidpiinvesbalancebetweensixtotwelve { get; set; }
         public int? cvopidpiinvesbalancelesstwelve { get; set; }
         public int? totalpidpiinvestadvicecvc { get; set; }
@@ -94,10 +94,10 @@ namespace QPR_Application.Models.Entities
         public int? totalpidpiinvesquarteradvicereceive { get; set; }
         public int? totalpidpiinvestotaladvicereceive { get; set; }
         public int? totalpidpiinvesactionduringquarter { get; set; }
-        public bool? totalpidpiinvesbalancegreterthreemonth { get; set; }
+        public int? totalpidpiinvesbalancegreterthreemonth { get; set; }
         public int? totalpidpiinvesbalancebetweenthreetosix { get; set; }
-        public bool? totalpidpiinvesbalancebetweensixtotwelve { get; set; }
-        public bool? totalpidpiinvesbalancelesstwelve { get; set; }
+        public int? totalpidpiinvesbalancebetweensixtotwelve { get; set; }
+        public int? totalpidpiinvesbalancelesstwelve { get; set; }
         public byte? napidpibroughtforward { get; set; }
         public byte? napidpireceiveqtr { get; set; }
         public byte? napidpitotal { get; set; }

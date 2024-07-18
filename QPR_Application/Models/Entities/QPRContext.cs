@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using QPR_Application.Models.DTO.Response;
 
 namespace QPR_Application.Models.Entities
 {
@@ -122,6 +121,11 @@ namespace QPR_Application.Models.Entities
             {
                 entity.HasKey(e => e.refno)
                     .HasName("PK__public_p__19842C59A153C2DC");
+            });
+
+            modelBuilder.Entity<qpr>(entity =>
+            {
+                entity.Property(e => e.referencenumber).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<registration>(entity =>

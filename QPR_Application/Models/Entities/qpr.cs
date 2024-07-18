@@ -8,31 +8,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class qpr
     {
-        [StringLength(255)]
+        [StringLength(500)]
         public string userid { get; set; }
-        [StringLength(255)]
+        [StringLength(500)]
         public string orgname { get; set; }
-        [StringLength(255)]
+        [StringLength(50)]
         public string orgcode { get; set; }
-        public string? qtrreport { get; set; }
-        public string? qtryear { get; set; }
-        public string? contactnumberoffice { get; set; }
-        public string? mobilenumber { get; set; }
+        [StringLength(50)]
+        public string qtrreport { get; set; }
+        [StringLength(50)]
+        public string qtryear { get; set; }
+        [StringLength(500)]
+        public string contactnumberoffice { get; set; }
+        [StringLength(500)]
+        public string mobilenumber { get; set; }
         [StringLength(500)]
         public string emailid { get; set; }
+        [StringLength(50)]
         public string fulltime { get; set; }
+        [StringLength(50)]
         public string parttime { get; set; }
-        //[Column(TypeName = "datetime")]
-        public string? createdate { get; set; }
+        public string createdate { get; set; }
         [Key]
-        public long? referencenumber { get; set; }
-        [StringLength(255)]
+        public long referencenumber { get; set; }
+        [StringLength(50)]
         public string ip { get; set; }
+        [StringLength(500)]
         public string finalsubmit { get; set; }
-        //[Column(TypeName = "datetime")]
-        public string? finalsubmitdate { get; set; }
+        [StringLength(50)]
+        public string finalsubmitdate { get; set; }
     }
 }

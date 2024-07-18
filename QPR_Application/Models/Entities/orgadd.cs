@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class orgadd
     {
         [Key]
-        public long Id { get; set; }
+        public long id { get; set; }
+        [StringLength(50)]
         public string section { get; set; }
         public string orgcod { get; set; }
         public string depcod { get; set; }
