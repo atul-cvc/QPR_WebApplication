@@ -25,16 +25,15 @@ namespace QPR_Application.Controllers
         // GET: Admin
         public IActionResult Index()
         {
-            //if (_httpContext.HttpContext.Session.GetString("UserName") != null)
-            ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
-            //var userName = ;
+            ViewBag.UserName = "User";
+            if (_httpContext.HttpContext != null)
+            {
+                if (_httpContext.HttpContext.Session.GetString("UserName") != null)
+                {
+                    ViewBag.UserName = _httpContext.HttpContext.Session.GetString("UserName");
+                }
+            }
             return View();
         }
-        //public IActionResult Logout()
-        //{
-        //    _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    //var userName = ;
-        //    return RedirectToAction("Index");
-        //}
     }
 }

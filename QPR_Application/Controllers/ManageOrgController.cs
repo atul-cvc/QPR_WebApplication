@@ -24,9 +24,10 @@ namespace QPR_Application.Controllers
             //}
             return View(orgadd.OrderByDescending(n=>n.Id));
         }
-        public IActionResult Details()
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var details = await orgRepo.GetOrgDetails(id);
+            return View(details);
         }
         public IActionResult Save()
         {
