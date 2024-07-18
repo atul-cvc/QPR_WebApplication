@@ -1,0 +1,163 @@
+﻿@model QPR_Application.Models.Entities.orgadd
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>orgadd</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.section)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.section)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orgcod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orgcod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.depcod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.depcod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.mincod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mincod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orgnam1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orgnam1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orgnam2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orgnam2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.addr1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.addr1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.addr2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.addr2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.addr3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.addr3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.addr4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.addr4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.addr5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.addr5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ph_no_1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ph_no_1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ph_no_2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ph_no_2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fax)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fax)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.telex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.telex)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.grams)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.grams)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ph_del_res)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ph_del_res)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.psucod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.psucod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.selectd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.selectd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.schlvl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.schlvl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.jobcod)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.jobcod)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model._checked)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model._checked)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.region)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.region)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

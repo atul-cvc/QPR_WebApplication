@@ -15,18 +15,12 @@
     </div>
 </div>
 
-<p>
-</p>
-
 <div class="table-responsive">
-    <table id="example1" class="table table-striped table-bordered  pt-1 ">
-        <thead>
+    <table id="example1" class="table table-striped table-bordered pt-1">
+        <thead class="table-primary">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.userid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.password)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.name)
@@ -41,55 +35,16 @@
                     @Html.DisplayNameFor(model => model.logintype)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.loginroll)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.desiganation)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.createdate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tenure)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.bofficercode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.cvocode)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.mobilenumber)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.islocked)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.lastmodified)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.passwordone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.passwordtwo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.postid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.firstlogin)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.cvocontactnumberoffice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fulltime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.parttime)
                 </th>
                 <th>Actions</th>
             </tr>
@@ -100,9 +55,6 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.userid)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.password)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.name)
@@ -117,62 +69,26 @@
                         @Html.DisplayFor(modelItem => item.logintype)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.loginroll)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.desiganation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.createdate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tenure)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.bofficercode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cvocode)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.mobilenumber)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.islocked)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.lastmodified)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.passwordone)
+                    <td class="align-content-center align-items-center">
+                        @if (item.status == "t")
+                        {
+                            <div class="btn btn-primary disabled w-100">Active</div>
+                        }
+                        else if (item.status == "f")
+                        {
+                            <div class="btn btn-secondary disabled w-100 ">Inactive</div>
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.passwordtwo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.postid)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.firstlogin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cvocontactnumberoffice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fulltime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.parttime)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.usercode">Edit</a>
-                        @* | *@
-                        <a asp-action="Details" asp-route-id="@item.usercode">Details</a>
-                        @* | *@
-                        @* <a asp-action="Delete" asp-route-id="@item.usercode">Delete</a> *@
+                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.usercode">Details</a>
                     </td>
                 </tr>
             }

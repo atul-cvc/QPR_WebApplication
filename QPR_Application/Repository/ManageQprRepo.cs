@@ -14,16 +14,17 @@ namespace QPR_Application.Repository
 
         public async Task<IEnumerable<qpr>> GetAllQprs()
         {
-            IEnumerable<qpr> myQrlist = null;
+            IEnumerable<qpr> myQprlist = null;
             try
             {
-                myQrlist = await _dbContext.qpr.Take(100).ToListAsync();
-                return myQrlist;
+                //myQrlist = await _dbContext.qpr.Take(1000).ToListAsync();
+                myQprlist = await _dbContext.Set<qpr>().FromSqlRaw("Exec GetLatestQprList").ToListAsync();
+                return myQprlist;
             }
             catch (Exception ex)
             {
             }
-            return myQrlist;
+            return myQprlist;
         }
 
         public qpr GetQPRByRef(string id)

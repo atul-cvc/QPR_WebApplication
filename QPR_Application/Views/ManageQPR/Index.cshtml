@@ -6,6 +6,18 @@
 
 <h1>QPR</h1>
 
+<style>
+    tr {
+        text-align: center;
+    }
+
+    td {
+        /* display:flex; */
+        text-align: center;
+        align-content: center !important
+    }
+</style>
+
 <div class="table-responsive">
     <table id="example1" class="table table-striped table-bordered pt-1 ">
         <thead class="table-primary">
@@ -38,9 +50,9 @@
                     @Html.DisplayNameFor(model => model.finalsubmit)
                 </th>
                 <th>
-                @Html.DisplayNameFor(model => model.finalsubmitdate)
+                    @Html.DisplayNameFor(model => model.finalsubmitdate)
                 </th>
-                <th class="d-md-table-cell" >Actions</th>
+                <th class="d-md-table-cell">Actions</th>
             </tr>
         </thead>
         <tbody>
