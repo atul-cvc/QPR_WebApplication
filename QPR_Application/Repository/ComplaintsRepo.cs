@@ -28,8 +28,7 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
-        public async Task<prosecutionsanctionsqrs?> GetProsecutionSanctionsData(string refNum)
-        
+        public async Task<prosecutionsanctionsqrs?> GetProsecutionSanctionsData(string refNum)        
         {
             try
             {

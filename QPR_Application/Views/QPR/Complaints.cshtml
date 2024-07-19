@@ -4,701 +4,1133 @@
     ViewData["Title"] = "Complaints";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<style>
+    table th {
+        background-color: rgb(77,109,244) !important;
+        color: white;
+        font-weight: 300;
+        font-size: 18px;
+    }
 
-<h1>Complaints</h1>
+    table td {
+        padding: 0.25em !important;
+        /* text-align:center !important; */
+        vertical-align: middle !important;
+    }
 
-<h4>complaintsqrs</h4>
+</style>
+
+<div>
+    <h1 class="text-center">Complaints</h1>
+</div>
+
+@* <h4>complaintsqrs</h4> *@
 <hr />
+
+<form asp-action="Complaints">
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered ">
+            <tbody>
+                <tr class="text-center">
+                    <th rowspan="2"><b>Source</b></th>
+                    <th rowspan="2"><b>Opening Balance</b></th>
+                    <th rowspan="2"><b>Received During the Quarter</b></th>
+                    <th rowspan="2"><b>Total<br>4=(2+3)</b></th>
+                    <th rowspan="2" style="width:22%;"><b>Disposal During The Quarter</b><br>(Filed/Sent for NA and Registered as Vigilance for Investigation by CVO)</th>
+                    <th rowspan="2"><b>Balance Pending<br>6=(4-5)</b></th>
+                    <th colspan="3"><b>Age Wise Pendency</b> (Months)<br><b>6=(7+8+9)</b></th>
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        &lt;1
+                    </th>
+
+                    <th>
+                        1-3
+                    </th>
+                    <th>
+                        Over 3 months
+                    </th>
+                </tr>
+                <tr class="text-center" style="background-color:rgb(217, 217, 217);">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;CVC<sup><span style="color: red; font-size:x-small; ">#</span></sup></b></td>
+                    <td>
+                        <b>
+                            @* <input id="ComCVCOpeningBalance" name="ComCVCOpeningBalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="qty1 comcvc" readonly="readonly" value="0"> *@
+                            <input type="number" asp-for="comcvcopeningbalance" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="ComCVCReceived_during_quarter" name="ComCVCReceived_during_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="qty1 comRec" value="0"> *@
+                            <input type="number" asp-for="comcvcreceived_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+
+                    <td>
+                        <b>
+                            @* <input id="comCVCTotal" name="comCVCTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="total comtotal subbptotal" value="0"> *@
+                            <input asp-for="comcvctotal" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="comCVCDisposal_during_quarter" name="comCVCDisposal_during_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comDis subbptotal disQTR" value="0"> *@
+                            <input asp-for="comcvcdisposal_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="comCVCBalance_pending" name="comCVCBalance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comBalance totalsubbptotal" readonly="readonly" value="0"> *@
+                            <input asp-for="comcvcbalance_pending" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="comCVCage_less_one" name="comCVCage_less_one" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comGreaterOne bPTotalCVC" value="0"> *@
+                            <input asp-for="comcvcage_less_one" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="comCVCage_pendency_betweenOne_Three" name="comCVCage_pendency_betweenOne_Three" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comOnetoThree  bPTotalCVC" value="0"> *@
+                            <input asp-for="comcvcage_pendency_betweenone_three" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            @* <input id="comCVCage_pendency_betweenThree_Six" name="comCVCage_pendency_betweenThree_Six" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comThreetoSix  bPTotalCVCFinal" value="0"> *@
+                            <input asp-for="comcvcage_pendency_betweenthree_six" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;OTHERs<sup><span style="color: red; font-size:x-small;">$</span></sup></b></td>
+                    <td>
+                        <b>
+                            <input type="number" asp-for="comotheropeningbalance" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input type="number" asp-for="comotherreceived_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+
+                    <td>
+                        <b>
+                            <input asp-for="comothertotal" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comotherdisposal_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comotherbalance_pending" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comotherage_less_one" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comotherage_pendency_betweenone_three" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comotherage_pendency_betweenthree_six" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
+                    <td>
+                        <b>
+                            <input type="number" asp-for="comtotalopeningbalance" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input type="number" asp-for="comtotalreceived_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+
+                    <td>
+                        <b>
+                            <input asp-for="comtotal" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comtotaldisposal_during_quarter" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comtotalbalance_pending" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comtotalage_less_one" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comtotalage_pendency_betweenone_three" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="center w-70 mt-2">
+        <p>
+            <b>
+                <sup><span style="color: red; font-size:x-small; ">$</span></sup> Exclude details of PIDPI (Whistle Blower) complaints which are to be provided in para 1.3 below<br>
+                <sup><span style="color: red; font-size:x-small;">#</span></sup> Complaints received for <strong>necessary action</strong> from CVC only to be reflected<br>
+                Pl note: Anonymous complaints received should not be included/reflected in Col. 3 above
+            </b>
+        </p>
+
+    </div>
+    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+        <b>1.1	Break up of complaints received under source 'Others' during the quarter</b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle">
+
+            <tbody>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(a) Signed Complaints recieved by CVO</b></td>
+                    <td>
+                        <b>
+                            @* <input id="complaints_Signed_Complaints" name="complaints_Signed_Complaints" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="signedComplaints" value="0"> *@
+                            <input asp-for="complaints_signed_complaints" class="form-control" />
+
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(b) Complaints from Ministry / Department</b></td>
+                    <td>
+                        <b>
+                            @* <input id="complaints_department" name="complaints_department" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="signedComplaints" value="0"> *@
+                            <input asp-for="complaints_department" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(c) Complaints from CBI </b></td>
+                    <td>
+                        <b>
+                            @* <input id="complaints_cbi" name="complaints_cbi" onkeypress="return isNumberKey(event);" style="padding:2px;" type="text" class="signedComplaints" value="0"> *@
+                            <input asp-for="complaints_cbi" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(d) Complaints from Other Source </b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_other" class="form-control" />
+                            @* <input id="complaints_other" name="complaints_other" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="signedComplaints" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(e) Detected through Audit (No. of para's turned into Vigilance para's) </b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_audit" class="form-control" />
+                            @* <input id="complaints_audit" name="complaints_audit" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="signedComplaints" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(f) Detected through Inspection / Scrutiny of Contracts etc. </b></td>
+                    <td>
+                        <b>
+                            @* <input id="complaints_detected" name="complaints_detected" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="signedComplaintsFinal" value="0"> *@
+                            <input asp-for="complaints_detected" class="form-control" />
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+        <b>1.2	Break up of disposal of complaints during the quarter</b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle">
+
+            <tbody>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(a) Sent to CBI for Investigation / appropriate action</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_cbi_action" class="form-control" />
+                            @* <input id="complaints_cbi_action" name="complaints_cbi_action" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="breakDisposal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(b) Taken up for detailed investigation by CVO</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_cvoinvestigation" class="form-control" />
+                            @* <input id="complaints_cvoInvestigation" name="complaints_cvoInvestigation" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="breakDisposal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(c) Signed complaints filed being non-specific / vague / general allegations </b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_signed_filed" class="form-control" />
+                            @* <input id="complaints_signed_filed" name="complaints_signed_filed" onkeypress="return isNumberKey(event);" style=" padding:2px;" type="text" class="breakDisposal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(d) Signed complaints not confirmed by sender- Filed as Pseudonymous </b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_signed_notconfirmed" class="form-control" />
+                            @* <input id="complaints_signed_notConfirmed" name="complaints_signed_notConfirmed" onkeypress="return isNumberKey(event);" style="20%;padding:2px;" type="text" class="breakDisposal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;(e) Passed on to administrative authorities for appropriate action having no vigilance angle / allegation of corruption</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="complaints_actionfornovigilance" class="form-control" />
+                            @* <input id="complaints_actionforNoVigilance" name="complaints_actionforNoVigilance" onkeypress="return isNumberKey(event);" style="20%;padding:2px;" type="text" class="breakDisposalFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="center w-70 mt-2">
+        <p>NB: Aggregate of (a), (b), (c) (d)&amp; (e) of para 1.2 should tally with total figure under Col 5 of para 1</p>
+    </div>
+
+    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+        <b>1.3 PIDPI* Complaints</b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle">
+            <tbody>
+                <tr class="text-center">
+                    <th rowspan="2"><b>Source</b></th>
+                    <th rowspan="2"><b>Opening Balance</b></th>
+                    <th rowspan="2"><b>Received During the Quarter</b></th>
+                    <th rowspan="2"><b>Total</b><br><b>4=(2+3)</b></th>
+                    <th rowspan="2" style="width:20%"><b>Reports submitted to CVC/CVO,Admin.Ministry During the quarter</b></th>
+                    <th rowspan="2"><b>Balance Pending</b><br><b>6=(4-5)</b></th>
+                    <th colspan="3"><b>Age wise Pendency for Investigation by CVO</b><br><b>6=(7+8+9)</b></th>
+                    <th rowspan="2"><b>Reasons for delay beyond 3 months</b></th>
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        Upto 3 month
+                    </th>
+
+                    <th>
+                        3-6 months
+                    </th>
+                    <th>
+                        &gt; 6 months
+                    </th>
+
+                </tr>
+                <tr class="text-center" style="background-color:rgb(217, 217, 217);">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                    <td>&nbsp;<b>(10)</b></td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;CVC</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_opening_balance" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_receivequarter" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_total" class="form-control" />
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_report_quarter" class="form-control" />
+                            @* <input id="cvcpidpi_report_quarter" name="cvcpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" data-field="cvcfirst" class="pidpiReports balPenTotal disQTRPidpi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_balance_pending" class="form-control" />
+                            @* <input id="cvcpidpi_balance_pending" name="cvcpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalbalPenTotal pidpiBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_three_month" class="form-control" />
+                            @* <input id="cvcpidpi_three_month" name="cvcpidpi_three_month" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpiUptoOne  bPTotalpidpiCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_three_to_six" class="form-control" />
+                            @* <input id="cvcpidpi_three_to_six" name="cvcpidpi_three_to_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpiOnetoTwo  bPTotalpidpiCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpi_less_six" class="form-control" />
+                            @* <input id="cvcpidpi_less_six" name="cvcpidpi_less_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpiGreaterTwo  bPTotalpidpiCVCFinal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input class="form-control" id="cvcpidpi_delay_one_month" name="cvcpidpi_delay_one_month" type="text" value="">
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Other &nbsp;Designated &nbsp;Authority</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_opening_balance" class="form-control" />
+                            @* <input id="otherpidpi_opening_balance" name="otherpidpi_opening_balance" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiBalance otherPidpi" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_receivequarter" class="form-control" />
+                            @* <input id="otherpidpi_ReceiveQuarter" name="otherpidpi_ReceiveQuarter" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiRecived otherPidpi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_total" class="form-control" />
+                            @* <input id="otherpidpi_Total" name="otherpidpi_Total" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="totalotherPidpi pidpiTotal othBalPenTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_report_quarter" class="form-control" />
+                            @* <input id="otherpidpi_report_quarter" name="otherpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" data-field="cvcsecond" class="pidpiReports othBalPenTotal disQTRPidpiOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_balance_pending" class="form-control" />
+                            @* <input id="otherpidpi_balance_pending" name="otherpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="totalothBalPenTotal pidpiBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_three_month" class="form-control" />
+                            @* <input id="otherpidpi_three_month" name="otherpidpi_three_month" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiUptoOne   bPTotalotherpidpi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_three_to_six" class="form-control" />
+                            @* <input id="otherpidpi_three_to_six" name="otherpidpi_three_to_six" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiOnetoTwo  bPTotalotherpidpi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_less_six" class="form-control" />
+                            @* <input id="otherpidpi_less_six" name="otherpidpi_less_six" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiGreaterTwo  bPTotalotherpidpiFinal" value="0"> *@
+                        </b>
+                    </td>
+                    <td><b><input class="form-control" id="otherpidpi_delay_one_month" name="otherpidpi_delay_one_month" type="text" value=""></b></td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_opening_balance" class="form-control" />
+                            @* <input id="totalpidpi_opening_balance" name="totalpidpi_opening_balance" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiBalance" value="2"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_receivequarter" class="form-control" />
+                            @* <input id="totalpidpi_ReceiveQuarter" name="totalpidpi_ReceiveQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiRecived" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_total" class="form-control" />
+                            @* <input id="totalpidpi_Total" name="totalpidpi_Total" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_report_quarter" class="form-control" />
+                            @* <input id="totalpidpi_report_quarter" name="totalpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiReports" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_balance_pending" class="form-control" />
+                            @* <input id="totalpidpi_balance_pending" name="totalpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="toatlpidpi_three_month" class="form-control" />
+                            @* <input id="toatlpidpi_three_month" name="toatlpidpi_three_month" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiUptoOne" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="toatlpidpi_three_to_six" class="form-control" />
+                            @* <input id="toatlpidpi_three_to_six" name="toatlpidpi_three_to_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiOnetoTwo" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpi_less_six" class="form-control" />
+                            @* <input id="totalpidpi_less_six" name="totalpidpi_less_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiGreaterTwo" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input class="form-control" id="toatlpidpi_delay_one_month" name="toatlpidpi_delay_one_month" type="text" value="">
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+        <b>1.4 Advice and Action taken on PIDPI investigation reports</b>
+    </div>
+
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle">
+            <tbody>
+                @* <tr></tr> *@
+                <tr class="text-center">
+                    <th rowspan="2"><b>Agency</b></th>
+                    <th rowspan="2"><b>Advice of CVC / Designated Agency received till end of previous quarter  </b></th>
+                    <th rowspan="2"><b>Reports sent during the quarter by CVO<span style="color: red;">*</span> (Col.5 of para 1.3 above)</b></th>
+                    <th rowspan="2"><b>Reports in which Advice received during the quarter</b></th>
+                    <th rowspan="2"><b>Total Advice received</b><br><b>5=(2+4)</b></th>
+                    <th rowspan="2"><b>Action Taken during the quarter</b></th>
+                    <th colspan="4"><b>Balance Pending for Action by Management/Organization</b><br><b>(5-6)=(7+8+9+10)</b></th>
+
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        &lt;3 months
+                    </th>
+
+                    <th>
+                        3-6 months
+                    </th>
+                    <th>
+                        6-12 months
+                    </th>
+                    <th>
+                        &gt;12 months
+                    </th>
+
+                </tr>
+
+                <tr class="text-center" style="background-color:rgb(217, 217, 217) ">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                    <td>&nbsp;<b>(10)</b></td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"> <b>&nbsp;&nbsp;CVC</b> </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvestadvicecvc" class="form-control" />
+                            @* <input id="cvcPIDPIInvestAdviceCVC" name="cvcPIDPIInvestAdviceCVC" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="adviceCVC  adviceReportCVC" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesquarterreportbycvo" class="form-control" />
+                            @* <input id="reporSendtQtr1" name="cvcPIDPIInvesQuarterReportbyCVO" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reporSendtQtr" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesquarteradvicereceive" class="form-control" />
+                            @* <input id="cvcPIDPIInvesQuarterAdviceReceive" name="cvcPIDPIInvesQuarterAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reportsReceiveQtr  adviceReportCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvestotaladvicereceive" class="form-control" />
+                            @* <input id="cvcPIDPIInvesTotalAdviceReceive" name="cvcPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReportCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesactionduringquarter" class="form-control" />
+                            @* <input id="cvcPIDPIInvesActionduringQuarter" name="cvcPIDPIInvesActionduringQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="actionTakenQtr actionTakenQtrLessThanTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesbalancegreterthreemonth" class="form-control" />
+                            @* <input id="cvcPIDPIInvesBalanceGreterThreeMonth" name="cvcPIDPIInvesBalanceGreterThreeMonth" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="greaterThree pendingTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesbalancebetweenthreetosix" class="form-control" />
+                            @* <input id="cvcPIDPIInvesBalanceBetweenThreetoSix" name="cvcPIDPIInvesBalanceBetweenThreetoSix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="threetoSix pendingTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvcpidpiinvesbalancebetweensixtotwelve" class="form-control" />
+                            @* <input id="cvcPIDPIInvesBalanceBetweenSixtoTwelve" name="cvcPIDPIInvesBalanceBetweenSixtoTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="sixtoTwelve pendingTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input type="number" asp-for="cvcpidpiinvesbalancelesstwelve" class="form-control" />
+                            @* <input id="cvcPIDPIInvesBalancelessTwelve" name="cvcPIDPIInvesBalancelessTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="lessTwelve pendingTotalFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;CVO,Admin.Ministry</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvestadvicecvc" class="form-control" />
+                            @* <input id="cvoPIDPIInvestAdviceCVC" name="cvoPIDPIInvestAdviceCVC" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="adviceCVC  adviceReportCVO" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesquarterreportbycvo" class="form-control" />
+                            @* <input id="reporSendtQtr2" name="cvoPIDPIInvesQuarterReportbyCVO" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reporSendtQtr" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesquarteradvicereceive" class="form-control" />
+                            @* <input id="cvoPIDPIInvesQuarterAdviceReceive" name="cvoPIDPIInvesQuarterAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reportsReceiveQtr adviceReportCVO" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvestotaladvicereceive" class="form-control" />
+                            @* <input id="cvoPIDPIInvesTotalAdviceReceive" name="cvoPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReportCVO" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesactionduringquarter" class="form-control" />
+                            @* <input id="cvoPIDPIInvesActionduringQuarter" name="cvoPIDPIInvesActionduringQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="actionTakenQtr actionTakenQtrLessThanTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesbalancegreterthreemonth" class="form-control" />
+                            @* <input id="cvoPIDPIInvesBalanceGreterThreeMonth" name="cvoPIDPIInvesBalanceGreterThreeMonth" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="greaterThree pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesbalancebetweenthreetosix" class="form-control" />
+                            @* <input id="cvoPIDPIInvesBalanceBetweenThreetoSix" name="cvoPIDPIInvesBalanceBetweenThreetoSix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="threetoSix pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesbalancebetweensixtotwelve" class="form-control" />
+                            @* <input id="cvoPIDPIInvesBalanceBetweenSixtoTwelve" name="cvoPIDPIInvesBalanceBetweenSixtoTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="sixtoTwelve pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="cvopidpiinvesbalancelesstwelve" class="form-control" />
+                            @* <input id="cvoPIDPIInvesBalancelessTwelve" name="cvoPIDPIInvesBalancelessTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="lessTwelve pendingTotalOtherFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvestadvicecvc" class="form-control" />
+                            @* <input id="totalPIDPIInvestAdviceCVC" name="totalPIDPIInvestAdviceCVC" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="adviceCVC  adviceReporttotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesquarterreportbycvo" class="form-control" />
+                            @* <input id="reporSendtQtr2" name="totalPIDPIInvesQuarterReportbytotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reporSendtQtr" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesquarteradvicereceive" class="form-control" />
+                            @* <input id="totalPIDPIInvesQuarterAdviceReceive" name="totalPIDPIInvesQuarterAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reportsReceiveQtr adviceReporttotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvestotaladvicereceive" class="form-control" />
+                            @* <input id="totalPIDPIInvesTotalAdviceReceive" name="totalPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReporttotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesactionduringquarter" class="form-control" />
+                            @* <input id="totalPIDPIInvesActionduringQuarter" name="totalPIDPIInvesActionduringQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="actionTakenQtr actionTakenQtrLessThanTotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesbalancegreterthreemonth" class="form-control" />
+                            @* <input id="totalPIDPIInvesBalanceGreterThreeMonth" name="totalPIDPIInvesBalanceGreterThreeMonth" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="greaterThree pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesbalancebetweenthreetosix" class="form-control" />
+                            @* <input id="totalPIDPIInvesBalanceBetweenThreetoSix" name="totalPIDPIInvesBalanceBetweenThreetoSix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="threetoSix pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesbalancebetweensixtotwelve" class="form-control" />
+                            @* <input id="totalPIDPIInvesBalanceBetweenSixtoTwelve" name="totalPIDPIInvesBalanceBetweenSixtoTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="sixtoTwelve pendingTotalOther" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="totalpidpiinvesbalancelesstwelve" class="form-control" />
+                            @* <input id="totalPIDPIInvesBalancelessTwelve" name="totalPIDPIInvesBalancelessTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="lessTwelve pendingTotalOtherFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+        <b>1.5 Action taken report on complaints sent by CVC for 'Necessary Action' under PIDPI Resolution:</b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle">
+
+            <tbody>
+                <tr class="text-center">
+                    <th><b>Brought forward</b></th>
+                    <th><b>Received during the quarter</b></th>
+                    <th><b>Total</b><br><b>3=(1+2)</b></th>
+                    <th style="width:20%"><b>Filed / closed without taking any action</b></th>
+                    <th><b>Taken up for further investigation</b></th>
+                    <th><b>Complaints resulting in administrative action</b></th>
+                    <th><b>Complaints resulting in imposition of major / minor penalty</b></th>
+                    <th><b>Total complaints disposed of during the quarter</b><br><b>8=(4+6+7)</b></th>
+                    <th><b>Pending at the end of the quarter</b><br><b>9=(3-8)</b></th>
+                </tr>
+                <tr class="text-center" style="background-color:rgb(217, 217, 217) ">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            <input asp-for="napidpibroughtforward" class="form-control" />
+                            @* <input id="naPIDPIBroughtforward" name="naPIDPIBroughtforward" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-forward-received" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpireceiveqtr" class="form-control" />
+                            @* <input id="naPIDPIReceiveQtr" name="naPIDPIReceiveQtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-forward-received" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpitotal" class="form-control" />
+                            @* <input id="naPIDPITotal" name="naPIDPITotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="pidpi-for-rec-ttl" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpiclosedwithoutaction" class="form-control" />
+                            @* <input id="naPIDPIClosedwithoutAction" name="naPIDPIClosedwithoutAction" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-complaints" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpifurtherinvestigation" class="form-control" />
+                            @* <input id="naPIDPIFurtherInvestigation" name="naPIDPIFurtherInvestigation" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-pend" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpiadminaction" class="form-control" />
+                            @* <input id="naPIDPIAdminAction" name="naPIDPIAdminAction" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-complaints" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpiimpositionpenalty" class="form-control" />
+                            @* <input id="naPIDPIImpositionPenalty" name="naPIDPIImpositionPenalty" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-complaints" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpidisposedqtr" class="form-control" />
+                            @* <input id="naPIDPIDisposedQtr" name="naPIDPIDisposedQtr" onkeypress="return isNumberKey(event);" readonly="true" style="padding: 2px;" type="text" class="pidpi-complaints-quaterly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="napidpipendingqtr" class="form-control" />
+                            @* <input id="naPIDPIPendingQtr" name="naPIDPIPendingQtr" onkeypress="return isNumberKey(event);" readonly="true" style="padding: 2px;" type="text" class="pidpi-pending-ttl" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</form>
+
+@*
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Complaints">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="complaints_id" class="control-label"></label>
-                <input asp-for="complaints_id" class="form-control" />
-                <span asp-validation-for="complaints_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcopeningbalance" class="control-label"></label>
-                <input asp-for="comcvcopeningbalance" class="form-control" />
-                <span asp-validation-for="comcvcopeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcreceived_during_quarter" class="control-label"></label>
-                <input asp-for="comcvcreceived_during_quarter" class="form-control" />
-                <span asp-validation-for="comcvcreceived_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvctotal" class="control-label"></label>
-                <input asp-for="comcvctotal" class="form-control" />
-                <span asp-validation-for="comcvctotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcdisposal_during_quarter" class="control-label"></label>
-                <input asp-for="comcvcdisposal_during_quarter" class="form-control" />
-                <span asp-validation-for="comcvcdisposal_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcbalance_pending" class="control-label"></label>
-                <input asp-for="comcvcbalance_pending" class="form-control" />
-                <span asp-validation-for="comcvcbalance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcage_less_one" class="control-label"></label>
-                <input asp-for="comcvcage_less_one" class="form-control" />
-                <span asp-validation-for="comcvcage_less_one" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcage_pendency_betweenone_three" class="control-label"></label>
-                <input asp-for="comcvcage_pendency_betweenone_three" class="form-control" />
-                <span asp-validation-for="comcvcage_pendency_betweenone_three" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comcvcage_pendency_betweenthree_six" class="control-label"></label>
-                <input asp-for="comcvcage_pendency_betweenthree_six" class="form-control" />
-                <span asp-validation-for="comcvcage_pendency_betweenthree_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotheropeningbalance" class="control-label"></label>
-                <input asp-for="comotheropeningbalance" class="form-control" />
-                <span asp-validation-for="comotheropeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherreceived_during_quarter" class="control-label"></label>
-                <input asp-for="comotherreceived_during_quarter" class="form-control" />
-                <span asp-validation-for="comotherreceived_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comothertotal" class="control-label"></label>
-                <input asp-for="comothertotal" class="form-control" />
-                <span asp-validation-for="comothertotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherdisposal_during_quarter" class="control-label"></label>
-                <input asp-for="comotherdisposal_during_quarter" class="form-control" />
-                <span asp-validation-for="comotherdisposal_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherbalance_pending" class="control-label"></label>
-                <input asp-for="comotherbalance_pending" class="form-control" />
-                <span asp-validation-for="comotherbalance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherage_less_one" class="control-label"></label>
-                <input asp-for="comotherage_less_one" class="form-control" />
-                <span asp-validation-for="comotherage_less_one" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherage_pendency_betweenone_three" class="control-label"></label>
-                <input asp-for="comotherage_pendency_betweenone_three" class="form-control" />
-                <span asp-validation-for="comotherage_pendency_betweenone_three" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comotherage_pendency_betweenthree_six" class="control-label"></label>
-                <input asp-for="comotherage_pendency_betweenthree_six" class="form-control" />
-                <span asp-validation-for="comotherage_pendency_betweenthree_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalopeningbalance" class="control-label"></label>
-                <input asp-for="comtotalopeningbalance" class="form-control" />
-                <span asp-validation-for="comtotalopeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalreceived_during_quarter" class="control-label"></label>
-                <input asp-for="comtotalreceived_during_quarter" class="form-control" />
-                <span asp-validation-for="comtotalreceived_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotal" class="control-label"></label>
-                <input asp-for="comtotal" class="form-control" />
-                <span asp-validation-for="comtotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotaldisposal_during_quarter" class="control-label"></label>
-                <input asp-for="comtotaldisposal_during_quarter" class="form-control" />
-                <span asp-validation-for="comtotaldisposal_during_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalbalance_pending" class="control-label"></label>
-                <input asp-for="comtotalbalance_pending" class="form-control" />
-                <span asp-validation-for="comtotalbalance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalage_less_one" class="control-label"></label>
-                <input asp-for="comtotalage_less_one" class="form-control" />
-                <span asp-validation-for="comtotalage_less_one" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalage_pendency_betweenone_three" class="control-label"></label>
-                <input asp-for="comtotalage_pendency_betweenone_three" class="form-control" />
-                <span asp-validation-for="comtotalage_pendency_betweenone_three" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="comtotalage_pendency_betweenthree_six" class="control-label"></label>
-                <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" />
-                <span asp-validation-for="comtotalage_pendency_betweenthree_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_signed_complaints" class="control-label"></label>
-                <input asp-for="complaints_signed_complaints" class="form-control" />
-                <span asp-validation-for="complaints_signed_complaints" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_department" class="control-label"></label>
-                <input asp-for="complaints_department" class="form-control" />
-                <span asp-validation-for="complaints_department" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_cbi" class="control-label"></label>
-                <input asp-for="complaints_cbi" class="form-control" />
-                <span asp-validation-for="complaints_cbi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_other" class="control-label"></label>
-                <input asp-for="complaints_other" class="form-control" />
-                <span asp-validation-for="complaints_other" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_audit" class="control-label"></label>
-                <input asp-for="complaints_audit" class="form-control" />
-                <span asp-validation-for="complaints_audit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_detected" class="control-label"></label>
-                <input asp-for="complaints_detected" class="form-control" />
-                <span asp-validation-for="complaints_detected" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_cbi_action" class="control-label"></label>
-                <input asp-for="complaints_cbi_action" class="form-control" />
-                <span asp-validation-for="complaints_cbi_action" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_cvoinvestigation" class="control-label"></label>
-                <input asp-for="complaints_cvoinvestigation" class="form-control" />
-                <span asp-validation-for="complaints_cvoinvestigation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_signed_filed" class="control-label"></label>
-                <input asp-for="complaints_signed_filed" class="form-control" />
-                <span asp-validation-for="complaints_signed_filed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_signed_notconfirmed" class="control-label"></label>
-                <input asp-for="complaints_signed_notconfirmed" class="form-control" />
-                <span asp-validation-for="complaints_signed_notconfirmed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="complaints_actionfornovigilance" class="control-label"></label>
-                <input asp-for="complaints_actionfornovigilance" class="form-control" />
-                <span asp-validation-for="complaints_actionfornovigilance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_opening_balance" class="control-label"></label>
-                <input asp-for="cvcpidpi_opening_balance" class="form-control" />
-                <span asp-validation-for="cvcpidpi_opening_balance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_receivequarter" class="control-label"></label>
-                <input asp-for="cvcpidpi_receivequarter" class="form-control" />
-                <span asp-validation-for="cvcpidpi_receivequarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_total" class="control-label"></label>
-                <input asp-for="cvcpidpi_total" class="form-control" />
-                <span asp-validation-for="cvcpidpi_total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_report_quarter" class="control-label"></label>
-                <input asp-for="cvcpidpi_report_quarter" class="form-control" />
-                <span asp-validation-for="cvcpidpi_report_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_balance_pending" class="control-label"></label>
-                <input asp-for="cvcpidpi_balance_pending" class="form-control" />
-                <span asp-validation-for="cvcpidpi_balance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_three_month" class="control-label"></label>
-                <input asp-for="cvcpidpi_three_month" class="form-control" />
-                <span asp-validation-for="cvcpidpi_three_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_three_to_six" class="control-label"></label>
-                <input asp-for="cvcpidpi_three_to_six" class="form-control" />
-                <span asp-validation-for="cvcpidpi_three_to_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_less_six" class="control-label"></label>
-                <input asp-for="cvcpidpi_less_six" class="form-control" />
-                <span asp-validation-for="cvcpidpi_less_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_opening_balance" class="control-label"></label>
-                <input asp-for="otherpidpi_opening_balance" class="form-control" />
-                <span asp-validation-for="otherpidpi_opening_balance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_receivequarter" class="control-label"></label>
-                <input asp-for="otherpidpi_receivequarter" class="form-control" />
-                <span asp-validation-for="otherpidpi_receivequarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_total" class="control-label"></label>
-                <input asp-for="otherpidpi_total" class="form-control" />
-                <span asp-validation-for="otherpidpi_total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_report_quarter" class="control-label"></label>
-                <input asp-for="otherpidpi_report_quarter" class="form-control" />
-                <span asp-validation-for="otherpidpi_report_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_balance_pending" class="control-label"></label>
-                <input asp-for="otherpidpi_balance_pending" class="form-control" />
-                <span asp-validation-for="otherpidpi_balance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_three_month" class="control-label"></label>
-                <input asp-for="otherpidpi_three_month" class="form-control" />
-                <span asp-validation-for="otherpidpi_three_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_three_to_six" class="control-label"></label>
-                <input asp-for="otherpidpi_three_to_six" class="form-control" />
-                <span asp-validation-for="otherpidpi_three_to_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_less_six" class="control-label"></label>
-                <input asp-for="otherpidpi_less_six" class="form-control" />
-                <span asp-validation-for="otherpidpi_less_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_opening_balance" class="control-label"></label>
-                <input asp-for="totalpidpi_opening_balance" class="form-control" />
-                <span asp-validation-for="totalpidpi_opening_balance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_receivequarter" class="control-label"></label>
-                <input asp-for="totalpidpi_receivequarter" class="form-control" />
-                <span asp-validation-for="totalpidpi_receivequarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_total" class="control-label"></label>
-                <input asp-for="totalpidpi_total" class="form-control" />
-                <span asp-validation-for="totalpidpi_total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_report_quarter" class="control-label"></label>
-                <input asp-for="totalpidpi_report_quarter" class="form-control" />
-                <span asp-validation-for="totalpidpi_report_quarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_balance_pending" class="control-label"></label>
-                <input asp-for="totalpidpi_balance_pending" class="form-control" />
-                <span asp-validation-for="totalpidpi_balance_pending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="toatlpidpi_three_month" class="control-label"></label>
-                <input asp-for="toatlpidpi_three_month" class="form-control" />
-                <span asp-validation-for="toatlpidpi_three_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="toatlpidpi_three_to_six" class="control-label"></label>
-                <input asp-for="toatlpidpi_three_to_six" class="form-control" />
-                <span asp-validation-for="toatlpidpi_three_to_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpi_less_six" class="control-label"></label>
-                <input asp-for="totalpidpi_less_six" class="form-control" />
-                <span asp-validation-for="totalpidpi_less_six" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvestadvicecvc" class="control-label"></label>
-                <input asp-for="cvcpidpiinvestadvicecvc" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvestadvicecvc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesquarterreportbycvo" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesquarterreportbycvo" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesquarterreportbycvo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesquarteradvicereceive" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesquarteradvicereceive" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesquarteradvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvestotaladvicereceive" class="control-label"></label>
-                <input asp-for="cvcpidpiinvestotaladvicereceive" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvestotaladvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesactionduringquarter" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesactionduringquarter" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesactionduringquarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesbalancegreterthreemonth" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesbalancegreterthreemonth" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesbalancegreterthreemonth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesbalancebetweenthreetosix" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesbalancebetweenthreetosix" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesbalancebetweenthreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesbalancebetweensixtotwelve" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesbalancebetweensixtotwelve" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesbalancebetweensixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpiinvesbalancelesstwelve" class="control-label"></label>
-                <input asp-for="cvcpidpiinvesbalancelesstwelve" class="form-control" />
-                <span asp-validation-for="cvcpidpiinvesbalancelesstwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvestadvicecvc" class="control-label"></label>
-                <input asp-for="cvopidpiinvestadvicecvc" class="form-control" />
-                <span asp-validation-for="cvopidpiinvestadvicecvc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesquarterreportbycvo" class="control-label"></label>
-                <input asp-for="cvopidpiinvesquarterreportbycvo" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesquarterreportbycvo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesquarteradvicereceive" class="control-label"></label>
-                <input asp-for="cvopidpiinvesquarteradvicereceive" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesquarteradvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvestotaladvicereceive" class="control-label"></label>
-                <input asp-for="cvopidpiinvestotaladvicereceive" class="form-control" />
-                <span asp-validation-for="cvopidpiinvestotaladvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesactionduringquarter" class="control-label"></label>
-                <input asp-for="cvopidpiinvesactionduringquarter" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesactionduringquarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesbalancegreterthreemonth" class="control-label"></label>
-                <input asp-for="cvopidpiinvesbalancegreterthreemonth" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesbalancegreterthreemonth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesbalancebetweenthreetosix" class="control-label"></label>
-                <input asp-for="cvopidpiinvesbalancebetweenthreetosix" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesbalancebetweenthreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesbalancebetweensixtotwelve" class="control-label"></label>
-                <input asp-for="cvopidpiinvesbalancebetweensixtotwelve" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesbalancebetweensixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvopidpiinvesbalancelesstwelve" class="control-label"></label>
-                <input asp-for="cvopidpiinvesbalancelesstwelve" class="form-control" />
-                <span asp-validation-for="cvopidpiinvesbalancelesstwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvestadvicecvc" class="control-label"></label>
-                <input asp-for="totalpidpiinvestadvicecvc" class="form-control" />
-                <span asp-validation-for="totalpidpiinvestadvicecvc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesquarterreportbycvo" class="control-label"></label>
-                <input asp-for="totalpidpiinvesquarterreportbycvo" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesquarterreportbycvo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesquarteradvicereceive" class="control-label"></label>
-                <input asp-for="totalpidpiinvesquarteradvicereceive" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesquarteradvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvestotaladvicereceive" class="control-label"></label>
-                <input asp-for="totalpidpiinvestotaladvicereceive" class="form-control" />
-                <span asp-validation-for="totalpidpiinvestotaladvicereceive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesactionduringquarter" class="control-label"></label>
-                <input asp-for="totalpidpiinvesactionduringquarter" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesactionduringquarter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesbalancegreterthreemonth" class="control-label"></label>
-                <input asp-for="totalpidpiinvesbalancegreterthreemonth" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesbalancegreterthreemonth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesbalancebetweenthreetosix" class="control-label"></label>
-                <input asp-for="totalpidpiinvesbalancebetweenthreetosix" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesbalancebetweenthreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesbalancebetweensixtotwelve" class="control-label"></label>
-                <input asp-for="totalpidpiinvesbalancebetweensixtotwelve" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesbalancebetweensixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="totalpidpiinvesbalancelesstwelve" class="control-label"></label>
-                <input asp-for="totalpidpiinvesbalancelesstwelve" class="form-control" />
-                <span asp-validation-for="totalpidpiinvesbalancelesstwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpibroughtforward" class="control-label"></label>
-                <input asp-for="napidpibroughtforward" class="form-control" />
-                <span asp-validation-for="napidpibroughtforward" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpireceiveqtr" class="control-label"></label>
-                <input asp-for="napidpireceiveqtr" class="form-control" />
-                <span asp-validation-for="napidpireceiveqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpitotal" class="control-label"></label>
-                <input asp-for="napidpitotal" class="form-control" />
-                <span asp-validation-for="napidpitotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpiclosedwithoutaction" class="control-label"></label>
-                <input asp-for="napidpiclosedwithoutaction" class="form-control" />
-                <span asp-validation-for="napidpiclosedwithoutaction" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpifurtherinvestigation" class="control-label"></label>
-                <input asp-for="napidpifurtherinvestigation" class="form-control" />
-                <span asp-validation-for="napidpifurtherinvestigation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpiadminaction" class="control-label"></label>
-                <input asp-for="napidpiadminaction" class="form-control" />
-                <span asp-validation-for="napidpiadminaction" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpiimpositionpenalty" class="control-label"></label>
-                <input asp-for="napidpiimpositionpenalty" class="form-control" />
-                <span asp-validation-for="napidpiimpositionpenalty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpidisposedqtr" class="control-label"></label>
-                <input asp-for="napidpidisposedqtr" class="form-control" />
-                <span asp-validation-for="napidpidisposedqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="napidpipendingqtr" class="control-label"></label>
-                <input asp-for="napidpipendingqtr" class="form-control" />
-                <span asp-validation-for="napidpipendingqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyear" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyear" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtr" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtr" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexami" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexami" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexami" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigation" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigation" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigation" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigation" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="create_date" class="control-label"></label>
-                <input asp-for="create_date" class="form-control" />
-                <span asp-validation-for="create_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="user_id" class="control-label"></label>
-                <input asp-for="user_id" class="form-control" />
-                <span asp-validation-for="user_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="update_date" class="control-label"></label>
-                <input asp-for="update_date" class="form-control" />
-                <span asp-validation-for="update_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="used_ip" class="control-label"></label>
-                <input asp-for="used_ip" class="form-control" />
-                <span asp-validation-for="used_ip" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="update_user_id" class="control-label"></label>
-                <input asp-for="update_user_id" class="form-control" />
-                <span asp-validation-for="update_user_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="qpr_id" class="control-label"></label>
-                <input asp-for="qpr_id" class="form-control" />
-                <span asp-validation-for="qpr_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="cvcpidpi_delay_one_month" class="control-label"></label>
-                <input asp-for="cvcpidpi_delay_one_month" class="form-control" />
-                <span asp-validation-for="cvcpidpi_delay_one_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="otherpidpi_delay_one_month" class="control-label"></label>
-                <input asp-for="otherpidpi_delay_one_month" class="form-control" />
-                <span asp-validation-for="otherpidpi_delay_one_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="toatlpidpi_delay_one_month" class="control-label"></label>
-                <input asp-for="toatlpidpi_delay_one_month" class="form-control" />
-                <span asp-validation-for="toatlpidpi_delay_one_month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyearconcurrent" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyearconcurrent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtrconcurrent" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtrconcurrent" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtrconcurrent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexamiconcurrent" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexamiconcurrent" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexamiconcurrent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigationconcurrent" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigationconcurrent" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigationconcurrent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigationconcurrent" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigationconcurrent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyearinternal" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyearinternal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtrinternal" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtrinternal" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtrinternal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexamiinternal" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexamiinternal" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexamiinternal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigationinternal" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigationinternal" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigationinternal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigationinternal" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigationinternal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyearstatutory" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyearstatutory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtrstatutory" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtrstatutory" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtrstatutory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexamistatutory" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexamistatutory" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexamistatutory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigationstatutory" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigationstatutory" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigationstatutory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigationstatutory" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigationstatutory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyearothers" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyearothers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtrothers" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtrothers" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtrothers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexamiothers" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexamiothers" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexamiothers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigationothers" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigationothers" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigationothers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigationothers" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigationothers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportbfpreviousyeartotal" class="control-label"></label>
-                <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" />
-                <span asp-validation-for="scrutinyreportbfpreviousyeartotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportexaminedqtrtotal" class="control-label"></label>
-                <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" />
-                <span asp-validation-for="scrutinyreportexaminedqtrtotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportidentifiedexamitotal" class="control-label"></label>
-                <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" />
-                <span asp-validation-for="scrutinyreportidentifiedexamitotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportcompleteinvestigationtotal" class="control-label"></label>
-                <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" />
-                <span asp-validation-for="scrutinyreportcompleteinvestigationtotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="scrutinyreportpendinginvestigationtotal" class="control-label"></label>
-                <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" />
-                <span asp-validation-for="scrutinyreportpendinginvestigationtotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
+        <div class="form-group">
+        <label asp-for="napidpibroughtforward" class="control-label"></label>
+        <input asp-for="napidpibroughtforward" class="form-control" />
+        <span asp-validation-for="napidpibroughtforward" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpireceiveqtr" class="control-label"></label>
+        <input asp-for="napidpireceiveqtr" class="form-control" />
+        <span asp-validation-for="napidpireceiveqtr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpitotal" class="control-label"></label>
+        <input asp-for="napidpitotal" class="form-control" />
+        <span asp-validation-for="napidpitotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpiclosedwithoutaction" class="control-label"></label>
+        <input asp-for="napidpiclosedwithoutaction" class="form-control" />
+        <span asp-validation-for="napidpiclosedwithoutaction" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpifurtherinvestigation" class="control-label"></label>
+        <input asp-for="napidpifurtherinvestigation" class="form-control" />
+        <span asp-validation-for="napidpifurtherinvestigation" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpiadminaction" class="control-label"></label>
+        <input asp-for="napidpiadminaction" class="form-control" />
+        <span asp-validation-for="napidpiadminaction" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpiimpositionpenalty" class="control-label"></label>
+        <input asp-for="napidpiimpositionpenalty" class="form-control" />
+        <span asp-validation-for="napidpiimpositionpenalty" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpidisposedqtr" class="control-label"></label>
+        <input asp-for="napidpidisposedqtr" class="form-control" />
+        <span asp-validation-for="napidpidisposedqtr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="napidpipendingqtr" class="control-label"></label>
+        <input asp-for="napidpipendingqtr" class="form-control" />
+        <span asp-validation-for="napidpipendingqtr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyear" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyear" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyear" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtr" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtr" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexami" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexami" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexami" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigation" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigation" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigation" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigation" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigation" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigation" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="create_date" class="control-label"></label>
+        <input asp-for="create_date" class="form-control" />
+        <span asp-validation-for="create_date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="user_id" class="control-label"></label>
+        <input asp-for="user_id" class="form-control" />
+        <span asp-validation-for="user_id" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="update_date" class="control-label"></label>
+        <input asp-for="update_date" class="form-control" />
+        <span asp-validation-for="update_date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="used_ip" class="control-label"></label>
+        <input asp-for="used_ip" class="form-control" />
+        <span asp-validation-for="used_ip" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="update_user_id" class="control-label"></label>
+        <input asp-for="update_user_id" class="form-control" />
+        <span asp-validation-for="update_user_id" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="qpr_id" class="control-label"></label>
+        <input asp-for="qpr_id" class="form-control" />
+        <span asp-validation-for="qpr_id" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="cvcpidpi_delay_one_month" class="control-label"></label>
+        <input asp-for="cvcpidpi_delay_one_month" class="form-control" />
+        <span asp-validation-for="cvcpidpi_delay_one_month" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="otherpidpi_delay_one_month" class="control-label"></label>
+        <input asp-for="otherpidpi_delay_one_month" class="form-control" />
+        <span asp-validation-for="otherpidpi_delay_one_month" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="toatlpidpi_delay_one_month" class="control-label"></label>
+        <input asp-for="toatlpidpi_delay_one_month" class="form-control" />
+        <span asp-validation-for="toatlpidpi_delay_one_month" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyearconcurrent" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyearconcurrent" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtrconcurrent" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtrconcurrent" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtrconcurrent" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexamiconcurrent" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexamiconcurrent" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexamiconcurrent" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigationconcurrent" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigationconcurrent" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigationconcurrent" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigationconcurrent" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigationconcurrent" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyearinternal" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyearinternal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtrinternal" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtrinternal" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtrinternal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexamiinternal" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexamiinternal" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexamiinternal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigationinternal" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigationinternal" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigationinternal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigationinternal" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigationinternal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyearstatutory" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyearstatutory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtrstatutory" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtrstatutory" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtrstatutory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexamistatutory" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexamistatutory" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexamistatutory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigationstatutory" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigationstatutory" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigationstatutory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigationstatutory" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigationstatutory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyearothers" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyearothers" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtrothers" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtrothers" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtrothers" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexamiothers" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexamiothers" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexamiothers" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigationothers" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigationothers" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigationothers" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigationothers" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigationothers" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportbfpreviousyeartotal" class="control-label"></label>
+        <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" />
+        <span asp-validation-for="scrutinyreportbfpreviousyeartotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportexaminedqtrtotal" class="control-label"></label>
+        <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" />
+        <span asp-validation-for="scrutinyreportexaminedqtrtotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportidentifiedexamitotal" class="control-label"></label>
+        <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" />
+        <span asp-validation-for="scrutinyreportidentifiedexamitotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportcompleteinvestigationtotal" class="control-label"></label>
+        <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" />
+        <span asp-validation-for="scrutinyreportcompleteinvestigationtotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="scrutinyreportpendinginvestigationtotal" class="control-label"></label>
+        <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" />
+        <span asp-validation-for="scrutinyreportpendinginvestigationtotal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
         </form>
     </div>
 </div>
+        *@
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-outline-secondary" asp-action="Index">Back</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

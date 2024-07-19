@@ -11,7 +11,7 @@ namespace QPR_Application.Models.Entities
     public partial class orgadd
     {
         [Key]
-        public long id { get; set; }
+        public long Id { get; set; }
         [StringLength(50)]
         public string section { get; set; }
         public string orgcod { get; set; }

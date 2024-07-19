@@ -14,9 +14,38 @@ html {
 }
 
 body {
-    /*
-    margin-bottom: 60px;
-    margin-top: 20px;
-    */
     margin: 10px 25px;
+}
+
+table input {
+    width: 100%;
+    text-align: center;
+    /*border: none;*/
+}
+
+/*remove arrows from input[number]*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.center {
+    margin: auto;
+    border: 2px solid #73AD21;
+    padding: 10px;
+    font-size: 12px;
 }
