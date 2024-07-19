@@ -49,3 +49,27 @@ input[type=number] {
     padding: 10px;
     font-size: 12px;
 }
+
+
+.tr-grey{
+    background-color: rgb(217, 217, 217)
+}
+
+.box-green {
+    padding: 5px;
+    margin: auto;
+    border: 1px solid #4192f4;
+    background: rgb(204, 255, 204);
+}
+
+.table-blue th{
+    background-color: rgb(77,109,244) !important;
+    color: white;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.table-padding td {
+    padding: 0.25em !important;
+    vertical-align: middle !important;
+}

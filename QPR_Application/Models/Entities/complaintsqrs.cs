@@ -101,10 +101,10 @@ namespace QPR_Application.Models.Entities
         public byte? napidpibroughtforward { get; set; }
         public byte? napidpireceiveqtr { get; set; }
         public byte? napidpitotal { get; set; }
-        public bool? napidpiclosedwithoutaction { get; set; }
+        public int? napidpiclosedwithoutaction { get; set; }
         public byte? napidpifurtherinvestigation { get; set; }
-        public bool? napidpiadminaction { get; set; }
-        public bool? napidpiimpositionpenalty { get; set; }
+        public int? napidpiadminaction { get; set; }
+        public int? napidpiimpositionpenalty { get; set; }
         public int? napidpidisposedqtr { get; set; }
         public int? napidpipendingqtr { get; set; }
         public int? scrutinyreportbfpreviousyear { get; set; }
@@ -140,7 +140,7 @@ namespace QPR_Application.Models.Entities
         public int? scrutinyreportexaminedqtrstatutory { get; set; }
         public int? scrutinyreportidentifiedexamistatutory { get; set; }
         public int? scrutinyreportcompleteinvestigationstatutory { get; set; }
-        public bool? scrutinyreportpendinginvestigationstatutory { get; set; }
+        public int? scrutinyreportpendinginvestigationstatutory { get; set; }
         public int? scrutinyreportbfpreviousyearothers { get; set; }
         public int? scrutinyreportexaminedqtrothers { get; set; }
         public int? scrutinyreportidentifiedexamiothers { get; set; }
@@ -150,7 +150,6 @@ namespace QPR_Application.Models.Entities
         public int? scrutinyreportexaminedqtrtotal { get; set; }
         public int? scrutinyreportidentifiedexamitotal { get; set; }
         public int? scrutinyreportcompleteinvestigationtotal { get; set; }
-        [StringLength(10)]
-        public string scrutinyreportpendinginvestigationtotal { get; set; }
+        public int scrutinyreportpendinginvestigationtotal { get; set; }
     }
 }

@@ -5,154 +5,470 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h3>VigilanceInvestigation</h3>
-
-@* <h4>viginvestigationqrs</h4> *@
+<div class="text-center">
+    <h3>Vigilance Investigation</h3>
+</div>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="VigilanceInvestigation">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="viginvestigations_id" class="control-label"></label>
-                <input asp-for="viginvestigations_id" class="form-control" />
-                <span asp-validation-for="viginvestigations_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcopeningbalance" class="control-label"></label>
-                <input asp-for="viginvescvcopeningbalance" class="form-control" />
-                <span asp-validation-for="viginvescvcopeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvctakeninvesqtr" class="control-label"></label>
-                <input asp-for="viginvescvctakeninvesqtr" class="form-control" />
-                <span asp-validation-for="viginvescvctakeninvesqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvctotal" class="control-label"></label>
-                <input asp-for="viginvescvctotal" class="form-control" />
-                <span asp-validation-for="viginvescvctotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcreportsrecivqtr" class="control-label"></label>
-                <input asp-for="viginvescvcreportsrecivqtr" class="form-control" />
-                <span asp-validation-for="viginvescvcreportsrecivqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcbalancepending" class="control-label"></label>
-                <input asp-for="viginvescvcbalancepending" class="form-control" />
-                <span asp-validation-for="viginvescvcbalancepending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcgreaterthree" class="control-label"></label>
-                <input asp-for="viginvescvcgreaterthree" class="form-control" />
-                <span asp-validation-for="viginvescvcgreaterthree" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcthreetosix" class="control-label"></label>
-                <input asp-for="viginvescvcthreetosix" class="form-control" />
-                <span asp-validation-for="viginvescvcthreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvcsixtotwelve" class="control-label"></label>
-                <input asp-for="viginvescvcsixtotwelve" class="form-control" />
-                <span asp-validation-for="viginvescvcsixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvclesstwelve" class="control-label"></label>
-                <input asp-for="viginvescvclesstwelve" class="form-control" />
-                <span asp-validation-for="viginvescvclesstwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvoopeningbalance" class="control-label"></label>
-                <input asp-for="viginvescvoopeningbalance" class="form-control" />
-                <span asp-validation-for="viginvescvoopeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvotakeninvesqtr" class="control-label"></label>
-                <input asp-for="viginvescvotakeninvesqtr" class="form-control" />
-                <span asp-validation-for="viginvescvotakeninvesqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvototal" class="control-label"></label>
-                <input asp-for="viginvescvototal" class="form-control" />
-                <span asp-validation-for="viginvescvototal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvoreportsrecivqtr" class="control-label"></label>
-                <input asp-for="viginvescvoreportsrecivqtr" class="form-control" />
-                <span asp-validation-for="viginvescvoreportsrecivqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvobalancepending" class="control-label"></label>
-                <input asp-for="viginvescvobalancepending" class="form-control" />
-                <span asp-validation-for="viginvescvobalancepending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvogreaterthree" class="control-label"></label>
-                <input asp-for="viginvescvogreaterthree" class="form-control" />
-                <span asp-validation-for="viginvescvogreaterthree" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvothreetosix" class="control-label"></label>
-                <input asp-for="viginvescvothreetosix" class="form-control" />
-                <span asp-validation-for="viginvescvothreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvosixtotwelve" class="control-label"></label>
-                <input asp-for="viginvescvosixtotwelve" class="form-control" />
-                <span asp-validation-for="viginvescvosixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvescvolesstwelve" class="control-label"></label>
-                <input asp-for="viginvescvolesstwelve" class="form-control" />
-                <span asp-validation-for="viginvescvolesstwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalopeningbalance" class="control-label"></label>
-                <input asp-for="viginvestotalopeningbalance" class="form-control" />
-                <span asp-validation-for="viginvestotalopeningbalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotaltakeninvesqtr" class="control-label"></label>
-                <input asp-for="viginvestotaltakeninvesqtr" class="form-control" />
-                <span asp-validation-for="viginvestotaltakeninvesqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotal" class="control-label"></label>
-                <input asp-for="viginvestotal" class="form-control" />
-                <span asp-validation-for="viginvestotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalreportsrecivqtr" class="control-label"></label>
-                <input asp-for="viginvestotalreportsrecivqtr" class="form-control" />
-                <span asp-validation-for="viginvestotalreportsrecivqtr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalbalancepending" class="control-label"></label>
-                <input asp-for="viginvestotalbalancepending" class="form-control" />
-                <span asp-validation-for="viginvestotalbalancepending" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalgreaterthree" class="control-label"></label>
-                <input asp-for="viginvestotalgreaterthree" class="form-control" />
-                <span asp-validation-for="viginvestotalgreaterthree" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalthreetosix" class="control-label"></label>
-                <input asp-for="viginvestotalthreetosix" class="form-control" />
-                <span asp-validation-for="viginvestotalthreetosix" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotalsixtotwelve" class="control-label"></label>
-                <input asp-for="viginvestotalsixtotwelve" class="form-control" />
-                <span asp-validation-for="viginvestotalsixtotwelve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="viginvestotallesstwelve" class="control-label"></label>
-                <input asp-for="viginvestotallesstwelve" class="form-control" />
-                <span asp-validation-for="viginvestotallesstwelve" class="text-danger"></span>
-            </div>
+
+
+
+<form asp-action="VigilanceInvestigation">
+    <div class="w-80 mt-5 mb-3 box-green">
+        <b>
+            2.1 Complaints, Audit reports, Inspection reports of works / procurements etc.Taken up for investigation (nos)
+        </b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr></tr>
+                <tr class="text-center">
+                    <th rowspan="2"><b>Agency</b></th>
+                    <th rowspan="2"><b>Opening Balance </b></th>
+                    <th rowspan="2"><b>Taken up for investigation during the quarter</b></th>
+                    <th rowspan="2"><b>Total</b><br>4=(2+3)</th>
+                    <th rowspan="2"><b>Reports received from IO</b></th>
+                    <th rowspan="2"><b>Balance Pending</b><br>6=(4-5)</th>
+                    <th colspan="4"><b>Age wise Pendency (Months) of Investigations</b><br>6=(7+8+9+10)</th>
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        &lt;3
+                    </th>
+                    <th>
+                        3-6
+                    </th>
+                    <th>
+                        6-12
+                    </th>
+                    <th>
+                        &gt;12
+                    </th>
+                </tr>
+                <tr class="text-center tr-grey">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                    <td>&nbsp;<b>(10)</b></td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;CVC<sup><span style="color: red;">*</span></sup></b> </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcopeningbalance" class="form-control" />
+                            <span asp-validation-for="viginvescvcopeningbalance" class="text-danger"></span>
+                            @* <input id="viginvescvcopeningbalance" name="viginvescvcopeningbalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVCOpening CVCOpeningvi ivCVCtotal" readonly="readonly" value="3"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvctakeninvesqtr" class="form-control" />
+                            <span asp-validation-for="viginvescvctakeninvesqtr" class="text-danger"></span>
+                            @* <input id="viginvescvctakeninvesqtr" name="viginvescvctakeninvesqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVCOpening CVOOpeningvi ivCVCtotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvctotal" class="form-control" />
+                            <span asp-validation-for="viginvescvctotal" class="text-danger"></span>
+                            @* <input id="viginvescvctotal" name="viginvescvctotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviCVCOpening ivCVCtotal subviCVCtotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcreportsrecivqtr" class="form-control" />
+                            <span asp-validation-for="viginvescvcreportsrecivqtr" class="text-danger"></span>
+                            @* <input id="viginvescvcreportsrecivqtr" name="viginvescvcreportsrecivqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVCReportsCBI CVCReportsCBIvi subviCVCtotal addviBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcbalancepending" class="form-control" />
+                            <span asp-validation-for="viginvescvcbalancepending" class="text-danger"></span>
+                            @* <input id="viginvescvcbalancepending" name="viginvescvcbalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVCBalancePending totalsubviCVCtotal addviBalancePending" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcgreaterthree" class="form-control" />
+                            <span asp-validation-for="viginvescvcgreaterthree" class="text-danger"></span>
+                            @* <input id="viginvescvcgreaterthree" name="viginvescvcgreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viGreaterThree  cvcviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcthreetosix" class="form-control" />
+                            <span asp-validation-for="viginvescvcthreetosix" class="text-danger"></span>
+                            @* <input id="viginvescvcthreetosix" name="viginvescvcthreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viThreetoSix  cvcviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvcsixtotwelve" class="form-control" />
+                            <span asp-validation-for="viginvescvcsixtotwelve" class="text-danger"></span>
+                            @* <input id="viginvescvcsixtotwelve" name="viginvescvcsixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viSixtoTwelve cvcviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvclesstwelve" class="form-control" />
+                            <span asp-validation-for="viginvescvclesstwelve" class="text-danger"></span>
+                            @* <input id="viginvescvclesstwelve" name="viginvescvclesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viLessTwelve  cvcviGreaterThreeFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;CVO <sup><span style="color: red;">**</span></sup></b></td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvoopeningbalance" class="form-control" />
+                            <span asp-validation-for="viginvescvoopeningbalance" class="text-danger"></span>
+                            @* <input id="viginvescvoopeningbalance" name="viginvescvoopeningbalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVOOpening CVCOpeningvi ivCVCtotal" readonly="readonly" value="43"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvotakeninvesqtr" class="form-control" />
+                            <span asp-validation-for="viginvescvotakeninvesqtr" class="text-danger"></span>
+                            @* <input id="viginvescvotakeninvesqtr" name="viginvescvotakeninvesqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVOOpening CVOOpeningvi ivCVCtotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvototal" class="form-control" />
+                            <span asp-validation-for="viginvescvototal" class="text-danger"></span>
+                            @* <input id="viginvescvototal" name="viginvescvototal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviCVOOpening ivCVCtotal subviCVOtotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvoreportsrecivqtr" class="form-control" />
+                            <span asp-validation-for="viginvescvoreportsrecivqtr" class="text-danger"></span>
+                            @* <input id="viginvescvoreportsrecivqtr" name="viginvescvoreportsrecivqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVOReportsCBI CVCReportsCBIvi subviCVOtotal addviBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvobalancepending" class="form-control" />
+                            <span asp-validation-for="viginvescvobalancepending" class="text-danger"></span>
+                            @* <input id="viginvescvobalancepending" name="viginvescvobalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viCVOBalancePending totalsubviCVOtotal addviBalancePending" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvogreaterthree" class="form-control" />
+                            <span asp-validation-for="viginvescvogreaterthree" class="text-danger"></span>
+                            @* <input id="viginvescvogreaterthree" name="viginvescvogreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viGreaterThree cvoviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvothreetosix" class="form-control" />
+                            <span asp-validation-for="viginvescvothreetosix" class="text-danger"></span>
+                            @* <input id="viginvescvothreetosix" name="viginvescvothreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viThreetoSix  cvoviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvosixtotwelve" class="form-control" />
+                            <span asp-validation-for="viginvescvosixtotwelve" class="text-danger"></span>
+                            @* <input id="viginvescvosixtotwelve" name="viginvescvosixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viSixtoTwelve  cvoviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvescvolesstwelve" class="form-control" />
+                            <span asp-validation-for="viginvescvolesstwelve" class="text-danger"></span>
+                            @* <input id="viginvescvolesstwelve" name="viginvescvolesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viLessTwelve  cvoviGreaterThreeFinal" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;TOTAL</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalopeningbalance" class="form-control" />
+                            <span asp-validation-for="viginvestotalopeningbalance" class="text-danger"></span>
+                            @* <input id="viginvestotalopeningbalance" name="viginvestotalopeningbalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalCVCOpeningvi" value="46"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotaltakeninvesqtr" class="form-control" />
+                            <span asp-validation-for="viginvestotaltakeninvesqtr" class="text-danger"></span>
+                            @* <input id="viginvestotaltakeninvesqtr" name="viginvestotaltakeninvesqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalCVOOpeningvi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotal" class="form-control" />
+                            <span asp-validation-for="viginvestotal" class="text-danger"></span>
+                            @* <input id="viginvestotal" name="viginvestotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalivCVCtotal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalreportsrecivqtr" class="form-control" />
+                            <span asp-validation-for="viginvestotalreportsrecivqtr" class="text-danger"></span>
+                            @* <input id="viginvestotalreportsrecivqtr" name="viginvestotalreportsrecivqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="viTotalReportsCBI totalCVCReportsCBIvi" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalbalancepending" class="form-control" />
+                            <span asp-validation-for="viginvestotalbalancepending" class="text-danger"></span>
+                            @* <input id="viginvestotalbalancepending" name="viginvestotalbalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="viTotalBalancePending totaladdviBalancePending" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalgreaterthree" class="form-control" />
+                            <span asp-validation-for="viginvestotalgreaterthree" class="text-danger"></span>
+                            @* <input id="viginvestotalgreaterthree" name="viginvestotalgreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviGreaterThree" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalthreetosix" class="form-control" />
+                            <span asp-validation-for="viginvestotalthreetosix" class="text-danger"></span>
+                            @* <input id="viginvestotalthreetosix" name="viginvestotalthreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviThreetoSix" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotalsixtotwelve" class="form-control" />
+                            <span asp-validation-for="viginvestotalsixtotwelve" class="text-danger"></span>
+                            @* <input id="viginvestotalsixtotwelve" name="viginvestotalsixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviSixtoTwelve" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvestotallesstwelve" class="form-control" />
+                            <span asp-validation-for="viginvestotallesstwelve" class="text-danger"></span>
+                            @* <input id="viginvestotallesstwelve" name="viginvestotallesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviLessTwelve" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3 box-green">
+        <b>
+            2.2 Vigilance investigation pending where officers under cvc jurisdiction are due for retirement in next one year (cases referrable to cvc)
+        </b>
+    </div>
+
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr class="text-center">
+                    <th rowspan="2"><b>Opening Balance</b></th>
+                    <th rowspan="2"><b>Taken up for investigation during the quarter</b></th>
+                    <th rowspan="2"><b>Total</b><br>3=(1+2)</th>
+                    <th rowspan="2" style="width:20%"><b>Reports received from IO (other then Prosecution sanctions)</b></th>
+                    <th rowspan="2"><b>Balance Pending</b><br>5=(3-4)</th>
+                    <th colspan="3"><b>Age wise Pendency (Months) of Investigations</b><br>5=(6+7+8)</th>
+                    <th rowspan="2"><b>Reasons for Pendency</b></th>
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        &lt;3
+                    </th>
+
+                    <th>
+                        3-6
+                    </th>
+                    <th>
+                        6-12
+                    </th>
+                </tr>
+                <tr class="text-center tr-grey">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingopeningpending" class="form-control" />
+                            <span asp-validation-for="viginvespendingopeningpending" class="text-danger"></span>
+                            @* <input id="viginvespendingopeningpending" name="viginvespendingopeningpending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="addviPendingCVCcase" readonly="readonly" value="5"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendinginvestqtr" class="form-control" />
+                            <span asp-validation-for="viginvespendinginvestqtr" class="text-danger"></span>
+                            @* <input id="viginvespendinginvestqtr" name="viginvespendinginvestqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="addviPendingCVCcase" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingtotal" class="form-control" />
+                            <span asp-validation-for="viginvespendingtotal" class="text-danger"></span>
+                            @* <input id="viginvespendingtotal" name="viginvespendingtotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totaladdviPendingCVCcase viPendingCaseCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingreportio" class="form-control" />
+                            <span asp-validation-for="viginvespendingreportio" class="text-danger"></span>
+                            @* <input id="viginvespendingreportio" name="viginvespendingreportio" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viPendingCaseCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingbalancepending" class="form-control" />
+                            <span asp-validation-for="viginvespendingbalancepending" class="text-danger"></span>
+                            @* <input id="viginvespendingbalancepending" name="viginvespendingbalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviPendingCaseCVC" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendinggreaterthree" class="form-control" />
+                            <span asp-validation-for="viginvespendinggreaterthree" class="text-danger"></span>
+                            @* <input id="viginvespendinggreaterthree" name="viginvespendinggreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vigilanceagePendingCase" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingthreetosix" class="form-control" />
+                            <span asp-validation-for="viginvespendingthreetosix" class="text-danger"></span>
+                            @* <input id="viginvespendingthreetosix" name="viginvespendingthreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vigilanceagePendingCase" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendingsixtotwelve" class="form-control" />
+                            <span asp-validation-for="viginvespendingsixtotwelve" class="text-danger"></span>
+                            @* <input id="viginvespendingsixtotwelve" name="viginvespendingsixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vigilanceagePendingCaseFinal" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="viginvespendinglesstwelve" class="form-control" />
+                            <span asp-validation-for="viginvespendinglesstwelve" class="text-danger"></span>
+                            @* <input id="viginvespendinglesstwelve" name="viginvespendinglesstwelve" style="padding: 2px; width:250px;" type="text" value=""> *@
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3 box-green">
+        <b>
+            2.3 Action on Investigation Reports
+        </b>
+    </div>
+    <div class="w-80 mt-2 mb-3 box-green">
+        <b>
+            2.3 (A) Category A Cases (Under CVC jurisdiction)
+        </b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr class="text-center">
+                    <th rowspan="2"><b>Agency</b></th>
+                    <th rowspan="2"><b>Investigation report B/F from last Quarter</b></th>
+                    <th rowspan="2"><b>Received During the Quarter</b></th>
+                    <th rowspan="2"><b>Total</b><br>4=(2+3)</th>
+                    <th rowspan="2" style="width:20%"><b>Disposed during the Quarter<sup><span style="color: red;">*</span></sup></b></th>
+                    <th rowspan="2"><b>Balance Pending investigation Reports</b><br>6=(4-5)</th>
+                    <th colspan="4"><b>Age wise Pendency (Months) of Investigation Reports(awaiting action)</b><br>6=(7+8+9+10)</th>
+                </tr>
+                <tr class="text-center">
+                    <th>
+                        &lt;3
+                    </th>
+
+                    <th>
+                        3-6
+                    </th>
+                    <th>
+                        6-12
+                    </th>
+                    <th>
+                        &gt;12
+                    </th>
+                </tr>
+                <tr class="text-center tr-grey">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                    <td>&nbsp;<b>(7)</b></td>
+                    <td>&nbsp;<b>(8)</b></td>
+                    <td>&nbsp;<b>(9)</b></td>
+                    <td>&nbsp;<b>(10)</b></td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;CBI</b></td>
+                    <td><b><input id="viginvestacbireportqtr" name="viginvestacbireportqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viActionInvestReport vicbiInvestReport viTotalcvc" readonly="readonly" value="0"></b></td>
+                    <td><b><input id="viginvestacbireceiveqtr" name="viginvestacbireceiveqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viActionReceiveds vicbiInvestReport viTotalcvc" value="0"></b></td>
+                    <td><b><input id="viginvestacbitotal" name="viginvestacbitotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalvicbiInvestReport viTotalcvc subviActionundercvc" readonly="readonly" value="0"></b></td>
+                    <td><b><input id="viginvestacbidisposedqtr" name="viginvestacbidisposedqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viDisposedQtr subviActionundercvc addofficialsfalling" value="0"></b></td>
+                    <td><b><input id="viginvestacbibalancepending" name="viginvestacbibalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalsubviActionundercvc addofficialsfalling" readonly="readonly" value="0"></b></td>
+                    <td><b><input id="viginvestacbigreaterthree" name="viginvestacbigreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcGraterThree pendingCBI" value="0"></b></td>
+                    <td><b><input id="viginvestacbithreetosix" name="viginvestacbithreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcThreetoSix pendingCBI" value="0"></b></td>
+                    <td><b><input id="viginvestacbisixtotwelve" name="viginvestacbisixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcSixtiTwelve pendingCBI" value="0"></b></td>
+                    <td><b><input id="viginvestacbilesstwelve" name="viginvestacbilesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvclessTwelve pendingCBIFinal" value="0"></b></td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;CVO</b></td>
+                    <td><b><input id="viginvestacvoreportqtr" name="viginvestacvoreportqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viActionInvestReport viCVOInvestReport viTotalcvc" readonly="readonly" value="58"></b></td>
+                    <td><b><input id="viginvestacvoreceiveqtr" name="viginvestacvoreceiveqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viActionReceiveds viCVOInvestReport viTotalcvc" value="0"></b></td>
+                    <td><b><input id="viginvestacvototal" name="viginvestacvototal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalviCVOInvestReport viTotalcvc subviActionCVOCase" readonly="readonly" value="0"></b></td>
+                    <td><b><input id="viginvestacvodisposedqtr" name="viginvestacvodisposedqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="viDisposedQtr subviActionCVOCase addofficialsfalling" value="0"></b></td>
+                    <td><b><input id="viginvestacvobalancepending" name="viginvestacvobalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalsubviActionCVOCase addofficialsfalling" readonly="readonly" value="0"></b></td>
+                    <td><b><input id="viginvestacvogreaterthree" name="viginvestacvogreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcGraterThree pendingCVO" value="0"></b></td>
+                    <td><b><input id="viginvestacvothreetosix" name="viginvestacvothreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcThreetoSix pendingCVO" value="0"></b></td>
+                    <td><b><input id="viginvestacvosixtotwelve" name="viginvestacvosixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvcSixtiTwelve pendingCVO" value="0"></b></td>
+                    <td><b><input id="viginvestacvolesstwelve" name="viginvestacvolesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="vicvclessTwelve pendingCVOFinal" value="0"></b></td>
+                </tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;TOTAL</b></td>
+                    <td><b><input id="viginvestatotalreportqtr" name="viginvestatotalreportqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviActionInvestReport" value="58"></b></td>
+                    <td><b><input id="viginvestatotalreceiveqtr" name="viginvestatotalreceiveqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviActionReceiveds" value="0"></b></td>
+                    <td><b><input id="viginvestatotal" name="viginvestatotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviTotalcvc" value="0"></b></td>
+                    <td><b><input id="viginvestatotaldisposedqtr" name="viginvestatotaldisposedqtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalviDisposedQtr" value="0"></b></td>
+                    <td><b><input id="viginvestatotalbalancepending" name="viginvestatotalbalancepending" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totaladdofficialsfalling" value="0"></b></td>
+                    <td><b><input id="viginvestatotalgreaterthree" name="viginvestatotalgreaterthree" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalvicvcGraterThree" value="0"></b></td>
+                    <td><b><input id="viginvestatotalthreetosix" name="viginvestatotalthreetosix" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalvicvcThreetoSix" value="0"></b></td>
+                    <td><b><input id="viginvestatotalsixtotwelve" name="viginvestatotalsixtotwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalvicvcSixtiTwelve" value="0"></b></td>
+                    <td><b><input id="viginvestatotallesstwelve" name="viginvestatotallesstwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalvicvclessTwelve" value="0"></b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="center w-70 mt-2">
+        <p><sup><span style="color: red;">*</span></sup> Disposal Criteria - Final decision takenby DA after CVC advice and whencharge-sheet for major/minor RDA issued/final decision taken for administrative action or closure of case.</p>
+        <!-- <p><strong>NB: Aggregate of (a), (b), (c) &amp; (d) in para 2.3 (B) &nbsp;should tally with total figure under Col 5 of para 2.3 (A)</strong></p> -->
+    </div>
+</form>
+    <div class="row">
+        <div class="col-md-4">
+
             <div class="form-group">
                 <label asp-for="viginvespendingopeningpending" class="control-label"></label>
                 <input asp-for="viginvespendingopeningpending" class="form-control" />
@@ -175,13 +491,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="viginvespendingbalancepending" class="control-label"></label>
-                <input asp-for="viginvespendingbalancepending" class="form-control" />
-                <span asp-validation-for="viginvespendingbalancepending" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="viginvespendinggreaterthree" class="control-label"></label>
-                <input asp-for="viginvespendinggreaterthree" class="form-control" />
-                <span asp-validation-for="viginvespendinggreaterthree" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="viginvespendingthreetosix" class="control-label"></label>
@@ -190,8 +504,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="viginvespendingsixtotwelve" class="control-label"></label>
-                <input asp-for="viginvespendingsixtotwelve" class="form-control" />
-                <span asp-validation-for="viginvespendingsixtotwelve" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="viginvestacbireceiveqtr" class="control-label"></label>
@@ -695,8 +1008,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="viginvespendinglesstwelve" class="control-label"></label>
-                <input asp-for="viginvespendinglesstwelve" class="form-control" />
-                <span asp-validation-for="viginvespendinglesstwelve" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="viginvestacbireportqtr" class="control-label"></label>
@@ -706,14 +1018,15 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

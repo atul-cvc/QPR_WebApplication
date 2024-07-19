@@ -83,13 +83,34 @@ namespace QPR_Application.Controllers
             try
             {
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var complaint = await _complaintsRepo.GetComplaintsData(refNum);
+                complaintsqrs complaint = await _complaintsRepo.GetComplaintsData(refNum);
                 return View(complaint);
             }
             catch (Exception ex)
             {
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Complaints(complaintsqrs complaint)
+        {
+            return RedirectToAction("VigilanceInvestigation");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveComplaints(complaintsqrs complaint)
+        {
+            try
+            {
+                ViewBag.ComplaintsMessage = "Saved";
+                return RedirectToAction("Complaints");
+            } catch (Exception ex)
+            {
+                ViewBag.ComplaintsMessage = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("Complaints");
         }
         public async Task<IActionResult> VigilanceInvestigation()
         {
@@ -103,7 +124,7 @@ namespace QPR_Application.Controllers
             {
             }
             return RedirectToAction("Index");
-        }
+        }        
         public async Task<IActionResult> ProsecutionSanctions()
         {
             try

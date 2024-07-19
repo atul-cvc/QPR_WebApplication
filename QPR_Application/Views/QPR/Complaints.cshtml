@@ -5,31 +5,21 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-    table th {
-        background-color: rgb(77,109,244) !important;
-        color: white;
-        font-weight: 300;
-        font-size: 18px;
-    }
-
-    table td {
+  /*   table td {
         padding: 0.25em !important;
-        /* text-align:center !important; */
         vertical-align: middle !important;
-    }
-
+    } */
 </style>
 
-<div>
-    <h1 class="text-center">Complaints</h1>
-</div>
 
-@* <h4>complaintsqrs</h4> *@
+<div>
+    <h3 class="text-center">Complaints</h3>
+</div>
 <hr />
 
 <form asp-action="Complaints">
     <div class="w-75 m-auto">
-        <table class="table table-striped table-bordered ">
+        <table class="table table-striped table-bordered table-blue table-padding">
             <tbody>
                 <tr class="text-center">
                     <th rowspan="2"><b>Source</b></th>
@@ -217,7 +207,7 @@
         </p>
 
     </div>
-    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+    <div class="w-80 mt-5 mb-3 box-green">
         <b>1.1	Break up of complaints received under source 'Others' during the quarter</b>
     </div>
 
@@ -284,7 +274,7 @@
         </table>
     </div>
 
-    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+    <div class="w-80 mt-5 mb-3 box-green">
         <b>1.2	Break up of disposal of complaints during the quarter</b>
     </div>
 
@@ -345,12 +335,12 @@
         <p>NB: Aggregate of (a), (b), (c) (d)&amp; (e) of para 1.2 should tally with total figure under Col 5 of para 1</p>
     </div>
 
-    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+    <div class="w-80 mt-5 mb-3 box-green">
         <b>1.3 PIDPI* Complaints</b>
     </div>
 
     <div class="w-75 m-auto">
-        <table class="table table-striped table-bordered w-100 text-align-middle">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
             <tbody>
                 <tr class="text-center">
                     <th rowspan="2"><b>Source</b></th>
@@ -436,7 +426,8 @@
                     </td>
                     <td>
                         <b>
-                            <input class="form-control" id="cvcpidpi_delay_one_month" name="cvcpidpi_delay_one_month" type="text" value="">
+                            <input asp-for="cvcpidpi_delay_one_month" class="form-control" />
+                            @* <input class="form-control" id="cvcpidpi_delay_one_month" name="cvcpidpi_delay_one_month" type="text" value=""> *@
                         </b>
                     </td>
                 </tr>
@@ -490,7 +481,12 @@
                             @* <input id="otherpidpi_less_six" name="otherpidpi_less_six" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiGreaterTwo  bPTotalotherpidpiFinal" value="0"> *@
                         </b>
                     </td>
-                    <td><b><input class="form-control" id="otherpidpi_delay_one_month" name="otherpidpi_delay_one_month" type="text" value=""></b></td>
+                    <td>
+                        <b>
+                            <input asp-for="otherpidpi_delay_one_month" class="form-control" />
+                            @* <input class="form-control" id="otherpidpi_delay_one_month" name="otherpidpi_delay_one_month" type="text" value=""> *@
+                        </b>
+                    </td>
                 </tr>
                 <tr>
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
@@ -544,7 +540,8 @@
                     </td>
                     <td>
                         <b>
-                            <input class="form-control" id="toatlpidpi_delay_one_month" name="toatlpidpi_delay_one_month" type="text" value="">
+                            <input asp-for="toatlpidpi_delay_one_month" class="form-control" />
+                            @* <input class="form-control" id="toatlpidpi_delay_one_month" name="toatlpidpi_delay_one_month" type="text" value=""> *@
                         </b>
                     </td>
                 </tr>
@@ -552,13 +549,13 @@
         </table>
     </div>
 
-    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+    <div class="w-80 mt-5 mb-3 box-green">
         <b>1.4 Advice and Action taken on PIDPI investigation reports</b>
     </div>
 
 
     <div class="w-75 m-auto">
-        <table class="table table-striped table-bordered w-100 text-align-middle">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
             <tbody>
                 @* <tr></tr> *@
                 <tr class="text-center">
@@ -778,12 +775,12 @@
         </table>
     </div>
 
-    <div class="w-80 mt-5 mb-3" style="padding:5px; margin: auto;  border: 1px solid #4192f4; background:rgb(204, 255, 204); ">
+    <div class="w-80 mt-5 mb-3 box-green">
         <b>1.5 Action taken report on complaints sent by CVC for 'Necessary Action' under PIDPI Resolution:</b>
     </div>
 
     <div class="w-75 m-auto">
-        <table class="table table-striped table-bordered w-100 text-align-middle">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
 
             <tbody>
                 <tr class="text-center">
@@ -868,266 +865,245 @@
         </table>
     </div>
 
-
-
-
-</form>
-
-@*
-<div class="row">
-    <div class="col-md-4">
-
-        <div class="form-group">
-        <label asp-for="napidpibroughtforward" class="control-label"></label>
-        <input asp-for="napidpibroughtforward" class="form-control" />
-        <span asp-validation-for="napidpibroughtforward" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpireceiveqtr" class="control-label"></label>
-        <input asp-for="napidpireceiveqtr" class="form-control" />
-        <span asp-validation-for="napidpireceiveqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpitotal" class="control-label"></label>
-        <input asp-for="napidpitotal" class="form-control" />
-        <span asp-validation-for="napidpitotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpiclosedwithoutaction" class="control-label"></label>
-        <input asp-for="napidpiclosedwithoutaction" class="form-control" />
-        <span asp-validation-for="napidpiclosedwithoutaction" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpifurtherinvestigation" class="control-label"></label>
-        <input asp-for="napidpifurtherinvestigation" class="form-control" />
-        <span asp-validation-for="napidpifurtherinvestigation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpiadminaction" class="control-label"></label>
-        <input asp-for="napidpiadminaction" class="form-control" />
-        <span asp-validation-for="napidpiadminaction" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpiimpositionpenalty" class="control-label"></label>
-        <input asp-for="napidpiimpositionpenalty" class="form-control" />
-        <span asp-validation-for="napidpiimpositionpenalty" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpidisposedqtr" class="control-label"></label>
-        <input asp-for="napidpidisposedqtr" class="form-control" />
-        <span asp-validation-for="napidpidisposedqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="napidpipendingqtr" class="control-label"></label>
-        <input asp-for="napidpipendingqtr" class="form-control" />
-        <span asp-validation-for="napidpipendingqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyear" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyear" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyear" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtr" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtr" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexami" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexami" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexami" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigation" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigation" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigation" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigation" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="create_date" class="control-label"></label>
-        <input asp-for="create_date" class="form-control" />
-        <span asp-validation-for="create_date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="user_id" class="control-label"></label>
-        <input asp-for="user_id" class="form-control" />
-        <span asp-validation-for="user_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="update_date" class="control-label"></label>
-        <input asp-for="update_date" class="form-control" />
-        <span asp-validation-for="update_date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="used_ip" class="control-label"></label>
-        <input asp-for="used_ip" class="form-control" />
-        <span asp-validation-for="used_ip" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="update_user_id" class="control-label"></label>
-        <input asp-for="update_user_id" class="form-control" />
-        <span asp-validation-for="update_user_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="qpr_id" class="control-label"></label>
-        <input asp-for="qpr_id" class="form-control" />
-        <span asp-validation-for="qpr_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="cvcpidpi_delay_one_month" class="control-label"></label>
-        <input asp-for="cvcpidpi_delay_one_month" class="form-control" />
-        <span asp-validation-for="cvcpidpi_delay_one_month" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="otherpidpi_delay_one_month" class="control-label"></label>
-        <input asp-for="otherpidpi_delay_one_month" class="form-control" />
-        <span asp-validation-for="otherpidpi_delay_one_month" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="toatlpidpi_delay_one_month" class="control-label"></label>
-        <input asp-for="toatlpidpi_delay_one_month" class="form-control" />
-        <span asp-validation-for="toatlpidpi_delay_one_month" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyearconcurrent" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyearconcurrent" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtrconcurrent" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtrconcurrent" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtrconcurrent" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexamiconcurrent" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexamiconcurrent" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexamiconcurrent" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigationconcurrent" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigationconcurrent" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigationconcurrent" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigationconcurrent" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigationconcurrent" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyearinternal" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyearinternal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtrinternal" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtrinternal" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtrinternal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexamiinternal" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexamiinternal" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexamiinternal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigationinternal" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigationinternal" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigationinternal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigationinternal" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigationinternal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyearstatutory" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyearstatutory" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtrstatutory" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtrstatutory" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtrstatutory" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexamistatutory" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexamistatutory" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexamistatutory" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigationstatutory" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigationstatutory" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigationstatutory" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigationstatutory" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigationstatutory" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyearothers" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyearothers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtrothers" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtrothers" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtrothers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexamiothers" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexamiothers" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexamiothers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigationothers" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigationothers" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigationothers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigationothers" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigationothers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportbfpreviousyeartotal" class="control-label"></label>
-        <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" />
-        <span asp-validation-for="scrutinyreportbfpreviousyeartotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportexaminedqtrtotal" class="control-label"></label>
-        <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" />
-        <span asp-validation-for="scrutinyreportexaminedqtrtotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportidentifiedexamitotal" class="control-label"></label>
-        <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" />
-        <span asp-validation-for="scrutinyreportidentifiedexamitotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportcompleteinvestigationtotal" class="control-label"></label>
-        <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" />
-        <span asp-validation-for="scrutinyreportcompleteinvestigationtotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <label asp-for="scrutinyreportpendinginvestigationtotal" class="control-label"></label>
-        <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" />
-        <span asp-validation-for="scrutinyreportpendinginvestigationtotal" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-        </div>
-        </form>
+    <div class="w-80 mt-5 mb-3 box-green" style=" ">
+        <b>1.6 Scrutiny of audit reports</b>
     </div>
-</div>
-        *@
 
-<div>
-    <a class="btn btn-outline-secondary" asp-action="Index">Back</a>
-</div>
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+
+            <tbody>
+                <tr class="text-center">
+                    <th><b>Type of Audit</b></th>
+                    <th><b>Para's B/F from previous years</b></th>
+                    <th><b>No. of reports examined during the quarter</b></th>
+                    <th style="width:20%"><b>No. of para in which vigilance angle observed and identified for examination<sup><span style="color: red;">*</span></sup></b></th>
+                    <th><b>No. of para's in which  investigation completed</b></th>
+                    <th><b>No. of para's pending for investigation<br>6=(2+4)-5</b></th>
+                </tr>
+                <tr class="text-center tr-grey">
+                    <td>&nbsp;<b>(1)</b></td>
+                    <td>&nbsp;<b>(2)</b></td>
+                    <td>&nbsp;<b>(3)</b></td>
+                    <td>&nbsp;<b>(4)</b></td>
+                    <td>&nbsp;<b>(5)</b></td>
+                    <td>&nbsp;<b>(6)</b></td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;CAG</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyear" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYear" name="scrutinyReportbfPreviousYear" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit bfPreviousYear" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtr" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtr" name="scrutinyReportExaminedQtr" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit ExaminedQtr" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexami" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExami" name="scrutinyReportIdentifiedExami" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit IdentifiedExami" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigation" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigation" name="scrutinyReportCompleteInvestigation" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit CompleteInvestigation" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigation" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigation" name="scrutinyReportPendingInvestigation" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit PendingInvestigation" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Concurrent</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYearConcurrent" name="scrutinyReportbfPreviousYearConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent bfPreviousYear" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtrconcurrent" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtrConcurrent" name="scrutinyReportExaminedQtrConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent ExaminedQtr" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexamiconcurrent" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExamiConcurrent" name="scrutinyReportIdentifiedExamiConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent IdentifiedExami" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigationconcurrent" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigationConcurrent" name="scrutinyReportCompleteInvestigationConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent CompleteInvestigation" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigationConcurrent" name="scrutinyReportPendingInvestigationConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent PendingInvestigation" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Internal</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYearInternal" name="scrutinyReportbfPreviousYearInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal bfPreviousYear" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtrinternal" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtrInternal" name="scrutinyReportExaminedQtrInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal ExaminedQtr" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexamiinternal" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExamiInternal" name="scrutinyReportIdentifiedExamiInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal IdentifiedExami" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigationinternal" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigationInternal" name="scrutinyReportCompleteInvestigationInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal CompleteInvestigation" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigationInternal" name="scrutinyReportPendingInvestigationInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal PendingInvestigation" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Statutory</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYearStatutory" name="scrutinyReportbfPreviousYearStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory bfPreviousYear" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtrstatutory" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtrStatutory" name="scrutinyReportExaminedQtrStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory ExaminedQtr" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexamistatutory" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExamiStatutory" name="scrutinyReportIdentifiedExamiStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory IdentifiedExami" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigationstatutory" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigationStatutory" name="scrutinyReportCompleteInvestigationStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory CompleteInvestigation" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigationStatutory" name="scrutinyReportPendingInvestigationStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory PendingInvestigation" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Others</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYearOthers" name="scrutinyReportbfPreviousYearOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers bfPreviousYear" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtrothers" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtrOthers" name="scrutinyReportExaminedQtrOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers ExaminedQtr" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexamiothers" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExamiOthers" name="scrutinyReportIdentifiedExamiOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers IdentifiedExami" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigationothers" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigationOthers" name="scrutinyReportCompleteInvestigationOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers CompleteInvestigation" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigationOthers" name="scrutinyReportPendingInvestigationOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers PendingInvestigation" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: left;"><b>&nbsp;&nbsp;Total</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" />
+                            @* <input id="scrutinyReportbfPreviousYearTotal" name="scrutinyReportbfPreviousYearTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="bfPreviousYearTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" />
+                            @* <input id="scrutinyReportExaminedQtrTotal" name="scrutinyReportExaminedQtrTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ExaminedQtrTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" />
+                            @* <input id="scrutinyReportIdentifiedExamiTotal" name="scrutinyReportIdentifiedExamiTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="IdentifiedExamiTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" />
+                            @* <input id="scrutinyReportCompleteInvestigationTotal" name="scrutinyReportCompleteInvestigationTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="CompleteInvestigationTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                    <td>
+                        <b>
+                            <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" />
+                            @* <input id="scrutinyReportPendingInvestigationTotal" name="scrutinyReportPendingInvestigationTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="PendingInvestigationTotal" readonly="readonly" value="0"> *@
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-25 m-auto">
+        @if (ViewBag.ComplaintsMessage != null)
+        {
+            @ViewBag.ComplaintsMessage
+        }
+    </div>
+
+    <div class="d-flex justify-content-between w-80 m-auto mt-5">
+        <a class="btn btn-outline-secondary" asp-action="Index">Back</a>
+        <input type="submit" class="btn btn-outline-success" asp-action="SaveComplaints" />
+        <input type="submit" value="Next" class="btn btn-primary " />
+    </div>
+</form>
 
 @section Scripts {
     @{

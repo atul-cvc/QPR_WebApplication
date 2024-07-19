@@ -34,26 +34,24 @@ namespace QPR_Application.Repository
         public async Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
             var connString = _config.GetConnectionString("SQLConnection");
-            SqlConnection conn = new SqlConnection(connString);
-            if (conn.State == ConnectionState.Closed)
-                conn.Open();
             string refNum = "" ;
             try
             {
-                string query = "select referencenumber from qpr where userid = \'"+ UserId +"\' and qtryear = 2019 and qtrreport = 1 ";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                var refNumber = cmd.ExecuteScalar();
-                if(refNumber != null)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    refNum = Convert.ToString(refNumber);
+                    SqlCommand cmd = new SqlCommand("GetReferenceNumber", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameters to the stored procedure
+                    cmd.Parameters.AddWithValue("@UserId", UserId);
+                    cmd.Parameters.Add("@QtrYear", SqlDbType.Int).Value = 2019;
+                    cmd.Parameters.Add("@QtrReport", SqlDbType.Int).Value = 1;
+
+                    conn.Open();
+                    refNum = Convert.ToString(cmd.ExecuteScalar());
                 }
             }
             catch (Exception ex) { }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
-            }
             return refNum;
         }
     }
