@@ -98,6 +98,7 @@ namespace QPR_Application.Controllers
         {
             return RedirectToAction("VigilanceInvestigation");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveComplaints(complaintsqrs complaint)
@@ -112,10 +113,14 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Complaints");
         }
-        public async Task<IActionResult> VigilanceInvestigation()
+        
+        public async Task<IActionResult> VigilanceInvestigation(string message="")
         {
             try
             {
+                if (!String.IsNullOrEmpty(message)) {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 var vigInv = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
                 return View(vigInv);
@@ -124,7 +129,24 @@ namespace QPR_Application.Controllers
             {
             }
             return RedirectToAction("Index");
-        }        
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveVigInvestigation(viginvestigationqrs vigInv)
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+                
+            } catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("VigilanceInvestigation", "QPR", new { message = message });
+            //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
+        }
         public async Task<IActionResult> ProsecutionSanctions()
         {
             try
@@ -137,6 +159,21 @@ namespace QPR_Application.Controllers
             {
             }
             return RedirectToAction("Index");
+        }
+        public IActionResult SaveProsecutionSanctions(viginvestigationqrs vigInv)
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("ProsecutionSanctions", new { message = message });
+            //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
         public async Task<IActionResult> DepartmentalProceedings()
         {
@@ -215,6 +252,11 @@ namespace QPR_Application.Controllers
             {
             }
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Instructions()
+        {
+            return View();
         }
     }
 }
