@@ -78,10 +78,14 @@ namespace QPR_Application.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public async Task<IActionResult> Complaints()
+        public async Task<IActionResult> Complaints(string message = "")
         {
             try
             {
+                if (!String.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 complaintsqrs complaint = await _complaintsRepo.GetComplaintsData(refNum);
                 return View(complaint);
@@ -103,22 +107,23 @@ namespace QPR_Application.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveComplaints(complaintsqrs complaint)
         {
+            string message = "";
             try
             {
-                ViewBag.ComplaintsMessage = "Saved";
-                return RedirectToAction("Complaints");
-            } catch (Exception ex)
-            {
-                ViewBag.ComplaintsMessage = "Error occured while saving. Please try after sometime";
+                message = "Saved";
             }
-            return RedirectToAction("Complaints");
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("Complaints", "QPR", new { message = message });
         }
-        
-        public async Task<IActionResult> VigilanceInvestigation(string message="")
+        public async Task<IActionResult> VigilanceInvestigation(string message = "")
         {
             try
             {
-                if (!String.IsNullOrEmpty(message)) {
+                if (!String.IsNullOrEmpty(message))
+                {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
@@ -130,7 +135,6 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveVigInvestigation(viginvestigationqrs vigInv)
@@ -139,18 +143,36 @@ namespace QPR_Application.Controllers
             try
             {
                 message = "Saved";
-                
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 message = "Error occured while saving. Please try after sometime";
             }
             return RedirectToAction("VigilanceInvestigation", "QPR", new { message = message });
             //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
-        public async Task<IActionResult> ProsecutionSanctions()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult VigilanceInvestigation(vigilanceactivitiescvcqrs vigInv)
         {
             try
             {
+                return RedirectToAction("ProsecutionSanctions");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }       
+        public async Task<IActionResult> ProsecutionSanctions(string message = "")
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 var prosSec = await _complaintsRepo.GetProsecutionSanctionsData(refNum);
                 return View(prosSec);
@@ -160,7 +182,10 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
-        public IActionResult SaveProsecutionSanctions(viginvestigationqrs vigInv)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveProsecutionSanctions(prosecutionsanctionsqrs prosec)
         {
             string message = "";
             try
@@ -175,10 +200,28 @@ namespace QPR_Application.Controllers
             return RedirectToAction("ProsecutionSanctions", new { message = message });
             //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
-        public async Task<IActionResult> DepartmentalProceedings()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ProsecutionSanctions(prosecutionsanctionsqrs prosec)
         {
             try
             {
+                return RedirectToAction("DepartmentalProceedings");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+        public async Task<IActionResult> DepartmentalProceedings(string message = "")
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 var deptProc = await _complaintsRepo.GetDepartmentalProceedingsData(refNum);
                 return View(deptProc);
@@ -188,6 +231,38 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveDepartmentalProceedings()
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("DepartmentalProceedings", new { message = message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DepartmentalProceedings(departmentalproceedingsqrs deptProc)
+        {
+            try
+            {
+                return RedirectToAction("AdviceOfCVC");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+
         public async Task<IActionResult> AdviceOfCVC()
         {
             try
