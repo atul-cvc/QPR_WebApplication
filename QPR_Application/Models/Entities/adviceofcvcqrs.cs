@@ -20,14 +20,14 @@ namespace QPR_Application.Models.Entities
         public int? advice_cvc_second_casesduringqtr { get; set; }
         public int? advice_cvc_second_adviceduringqtr { get; set; }
         public int? advice_cvc_second_adviceawaitedcvc { get; set; }
-        public bool? advice_cvc_firstreconsider_casespreviousqtr { get; set; }
+        public int? advice_cvc_firstreconsider_casespreviousqtr { get; set; }
         public byte? advice_cvc_firstreconsider_casesduringqtr { get; set; }
         public byte? advice_cvc_firstreconsider_adviceduringqtr { get; set; }
-        public bool? advice_cvc_firstreconsider_adviceawaitedcvc { get; set; }
+        public int? advice_cvc_firstreconsider_adviceawaitedcvc { get; set; }
         public int? advice_cvc_secondreconsider_casespreviousqtr { get; set; }
         public int? advice_cvc_secondreconsider_casesduringqtr { get; set; }
         public int? advice_cvc_secondreconsider_adviceduringqtr { get; set; }
-        public bool? advice_cvc_secondreconsider_adviceawaitedcvc { get; set; }
+        public int? advice_cvc_secondreconsider_adviceawaitedcvc { get; set; }
         public int? advice_cvc_total_casespreviousqtr { get; set; }
         public int? advice_cvc_total_casesduringqtr { get; set; }
         public int? advice_cvc_total_adviceduringqtr { get; set; }
@@ -52,18 +52,18 @@ namespace QPR_Application.Models.Entities
         public int? action_cvc_secondmajor_adviceduringqtr { get; set; }
         public int? action_cvc_secondmajor_disposed { get; set; }
         public int? action_cvc_secondmajor_balancepending { get; set; }
-        public bool? action_cvc_secondmajor_greaterone { get; set; }
-        public bool? action_cvc_secondmajor_onetothree { get; set; }
+        public int? action_cvc_secondmajor_greaterone { get; set; }
+        public int? action_cvc_secondmajor_onetothree { get; set; }
         public int? action_cvc_secondmajor_threetosix { get; set; }
         public int? action_cvc_secondmajor_lesssix { get; set; }
         public int? action_cvc_secondminor_openingbalance { get; set; }
         public int? action_cvc_secondminor_adviceduringqtr { get; set; }
-        public bool? action_cvc_secondminor_disposed { get; set; }
+        public int? action_cvc_secondminor_disposed { get; set; }
         public int? action_cvc_secondminor_balancepending { get; set; }
         public int? action_cvc_secondminor_greaterone { get; set; }
         public int? action_cvc_secondminor_onetothree { get; set; }
         public int? action_cvc_secondminor_threetosix { get; set; }
-        public bool? action_cvc_secondminor_lesssix { get; set; }
+        public int? action_cvc_secondminor_lesssix { get; set; }
         public int? action_cvc_total_openingbalance { get; set; }
         public int? action_cvc_total_adviceduringqtr { get; set; }
         public int? action_cvc_total_disposed { get; set; }
