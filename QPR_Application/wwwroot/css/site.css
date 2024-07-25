@@ -43,6 +43,14 @@ input[type=number] {
     width: 80%;
 }
 
+.w-85 {
+    width: 85%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
 .center {
     margin: auto;
     border: 2px solid #73AD21;
@@ -50,10 +58,17 @@ input[type=number] {
     font-size: 12px;
 }
 
+    .center p {
+        margin-bottom: 18px;
+        font-size: 14px;
+        color: blue;
+    }
 
-.tr-grey{
+.tr-grey {
     background-color: rgb(217, 217, 217)
 }
+
+
 
 .box-green {
     padding: 5px;
@@ -62,14 +77,18 @@ input[type=number] {
     background: rgb(204, 255, 204);
 }
 
-.table-blue th{
+.table-blue th {
     background-color: rgb(77,109,244) !important;
     color: white;
     font-weight: 300;
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
 
 .table-padding td {
     padding: 0.25em !important;
     vertical-align: middle !important;
+}
+
+textarea:focus, input:focus {
+    outline: none;
 }

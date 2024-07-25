@@ -135,6 +135,7 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveVigInvestigation(viginvestigationqrs vigInv)
@@ -152,6 +153,7 @@ namespace QPR_Application.Controllers
             return RedirectToAction("VigilanceInvestigation", "QPR", new { message = message });
             //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult VigilanceInvestigation(vigilanceactivitiescvcqrs vigInv)
@@ -234,7 +236,7 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveDepartmentalProceedings()
+        public IActionResult SaveDepartmentalProceedings()
         {
             string message = "";
             try
@@ -251,7 +253,7 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DepartmentalProceedings(departmentalproceedingsqrs deptProc)
+        public IActionResult DepartmentalProceedings(departmentalproceedingsqrs deptProc)
         {
             try
             {
@@ -263,10 +265,14 @@ namespace QPR_Application.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AdviceOfCVC()
+        public async Task<IActionResult> AdviceOfCVC(string message="")
         {
             try
             {
+                if (!String.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 var adviceOfCVC = await _complaintsRepo.GetAdviceOfCVCData(refNum);
                 return View(adviceOfCVC);
@@ -276,10 +282,45 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> StatusofPendencyFIandCACases()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveAdviceOfCVC()
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("AdviceOfCVC", new { message = message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AdviceOfCVC(adviceofcvcqrs advicecvc)
         {
             try
             {
+                return RedirectToAction("StatusofPendencyFIandCACases");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+        public async Task<IActionResult> StatusofPendencyFIandCACases(string message="")
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 var data = await _complaintsRepo.GetStatusPendencyData(refNum);
                 return View(data);
@@ -289,6 +330,38 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveStatusofPendencyFIandCACases()
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message = message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult StatusofPendencyFIandCACases(statusofpendencyqrs statusPend)
+        {
+            try
+            {
+                return RedirectToAction("PunitiveVigilance");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+
         public async Task<IActionResult> PunitiveVigilance()
         {
             try
