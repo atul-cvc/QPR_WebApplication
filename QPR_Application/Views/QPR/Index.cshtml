@@ -30,10 +30,10 @@
                 <label>REPORT FOR THE QUARTER ENDING  : </label>
             </div>
             <div class="form-group col-md-2">
-                @Html.DropDownList("SelectedQuarter", new SelectList(Quarters,"Value", "Text"), "---- Select Quarter ----", new { @class = "form-control", id = "quarterDropdown" })
+                @Html.DropDownList("SelectedQuarter", new SelectList(Quarters,"Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown" })
             </div>
             <div class="form-group col-md-2">
-                @Html.DropDownList("SelectedYear", new SelectList(years,"Year", "Year"), "------ Select Year ------", new { @class = "form-control", id = "yearDropdown" })
+                @Html.DropDownList("SelectedYear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center ", id = "yearDropdown" })
             </div>
         </div>
         <div class="row mt-2">
@@ -41,13 +41,13 @@
                 <label>CVO CONTACT NO. :</label>
             </div>
             <div class="col-md-3">
-                <input type="tel" name="CVCContactNo" id="CVCContactNo" />
+                <input class="form-control w-50" type="tel" onkeypress="return isNumberKey(event);" name="CVCContactNo" id="CVCContactNo" />
             </div>
             <div class="col-md-2">
                 <label>MOBILE NO. :</label>
             </div>
             <div class="col-md-3">
-                <input type="tel" name="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
+                <input class="form-control w-50" type="tel" onkeypress="return isNumberKey(event);" name="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
             </div>
         </div>
         <div class="row mt-2">
@@ -55,7 +55,7 @@
                 <label>Email : </label>
             </div>
             <div class="col-md-3">
-                <input type="email" name="CVOEmail" id="CVOEmail" value="@ViewBag.User.email" />
+                <input class="form-control" type="email" name="CVOEmail" id="CVOEmail" value="@ViewBag.User.email" />
             </div>
         </div>
         <div class="row mt-2">

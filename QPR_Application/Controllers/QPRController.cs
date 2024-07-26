@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace QPR_Application.Controllers
 {
@@ -31,6 +32,11 @@ namespace QPR_Application.Controllers
         {
             try
             {
+                if (_httpContext.HttpContext.Session.GetString("referenceNumber") != null)
+                {
+                    _httpContext.HttpContext.Session.Remove("referenceNumber");
+                }
+
                 if (_httpContext.HttpContext.Session.GetString("CurrentUser") != null)
                 {
                     userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
@@ -60,6 +66,7 @@ namespace QPR_Application.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(GetQPR qprDetails)
@@ -82,13 +89,16 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                complaintsqrs complaint = await _complaintsRepo.GetComplaintsData(refNum);
-                return View(complaint);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    complaintsqrs complaint = await _complaintsRepo.GetComplaintsData(refNum);
+                    return View(complaint);
+                }
             }
             catch (Exception ex)
             {
@@ -116,19 +126,23 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("Complaints", "QPR", new { message = message });
+            return RedirectToAction("Complaints", "QPR", new { message });
         }
         public async Task<IActionResult> VigilanceInvestigation(string message = "")
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var vigInv = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
-                return View(vigInv);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+
+                    var vigInv = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
+                    return View(vigInv);
+                }
             }
             catch (Exception ex)
             {
@@ -150,7 +164,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("VigilanceInvestigation", "QPR", new { message = message });
+            return RedirectToAction("VigilanceInvestigation", "QPR", new { message });
             //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
 
@@ -166,18 +180,21 @@ namespace QPR_Application.Controllers
             {
             }
             return View();
-        }       
+        }
         public async Task<IActionResult> ProsecutionSanctions(string message = "")
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var prosSec = await _complaintsRepo.GetProsecutionSanctionsData(refNum);
-                return View(prosSec);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var prosSec = await _complaintsRepo.GetProsecutionSanctionsData(refNum);
+                    return View(prosSec);
+                }
             }
             catch (Exception ex)
             {
@@ -199,7 +216,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("ProsecutionSanctions", new { message = message });
+            return RedirectToAction("ProsecutionSanctions", new { message });
             //return RedirectToAction("VigilanceInvestigation", "QPR", new { message = "2" });
         }
 
@@ -220,13 +237,16 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var deptProc = await _complaintsRepo.GetDepartmentalProceedingsData(refNum);
-                return View(deptProc);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var deptProc = await _complaintsRepo.GetDepartmentalProceedingsData(refNum);
+                    return View(deptProc);
+                }
             }
             catch (Exception ex)
             {
@@ -248,7 +268,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("DepartmentalProceedings", new { message = message });
+            return RedirectToAction("DepartmentalProceedings", new { message });
         }
 
         [HttpPost]
@@ -265,17 +285,20 @@ namespace QPR_Application.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AdviceOfCVC(string message="")
+        public async Task<IActionResult> AdviceOfCVC(string message = "")
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var adviceOfCVC = await _complaintsRepo.GetAdviceOfCVCData(refNum);
-                return View(adviceOfCVC);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var adviceOfCVC = await _complaintsRepo.GetAdviceOfCVCData(refNum);
+                    return View(adviceOfCVC);
+                }
             }
             catch (Exception ex)
             {
@@ -297,7 +320,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("AdviceOfCVC", new { message = message });
+            return RedirectToAction("AdviceOfCVC", new { message });
         }
 
         [HttpPost]
@@ -313,17 +336,20 @@ namespace QPR_Application.Controllers
             }
             return View();
         }
-        public async Task<IActionResult> StatusofPendencyFIandCACases(string message="")
+        public async Task<IActionResult> StatusofPendencyFIandCACases(string message = "")
         {
             try
             {
-                if (!String.IsNullOrEmpty(message))
+                if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var data = await _complaintsRepo.GetStatusPendencyData(refNum);
-                return View(data);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var data = await _complaintsRepo.GetStatusPendencyData(refNum);
+                    return View(data);
+                }
             }
             catch (Exception ex)
             {
@@ -345,7 +371,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("StatusofPendencyFIandCACases", new { message = message });
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message });
         }
 
         [HttpPost]
@@ -362,44 +388,156 @@ namespace QPR_Application.Controllers
             return View();
         }
 
-        public async Task<IActionResult> PunitiveVigilance()
+        public async Task<IActionResult> PunitiveVigilance(string message = "")
         {
             try
             {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var data = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
-                return View(data);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var data = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
+                    return View(data);
+                }
             }
             catch (Exception ex)
             {
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> PreventiveVigilance()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SavePunitiveVigilance(punitivevigilanceqrs pvig)
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("PunitiveVigilance", new { message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PunitiveVigilance(punitivevigilanceqrs pvig)
         {
             try
             {
+                return RedirectToAction("PreventiveVigilance");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+        public async Task<IActionResult> PreventiveVigilance(string message = "")
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var data = await _complaintsRepo.GetPreventiveVigilanceData(refNum);
-                return View(data);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var data = await _complaintsRepo.GetPreventiveVigilanceData(refNum);
+                    return View(data);
+                }
             }
             catch (Exception ex)
             {
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> PreventiveVigilanceActivities()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SavePreventiveVigilance(preventivevigilanceqrs prev_vig)
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("PreventiveVigilance", new { message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PreventiveVigilance(preventivevigilanceqrs prev_vig)
         {
             try
             {
+                return RedirectToAction("PreventiveVigilanceActivities");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+        public async Task<IActionResult> PreventiveVigilanceActivities(string message = "")
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    ViewBag.ComplaintsMessage = message;
+                }
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                var data = await _complaintsRepo.GetPreventiveVigilanceActiviteiesData(refNum);
-                return View(data);
+                if (!String.IsNullOrEmpty(refNum))
+                {
+                    var data = await _complaintsRepo.GetPreventiveVigilanceActiviteiesData(refNum);
+                    return View(data);
+                }
             }
             catch (Exception ex)
             {
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs activities)
+        {
+            string message = "";
+            try
+            {
+                message = "Saved";
+            }
+            catch (Exception ex)
+            {
+                message = "Error occured while saving. Please try after sometime";
+            }
+            return RedirectToAction("PreventiveVigilanceActivities", new { message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PreventiveVigilanceActivities(vigilanceactivitiescvcqrs activities)
+        {
+            try
+            {
+                return RedirectToAction("Download QPR");
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
         }
 
         public IActionResult Instructions()

@@ -5,80 +5,189 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>PreventiveVigilanceActivities</h1>
+<style>
+    input[type="file"] {
+    }
+</style>
 
-<h4>vigilanceactivitiescvcqrs</h4>
+<div class="text-center">
+    <h3>Preventive Vigilance Activities</h3>
+</div>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="PreventiveVigilanceActivities">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="vigilance_activites_id" class="control-label"></label>
-                <input asp-for="vigilance_activites_id" class="form-control" />
-                <span asp-validation-for="vigilance_activites_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="vigilance_activites_upload_doc" class="control-label"></label>
-                <input asp-for="vigilance_activites_upload_doc" class="form-control" />
-                <span asp-validation-for="vigilance_activites_upload_doc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="vigilance_activites_any_remark" class="control-label"></label>
-                <input asp-for="vigilance_activites_any_remark" class="form-control" />
-                <span asp-validation-for="vigilance_activites_any_remark" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="vigilance_activites_place" class="control-label"></label>
-                <input asp-for="vigilance_activites_place" class="form-control" />
-                <span asp-validation-for="vigilance_activites_place" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="vigilance_activites_date" class="control-label"></label>
-                <input asp-for="vigilance_activites_date" class="form-control" />
-                <span asp-validation-for="vigilance_activites_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="create_date" class="control-label"></label>
-                <input asp-for="create_date" class="form-control" />
-                <span asp-validation-for="create_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="user_id" class="control-label"></label>
-                <input asp-for="user_id" class="form-control" />
-                <span asp-validation-for="user_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="update_date" class="control-label"></label>
-                <input asp-for="update_date" class="form-control" />
-                <span asp-validation-for="update_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="last_user_id" class="control-label"></label>
-                <input asp-for="last_user_id" class="form-control" />
-                <span asp-validation-for="last_user_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="qpr_id" class="control-label"></label>
-                <input asp-for="qpr_id" class="form-control" />
-                <span asp-validation-for="qpr_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ip" class="control-label"></label>
-                <input asp-for="ip" class="form-control" />
-                <span asp-validation-for="ip" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+<form asp-action="PreventiveVigilanceActivities">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="w-80 mt-5 mb-3 box-green ">
+        <b>
+            9. Preventive Vigilance Activities in During the Quarter :(Upload Doc giving brief details)
+        </b>
     </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr class="text-center">
+                    <td><b>Eg:</b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <b>&nbsp;&nbsp;(a) Simplification and standardization of rules inter-alia including in Procurement processes, recruitment and  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transfer policies, Standard Operating Procedures (SOP), Manuals etc</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(b) Leveraging Technology and Automation inter-alia including in procurement,recruitment,service delivery,sales and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disposal etc</b></td>
+                </tr>
+                <tr class="d-flex-inline">
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(c) Business Process Re-engineering</b></td>
+                    <td>
+                        <b>
+                            <input asp-for="vigilance_activites_upload_doc" name="vigilance_activites_upload_doc" type="file">
+                            <input id="vigilance_activites_upload_doc_path" name="vigilance_activites_upload_doc_path" type="hidden">
+                        </b>
+                    </td>
+                    <td><label>Document Not Uploaded</label></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(d) Transparency Initiatives</b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(e) Accountability Initiatives </b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(f) Control &amp; Supervision </b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(g) Training &amp; Awareness including awareness among client /vendors,public &nbsp;&nbsp;employees etc. </b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><b>&nbsp;&nbsp;(h) Internal Whistle Blower Mechanism and its effectiveness in measurable terms </b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-80 mt-5 mb-3 box-green ">
+        <b>
+            10.
+        </b>
+    </div>
+
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;Remarks, if any</b></td>
+                    <td><input asp-for="vigilance_activites_any_remark" name="vigilance_activites_any_remark" class="form-control" type="text"></td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;Place</b></td>
+                    <td><input asp-for="vigilance_activites_place" name="vigilance_activites_place" class="form-control" type="text"></td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td align="left"><b>&nbsp;&nbsp;Date</b></td>
+                    <td align="left"><input asp-for="vigilance_activites_date" name="vigilance_activites_date" class="form-control datepicker w-25" type="date"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-25 m-auto text-center">
+
+        @if (ViewBag.ComplaintsMessage != null)
+        {
+            @ViewBag.ComplaintsMessage
+        }
+
+    </div>
+
+    <div class="d-flex justify-content-between w-80 m-auto mt-5">
+        <a class="btn btn-secondary" asp-action="PreventiveVigilance">Back</a>
+        <input type="submit" value="Submit" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePreventiveVigilanceActivities" />
+    </div>
+
+
+</form>
+
+
+
+<div class="row">
+    @* <div class="col-md-4">
+    <form asp-action="PreventiveVigilanceActivities">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+    <label asp-for="vigilance_activites_id" class="control-label"></label>
+    <input asp-for="vigilance_activites_id" class="form-control" />
+    <span asp-validation-for="vigilance_activites_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="vigilance_activites_upload_doc" class="control-label"></label>
+    <input asp-for="vigilance_activites_upload_doc" class="form-control" />
+    <span asp-validation-for="vigilance_activites_upload_doc" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="vigilance_activites_any_remark" class="control-label"></label>
+    <input asp-for="vigilance_activites_any_remark" class="form-control" />
+    <span asp-validation-for="vigilance_activites_any_remark" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="vigilance_activites_place" class="control-label"></label>
+    <input asp-for="vigilance_activites_place" class="form-control" />
+    <span asp-validation-for="vigilance_activites_place" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="vigilance_activites_date" class="control-label"></label>
+    <input asp-for="vigilance_activites_date" class="form-control" />
+    <span asp-validation-for="vigilance_activites_date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="create_date" class="control-label"></label>
+    <input asp-for="create_date" class="form-control" />
+    <span asp-validation-for="create_date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="user_id" class="control-label"></label>
+    <input asp-for="user_id" class="form-control" />
+    <span asp-validation-for="user_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="update_date" class="control-label"></label>
+    <input asp-for="update_date" class="form-control" />
+    <span asp-validation-for="update_date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="last_user_id" class="control-label"></label>
+    <input asp-for="last_user_id" class="form-control" />
+    <span asp-validation-for="last_user_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="qpr_id" class="control-label"></label>
+    <input asp-for="qpr_id" class="form-control" />
+    <span asp-validation-for="qpr_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="ip" class="control-label"></label>
+    <input asp-for="ip" class="form-control" />
+    <span asp-validation-for="ip" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+    </form>
+    </div> *@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @* <a asp-action="Index">Back to List</a> *@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
