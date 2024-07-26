@@ -23,6 +23,7 @@ builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
 builder.Services.AddTransient<IQprRepo, QprRepo>();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddTransient<IComplaintsRepo, ComplaintsRepo>();
+builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
 
 
 // Add services required for sessions

@@ -19,25 +19,27 @@ namespace QPR_Application.Controllers
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IComplaintsRepo _complaintsRepo;
+        private readonly IChangePasswordRepo _changePasswordRepo;
         private registration? userObject;
 
-        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
+        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, IChangePasswordRepo changePasswordRepo)
         {
             _logger = logger;
             _qprRepo = qprRepo;
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
+            _changePasswordRepo = changePasswordRepo;
         }
         public async Task<IActionResult> Index()
         {
             try
             {
-                if (_httpContext.HttpContext.Session.GetString("referenceNumber") != null)
+                if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
                 {
                     _httpContext.HttpContext.Session.Remove("referenceNumber");
                 }
 
-                if (_httpContext.HttpContext.Session.GetString("CurrentUser") != null)
+                if (_httpContext.HttpContext?.Session.GetString("CurrentUser") != null)
                 {
                     userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
                     ViewBag.User = userObject;
@@ -523,7 +525,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("PreventiveVigilanceActivities", new { message });
+            return RedirectToAction("PreventiveVigilanceActivities", new { message = message});
         }
 
         [HttpPost]
@@ -543,6 +545,71 @@ namespace QPR_Application.Controllers
         public IActionResult Instructions()
         {
             return View();
+        }
+
+        public IActionResult ChangePassword(string code = "")
+        {
+            try
+            {
+                if (_httpContext.HttpContext.Session.GetString("CurrentUser") != null)
+                {
+                    userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+                    ViewBag.User = userObject;
+
+                    if (!string.IsNullOrEmpty(code))
+                    {
+                        string message = "";
+                        switch (code)
+                        {
+                            case "iop": message = "Incorrect Old Password"; break;
+                            case "npop": message = "New password cannot be same as old password"; break;
+                            case "npsop": message = "New Password cannot be same as last two previous passwords"; break;
+                            default: message = ""; break;
+                        }
+                        ViewBag.ComplaintsMessage = message;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePassword cp)
+        {
+            try
+            {
+                var ip = _httpContext.HttpContext.Connection.RemoteIpAddress.ToString();
+                userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+                if (userObject != null)
+                {
+                    if (cp.OldPassword != userObject.password)
+                    {
+                        return RedirectToAction("ChangePassword", new { code = "iop" });
+                    }
+
+                    if (cp.NewPassword == userObject.password)
+                    {
+                        return RedirectToAction("ChangePassword", new { code = "npop" });
+                    }
+
+                    if (cp.NewPassword == userObject.passwordone || cp.NewPassword == userObject.passwordtwo)
+                    {
+                        return RedirectToAction("ChangePassword", new { code = "npsop" });
+                    }
+
+                    // call change password service
+                    var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject.userid, ip);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return View();
+            //return RedirectToAction("Index", "Login");
         }
     }
 }
