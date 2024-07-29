@@ -3,12 +3,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using QPR_Application.Models.DTO.Response;
 using System.Text.Json;
 using QPR_Application.Repository;
-using NuGet.Protocol;
-using System.Text.RegularExpressions;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
-using System;
 
 namespace QPR_Application.Controllers
 {
@@ -29,6 +26,8 @@ namespace QPR_Application.Controllers
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
             _changePasswordRepo = changePasswordRepo;
+            var headers = _httpContext.HttpContext.Request.Headers;
+            GetPublicIPAddress();
         }
         public async Task<IActionResult> Index()
         {
@@ -78,6 +77,11 @@ namespace QPR_Application.Controllers
             {
                 string qprDet = JsonSerializer.Serialize(qprDetails);
                 var refNum = await _qprRepo.GetReferenceNumber(qprDetails, UserId);
+                string ip = String.Empty;
+                if (String.IsNullOrEmpty(refNum))
+                {
+                    refNum = await _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                }
                 _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
 
                 return RedirectToAction("Complaints");
@@ -95,10 +99,48 @@ namespace QPR_Application.Controllers
                 {
                     ViewBag.ComplaintsMessage = message;
                 }
-                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                string refNum = String.Empty;
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext.Session.GetString("referenceNumber")))
+                {
+                    refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                }
+                else
+                {
+                    throw new Exception("reference number not found");
+                }
+
                 if (!String.IsNullOrEmpty(refNum))
                 {
                     complaintsqrs complaint = await _complaintsRepo.GetComplaintsData(refNum);
+                    if (complaint == null)
+                    {
+                        complaint = new complaintsqrs();
+                    }
+                    refNum = await _qprRepo.GetPreviousReferenceNumber(_httpContext.HttpContext?.Session.GetString("UserName").ToString());
+                    complaintsqrs complaintPrevious = await _complaintsRepo.GetComplaintsData("6937");
+                    //complaintsqrs complaint = new complaintsqrs();
+                    complaint.comcvcopeningbalance = complaintPrevious.comcvcbalance_pending;
+                    complaint.comotheropeningbalance = complaintPrevious.comotherbalance_pending;
+                    complaint.comtotalopeningbalance = complaintPrevious.comtotalbalance_pending;
+                    complaint.cvcpidpi_opening_balance = complaintPrevious.cvcpidpi_balance_pending;
+                    complaint.otherpidpi_opening_balance = complaintPrevious.otherpidpi_balance_pending;
+                    complaint.totalpidpi_opening_balance = complaintPrevious.totalpidpi_balance_pending;
+                    complaint.cvcpidpiinvestadvicecvc = complaintPrevious.cvcpidpiinvestotaladvicereceive - complaintPrevious.cvcpidpiinvesactionduringquarter;
+                    complaint.cvopidpiinvestadvicecvc = complaintPrevious.cvopidpiinvestotaladvicereceive - complaintPrevious.cvopidpiinvesactionduringquarter;
+                    complaint.totalpidpiinvestadvicecvc = complaintPrevious.totalpidpiinvestotaladvicereceive - complaintPrevious.totalpidpiinvesactionduringquarter;
+                    complaint.napidpibroughtforward = complaintPrevious.napidpipendingqtr;
+                    complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation;
+                    complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent;
+                    complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal;
+                    complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory;
+                    complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers;
+                    complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal;
+
+                    //complaint = complaint;
+
+                    if (complaint == null)
+                    {
+                    }
                     return View(complaint);
                 }
             }
@@ -525,7 +567,7 @@ namespace QPR_Application.Controllers
             {
                 message = "Error occured while saving. Please try after sometime";
             }
-            return RedirectToAction("PreventiveVigilanceActivities", new { message = message});
+            return RedirectToAction("PreventiveVigilanceActivities", new { message = message });
         }
 
         [HttpPost]
@@ -610,6 +652,23 @@ namespace QPR_Application.Controllers
             }
             return View();
             //return RedirectToAction("Index", "Login");
+        }
+
+        public async Task<string> GetPublicIPAddress()
+        {
+            string externalIP;
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = await client.GetStringAsync("https://api64.ipify.org");
+                    return response.Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Failed to retrieve public IP: {ex.Message}";
+            }
         }
     }
 }

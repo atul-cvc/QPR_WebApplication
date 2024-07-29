@@ -9,6 +9,9 @@ namespace QPR_Application.Repository
         public Task<List<Years>> GetYears();
 
         public Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId);
+        public Task<string> GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
+        public Task<string> GetPreviousReferenceNumber(string UserId);
+        public Task<string> GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }
