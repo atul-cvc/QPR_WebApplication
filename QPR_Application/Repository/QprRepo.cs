@@ -42,7 +42,7 @@ namespace QPR_Application.Repository
             {
                 using (SqlConnection conn = new SqlConnection(_connString))
                 {
-                    SqlCommand cmd = new SqlCommand("GetReferenceNumber", conn);
+                    SqlCommand cmd = new SqlCommand("GetQPRReferenceNumber", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Add parameters to the stored procedure
