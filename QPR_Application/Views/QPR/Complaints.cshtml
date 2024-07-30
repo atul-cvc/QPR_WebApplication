@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-  /*   table td {
-        padding: 0.25em !important;
-        vertical-align: middle !important;
-    } */
+    /*   table td {
+                padding: 0.25em !important;
+                vertical-align: middle !important;
+            } */
 </style>
 
 
@@ -59,7 +59,7 @@
                     <td>
                         <b>
                             @* <input id="ComCVCOpeningBalance" name="ComCVCOpeningBalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="qty1 comcvc" readonly="readonly" value="0"> *@
-                            <input type="number" asp-for="comcvcopeningbalance" class="form-control" />
+                            <input type="number" asp-for="comcvcopeningbalance" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -72,7 +72,7 @@
                     <td>
                         <b>
                             @* <input id="comCVCTotal" name="comCVCTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="total comtotal subbptotal" value="0"> *@
-                            <input asp-for="comcvctotal" class="form-control" />
+                            <input asp-for="comcvctotal" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -110,7 +110,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;OTHERs<sup><span style="color: red; font-size:x-small;">$</span></sup></b></td>
                     <td>
                         <b>
-                            <input type="number" asp-for="comotheropeningbalance" class="form-control" />
+                            <input type="number" asp-for="comotheropeningbalance" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -121,7 +121,7 @@
 
                     <td>
                         <b>
-                            <input asp-for="comothertotal" class="form-control" />
+                            <input asp-for="comothertotal" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -154,43 +154,43 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
                     <td>
                         <b>
-                            <input type="number" asp-for="comtotalopeningbalance" class="form-control" />
+                            <input type="number" asp-for="comtotalopeningbalance" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input type="number" asp-for="comtotalreceived_during_quarter" class="form-control" />
+                            <input type="number" asp-for="comtotalreceived_during_quarter" class="form-control" readonly />
                         </b>
                     </td>
 
                     <td>
                         <b>
-                            <input asp-for="comtotal" class="form-control" />
+                            <input asp-for="comtotal" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotaldisposal_during_quarter" class="form-control" />
+                            <input asp-for="comtotaldisposal_during_quarter" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotalbalance_pending" class="form-control" />
+                            <input asp-for="comtotalbalance_pending" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotalage_less_one" class="form-control" />
+                            <input asp-for="comtotalage_less_one" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotalage_pendency_betweenone_three" class="form-control" />
+                            <input asp-for="comtotalage_pendency_betweenone_three" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" />
+                            <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" readonly/>
                         </b>
                     </td>
                 </tr>
@@ -381,7 +381,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;CVC</b></td>
                     <td>
                         <b>
-                            <input asp-for="cvcpidpi_opening_balance" class="form-control" />
+                            <input asp-for="cvcpidpi_opening_balance" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -391,7 +391,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="cvcpidpi_total" class="form-control" />
+                            <input asp-for="cvcpidpi_total" class="form-control" readonly    />
                         </b>
                     </td>
                     <td>
@@ -435,7 +435,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Other &nbsp;Designated &nbsp;Authority</b></td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_opening_balance" class="form-control" />
+                            <input asp-for="otherpidpi_opening_balance" class="form-control" readonly/>
                             @* <input id="otherpidpi_opening_balance" name="otherpidpi_opening_balance" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiBalance otherPidpi" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -447,7 +447,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_total" class="form-control" />
+                            <input asp-for="otherpidpi_total" class="form-control" readonly/>
                             @* <input id="otherpidpi_Total" name="otherpidpi_Total" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="totalotherPidpi pidpiTotal othBalPenTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -492,19 +492,19 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_opening_balance" class="form-control" />
+                            <input asp-for="totalpidpi_opening_balance" class="form-control" readonly />
                             @* <input id="totalpidpi_opening_balance" name="totalpidpi_opening_balance" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiBalance" value="2"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_receivequarter" class="form-control" />
+                            <input asp-for="totalpidpi_receivequarter" class="form-control" readonly/>
                             @* <input id="totalpidpi_ReceiveQuarter" name="totalpidpi_ReceiveQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiRecived" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_total" class="form-control" />
+                            <input asp-for="totalpidpi_total" class="form-control" readonly />
                             @* <input id="totalpidpi_Total" name="totalpidpi_Total" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiTotal" value="0"> *@
                         </b>
                     </td>
@@ -1092,10 +1092,10 @@
     </div>
 
     @* <div class="w-25 m-auto text-center text-danger">
-        @if (ViewBag.ComplaintsMessage != null)
-        {
-            @ViewBag.ComplaintsMessage
-        }
+    @if (ViewBag.ComplaintsMessage != null)
+    {
+    @ViewBag.ComplaintsMessage
+    }
     </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
@@ -1112,9 +1112,76 @@
 }
 <script>
     $(function () {
+        // debugger;
+        // $('#comcvcreceived, #comcvcopening').on('input', performComTotal);
+        // alert('hi');
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
             alert(complaintsMessage);
+            pageReloadWithoutQueryString();
         }
+        performComTotal();
     });
+
+    $('   #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
+
+    function performComTotal() {
+        // alert("function called : performComTotal" );
+        // debugger;
+        // Retrieve values from input fields
+        var receivedDuringQuarter = parseFloat($('#comcvcreceived_during_quarter').val()) || 0;
+        var openingBalance = parseFloat($('#comcvcopeningbalance').val()) || 0;
+        // Perform the calculation
+        var total = receivedDuringQuarter + openingBalance;
+        // Set the result to the total field
+        $('#comcvctotal').val(total);
+
+        $('#comothertotal').val((parseFloat($('#comotherreceived_during_quarter').val()) || 0) + ((parseFloat($('#comotheropeningbalance').val()) || 0)));
+
+
+        $('#comtotalopeningbalance').val((parseFloat($('#comcvcopeningbalance').val()) || 0) + ((parseFloat($('#comotheropeningbalance').val()) || 0)));
+
+        $('#comtotalreceived_during_quarter').val((parseFloat($('#comotherreceived_during_quarter').val()) || 0) + ((parseFloat($('#comcvcreceived_during_quarter').val()) || 0)));
+
+        $('#comtotal').val((parseFloat($('#comtotalreceived_during_quarter').val()) || 0) + ((parseFloat($('#comtotalopeningbalance').val()) || 0)));
+
+
+        $('#comtotaldisposal_during_quarter').val((parseFloat($('#comotherdisposal_during_quarter').val()) || 0) + ((parseFloat($('#comcvcdisposal_during_quarter').val()) || 0)));
+
+        $('#comcvcbalance_pending').val((parseFloat($('#comcvctotal').val()) || 0) - ((parseFloat($('#comcvcdisposal_during_quarter').val()) || 0)));
+
+        $('#comotherbalance_pending').val((parseFloat($('#comothertotal').val()) || 0) - ((parseFloat($('#comotherdisposal_during_quarter').val()) || 0)));
+
+        $('#comtotalbalance_pending').val((parseFloat($('#comotherbalance_pending').val()) || 0) + ((parseFloat($('#comcvcbalance_pending').val()) || 0)));
+
+        $('#comtotalage_less_one').val((parseFloat($('#comotherage_less_one').val()) || 0) + ((parseFloat($('#comcvcage_less_one').val()) || 0)));
+        
+        $('#comtotalage_pendency_betweenone_three').val((parseFloat($('#comotherage_pendency_betweenone_three').val()) || 0) + ((parseFloat($('#comcvcage_pendency_betweenone_three').val()) || 0)));
+        
+        $('#comtotalage_pendency_betweenthree_six').val((parseFloat($('#comotherage_pendency_betweenthree_six').val()) || 0) + ((parseFloat($('#comcvcage_pendency_betweenthree_six').val()) || 0)));
+
+        $('#cvcpidpi_total').val((parseFloat($('#cvcpidpi_receivequarter').val()) || 0) + ((parseFloat($('#cvcpidpi_opening_balance').val()) || 0)));
+        
+        $('#otherpidpi_total').val((parseFloat($('#otherpidpi_receivequarter').val()) || 0) + ((parseFloat($('#otherpidpi_opening_balance').val()) || 0)));
+        
+        $('#totalpidpi_opening_balance').val((parseFloat($('#otherpidpi_opening_balance').val()) || 0) + ((parseFloat($('#cvcpidpi_opening_balance').val()) || 0)));
+        
+        $('#totalpidpi_receivequarter').val((parseFloat($('#otherpidpi_receivequarter').val()) || 0) + ((parseFloat($('#cvcpidpi_receivequarter').val()) || 0)));
+        
+        $('#totalpidpi_total').val((parseFloat($('#totalpidpi_receivequarter').val()) || 0) + ((parseFloat($('#totalpidpi_opening_balance').val()) || 0)));
+        
+        
+
+
+    }
+
+    // Bind the calculateTotal function to the input fields' change events
+    //}
+
+
+
 </script>
+
+@{
+    ViewBag.ComplaintsMessage = "";
+}

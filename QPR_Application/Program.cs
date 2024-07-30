@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
@@ -27,6 +28,12 @@ builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
 
 
 // Add services required for sessions
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
 //builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -53,9 +60,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseForwardedHeaders();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthentication();

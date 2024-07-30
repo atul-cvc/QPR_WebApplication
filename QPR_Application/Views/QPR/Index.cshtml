@@ -97,12 +97,12 @@
 
 <script>
     $('button[type="submit"]').click(function (e) {
-        //debugger;
+        debugger;
         var selectedYear = $('#yearDropdown').val();
         var selectedQuarter = $('#quarterDropdown').val();
-        var cvoFulltime = $('#CVOFulltime').val();
-        var cvoParttime = $('#CVOParttime').val();
-        if ((selectedQuarter === '' || selectedYear === '') && (cvoFulltime === false && cvoParttime === false)) {
+        var cvoFulltime = $('#CVOFulltime').prop('checked');
+        var cvoParttime = $('#CVOParttime').prop('checked');
+        if ((selectedQuarter === '' || selectedYear === '') || (cvoFulltime === false && cvoParttime === false)) {
             e.preventDefault(); // Prevent form submission
             $('#quarterValidationMsg').show(); // Show validation message
         }

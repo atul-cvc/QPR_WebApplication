@@ -14,7 +14,7 @@ namespace QPR_Application.Repository
         {
             try
             {
-                return await _dbContext.complaintsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                return await _dbContext.complaintsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
             }
             catch (Exception ex) { }
             return null;

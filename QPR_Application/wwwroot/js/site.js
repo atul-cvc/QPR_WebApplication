@@ -10,21 +10,22 @@ $(function () {
     $('#example1').DataTable();
 
     //Datepicker
-    $('.datepicker').datepicker(
-        {
-            //    buttonText: "Select date",
-            //    showOn: "Button",
-            dateFormat: "dd/mm/yy",
-            shortYearCutoff: 1,
-            changeYear: true,
-            changeMonth: true,
-            //showWeek: false,
-            showOtherMonths: true,
-            selectOtherMonths: false,
-            minDate: '-100Y',
-            maxDate: '+100Y',
+    $('.datepicker').datepicker({
+        //    buttonText: "Select date",
+        //    showOn: "Button",
+        dateFormat: "dd/mm/yy",
+        shortYearCutoff: 1,
+        changeYear: true,
+        changeMonth: true,
+        //showWeek: false,
+        showOtherMonths: true,
+        selectOtherMonths: false,
+        minDate: '-100Y',
+        maxDate: '+100Y',
+    });
 
-        });
+
+
 });
 
 
@@ -38,6 +39,7 @@ function isNumberKey(evt) {
     }
     return false;
 }
+
 var cnt = 1;
 var cnt1 = 1;
 var cntCall = 0;
@@ -45,6 +47,7 @@ var cntCall1 = 0;
 var addauthority_cnt = 1;
 var addauthority_cntCall = 0;
 $(function () {
+
     var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
     $("#name_of_officer").val(morethanthree);
 
@@ -158,7 +161,7 @@ $(function () {
         }
         resetSerialNumber();
     });
-    
+
     $(".addauthority").click(function () {
         //debugger;
 
@@ -196,8 +199,8 @@ $(function () {
     });
 
     $(".add-row-status-pendency").click(function () {
-        debugger;
-        cnt = parseInt('0') ;
+        //debugger;
+        cnt = parseInt('0');
         //alert(cnt);
         var name_of_officer = $("#name_of_officer").val();
         var totRows = parseInt($("#totRows").val());
@@ -277,6 +280,23 @@ $(function () {
         resetSerialNumber1();
     });
 
+    //$('input[type="number"]').on('blur', function () {
+    //    //debugger;
+    //    var value = $(this).val();
+    //    //alert('value : ' + value)
+    //    if (value == '') {
+    //        $(this).val('0');
+    //    } else {
+    //        $(this).val(Number(value).toString());
+    //    }
+    //});
+
+    $('input[type="number"]').on('keyup', function () {
+        //debugger;
+        var value = $(this).val();
+        $(this).val(Number(value).toString());
+
+    });
 });
 
 function resetSerialNumber() {
@@ -369,7 +389,7 @@ function removeDisplayFunctionStatusPendency(btndel, pendId) {
     } else {
         return false;
     }
-} 
+}
 
 function removeDisplayFunctionMajor(btndel, pendId) {
 
@@ -402,7 +422,7 @@ function removeDisplayFunctionMajor(btndel, pendId) {
     } else {
         return false;
     }
-} 
+}
 
 function resetSerialNumberMajor() {
     var sno = 1;
@@ -412,4 +432,8 @@ function resetSerialNumberMajor() {
         $(this).find("td:first").text(sno++);
 
     });
+}
+
+function pageReloadWithoutQueryString() {
+    window.location.href = window.location.origin + window.location.pathname;
 }

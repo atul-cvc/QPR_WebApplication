@@ -5,6 +5,7 @@ using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using System.Security.Claims;
 using System.Text.Json;
+using System.Net;
 
 namespace QPR_Application.Controllers
 {
@@ -39,7 +40,12 @@ namespace QPR_Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Login login)
         {
+            string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
 
+            if (ipAdd == "::1")
+            {
+                ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
+            }
             if (ModelState.IsValid)
             {
                 registration User = new registration();
@@ -55,6 +61,7 @@ namespace QPR_Application.Controllers
                     {
                         _httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
                         _httpContext.HttpContext.Session.SetString("UserName", User.userid);
+                        _httpContext.HttpContext.Session.SetString("ipAddress", ipAdd);
 
                         List<Claim> claims = new List<Claim>()
                         {

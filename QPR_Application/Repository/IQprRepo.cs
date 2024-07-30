@@ -1,4 +1,5 @@
-﻿using QPR_Application.Models.DTO.Request;
+﻿using Microsoft.EntityFrameworkCore;
+using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
 
@@ -12,6 +13,8 @@ namespace QPR_Application.Repository
         public Task<string> GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
         public Task<string> GetPreviousReferenceNumber(string UserId);
         public Task<string> GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport);
+        public Task CreateComplaints(complaintsqrs complaint);
+        public Task SaveComplaints(complaintsqrs complaint);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

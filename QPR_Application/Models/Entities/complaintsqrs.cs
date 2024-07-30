@@ -122,7 +122,7 @@ namespace QPR_Application.Models.Entities
         public string used_ip { get; set; }
         [StringLength(50)]
         public string update_user_id { get; set; }
-        public int? qpr_id { get; set; }
+        public long? qpr_id { get; set; }
         public string cvcpidpi_delay_one_month { get; set; }
         public string otherpidpi_delay_one_month { get; set; }
         public string toatlpidpi_delay_one_month { get; set; }

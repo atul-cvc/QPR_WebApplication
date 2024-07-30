@@ -11,13 +11,13 @@ namespace QPR_Application.Repository
     public class QprRepo : IQprRepo
     {
         private readonly QPRContext _dbContext;
-        private readonly IConfiguration _config;
-        private string _connString =string.Empty;
+        //private readonly IConfiguration _config;
+        private string _connString = string.Empty;
         public QprRepo(QPRContext DbContext, IConfiguration config)
         {
             _dbContext = DbContext;
             //_config = config;
-            _connString = config.GetConnectionString("SQLConnection");
+            _connString = config.GetConnectionString("SQLConnection") ?? String.Empty;
         }
 
         public async Task<List<Years>> GetYears()
@@ -37,7 +37,7 @@ namespace QPR_Application.Repository
         public async Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
             //var connString = _config.GetConnectionString("SQLConnection");
-            string refNum = "" ;
+            string refNum = "";
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connString))
@@ -114,16 +114,27 @@ namespace QPR_Application.Repository
         public async Task<string> GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport)
         {
             string refNum = "";
+            int qReport = Convert.ToInt32(qtrReport) - 1;
+            int qYear = Convert.ToInt32(qtrYear);
+            if (qReport == 0)
+            {
+                qReport = 4;
+                qYear -= 1; ;
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connString))
                 {
+                    int count = 0;
+
                     using (SqlCommand cmd = new SqlCommand("SP_GetPreviousQprId", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         // Add parameters to the stored procedure
                         cmd.Parameters.AddWithValue("@UserId", UserId);
+                        cmd.Parameters.AddWithValue("@QtrYear", qYear);
+                        cmd.Parameters.AddWithValue("@QtrReport", qReport);
                         conn.Open();
                         refNum = Convert.ToString(cmd.ExecuteScalar());
                     }
@@ -131,6 +142,31 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex) { }
             return refNum;
+        }
+
+        public async Task CreateComplaints(complaintsqrs complaint)
+        {
+            try
+            {
+                await _dbContext.complaintsqrs.AddAsync(complaint);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task SaveComplaints(complaintsqrs complaint)
+        {
+            try
+            {
+                _dbContext.complaintsqrs.Update(complaint);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
