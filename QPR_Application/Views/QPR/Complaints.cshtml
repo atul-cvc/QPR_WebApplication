@@ -6,9 +6,9 @@
 }
 <style>
     /*   table td {
-                padding: 0.25em !important;
-                vertical-align: middle !important;
-            } */
+                                padding: 0.25em !important;
+                                vertical-align: middle !important;
+                            } */
 </style>
 
 
@@ -190,7 +190,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" readonly/>
+                            <input asp-for="comtotalage_pendency_betweenthree_six" class="form-control" readonly />
                         </b>
                     </td>
                 </tr>
@@ -391,7 +391,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="cvcpidpi_total" class="form-control" readonly    />
+                            <input asp-for="cvcpidpi_total" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
@@ -402,7 +402,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="cvcpidpi_balance_pending" class="form-control" />
+                            <input asp-for="cvcpidpi_balance_pending" class="form-control" readonly />
                             @* <input id="cvcpidpi_balance_pending" name="cvcpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="totalbalPenTotal pidpiBalancePending" value="0"> *@
                         </b>
                     </td>
@@ -435,7 +435,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Other &nbsp;Designated &nbsp;Authority</b></td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_opening_balance" class="form-control" readonly/>
+                            <input asp-for="otherpidpi_opening_balance" class="form-control" readonly />
                             @* <input id="otherpidpi_opening_balance" name="otherpidpi_opening_balance" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="pidpiBalance otherPidpi" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -447,19 +447,19 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_total" class="form-control" readonly/>
+                            <input asp-for="otherpidpi_total" class="form-control" readonly />
                             @* <input id="otherpidpi_Total" name="otherpidpi_Total" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="totalotherPidpi pidpiTotal othBalPenTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_report_quarter" class="form-control" />
+                            <input asp-for="otherpidpi_report_quarter" class="form-control" max="@Model.otherpidpi_total" />
                             @* <input id="otherpidpi_report_quarter" name="otherpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" data-field="cvcsecond" class="pidpiReports othBalPenTotal disQTRPidpiOther" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_balance_pending" class="form-control" />
+                            <input asp-for="otherpidpi_balance_pending" class="form-control" readonly />
                             @* <input id="otherpidpi_balance_pending" name="otherpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" class="totalothBalPenTotal pidpiBalancePending" value="0"> *@
                         </b>
                     </td>
@@ -498,7 +498,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_receivequarter" class="form-control" readonly/>
+                            <input asp-for="totalpidpi_receivequarter" class="form-control" readonly />
                             @* <input id="totalpidpi_ReceiveQuarter" name="totalpidpi_ReceiveQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiRecived" value="0"> *@
                         </b>
                     </td>
@@ -510,37 +510,37 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_report_quarter" class="form-control" />
+                            <input asp-for="totalpidpi_report_quarter" class="form-control" readonly />
                             @* <input id="totalpidpi_report_quarter" name="totalpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiReports" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_balance_pending" class="form-control" />
+                            <input asp-for="totalpidpi_balance_pending" class="form-control" readonly />
                             @* <input id="totalpidpi_balance_pending" name="totalpidpi_balance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiBalancePending" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="toatlpidpi_three_month" class="form-control" />
+                            <input asp-for="toatlpidpi_three_month" class="form-control" readonly />
                             @* <input id="toatlpidpi_three_month" name="toatlpidpi_three_month" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiUptoOne" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="toatlpidpi_three_to_six" class="form-control" />
+                            <input asp-for="toatlpidpi_three_to_six" class="form-control" readonly />
                             @* <input id="toatlpidpi_three_to_six" name="toatlpidpi_three_to_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiOnetoTwo" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_less_six" class="form-control" />
+                            <input asp-for="totalpidpi_less_six" class="form-control" readonly />
                             @* <input id="totalpidpi_less_six" name="totalpidpi_less_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="totalpidpiGreaterTwo" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="toatlpidpi_delay_one_month" class="form-control" />
+                            <input asp-for="toatlpidpi_delay_one_month" class="form-control" readonly />
                             @* <input class="form-control" id="toatlpidpi_delay_one_month" name="toatlpidpi_delay_one_month" type="text" value=""> *@
                         </b>
                     </td>
@@ -619,7 +619,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="cvcpidpiinvestotaladvicereceive" class="form-control" />
+                            <input asp-for="cvcpidpiinvestotaladvicereceive" class="form-control" readonly />
                             @* <input id="cvcPIDPIInvesTotalAdviceReceive" name="cvcPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReportCVC" value="0"> *@
                         </b>
                     </td>
@@ -676,7 +676,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="cvopidpiinvestotaladvicereceive" class="form-control" />
+                            <input asp-for="cvopidpiinvestotaladvicereceive" class="form-control" readonly />
                             @* <input id="cvoPIDPIInvesTotalAdviceReceive" name="cvoPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReportCVO" value="0"> *@
                         </b>
                     </td>
@@ -716,55 +716,55 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;TOTAL</b></td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvestadvicecvc" class="form-control" />
+                            <input asp-for="totalpidpiinvestadvicecvc" class="form-control" readonly />
                             @* <input id="totalPIDPIInvestAdviceCVC" name="totalPIDPIInvestAdviceCVC" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="adviceCVC  adviceReporttotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesquarterreportbycvo" class="form-control" />
+                            <input asp-for="totalpidpiinvesquarterreportbycvo" class="form-control" readonly />
                             @* <input id="reporSendtQtr2" name="totalPIDPIInvesQuarterReportbytotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reporSendtQtr" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesquarteradvicereceive" class="form-control" />
+                            <input asp-for="totalpidpiinvesquarteradvicereceive" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesQuarterAdviceReceive" name="totalPIDPIInvesQuarterAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="reportsReceiveQtr adviceReporttotal" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvestotaladvicereceive" class="form-control" />
+                            <input asp-for="totalpidpiinvestotaladvicereceive" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesTotalAdviceReceive" name="totalPIDPIInvesTotalAdviceReceive" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="adviceTotal  totaladviceReporttotal" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesactionduringquarter" class="form-control" />
+                            <input asp-for="totalpidpiinvesactionduringquarter" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesActionduringQuarter" name="totalPIDPIInvesActionduringQuarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="actionTakenQtr actionTakenQtrLessThanTotal" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesbalancegreterthreemonth" class="form-control" />
+                            <input asp-for="totalpidpiinvesbalancegreterthreemonth" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesBalanceGreterThreeMonth" name="totalPIDPIInvesBalanceGreterThreeMonth" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="greaterThree pendingTotalOther" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesbalancebetweenthreetosix" class="form-control" />
+                            <input asp-for="totalpidpiinvesbalancebetweenthreetosix" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesBalanceBetweenThreetoSix" name="totalPIDPIInvesBalanceBetweenThreetoSix" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="threetoSix pendingTotalOther" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesbalancebetweensixtotwelve" class="form-control" />
+                            <input asp-for="totalpidpiinvesbalancebetweensixtotwelve" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesBalanceBetweenSixtoTwelve" name="totalPIDPIInvesBalanceBetweenSixtoTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="sixtoTwelve pendingTotalOther" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpiinvesbalancelesstwelve" class="form-control" />
+                            <input asp-for="totalpidpiinvesbalancelesstwelve" class="form-control" readonly />
                             @* <input id="totalPIDPIInvesBalancelessTwelve" name="totalPIDPIInvesBalancelessTwelve" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="lessTwelve pendingTotalOtherFinal" value="0"> *@
                         </b>
                     </td>
@@ -808,7 +808,7 @@
                 <tr>
                     <td>
                         <b>
-                            <input asp-for="napidpibroughtforward" class="form-control" />
+                            <input asp-for="napidpibroughtforward" class="form-control" readonly />
                             @* <input id="naPIDPIBroughtforward" name="naPIDPIBroughtforward" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpi-forward-received" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -820,7 +820,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="napidpitotal" class="form-control" />
+                            <input asp-for="napidpitotal" class="form-control" readonly />
                             @* <input id="naPIDPITotal" name="naPIDPITotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="pidpi-for-rec-ttl" value="0"> *@
                         </b>
                     </td>
@@ -850,13 +850,13 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="napidpidisposedqtr" class="form-control" />
+                            <input asp-for="napidpidisposedqtr" class="form-control" readonly />
                             @* <input id="naPIDPIDisposedQtr" name="naPIDPIDisposedQtr" onkeypress="return isNumberKey(event);" readonly="true" style="padding: 2px;" type="text" class="pidpi-complaints-quaterly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="napidpipendingqtr" class="form-control" />
+                            <input asp-for="napidpipendingqtr" class="form-control" readonly />
                             @* <input id="naPIDPIPendingQtr" name="naPIDPIPendingQtr" onkeypress="return isNumberKey(event);" readonly="true" style="padding: 2px;" type="text" class="pidpi-pending-ttl" value="0"> *@
                         </b>
                     </td>
@@ -893,7 +893,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;CAG</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyear" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyear" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYear" name="scrutinyReportbfPreviousYear" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit bfPreviousYear" value="0"> *@
                         </b>
                     </td>
@@ -917,7 +917,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigation" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigation" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigation" name="scrutinyReportPendingInvestigation" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAudit PendingInvestigation" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -926,7 +926,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Concurrent</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyearconcurrent" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYearConcurrent" name="scrutinyReportbfPreviousYearConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent bfPreviousYear" value="0"> *@
                         </b>
                     </td>
@@ -950,7 +950,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigationconcurrent" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigationConcurrent" name="scrutinyReportPendingInvestigationConcurrent" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditConcurrent PendingInvestigation" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -959,7 +959,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Internal</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyearinternal" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYearInternal" name="scrutinyReportbfPreviousYearInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal bfPreviousYear" value="0"> *@
                         </b>
                     </td>
@@ -983,7 +983,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigationinternal" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigationInternal" name="scrutinyReportPendingInvestigationInternal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditInternal PendingInvestigation" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -992,7 +992,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Statutory</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyearstatutory" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYearStatutory" name="scrutinyReportbfPreviousYearStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory bfPreviousYear" value="0"> *@
                         </b>
                     </td>
@@ -1016,7 +1016,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigationstatutory" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigationStatutory" name="scrutinyReportPendingInvestigationStatutory" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditStatutory PendingInvestigation" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -1025,7 +1025,7 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Others</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyearothers" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYearOthers" name="scrutinyReportbfPreviousYearOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers bfPreviousYear" value="0"> *@
                         </b>
                     </td>
@@ -1049,7 +1049,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigationothers" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigationOthers" name="scrutinyReportPendingInvestigationOthers" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ScruAuditOthers PendingInvestigation" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -1058,31 +1058,31 @@
                     <td style=" text-align: left;"><b>&nbsp;&nbsp;Total</b></td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" />
+                            <input asp-for="scrutinyreportbfpreviousyeartotal" class="form-control" readonly />
                             @* <input id="scrutinyReportbfPreviousYearTotal" name="scrutinyReportbfPreviousYearTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="bfPreviousYearTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" />
+                            <input asp-for="scrutinyreportexaminedqtrtotal" class="form-control" readonly />
                             @* <input id="scrutinyReportExaminedQtrTotal" name="scrutinyReportExaminedQtrTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="ExaminedQtrTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" />
+                            <input asp-for="scrutinyreportidentifiedexamitotal" class="form-control" readonly />
                             @* <input id="scrutinyReportIdentifiedExamiTotal" name="scrutinyReportIdentifiedExamiTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="IdentifiedExamiTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" />
+                            <input asp-for="scrutinyreportcompleteinvestigationtotal" class="form-control" readonly />
                             @* <input id="scrutinyReportCompleteInvestigationTotal" name="scrutinyReportCompleteInvestigationTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="CompleteInvestigationTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
                     <td>
                         <b>
-                            <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" />
+                            <input asp-for="scrutinyreportpendinginvestigationtotal" class="form-control" readonly />
                             @* <input id="scrutinyReportPendingInvestigationTotal" name="scrutinyReportPendingInvestigationTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="PendingInvestigationTotal" readonly="readonly" value="0"> *@
                         </b>
                     </td>
@@ -1123,28 +1123,19 @@
         performComTotal();
     });
 
-    $('   #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
+    $(' #scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
 
-    function performComTotal() {
-        // alert("function called : performComTotal" );
-        // debugger;
-        // Retrieve values from input fields
-        var receivedDuringQuarter = parseFloat($('#comcvcreceived_during_quarter').val()) || 0;
-        var openingBalance = parseFloat($('#comcvcopeningbalance').val()) || 0;
-        // Perform the calculation
-        var total = receivedDuringQuarter + openingBalance;
+    function performComTotal() {        
         // Set the result to the total field
-        $('#comcvctotal').val(total);
+        $('#comcvctotal').val((parseFloat($('#comcvcreceived_during_quarter').val()) || 0) + (parseFloat($('#comcvcopeningbalance').val()) || 0));
 
         $('#comothertotal').val((parseFloat($('#comotherreceived_during_quarter').val()) || 0) + ((parseFloat($('#comotheropeningbalance').val()) || 0)));
-
 
         $('#comtotalopeningbalance').val((parseFloat($('#comcvcopeningbalance').val()) || 0) + ((parseFloat($('#comotheropeningbalance').val()) || 0)));
 
         $('#comtotalreceived_during_quarter').val((parseFloat($('#comotherreceived_during_quarter').val()) || 0) + ((parseFloat($('#comcvcreceived_during_quarter').val()) || 0)));
 
         $('#comtotal').val((parseFloat($('#comtotalreceived_during_quarter').val()) || 0) + ((parseFloat($('#comtotalopeningbalance').val()) || 0)));
-
 
         $('#comtotaldisposal_during_quarter').val((parseFloat($('#comotherdisposal_during_quarter').val()) || 0) + ((parseFloat($('#comcvcdisposal_during_quarter').val()) || 0)));
 
@@ -1155,22 +1146,91 @@
         $('#comtotalbalance_pending').val((parseFloat($('#comotherbalance_pending').val()) || 0) + ((parseFloat($('#comcvcbalance_pending').val()) || 0)));
 
         $('#comtotalage_less_one').val((parseFloat($('#comotherage_less_one').val()) || 0) + ((parseFloat($('#comcvcage_less_one').val()) || 0)));
-        
+
         $('#comtotalage_pendency_betweenone_three').val((parseFloat($('#comotherage_pendency_betweenone_three').val()) || 0) + ((parseFloat($('#comcvcage_pendency_betweenone_three').val()) || 0)));
-        
+
         $('#comtotalage_pendency_betweenthree_six').val((parseFloat($('#comotherage_pendency_betweenthree_six').val()) || 0) + ((parseFloat($('#comcvcage_pendency_betweenthree_six').val()) || 0)));
 
         $('#cvcpidpi_total').val((parseFloat($('#cvcpidpi_receivequarter').val()) || 0) + ((parseFloat($('#cvcpidpi_opening_balance').val()) || 0)));
-        
+
         $('#otherpidpi_total').val((parseFloat($('#otherpidpi_receivequarter').val()) || 0) + ((parseFloat($('#otherpidpi_opening_balance').val()) || 0)));
-        
+
         $('#totalpidpi_opening_balance').val((parseFloat($('#otherpidpi_opening_balance').val()) || 0) + ((parseFloat($('#cvcpidpi_opening_balance').val()) || 0)));
-        
+
         $('#totalpidpi_receivequarter').val((parseFloat($('#otherpidpi_receivequarter').val()) || 0) + ((parseFloat($('#cvcpidpi_receivequarter').val()) || 0)));
-        
+
         $('#totalpidpi_total').val((parseFloat($('#totalpidpi_receivequarter').val()) || 0) + ((parseFloat($('#totalpidpi_opening_balance').val()) || 0)));
-        
-        
+
+        $('#totalpidpi_report_quarter').val((parseFloat($('#otherpidpi_report_quarter').val()) || 0) + ((parseFloat($('#cvcpidpi_report_quarter').val()) || 0)));
+
+        $('#cvcpidpi_balance_pending').val((parseFloat($('#cvcpidpi_total').val()) || 0) - ((parseFloat($('#cvcpidpi_report_quarter').val()) || 0)));
+
+        $('#otherpidpi_balance_pending').val((parseFloat($('#otherpidpi_total').val()) || 0) - ((parseFloat($('#otherpidpi_report_quarter').val()) || 0)));
+
+        $('#totalpidpi_balance_pending').val((parseFloat($('#totalpidpi_total').val()) || 0) - ((parseFloat($('#totalpidpi_report_quarter').val()) || 0)));
+
+        $('#toatlpidpi_three_month').val((parseFloat($('#otherpidpi_three_month').val()) || 0) + ((parseFloat($('#cvcpidpi_three_month').val()) || 0)));
+
+        $('#toatlpidpi_three_to_six').val((parseFloat($('#otherpidpi_three_to_six').val()) || 0) + ((parseFloat($('#cvcpidpi_three_to_six').val()) || 0)));
+
+        $('#totalpidpi_less_six').val((parseFloat($('#otherpidpi_less_six').val()) || 0) + ((parseFloat($('#cvcpidpi_less_six').val()) || 0)));
+
+        $('#cvcpidpiinvestotaladvicereceive').val((parseFloat($('#cvcpidpiinvesquarteradvicereceive').val()) || 0) + ((parseFloat($('#cvcpidpiinvestadvicecvc').val()) || 0)));
+
+        $('#cvopidpiinvestotaladvicereceive').val((parseFloat($('#cvopidpiinvesquarteradvicereceive').val()) || 0) + ((parseFloat($('#cvopidpiinvestadvicecvc').val()) || 0)));
+
+        $('#totalpidpiinvestadvicecvc').val((parseFloat($('#cvopidpiinvestadvicecvc').val()) || 0) + ((parseFloat($('#cvcpidpiinvestadvicecvc').val()) || 0)));
+
+        $('#totalpidpiinvesquarterreportbycvo').val((parseFloat($('#cvopidpiinvesquarterreportbycvo').val()) || 0) + ((parseFloat($('#cvcpidpiinvesquarterreportbycvo').val()) || 0)));
+
+        $('#totalpidpiinvesquarteradvicereceive').val((parseFloat($('#cvopidpiinvesquarteradvicereceive').val()) || 0) + ((parseFloat($('#cvcpidpiinvesquarteradvicereceive').val()) || 0)));
+
+        $('#totalpidpiinvestotaladvicereceive').val((parseFloat($('#totalpidpiinvesquarteradvicereceive').val()) || 0) + ((parseFloat($('#totalpidpiinvestadvicecvc').val()) || 0)));
+
+        $('#totalpidpiinvesactionduringquarter').val((parseFloat($('#cvopidpiinvesactionduringquarter').val()) || 0) + ((parseFloat($('#cvcpidpiinvesactionduringquarter').val()) || 0)));
+
+        $('#totalpidpiinvesbalancegreterthreemonth').val((parseFloat($('#cvopidpiinvesbalancegreterthreemonth').val()) || 0) + ((parseFloat($('#cvcpidpiinvesbalancegreterthreemonth').val()) || 0)));
+
+        $('#totalpidpiinvesbalancebetweenthreetosix').val((parseFloat($('#cvopidpiinvesbalancebetweenthreetosix').val()) || 0) + ((parseFloat($('#cvcpidpiinvesbalancebetweenthreetosix').val()) || 0)));
+
+        $('#totalpidpiinvesbalancebetweensixtotwelve').val((parseFloat($('#cvopidpiinvesbalancebetweensixtotwelve').val()) || 0) + ((parseFloat($('#cvcpidpiinvesbalancebetweensixtotwelve').val()) || 0)));
+
+        $('#totalpidpiinvesbalancelesstwelve').val((parseFloat($('#cvopidpiinvesbalancelesstwelve').val()) || 0) + ((parseFloat($('#cvcpidpiinvesbalancelesstwelve').val()) || 0)));
+
+        $('#napidpitotal').val((parseFloat($('#napidpireceiveqtr').val()) || 0) + ((parseFloat($('#napidpibroughtforward').val()) || 0)));
+
+        $('#napidpidisposedqtr').val((parseFloat($('#napidpiclosedwithoutaction').val()) || 0) + ((parseFloat($('#napidpiadminaction').val()) || 0)) + ((parseFloat($('#napidpiimpositionpenalty').val()) || 0)));
+
+        $('#napidpipendingqtr').val((parseFloat($('#napidpitotal').val()) || 0) - ((parseFloat($('#napidpidisposedqtr').val()) || 0)));
+
+        $('#scrutinyreportbfpreviousyeartotal').val((parseFloat($('#scrutinyreportbfpreviousyearothers').val()) || 0) + ((parseFloat($('#scrutinyreportbfpreviousyearstatutory').val()) || 0)) + ((parseFloat($('#scrutinyreportbfpreviousyearinternal').val()) || 0)) + ((parseFloat($('#scrutinyreportbfpreviousyearconcurrent').val()) || 0)) + ((parseFloat($('#scrutinyreportbfpreviousyear').val()) || 0)));
+
+        $('#scrutinyreportpendinginvestigation').val((parseFloat($('#scrutinyreportbfpreviousyear').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexami').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigation').val()) || 0)));
+
+        $('#scrutinyreportpendinginvestigationconcurrent').val((parseFloat($('#scrutinyreportbfpreviousyearconcurrent').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamiconcurrent').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationconcurrent').val()) || 0)));
+
+        $('#scrutinyreportpendinginvestigationinternal').val((parseFloat($('#scrutinyreportbfpreviousyearinternal').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamiinternal').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationinternal').val()) || 0)));
+
+        $('#scrutinyreportpendinginvestigationstatutory').val((parseFloat($('#scrutinyreportbfpreviousyearstatutory').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamistatutory').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationstatutory').val()) || 0)));
+        $('#scrutinyreportpendinginvestigationothers').val((parseFloat($('#scrutinyreportbfpreviousyearothers').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamiothers').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationothers').val()) || 0)));
+
+        $('#scrutinyreportexaminedqtrtotal').val((parseFloat($('#scrutinyreportexaminedqtrothers').val()) || 0) + (parseFloat($('#scrutinyreportexaminedqtrstatutory').val()) || 0) + (parseFloat($('#scrutinyreportexaminedqtrinternal').val()) || 0) + (parseFloat($('#scrutinyreportexaminedqtrconcurrent').val()) || 0) + (parseFloat($('#scrutinyreportexaminedqtr').val()) || 0));
+
+        $('#scrutinyreportidentifiedexamitotal').val((parseFloat($('#scrutinyreportidentifiedexamiothers').val()) || 0) + (parseFloat($('#scrutinyreportidentifiedexamistatutory').val()) || 0) + (parseFloat($('#scrutinyreportidentifiedexamiinternal').val()) || 0) + (parseFloat($('#scrutinyreportidentifiedexamiconcurrent').val()) || 0) + (parseFloat($('#scrutinyreportidentifiedexami').val()) || 0));
+
+        $('#scrutinyreportcompleteinvestigationtotal').val((parseFloat($('#scrutinyreportcompleteinvestigationothers').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationstatutory').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationinternal').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationconcurrent').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigation').val()) || 0));
+
+
+
+
+
+        $('#scrutinyreportpendinginvestigationtotal').val((parseFloat($('#scrutinyreportbfpreviousyeartotal').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamitotal').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationtotal').val()) || 0)));
+
+
+
+
+
+
 
 
     }

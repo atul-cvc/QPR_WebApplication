@@ -4,8 +4,9 @@
 // Write your JavaScript code.
 
 
-//put code here to execute on page ready
+//DO NOT PUT CODE IN HERE OTHER THAN DATATABLE AND DATEPICKER
 $(function () {
+
     //Datatable
     $('#example1').DataTable();
 
@@ -23,9 +24,6 @@ $(function () {
         minDate: '-100Y',
         maxDate: '+100Y',
     });
-
-
-
 });
 
 
@@ -284,18 +282,32 @@ $(function () {
     //    //debugger;
     //    var value = $(this).val();
     //    //alert('value : ' + value)
-    //    if (value == '') {
-    //        $(this).val('0');
-    //    } else {
-    //        $(this).val(Number(value).toString());
+    //    if (value < 0) {
+    //        //$(this).val('0');
+    //        //alert('Please check the value')
     //    }
+    //    //else {
+    //    //    $(this).val(Number(value).toString());
+    //    //}
     //});
 
+    //$('form input').keydown(function (e) {
+    //    if (e.keyCode == 13) {
+    //        e.preventDefault();
+    //        return false;
+    //    }
+    //});
+    $('form input').keydown(function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
     $('input[type="number"]').on('keyup', function () {
         //debugger;
         var value = $(this).val();
         $(this).val(Number(value).toString());
-
     });
 });
 
