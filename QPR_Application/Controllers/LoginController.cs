@@ -50,9 +50,6 @@ namespace QPR_Application.Controllers
             {
                 registration User = new registration();
                 User = await _loginRepo.Login(login);
-                //User.userid = login.Username;
-                //User.password = login.Password;
-                //User.logintype = "ROLE_COORD";
 
                 if (User != null)
                 {

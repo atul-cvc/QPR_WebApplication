@@ -238,7 +238,7 @@ $(function () {
     });
 
     $(".add-row1").click(function () {
-        debugger;
+        //debugger;
         cnt1 = parseInt('2') - 1;
         //alert(cnt);
         var name_of_officer = $("#name_of_officer1").val();
