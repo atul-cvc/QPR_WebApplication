@@ -36,8 +36,11 @@ namespace QPR_Application.Repository
                 prosecutionsanctionsqrs? prsSec = await _dbContext.prosecutionsanctionsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
                 List<agewisependency> ageWise = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
                 
-                ProsecutionSanctionsViewModel proSecView = new ProsecutionSanctionsViewModel(prsSec, ageWise);
-                return proSecView;
+                ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
+                proSecViewModel.Prosecutionsanctionsqrs = prsSec;
+                proSecViewModel.Agewisependency = ageWise;
+
+                return proSecViewModel;
                 //return await _dbContext.prosecutionsanctionsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
             }
             catch (Exception ex) { }

@@ -345,7 +345,7 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SaveProsecutionSanctions(prosecutionsanctionsqrs prosec)
+        public IActionResult SaveProsecutionSanctions(ProsecutionSanctionsViewModel prosecViewModel)
         {
             string message = "";
             try
@@ -363,11 +363,11 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ProsecutionSanctions(prosecutionsanctionsqrs prosec)
+        public IActionResult ProsecutionSanctions(ProsecutionSanctionsViewModel prosecViewModel)
         {
             try
             {
-                SaveProsecutionSanctions(prosec);
+                SaveProsecutionSanctions(prosecViewModel);
                 return RedirectToAction("DepartmentalProceedings");
             }
             catch (Exception ex)
@@ -774,6 +774,7 @@ namespace QPR_Application.Controllers
             _httpContext.HttpContext?.Session.Remove("complaint_id");
             _httpContext.HttpContext?.Session.Remove("viginvestigations_id");
             _httpContext.HttpContext?.Session.Remove("prosecutionsanctions_id");
+            _httpContext.HttpContext?.Session.Remove("prosecutionsanctions_id");
         }
 
         public string GetPreviousReferenceNumber()
@@ -787,7 +788,7 @@ namespace QPR_Application.Controllers
 
         public IActionResult DeleteAgeWisePendency(int pend_id)
         {
-            return RedirectToAction("ProsecutionSanctions", new { message = "Deleted successfully. Pend ID : " + pend_id  });
+            return RedirectToAction("ProsecutionSanctions", new { message = "Deleted successfully. Pend ID : " + pend_id });
         }
     }
 }

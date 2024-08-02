@@ -156,40 +156,38 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        @* <form>
-                        </form> *@
-                            <table id="officerNumber" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th style="width:1%"><b>S.No.</b></th>
-                                        <th style="width:15%"><b>CBI FIR No.</b></th>
-                                        <th style="width:15%"><b>Name &amp; Designation of officer</b></th>
-                                        <th style="width:13%"><b>Date of recommendation by Investigating Agency</b></th>
-                                        <th style="width:13%"><b>Date of receipt of recommendation/request</b></th>
-                                        <th style="width:14%"><b>Sanction sought under PC Act/IPC/other Laws</b></th>
-                                        <th style="width:14%"><b>Status of request/Reasons for pendency</b></th>
-                                        <th style="width:14%"><b>Name &amp; designation of authority with whom pending</b></th>
-                                        <th style="width:1%"><b>Delete</b></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <table id="officerNumber" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="width:1%"><b>S.No.</b></th>
+                                    <th style="width:15%"><b>CBI FIR No.</b></th>
+                                    <th style="width:15%"><b>Name &amp; Designation of officer</b></th>
+                                    <th style="width:13%"><b>Date of recommendation by Investigating Agency</b></th>
+                                    <th style="width:13%"><b>Date of receipt of recommendation/request</b></th>
+                                    <th style="width:14%"><b>Sanction sought under PC Act/IPC/other Laws</b></th>
+                                    <th style="width:14%"><b>Status of request/Reasons for pendency</b></th>
+                                    <th style="width:14%"><b>Name &amp; designation of authority with whom pending</b></th>
+                                    <th style="width:1%"><b>Delete</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @for (int i = 0; i < Model.Agewisependency.Count(); i++)
                                 {
-                                    var child = Model.Agewisependency.ElementAt(i);
+                                    var item = Model.Agewisependency.ElementAt(i);
                                     <tr class="text-center">
                                         <td>@(i + 1)</td> <!-- Serial number column -->
-                                        <td>@child.prosependingcbifirno</td>
-                                        <td>@child.prosependingnamedesig</td>
-                                        <td>@child.prosependingdaterecommend</td>
-                                        <td>@child.prosependingdatereceipt</td>
-                                        <td>@child.prosependingsanctionpc</td>
-                                        <td>@child.prosependingstatusrequest</td>
-                                        <td>@child.prosependingnameauthority</td>
-                                        <td><a href="@Url.Action("DeleteAgeWisePendency", new { id = @child.pend_id })" class="btn btn-outline-danger">Delete</a></td>
+                                        <td>@item.prosependingcbifirno</td>
+                                        <td>@item.prosependingnamedesig</td>
+                                        <td>@item.prosependingdaterecommend</td>
+                                        <td>@item.prosependingdatereceipt</td>
+                                        <td>@item.prosependingsanctionpc</td>
+                                        <td>@item.prosependingstatusrequest</td>
+                                        <td>@item.prosependingnameauthority</td>
+                                        <td><a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @item.pend_id })" class="btn btn-outline-danger">Delete</a></td>
                                     </tr>
                                 }
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
             </tbody>
