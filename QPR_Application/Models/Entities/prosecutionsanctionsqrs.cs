@@ -11,63 +11,64 @@ namespace QPR_Application.Models.Entities
     [Keyless]
     public partial class prosecutionsanctionsqrs
     {
-        public string prosecutionsanctions_id { get; set; }
-        public string prosesanctgroupcopeningbalance { get; set; }
-        public string prosesanctgroupcreciveqtr { get; set; }
-        public string prosesanctgroupctotal { get; set; }
-        public string prosesanctgroupcsanctiongranted { get; set; }
-        public string prosesanctgroupcsanctionrefused { get; set; }
-        public string prosesanctgroupcbalancepending { get; set; }
-        public string prosesanctgroupcgreaterthree { get; set; }
-        public string prosesanctgroupcthreetosix { get; set; }
-        public string prosesanctgroupclesssix { get; set; }
-        public string prosesanctgroupbopeningbalance { get; set; }
-        public string prosesanctgroupbreciveqtr { get; set; }
-        public string prosesanctgroupbtotal { get; set; }
-        public string prosesanctgroupbsanctiongranted { get; set; }
-        public string prosesanctgroupbsanctionrefused { get; set; }
-        public string prosesanctgroupbbalancepending { get; set; }
-        public string prosesanctgroupbgreaterthree { get; set; }
-        public string prosesanctgroupbthreetosix { get; set; }
-        public string prosesanctgroupblesssix { get; set; }
-        public string prosesanctgroupaopeningbalance { get; set; }
-        public string prosesanctgroupareciveqtr { get; set; }
-        public string prosesanctgroupatotal { get; set; }
-        public string prosesanctgroupasanctiongranted { get; set; }
-        public string prosesanctgroupasanctionrefused { get; set; }
-        public string prosesanctgroupabalancepending { get; set; }
-        public string prosesanctgroupagreaterthree { get; set; }
-        public string prosesanctgroupathreetosix { get; set; }
-        public string prosesanctgroupalesssix { get; set; }
-        public string prosesanctjsopeningbalance { get; set; }
-        public string prosesanctjsreciveqtr { get; set; }
-        public string prosesanctjstotal { get; set; }
-        public string prosesanctjssanctiongranted { get; set; }
-        public string prosesanctjssanctionrefused { get; set; }
-        public string prosesanctjsbalancepending { get; set; }
-        public string prosesanctjsgreaterthree { get; set; }
-        public string prosesanctjsthreetosix { get; set; }
-        public string prosesanctjslesssix { get; set; }
-        public string prosesancttotalopeningbalance { get; set; }
-        public string prosesancttotalreciveqtr { get; set; }
-        public string prosesancttotal { get; set; }
-        public string prosesancttotalsanctiongranted { get; set; }
-        public string prosesancttotalsanctionrefused { get; set; }
-        public string prosesancttotalbalancepending { get; set; }
-        public string prosesancttotalgreaterthree { get; set; }
-        public string prosesancttotalthreetosix { get; set; }
-        public string prosesancttotallesssix { get; set; }
-        public string prosependingserialnumber { get; set; }
-        public string prosevigiofficersuspension { get; set; }
-        public string prosevigisuspensionordered { get; set; }
-        public string prosevigitotal { get; set; }
-        public string prosevigisuspensionqtr { get; set; }
-        public string prosevigisuspensionendqtr { get; set; }
+        [Key]
+        public int prosecutionsanctions_id { get; set; }
+        public int prosesanctgroupcopeningbalance { get; set; }
+        public int prosesanctgroupcreciveqtr { get; set; }
+        public int prosesanctgroupctotal { get; set; }
+        public int prosesanctgroupcsanctiongranted { get; set; }
+        public int prosesanctgroupcsanctionrefused { get; set; }
+        public int prosesanctgroupcbalancepending { get; set; }
+        public int prosesanctgroupcgreaterthree { get; set; }
+        public int prosesanctgroupcthreetosix { get; set; }
+        public int prosesanctgroupclesssix { get; set; }
+        public int prosesanctgroupbopeningbalance { get; set; }
+        public int prosesanctgroupbreciveqtr { get; set; }
+        public int prosesanctgroupbtotal { get; set; }
+        public int prosesanctgroupbsanctiongranted { get; set; }
+        public int prosesanctgroupbsanctionrefused { get; set; }
+        public int prosesanctgroupbbalancepending { get; set; }
+        public int prosesanctgroupbgreaterthree { get; set; }
+        public int prosesanctgroupbthreetosix { get; set; }
+        public int prosesanctgroupblesssix { get; set; }
+        public int prosesanctgroupaopeningbalance { get; set; }
+        public int prosesanctgroupareciveqtr { get; set; }
+        public int prosesanctgroupatotal { get; set; }
+        public int prosesanctgroupasanctiongranted { get; set; }
+        public int prosesanctgroupasanctionrefused { get; set; }
+        public int prosesanctgroupabalancepending { get; set; }
+        public int prosesanctgroupagreaterthree { get; set; }
+        public int prosesanctgroupathreetosix { get; set; }
+        public int prosesanctgroupalesssix { get; set; }
+        public int prosesanctjsopeningbalance { get; set; }
+        public int prosesanctjsreciveqtr { get; set; }
+        public int prosesanctjstotal { get; set; }
+        public int prosesanctjssanctiongranted { get; set; }
+        public int prosesanctjssanctionrefused { get; set; }
+        public int prosesanctjsbalancepending { get; set; }
+        public int prosesanctjsgreaterthree { get; set; }
+        public int prosesanctjsthreetosix { get; set; }
+        public int prosesanctjslesssix { get; set; }
+        public int prosesancttotalopeningbalance { get; set; }
+        public int prosesancttotalreciveqtr { get; set; }
+        public int prosesancttotal { get; set; }
+        public int prosesancttotalsanctiongranted { get; set; }
+        public int prosesancttotalsanctionrefused { get; set; }
+        public int prosesancttotalbalancepending { get; set; }
+        public int prosesancttotalgreaterthree { get; set; }
+        public int prosesancttotalthreetosix { get; set; }
+        public int prosesancttotallesssix { get; set; }
+        public int prosependingserialnumber { get; set; }
+        public int prosevigiofficersuspension { get; set; }
+        public int prosevigisuspensionordered { get; set; }
+        public int prosevigitotal { get; set; }
+        public int prosevigisuspensionqtr { get; set; }
+        public int prosevigisuspensionendqtr { get; set; }
         public string create_date { get; set; }
         public string user_id { get; set; }
         public string update_date { get; set; }
         public string last_user_id { get; set; }
-        public string qpr_id { get; set; }
+        public long qpr_id { get; set; }
         public string ip { get; set; }
         public string prosependingnameauthority { get; set; }
         public string prosependingnamedesig { get; set; }
@@ -76,5 +77,75 @@ namespace QPR_Application.Models.Entities
         public string prosependingdatereceipt { get; set; }
         public string prosependingcbifirno { get; set; }
         public string prosependingsanctionpc { get; set; }
+
+        public prosecutionsanctionsqrs()
+        {
+            prosecutionsanctions_id = 0;
+            prosesanctgroupcopeningbalance = 0;
+            prosesanctgroupcreciveqtr = 0;
+            prosesanctgroupctotal = 0;
+            prosesanctgroupcsanctiongranted = 0;
+            prosesanctgroupcsanctionrefused = 0;
+            prosesanctgroupcbalancepending = 0;
+            prosesanctgroupcgreaterthree = 0;
+            prosesanctgroupcthreetosix = 0;
+            prosesanctgroupclesssix = 0;
+            prosesanctgroupbopeningbalance = 0;
+            prosesanctgroupbreciveqtr = 0;
+            prosesanctgroupbtotal = 0;
+            prosesanctgroupbsanctiongranted = 0;
+            prosesanctgroupbsanctionrefused = 0;
+            prosesanctgroupbbalancepending = 0;
+            prosesanctgroupbgreaterthree = 0;
+            prosesanctgroupbthreetosix = 0;
+            prosesanctgroupblesssix = 0;
+            prosesanctgroupaopeningbalance = 0;
+            prosesanctgroupareciveqtr = 0;
+            prosesanctgroupatotal = 0;
+            prosesanctgroupasanctiongranted = 0;
+            prosesanctgroupasanctionrefused = 0;
+            prosesanctgroupabalancepending = 0;
+            prosesanctgroupagreaterthree = 0;
+            prosesanctgroupathreetosix = 0;
+            prosesanctgroupalesssix = 0;
+            prosesanctjsopeningbalance = 0;
+            prosesanctjsreciveqtr = 0;
+            prosesanctjstotal = 0;
+            prosesanctjssanctiongranted = 0;
+            prosesanctjssanctionrefused = 0;
+            prosesanctjsbalancepending = 0;
+            prosesanctjsgreaterthree = 0;
+            prosesanctjsthreetosix = 0;
+            prosesanctjslesssix = 0;
+            prosesancttotalopeningbalance = 0;
+            prosesancttotalreciveqtr = 0;
+            prosesancttotal = 0;
+            prosesancttotalsanctiongranted = 0;
+            prosesancttotalsanctionrefused = 0;
+            prosesancttotalbalancepending = 0;
+            prosesancttotalgreaterthree = 0;
+            prosesancttotalthreetosix = 0;
+            prosesancttotallesssix = 0;
+            prosependingserialnumber = 0;
+            prosevigiofficersuspension = 0;
+            prosevigisuspensionordered = 0;
+            prosevigitotal = 0;
+            prosevigisuspensionqtr = 0;
+            prosevigisuspensionendqtr = 0;
+            // Initialize string properties with null or empty strings as needed
+            create_date = string.Empty;
+            user_id = string.Empty;
+            update_date = string.Empty;
+            last_user_id = string.Empty;
+            qpr_id = 0;
+            ip = string.Empty;
+            prosependingnameauthority = string.Empty;
+            prosependingnamedesig = string.Empty;
+            prosependingstatusrequest = string.Empty;
+            prosependingdaterecommend = string.Empty;
+            prosependingdatereceipt = string.Empty;
+            prosependingcbifirno = string.Empty;
+            prosependingsanctionpc = string.Empty;
+        }
     }
 }
