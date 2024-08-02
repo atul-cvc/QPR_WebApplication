@@ -1,7 +1,4 @@
 ﻿@using QPR_Application.Models.DTO.Response;
-@*
-@using QPR_Application.Models.DTO.Request;
- *@
 
 @model QPR_Application.Models.DTO.Request.GetQPR;
 
@@ -19,69 +16,71 @@
         <form asp-action="Index">
             <div class="p-3" style="border: 1px solid #73AD21 !important">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-content-center">
                         <label>NAME OF MINISTRY/DEPTT/ORGANISATION : </label>
                     </div>
 
                     <div class="col-md-4 ">
-                        <input class="p-1 rounded-1" style="border: 1px solid #ced4da" value="@ViewBag.User.organisation" readonly />
+                        <input class="form-control text-center" style="border: 1px solid #ced4da" value="@ViewBag.User.organisation" readonly />
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-content-center">
                         <label>REPORT FOR THE QUARTER ENDING  : </label>
                     </div>
                     <div class="form-group col-md-2">
-                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown" })
+                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
+                        <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-2">
                         @Html.DropDownList("SelectedYear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center ", id = "yearDropdown" })
+                        <span asp-validation-for="SelectedYear" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-content-center">
                         <label>CVO CONTACT NO. :</label>
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control w-50" type="tel" onkeypress="return isNumberKey(event);" name="CVCContactNo" asp-for="CVCContactNo" id="CVCContactNo" />
+                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="CVCContactNo" asp-for="CVCContactNo" id="CVCContactNo" maxlength="10" />
+                        <span asp-validation-for="CVCContactNo" class="text-danger"></span>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 align-content-center">
                         <label>MOBILE NO. :</label>
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control w-50" type="tel" onkeypress="return isNumberKey(event);" name="MobileNo" asp-for="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
+                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="MobileNo" asp-for="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
+                        <span asp-validation-for="MobileNo" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-content-center">
                         <label>Email : </label>
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control" type="email" name="CVOEmail" asp-for="CVOEmail" id="CVOEmail" value="@ViewBag.User.email" />
+                        <input class="form-control text-center" type="email" name="CVOEmail" asp-for="CVOEmail" id="CVOEmail" value="@ViewBag.User.email" />
+                        <span asp-validation-for="CVOEmail" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-content-center">
                         <label>Full Time : </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="checkbox" name="CVOFulltime" asp-for="CVOFulltime" id="CVOFulltime" />
-                        @* @Html.CheckBoxFor(m => m.CVOFulltime, new
-                        {
-                        @onclick = "",
-                        @class = "myCheckboxClass"
-                        }) *@
-                        @Html.ValidationMessageFor(model => model.CVOFulltime)
+                        <input type="checkbox" name="CVOFulltime" asp-for="CVOFulltime" id="CVOFulltime" class="myCheckboxClass" />
+                        
                     </div>
                     <div class="col-md-2">
                         <label>Part Time : </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="checkbox" name="CVOParttime" asp-for="CVOParttime" id="CVOParttime" />
-                        @* @Html.CheckBoxFor(m => m.CVOParttime, new
-                        {
-                        @class = "myCheckboxClass"
-                        }) *@
+                        <input type="checkbox" name="CVOParttime" asp-for="CVOParttime" id="CVOParttime" class="myCheckboxClass" />
+                        
+                    </div>
+                </div>
+                <div class="row mt-2 d-none" id="FullTime_PartTime_Validation" >
+                    <div class="col-12 text-center">
+                        <span class="text-danger" > Please select either Fulltime or Parttime </span>
                     </div>
                 </div>
             </div>
@@ -96,21 +95,25 @@
 
 
 <script>
+    $('.myCheckboxClass').click(function () {
+        $('#FullTime_PartTime_Validation').addClass('d-none');
+        $('.myCheckboxClass').not(this).prop('checked', false);
+    });
+
     $('button[type="submit"]').click(function (e) {
-        debugger;
+        // debugger;
         var selectedYear = $('#yearDropdown').val();
         var selectedQuarter = $('#quarterDropdown').val();
+        var contactNumber = $('#CVCContactNo').val();
         var cvoFulltime = $('#CVOFulltime').prop('checked');
         var cvoParttime = $('#CVOParttime').prop('checked');
-        if ((selectedQuarter === '' || selectedYear === '') || (cvoFulltime === false && cvoParttime === false)) {
+        if ((cvoFulltime === false && cvoParttime === false) && (selectedYear != '' && selectedQuarter != '' && contactNumber != '')) {
             e.preventDefault(); // Prevent form submission
-            $('#quarterValidationMsg').show(); // Show validation message
+            $('#FullTime_PartTime_Validation').removeClass('d-none'); // Show validation message
         }
     });
 
-    $('.myCheckboxClass').click(function () {
-        $('.myCheckboxClass').not(this).prop('checked', false);
-    });
+    
 
 </script>
 

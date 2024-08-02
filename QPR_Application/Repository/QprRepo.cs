@@ -90,28 +90,28 @@ namespace QPR_Application.Repository
             return refNum;
         }
 
-        public async Task<string> GetPreviousReferenceNumber(string UserId)
-        {
-            string refNum = "";
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(_connString))
-                {
-                    using (SqlCommand cmd = new SqlCommand("SP_GetPreviousQprId", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
+        //public async Task<string> GetPreviousReferenceNumber(string UserId)
+        //{
+        //    string refNum = "";
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(_connString))
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("SP_GetPreviousQprId", conn))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
 
-                        // Add parameters to the stored procedure
-                        cmd.Parameters.AddWithValue("@UserId", UserId);
-                        conn.Open();
-                        refNum = Convert.ToString(cmd.ExecuteScalar());
-                    }
-                }
-            }
-            catch (Exception ex) { }
-            return refNum;
-        }
-        public async Task<string> GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport)
+        //                // Add parameters to the stored procedure
+        //                cmd.Parameters.AddWithValue("@UserId", UserId);
+        //                conn.Open();
+        //                refNum = Convert.ToString(cmd.ExecuteScalar());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex) { }
+        //    return refNum;
+        //}
+        public string GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport)
         {
             string refNum = "";
             int qReport = Convert.ToInt32(qtrReport) - 1;
@@ -161,6 +161,30 @@ namespace QPR_Application.Repository
             try
             {
                 _dbContext.complaintsqrs.Update(complaint);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task CreateVigilanceInvestigation(viginvestigationqrs vigInv)
+        {
+            try
+            {
+                await _dbContext.viginvestigationqrs.AddAsync(vigInv);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task SaveVigilanceInvestigation(viginvestigationqrs vigInv)
+        {
+            try
+            {
+                _dbContext.viginvestigationqrs.Update(vigInv);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
