@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
+using QPR_Application.Models.ViewModels;
 using System;
 using System.Data;
 
@@ -185,6 +186,65 @@ namespace QPR_Application.Repository
             try
             {
                 _dbContext.viginvestigationqrs.Update(vigInv);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public async Task CreateProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel)
+        {
+            try
+            {
+                if (prosecViewModel.Prosecutionsanctionsqrs != null)
+                {
+                    await _dbContext.prosecutionsanctionsqrs.AddAsync(prosecViewModel.Prosecutionsanctionsqrs);
+                }
+
+                if (prosecViewModel.NewAgewisependency.qpr_id != null)
+                {
+                    await _dbContext.agewisependency.AddAsync(prosecViewModel.NewAgewisependency);
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SaveProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel)
+        {
+            try
+            {
+                if (prosecViewModel.Prosecutionsanctionsqrs != null)
+                {
+                    _dbContext.prosecutionsanctionsqrs.Update(prosecViewModel.Prosecutionsanctionsqrs);
+                }
+
+                if (prosecViewModel.NewAgewisependency.qpr_id != null && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnamedesig) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingstatusrequest) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnameauthority) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingcbifirno) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingsanctionpc) )
+                {
+                    await _dbContext.agewisependency.AddAsync(prosecViewModel.NewAgewisependency);
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task DeleteAgeWisePendency(int pend_id)
+        {
+            try
+            {
+                agewisependency ageWisePend = await _dbContext.agewisependency.FirstOrDefaultAsync(i => i.pend_id == pend_id);
+                _dbContext.agewisependency.Remove(ageWisePend);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)

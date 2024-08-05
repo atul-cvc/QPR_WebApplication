@@ -102,6 +102,8 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<prosecutionsanctionsqrs>().HasKey(p => p.prosecutionsanctions_id);
 
+            modelBuilder.Entity<agewisependency>().HasKey(a => a.pend_id);
+
             modelBuilder.Entity<viginvestigationqrs>().HasKey(v => v.viginvestigations_id);
 
             modelBuilder.Entity<cmptable>(entity =>

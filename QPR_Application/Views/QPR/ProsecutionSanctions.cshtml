@@ -11,7 +11,7 @@
 </div>
 <hr />
 
-<form asp-action="ProsecutionSanctions">
+<form asp-action="ProsecutionSanctions" id="mainEntityForm">
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
             3.1 (A) Details regarding requests for Prosecution sanctions received and disposed   <label>  &nbsp; <a asp-action="Instructions" target="_blank">See Instruction Before Filling</a></label>
@@ -62,64 +62,64 @@
                 </tr>
                 <tr>
                     <td align="left"> <b>Group C</b> </td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance" name="prosesanctgroupcopeningbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcreciveqtr" name="prosesanctgroupcreciveqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupctotal" name="prosesanctgroupctotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcsanctiongranted" name="prosesanctgroupcsanctiongranted" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcsanctionrefused" name="prosesanctgroupcsanctionrefused" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcbalancepending" name="prosesanctgroupcbalancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcgreaterthree" name="prosesanctgroupcgreaterthree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcthreetosix" name="prosesanctgroupcthreetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupclesssix" name="prosesanctgroupclesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcreciveqtr"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupctotal"  onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcsanctiongranted" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcsanctionrefused" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcbalancepending"  onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcgreaterthree"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupcthreetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupclesssix"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>Group B</b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance" name="prosesanctgroupbopeningbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbreciveqtr" name="prosesanctgroupbreciveqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbtotal" name="prosesanctgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbsanctiongranted" name="prosesanctgroupbsanctiongranted" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbsanctionrefused" name="prosesanctgroupbsanctionrefused" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbbalancepending" name="prosesanctgroupbbalancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbgreaterthree" name="prosesanctgroupbgreaterthree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbthreetosix" name="prosesanctgroupbthreetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupblesssix" name="prosesanctgroupblesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance"  onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbreciveqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbtotal"  onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbsanctiongranted" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbsanctionrefused"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbbalancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbgreaterthree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupbthreetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupblesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
 
                 <tr>
                     <td align="left"><b>Group A up to DS/Director level</b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance" name="prosesanctgroupaopeningbalance" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupareciveqtr" name="prosesanctgroupareciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupatotal" name="prosesanctgroupatotal" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupasanctiongranted" name="prosesanctgroupasanctiongranted" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupasanctionrefused" name="prosesanctgroupasanctionrefused" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupabalancepending" name="prosesanctgroupabalancepending" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupagreaterthree" name="prosesanctgroupagreaterthree" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupathreetosix" name="prosesanctgroupathreetosix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupalesssix" name="prosesanctgroupalesssix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupareciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupatotal" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupasanctiongranted"  onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupasanctionrefused" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupabalancepending" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupagreaterthree"  onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupathreetosix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupalesssix"  onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>Js and above</b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsopeningbalance" name="prosesanctjsopeningbalance" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsreciveqtr" name="prosesanctjsreciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjstotal" name="prosesanctjstotal" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjssanctiongranted" name="prosesanctjssanctiongranted" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjssanctionrefused" name="prosesanctjssanctionrefused" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsbalancepending" name="prosesanctjsbalancepending" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsgreaterthree" name="prosesanctjsgreaterthree" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsthreetosix" name="prosesanctjsthreetosix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjslesssix" name="prosesanctjslesssix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsopeningbalance"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsreciveqtr"   onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjstotal"   onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjssanctiongranted"  onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjssanctionrefused"  onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsbalancepending"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsgreaterthree"   onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsthreetosix"   onkeypress="return isnumberkey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjslesssix"   onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>Total</b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalopeningbalance" name="prosesancttotalopeningbalance" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalreciveqtr" name="prosesancttotalreciveqtr" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotal" name="prosesancttotal" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalsanctiongranted" name="prosesancttotalsanctiongranted" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalsanctionrefused" name="prosesancttotalsanctionrefused" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalbalancepending" name="prosesancttotalbalancepending" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalgreaterthree" name="prosesancttotalgreaterthree" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalthreetosix" name="prosesancttotalthreetosix" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
-                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotallesssix" name="prosesancttotallesssix" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalopeningbalance"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalreciveqtr"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotal"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalsanctiongranted"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalsanctionrefused" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalbalancepending"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalgreaterthree"   onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotalthreetosix"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Prosecutionsanctionsqrs.prosesancttotallesssix"  onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
                 </tr>
 
 
@@ -139,7 +139,7 @@
         </b>
     </div>
 
-    <div class="w-75 m-auto">
+    @* <div class="w-75 m-auto">
         <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
             <tbody>
                 <tr style="margin-top:10px;">
@@ -149,14 +149,14 @@
                     <td width="35%" align="left">
                         <span class="d-flex">
                             <input id="name_of_officer" onkeypress="return isNumberKey(event);" name="totalOfficer" style="float:left;width:25%" type="number" class="form-control" maxlength="3">
-                            <input type="button" class="add-row btn btn-outline-primary ms-1" value="Add" style="width: 10%">
+                            <input type="button" class="add-row-prosec btn btn-outline-primary ms-1" value="Add" style="width: 10%">
                         </span>
                         <input id="totRows" name="totRows" type="hidden" value="0">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <table id="officerNumber" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
+                        <table id="officerNumber-prosec" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
                             <thead>
                                 <tr class="text-center">
                                     <th style="width:1%"><b>S.No.</b></th>
@@ -192,8 +192,110 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> *@
 
+    <div class="w-75 m-auto">
+        <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <tbody>
+                <tr style="margin-top:10px;">
+                    <td width="15%" align="left" valign="middle">
+                        Age wise Pendency:
+                    </td>
+                    <td width="35%" align="left">
+                        <span class="d-flex">
+                            @* <input id="name_of_officer" onkeypress="return isNumberKey(event);" name="totalOfficer" style="float:left;width:25%" type="number" class="form-control" maxlength="3"> *@
+                            <input type="button" id="add-row-prosec" class=" btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
+                        </span>
+                        <input id="totRows" name="totRows" type="hidden" value="@Model.Agewisependency.Count">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <table id="officerNumber-prosec" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="width:1%"><b>S.No.</b></th>
+                                    <th style="width:15%"><b>CBI FIR No.</b></th>
+                                    <th style="width:15%"><b>Name &amp; Designation of officer</b></th>
+                                    <th style="width:13%"><b>Date of recommendation by Investigating Agency</b></th>
+                                    <th style="width:13%"><b>Date of receipt of recommendation/request</b></th>
+                                    <th style="width:14%"><b>Sanction sought under PC Act/IPC/other Laws</b></th>
+                                    <th style="width:14%"><b>Status of request/Reasons for pendency</b></th>
+                                    <th style="width:14%"><b>Name &amp; designation of authority with whom pending</b></th>
+                                    <th style="width:1%"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="prosec-container">
+                                @for (int i = 0; i < Model.Agewisependency.Count; i++)
+                                {
+                                    var item = Model.Agewisependency.ElementAt(i);
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.Agewisependency[i].prosependingcbifirno</span>
+                                            @* <input asp-for="Agewisependency[i].prosependingcbifirno" class="form-control"  /> *@
+                                        </td>
+                                        <td>
+                                            
+                                            <label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingnamedesig</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingdaterecommend</span>
+
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingdatereceipt</span></td>
+                                        <td><label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingsanctionpc</span>
+                                        </td>
+                                        <td><label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingstatusrequest</span></td>
+                                        <td><label class="control-label"></label>
+                                            <span>@Model.Agewisependency[@i].prosependingnameauthority</span></td>
+                                        <td><a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })" class="btn btn-outline-danger">Delete</a></td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newAgeWiseRow">
+                                    <td>@(Model.Agewisependency.Count + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingcbifirno' class='form-control'  type='text'  />
+                                        </td>
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingnamedesig' class='form-control'  type='text'  />
+                                        </td>
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingdaterecommend' class='form-control datepicker' type='date' />
+                                        </td>
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingdatereceipt' class='form-control datepicker' type='date' />
+                                        </td>
+
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingsanctionpc' class='form-control'  type='text'  />
+
+                                        </td>
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingstatusrequest' class='form-control'  type='text'  />
+
+                                        <td>
+                                            <input asp-for='NewAgewisependency.prosependingnameauthority' class='form-control'  type='text'  />
+                                        
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" />
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
@@ -229,7 +331,7 @@
                 <tr>
                     <td>
                         <b>
-                            <input asp-for="Prosecutionsanctionsqrs.prosevigiofficersuspension" class="form-control" />
+                            <input asp-for="Prosecutionsanctionsqrs.prosevigiofficersuspension" class="form-control" readonly />
                             <span asp-validation-for="Prosecutionsanctionsqrs.prosevigiofficersuspension" class="text-danger"></span>
                         </b>
                     </td>
@@ -241,7 +343,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="Prosecutionsanctionsqrs.prosevigitotal" class="form-control" />
+                            <input asp-for="Prosecutionsanctionsqrs.prosevigitotal" class="form-control" readonly/>
                             <span asp-validation-for="Prosecutionsanctionsqrs.prosevigitotal" class="text-danger"></span>
                         </b>
                     </td>
@@ -253,7 +355,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="Prosecutionsanctionsqrs.prosevigisuspensionendqtr" class="form-control" />
+                            <input asp-for="Prosecutionsanctionsqrs.prosevigisuspensionendqtr" class="form-control" readonly />
                             <span asp-validation-for="Prosecutionsanctionsqrs.prosevigisuspensionendqtr" class="text-danger"></span>
                         </b>
                     </td>
@@ -266,12 +368,12 @@
         <p><sup><span style="color: red;">*</span></sup> Include number of officers falling under CVC jurisdiction- Category A officers only.</p>
     </div>
 
-    <div class="w-25 m-auto">
+    @* <div class="w-25 m-auto">
         @if (ViewBag.ComplaintsMessage != null)
         {
             @ViewBag.ComplaintsMessage
         }
-    </div>
+    </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="VigilanceInvestigation">Back</a>
@@ -289,6 +391,16 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+    <script>
+        document.getElementById('add-row-prosec').addEventListener('click', function () {
+            debugger;
+            $('#newAgeWiseRow').removeClass('d-none');
+            $('#add-row-prosec').removeClass('btn-outline-primary');
+            $('#add-row-prosec').addClass('btn-outline-secondary');
+            $('#add-row-prosec').addClass('disabled');
+            
+        });
+    </script>
 
 <script>
     $(function () {
@@ -300,7 +412,7 @@
         performComTotal();
     });
 
-    $('#Prosecutionsanctionsqrs_Prosecutionsanctionsqrs_prosesanctjslesssix,#Prosecutionsanctionsqrs_prosesanctgroupalesssix,#Prosecutionsanctionsqrs_prosesanctgroupblesssix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix, #Prosecutionsanctionsqrs_prosesanctjsthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupathreetosix,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree, #Prosecutionsanctionsqrs_prosesanctgroupagreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending, #Prosecutionsanctionsqrs_prosesanctgroupcbalancepending,#Prosecutionsanctionsqrs_prosesanctjsbalancepending,#Prosecutionsanctionsqrs_prosesanctgroupabalancepending,#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused,#Prosecutionsanctionsqrs_prosesanctjssanctionrefused, #Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted,#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctjsreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').on('input', performComTotal);
+    $('#Prosecutionsanctionsqrs_prosevigisuspensionqtr, #Prosecutionsanctionsqrs_prosevigisuspensionordered, #Prosecutionsanctionsqrs_Prosecutionsanctionsqrs_prosesanctjslesssix,#Prosecutionsanctionsqrs_prosesanctgroupalesssix,#Prosecutionsanctionsqrs_prosesanctgroupblesssix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix, #Prosecutionsanctionsqrs_prosesanctjsthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupathreetosix,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree, #Prosecutionsanctionsqrs_prosesanctgroupagreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending, #Prosecutionsanctionsqrs_prosesanctgroupcbalancepending,#Prosecutionsanctionsqrs_prosesanctjsbalancepending,#Prosecutionsanctionsqrs_prosesanctgroupabalancepending,#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused,#Prosecutionsanctionsqrs_prosesanctjssanctionrefused, #Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted,#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctjsreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').on('input', performComTotal);
 
 
     function performComTotal() {
@@ -330,5 +442,74 @@
         $('#Prosecutionsanctionsqrs_prosesancttotalthreetosix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupathreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix').val()) || 0));
         $('#Prosecutionsanctionsqrs_prosesancttotallesssix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjslesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupalesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupblesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupclesssix').val()) || 0));
 
+        $('#Prosecutionsanctionsqrs_prosevigitotal').val(  (parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionordered').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosevigiofficersuspension').val()) || 0) );
+        
+        $('#Prosecutionsanctionsqrs_prosevigisuspensionendqtr').val(  (parseFloat($('#Prosecutionsanctionsqrs_prosevigitotal').val()) || 0) - (parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionqtr').val()) || 0) );
     }
+
+    @* function mySave(e) {
+        debugger;
+        var formData = new FormData(document.getElementById('mainEntityForm'));
+        
+
+
+        return false;
+    } *@
 </script>
+
+<script>
+    @* var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
+    $("#name_of_officer").val(morethanthree);
+
+    $(".add-row-prosec").click(function () {
+        alert('add-row-prosec clicked');
+        var name_of_officer = $("#name_of_officer").val();
+        if (name_of_officer)
+            var totRows = parseInt($("#totRows").val());
+        var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
+        $("#name_of_officer").val(morethanthree);
+        //debugger;
+        if (totRows == 0) {
+            $("#totRows").val(name_of_officer);
+        }
+        else if (totRows < name_of_officer) {
+            $("#totRows").val(name_of_officer);
+            name_of_officer = parseInt(name_of_officer) - parseInt(totRows)
+        } else {
+            alert("Total number of officer can not be less than already selected number of officers");
+            return;
+        }
+
+        cntCall++;
+        var markup = "";
+        for (var i = 0; i < parseInt(name_of_officer); i++) {
+
+            td>@item.prosependingcbifirno</td>
+                < td > @item.prosependingnamedesig</td>
+                < td > @item.prosependingdaterecommend</td>
+                < td > @item.prosependingdatereceipt</td>
+                < td > @item.prosependingsanctionpc</td>
+                < td > @item.prosependingstatusrequest</td>
+                < td > @item.prosependingnameauthority</td> 
+
+            markup = "<tr class='text-center'><td style='width:1%'>" + (cnt++) + "</td>";
+            markup = markup + "<td style='width:15%'><b><input asp-for='Agewisependency.prosependingcbifirno' path='' class='form-control'  type='text' name='ageWisePendingDto[" + i + "].prosePendingCBIFIRNo' /></b></td>";
+            markup = markup + "<td style='width:15%'><b><input asp-for='Agewisependency.prosependingnamedesig' path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingNameDesig' /></b></td>";
+            markup = markup + "<td style='width:13%'><b><input asp-for='Agewisependency.prosependingdaterecommend' path='' class='form-control datepicker' type='date' name='ageWisePendingDto[" + i + "].prosePendingDateRecommend' /></b></td>";
+            markup = markup + "<td style='width:13%'><b><input asp-for='Agewisependency.prosependingdatereceipt' path='' class='form-control datepicker'  type='date' name='ageWisePendingDto[" + i + "].prosePendingDateReceipt' /></b></td>";
+            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingsanctionpc' path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingSanctionPC' /></b></td>";
+            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingstatusrequest' path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingStatusRequest' /></b></td>";
+            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingnameauthority' path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingNameAuthority' /></b></td>";
+    //markup = markup + "<td style='width:1%'>" + "<input type='hidden' name='ageWisePendingDto[" + i + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunction(this,0);' class='delete-row'><button class='btn btn-outline-danger'>Delete</button><button class='btn btn-outline-success' onclick='return mySave()'>Save</button></td></tr>";
+                markup = markup + "<td style='width:1%'>" + "<button class='btn btn-outline-danger delete-row' onclick='return removeDisplayFunction(this,0);' >Delete</button><button class='btn btn-outline-success' onclick='return mySave(this)'>Save</button></td></tr>";
+
+            $("#officerNumber-prosec tbody").append(markup);
+
+
+        }
+        resetSerialNumber();
+    }); *@
+
+    
+</script>
+

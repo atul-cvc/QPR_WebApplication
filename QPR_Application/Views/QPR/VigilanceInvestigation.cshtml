@@ -1128,13 +1128,22 @@
 
 <script>
     $(function () {
-        // debugger;
-        // $('#comcvcreceived, #comcvcopening').on('input', performComTotal);
-        // alert('hi');
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
-            alert(complaintsMessage);
-            pageReloadWithoutQueryString();
+            Swal.fire({
+                text: complaintsMessage,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Call your function here
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                    console.log('Action canceled.');
+                }
+            });
+            // pageReloadWithoutQueryString();
         }
         performComTotal();
     });

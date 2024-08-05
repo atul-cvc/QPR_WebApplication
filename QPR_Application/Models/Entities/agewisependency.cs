@@ -11,7 +11,8 @@ namespace QPR_Application.Models.Entities
     [Keyless]
     public partial class agewisependency
     {
-        public int? pend_id { get; set; }
+        [Key]
+        public int pend_id { get; set; }
         public long? qpr_id { get; set; }
         public string prosependingnamedesig { get; set; }
         public DateOnly prosependingdaterecommend { get; set; }
@@ -27,8 +28,8 @@ namespace QPR_Application.Models.Entities
             pend_id = 0;
             qpr_id = 0;
             prosependingnamedesig = String.Empty;
-            prosependingdaterecommend = new DateOnly();
-            prosependingdatereceipt = new DateOnly();
+            prosependingdaterecommend = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            prosependingdatereceipt = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             prosependingstatusrequest = String.Empty;
             prosependingnameauthority = String.Empty;
             used_ip = String.Empty;

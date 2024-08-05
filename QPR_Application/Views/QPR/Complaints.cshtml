@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-    /*   table td {
-                                padding: 0.25em !important;
-                                vertical-align: middle !important;
-                            } */
+    /*  table td {
+            padding: 0.25em !important;
+            vertical-align: middle !important;
+        } */
 </style>
 
 
@@ -1117,11 +1117,29 @@
         // alert('hi');
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
-            alert(complaintsMessage);
-            pageReloadWithoutQueryString();
+            // alert(complaintsMessage);
+            Swal.fire({
+                // title: 'Hello!',
+                text: complaintsMessage,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Call your function here
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                    console.log('Action canceled.');
+                }
+            });
+            // pageReloadWithoutQueryString();
+
         }
+        
         performComTotal();
     });
+
+
 
     $(' #scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
 
@@ -1220,28 +1238,10 @@
 
         $('#scrutinyreportcompleteinvestigationtotal').val((parseFloat($('#scrutinyreportcompleteinvestigationothers').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationstatutory').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationinternal').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigationconcurrent').val()) || 0) + (parseFloat($('#scrutinyreportcompleteinvestigation').val()) || 0));
 
-
-
-
-
         $('#scrutinyreportpendinginvestigationtotal').val((parseFloat($('#scrutinyreportbfpreviousyeartotal').val()) || 0) + ((parseFloat($('#scrutinyreportidentifiedexamitotal').val()) || 0)) - ((parseFloat($('#scrutinyreportcompleteinvestigationtotal').val()) || 0)));
 
-
-
-
-
-
-
-
     }
-
-    // Bind the calculateTotal function to the input fields' change events
-    //}
 
 
 
 </script>
-
-@{
-    ViewBag.ComplaintsMessage = "";
-}

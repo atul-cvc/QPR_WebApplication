@@ -2,6 +2,7 @@
 using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
+using QPR_Application.Models.ViewModels;
 
 namespace QPR_Application.Repository
 {
@@ -17,6 +18,9 @@ namespace QPR_Application.Repository
         public Task SaveComplaints(complaintsqrs complaint);
         public Task CreateVigilanceInvestigation(viginvestigationqrs vigInv);
         public Task SaveVigilanceInvestigation(viginvestigationqrs vigInv);
+        public Task CreateProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel);
+        public Task SaveProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel);
+        public Task DeleteAgeWisePendency(int pend_id);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

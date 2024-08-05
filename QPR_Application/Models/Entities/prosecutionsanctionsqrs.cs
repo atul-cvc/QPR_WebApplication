@@ -64,6 +64,8 @@ namespace QPR_Application.Models.Entities
         public int prosevigitotal { get; set; }
         public int prosevigisuspensionqtr { get; set; }
         public int prosevigisuspensionendqtr { get; set; }
+
+        [NotMapped]
         public string create_date { get; set; }
         public string user_id { get; set; }
         public string update_date { get; set; }

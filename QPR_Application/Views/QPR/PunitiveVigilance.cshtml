@@ -642,3 +642,23 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+    
+    $(function () {
+        Swal.fire({
+            // title: 'Hello!',
+            text: complaintsMessage,
+            icon: 'success',
+            confirmButtonText: 'Okay'
+        }).then((result) => {
+                if (result.isConfirmed) {
+                    // Call your function here
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                    console.log('Action canceled.');
+                }
+            });
+    });
+</script>

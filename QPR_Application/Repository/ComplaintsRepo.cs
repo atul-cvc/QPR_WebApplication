@@ -29,11 +29,11 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
-        public async Task<ProsecutionSanctionsViewModel?> GetProsecutionSanctionsData(string refNum)        
+        public async Task<ProsecutionSanctionsViewModel?> GetProsecutionSanctionsViewData(string refNum)        
         {
             try
             {
-                prosecutionsanctionsqrs? prsSec = await _dbContext.prosecutionsanctionsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
+                prosecutionsanctionsqrs prsSec = await GetProsecutionSanctionsData(refNum);
                 List<agewisependency> ageWise = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
                 
                 ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
@@ -42,6 +42,15 @@ namespace QPR_Application.Repository
 
                 return proSecViewModel;
                 //return await _dbContext.prosecutionsanctionsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
+            }
+            catch (Exception ex) { }
+            return null;
+        }
+        public async Task<prosecutionsanctionsqrs?> GetProsecutionSanctionsData(string refNum)
+        {
+            try
+            {
+                return await _dbContext.prosecutionsanctionsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
             }
             catch (Exception ex) { }
             return null;

@@ -6,6 +6,7 @@ namespace QPR_Application.Models.ViewModels
     {
         public prosecutionsanctionsqrs Prosecutionsanctionsqrs { get; set; }
         public List<agewisependency> Agewisependency { get; set; }
+        public agewisependency NewAgewisependency { get; set; }
 
         //public ProsecutionSanctionsViewModel(prosecutionsanctionsqrs prosSec)
         //{
