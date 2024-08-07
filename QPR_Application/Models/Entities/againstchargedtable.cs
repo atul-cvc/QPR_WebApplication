@@ -11,18 +11,21 @@ namespace QPR_Application.Models.Entities
     [Keyless]
     public partial class againstchargedtable
     {
-        [StringLength(200)]
+        [Key]
+        public int pend_id { get; set; }
+        
+        [StringLength(2000)]
         public string departproceedings_detailsinquiry_chargedofficer { get; set; }
-        [StringLength(50)]
-        public string departproceedings_detailsinquiry_chargesheet { get; set; }
-        [StringLength(50)]
-        public string departproceedings_detailsinquiry_ioappointment { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime? departproceedings_detailsinquiry_superannuation { get; set; }
+        
+        public DateOnly departproceedings_detailsinquiry_chargesheet { get; set; }
+        
+        public DateOnly departproceedings_detailsinquiry_ioappointment { get; set; }
+
+        public DateOnly departproceedings_detailsinquiry_superannuation { get; set; }
         public string departproceedings_detailsinquiry_remarks { get; set; }
+
         [StringLength(50)]
         public string used_ip { get; set; }
-        public short? pend_id { get; set; }
-        public short? qpr_id { get; set; }
+        public long qpr_id { get; set; }
     }
 }

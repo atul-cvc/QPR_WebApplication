@@ -33,12 +33,12 @@ namespace QPR_Application.Repository
         {
             try
             {
-                prosecutionsanctionsqrs prsSec = await GetProsecutionSanctionsData(refNum);
-                List<agewisependency> ageWise = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
+                //prosecutionsanctionsqrs prsSec = ;
+                //List<agewisependency> ageWise = 
                 
                 ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
-                proSecViewModel.Prosecutionsanctionsqrs = prsSec;
-                proSecViewModel.Agewisependency = ageWise;
+                proSecViewModel.Prosecutionsanctionsqrs = await GetProsecutionSanctionsData(refNum);
+                proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
 
                 return proSecViewModel;
                 //return await _dbContext.prosecutionsanctionsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
@@ -55,11 +55,23 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
+        public async Task<DepartmentalProceedingsViewModel> GetDepartmentalProceedingsViewModelData(string refNum)
+        {
+            try
+            {
+                DepartmentalProceedingsViewModel deptViewModel = new DepartmentalProceedingsViewModel();
+                deptViewModel.Departmentalproceedingsqrs = await _dbContext.departmentalproceedingsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                deptViewModel.AgainstChargedTables = await _dbContext.againstchargedtable.Where(a => a.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                return deptViewModel;
+            }
+            catch (Exception ex) { }
+            return null;
+        }
         public async Task<departmentalproceedingsqrs?> GetDepartmentalProceedingsData(string refNum)
         {
             try
             {
-                return await _dbContext.departmentalproceedingsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                return await _dbContext.departmentalproceedingsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
             }
             catch (Exception ex) { }
             return null;
@@ -68,7 +80,7 @@ namespace QPR_Application.Repository
         {
             try
             {
-                return await _dbContext.adviceofcvcqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                return await _dbContext.adviceofcvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
             }
             catch (Exception ex) { }
             return null;

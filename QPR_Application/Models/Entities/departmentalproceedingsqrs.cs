@@ -8,65 +8,65 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class departmentalproceedingsqrs
     {
-        public int? departproceedings_id { get; set; }
-        public int? departproceedingsmajor_cvc_lastqtr { get; set; }
-        public int? departproceedingsmajor_cvc_inquiries { get; set; }
-        public int? departproceedingsmajor_cvc_total { get; set; }
-        public int? departproceedingsmajor_cvc_reportsio { get; set; }
-        public int? departproceedingsmajor_cvc_enquiries { get; set; }
-        public int? departproceedingsmajor_cvc_greatersix { get; set; }
-        public int? departproceedingsmajor_cvc_sixtotwelve { get; set; }
-        public int? departproceedingsmajor_cvc_twelvetoeighteen { get; set; }
-        public int? departproceedingsmajor_cvc_lesseighteen { get; set; }
-        public int? departproceedingsmajor_other_lastqtr { get; set; }
-        public int? departproceedingsmajor_other_inquiries { get; set; }
-        public int? departproceedingsmajor_other_total { get; set; }
-        public int? departproceedingsmajor_other_reportsio { get; set; }
-        public int? departproceedingsmajor_other_enquiries { get; set; }
-        public int? departproceedingsmajor_other_greatersix { get; set; }
-        public int? departproceedingsmajor_other_sixtotwelve { get; set; }
-        public int? departproceedingsmajor_other_twelvetoeighteen { get; set; }
-        public int? departproceedingsmajor_other_lesseighteen { get; set; }
-        public int? departproceedingsmajor_total_lastqtr { get; set; }
-        public int? departproceedingsmajor_total_inquiries { get; set; }
-        public int? departproceedingsmajor_total_total { get; set; }
-        public int? departproceedingsmajor_total_reportsio { get; set; }
-        public int? departproceedingsmajor_total_enquiries { get; set; }
-        public int? departproceedingsmajor_total_greatersix { get; set; }
-        public int? departproceedingsmajor_total_sixtotwelve { get; set; }
-        public int? departproceedingsmajor_total_twelvetoeighteen { get; set; }
-        public int? departproceedingsmajor_total_lesseighteen { get; set; }
-        public int? departproceedings_minor_cvc_lastqtr { get; set; }
-        public int? departproceedings_minor_cvc_inquiries { get; set; }
-        public int? departproceedings_minor_cvc_total { get; set; }
-        public int? departproceedings_minor_cvc_reportsio { get; set; }
-        public int? departproceedings_minor_cvc_enquiries { get; set; }
-        public int? departproceedings_minor_cvc_greatersix { get; set; }
-        public int? departproceedings_minor_cvc_sixtotwelve { get; set; }
-        public int? departproceedings_minor_cvc_twelvetoeighteen { get; set; }
-        public int? departproceedings_minor_cvc_lesseighteen { get; set; }
-        public int? departproceedings_minor_other_lastqtr { get; set; }
-        public int? departproceedings_minor_other_inquiries { get; set; }
-        public int? departproceedings_minor_other_total { get; set; }
-        public int? departproceedings_minor_other_reportsio { get; set; }
-        public int? departproceedings_minor_other_enquiries { get; set; }
-        public int? departproceedings_minor_other_greatersix { get; set; }
-        public int? departproceedings_minor_other_sixtotwelve { get; set; }
-        public int? departproceedings_minor_other_twelvetoeighteen { get; set; }
-        public int? departproceedings_minor_other_lesseighteen { get; set; }
-        public int? departproceedings_minor_total_lastqtr { get; set; }
-        public int? departproceedings_minor_total_inquiries { get; set; }
-        public int? departproceedings_minor_total { get; set; }
-        public int? departproceedings_minor_total_reportsio { get; set; }
-        public int? departproceedings_minor_total_enquiries { get; set; }
-        public int? departproceedings_minor_total_greatersix { get; set; }
-        public int? departproceedings_minor_total_sixtotwelve { get; set; }
-        public int? departproceedings_minor_total_twelvetoeighteen { get; set; }
-        public int? departproceedings_minor_total_lesseighteen { get; set; }
-        public int? departproceedings_detailsinquiry_serialnumber { get; set; }
+        [Key]
+        public int departproceedings_id { get; set; }
+        public int departproceedingsmajor_cvc_lastqtr { get; set; }
+        public int departproceedingsmajor_cvc_inquiries { get; set; }
+        public int departproceedingsmajor_cvc_total { get; set; }
+        public int departproceedingsmajor_cvc_reportsio { get; set; }
+        public int departproceedingsmajor_cvc_enquiries { get; set; }
+        public int departproceedingsmajor_cvc_greatersix { get; set; }
+        public int departproceedingsmajor_cvc_sixtotwelve { get; set; }
+        public int departproceedingsmajor_cvc_twelvetoeighteen { get; set; }
+        public int departproceedingsmajor_cvc_lesseighteen { get; set; }
+        public int departproceedingsmajor_other_lastqtr { get; set; }
+        public int departproceedingsmajor_other_inquiries { get; set; }
+        public int departproceedingsmajor_other_total { get; set; }
+        public int departproceedingsmajor_other_reportsio { get; set; }
+        public int departproceedingsmajor_other_enquiries { get; set; }
+        public int departproceedingsmajor_other_greatersix { get; set; }
+        public int departproceedingsmajor_other_sixtotwelve { get; set; }
+        public int departproceedingsmajor_other_twelvetoeighteen { get; set; }
+        public int departproceedingsmajor_other_lesseighteen { get; set; }
+        public int departproceedingsmajor_total_lastqtr { get; set; }
+        public int departproceedingsmajor_total_inquiries { get; set; }
+        public int departproceedingsmajor_total_total { get; set; }
+        public int departproceedingsmajor_total_reportsio { get; set; }
+        public int departproceedingsmajor_total_enquiries { get; set; }
+        public int departproceedingsmajor_total_greatersix { get; set; }
+        public int departproceedingsmajor_total_sixtotwelve { get; set; }
+        public int departproceedingsmajor_total_twelvetoeighteen { get; set; }
+        public int departproceedingsmajor_total_lesseighteen { get; set; }
+        public int departproceedings_minor_cvc_lastqtr { get; set; }
+        public int departproceedings_minor_cvc_inquiries { get; set; }
+        public int departproceedings_minor_cvc_total { get; set; }
+        public int departproceedings_minor_cvc_reportsio { get; set; }
+        public int departproceedings_minor_cvc_enquiries { get; set; }
+        public int departproceedings_minor_cvc_greatersix { get; set; }
+        public int departproceedings_minor_cvc_sixtotwelve { get; set; }
+        public int departproceedings_minor_cvc_twelvetoeighteen { get; set; }
+        public int departproceedings_minor_cvc_lesseighteen { get; set; }
+        public int departproceedings_minor_other_lastqtr { get; set; }
+        public int departproceedings_minor_other_inquiries { get; set; }
+        public int departproceedings_minor_other_total { get; set; }
+        public int departproceedings_minor_other_reportsio { get; set; }
+        public int departproceedings_minor_other_enquiries { get; set; }
+        public int departproceedings_minor_other_greatersix { get; set; }
+        public int departproceedings_minor_other_sixtotwelve { get; set; }
+        public int departproceedings_minor_other_twelvetoeighteen { get; set; }
+        public int departproceedings_minor_other_lesseighteen { get; set; }
+        public int departproceedings_minor_total_lastqtr { get; set; }
+        public int departproceedings_minor_total_inquiries { get; set; }
+        public int departproceedings_minor_total { get; set; }
+        public int departproceedings_minor_total_reportsio { get; set; }
+        public int departproceedings_minor_total_enquiries { get; set; }
+        public int departproceedings_minor_total_greatersix { get; set; }
+        public int departproceedings_minor_total_sixtotwelve { get; set; }
+        public int departproceedings_minor_total_twelvetoeighteen { get; set; }
+        public int departproceedings_minor_total_lesseighteen { get; set; }
+        public int departproceedings_detailsinquiry_serialnumber { get; set; }
         [StringLength(2000)]
         public string departproceedings_detailsinquiry_chargedofficer { get; set; }
         [StringLength(2000)]
@@ -77,6 +77,8 @@ namespace QPR_Application.Models.Entities
         public string departproceedings_detailsinquiry_superannuation { get; set; }
         [StringLength(2000)]
         public string departproceedings_detailsinquiry_remarks { get; set; }
+        
+        [NotMapped]
         [StringLength(2000)]
         public string create_date { get; set; }
         [StringLength(2000)]
@@ -85,8 +87,83 @@ namespace QPR_Application.Models.Entities
         public string update_date { get; set; }
         [StringLength(2000)]
         public string last_user_id { get; set; }
-        public int? qpr_id { get; set; }
-        [StringLength(2000)]
+        public long qpr_id { get; set; }
+        [StringLength(50)]
         public string ip { get; set; }
+
+        // Constructor to initialize all int properties to zero
+        public departmentalproceedingsqrs()
+        {
+            departproceedings_id = 0;
+            departproceedingsmajor_cvc_lastqtr = 0;
+            departproceedingsmajor_cvc_inquiries = 0;
+            departproceedingsmajor_cvc_total = 0;
+            departproceedingsmajor_cvc_reportsio = 0;
+            departproceedingsmajor_cvc_enquiries = 0;
+            departproceedingsmajor_cvc_greatersix = 0;
+            departproceedingsmajor_cvc_sixtotwelve = 0;
+            departproceedingsmajor_cvc_twelvetoeighteen = 0;
+            departproceedingsmajor_cvc_lesseighteen = 0;
+            departproceedingsmajor_other_lastqtr = 0;
+            departproceedingsmajor_other_inquiries = 0;
+            departproceedingsmajor_other_total = 0;
+            departproceedingsmajor_other_reportsio = 0;
+            departproceedingsmajor_other_enquiries = 0;
+            departproceedingsmajor_other_greatersix = 0;
+            departproceedingsmajor_other_sixtotwelve = 0;
+            departproceedingsmajor_other_twelvetoeighteen = 0;
+            departproceedingsmajor_other_lesseighteen = 0;
+            departproceedingsmajor_total_lastqtr = 0;
+            departproceedingsmajor_total_inquiries = 0;
+            departproceedingsmajor_total_total = 0;
+            departproceedingsmajor_total_reportsio = 0;
+            departproceedingsmajor_total_enquiries = 0;
+            departproceedingsmajor_total_greatersix = 0;
+            departproceedingsmajor_total_sixtotwelve = 0;
+            departproceedingsmajor_total_twelvetoeighteen = 0;
+            departproceedingsmajor_total_lesseighteen = 0;
+            departproceedings_minor_cvc_lastqtr = 0;
+            departproceedings_minor_cvc_inquiries = 0;
+            departproceedings_minor_cvc_total = 0;
+            departproceedings_minor_cvc_reportsio = 0;
+            departproceedings_minor_cvc_enquiries = 0;
+            departproceedings_minor_cvc_greatersix = 0;
+            departproceedings_minor_cvc_sixtotwelve = 0;
+            departproceedings_minor_cvc_twelvetoeighteen = 0;
+            departproceedings_minor_cvc_lesseighteen = 0;
+            departproceedings_minor_other_lastqtr = 0;
+            departproceedings_minor_other_inquiries = 0;
+            departproceedings_minor_other_total = 0;
+            departproceedings_minor_other_reportsio = 0;
+            departproceedings_minor_other_enquiries = 0;
+            departproceedings_minor_other_greatersix = 0;
+            departproceedings_minor_other_sixtotwelve = 0;
+            departproceedings_minor_other_twelvetoeighteen = 0;
+            departproceedings_minor_other_lesseighteen = 0;
+            departproceedings_minor_total_lastqtr = 0;
+            departproceedings_minor_total_inquiries = 0;
+            departproceedings_minor_total = 0;
+            departproceedings_minor_total_reportsio = 0;
+            departproceedings_minor_total_enquiries = 0;
+            departproceedings_minor_total_greatersix = 0;
+            departproceedings_minor_total_sixtotwelve = 0;
+            departproceedings_minor_total_twelvetoeighteen = 0;
+            departproceedings_minor_total_lesseighteen = 0;
+            departproceedings_detailsinquiry_serialnumber = 0;
+            // For string properties, initialize them to null or empty as needed
+            departproceedings_detailsinquiry_chargedofficer = string.Empty;
+            departproceedings_detailsinquiry_chargesheet = string.Empty;
+            departproceedings_detailsinquiry_ioappointment = string.Empty;
+            departproceedings_detailsinquiry_superannuation = string.Empty;
+            departproceedings_detailsinquiry_remarks = string.Empty;
+            create_date = string.Empty;
+            user_id = string.Empty;
+            update_date = string.Empty;
+            last_user_id = string.Empty;
+            qpr_id = 0;
+            ip = string.Empty;
+        }
+
     }
+
 }

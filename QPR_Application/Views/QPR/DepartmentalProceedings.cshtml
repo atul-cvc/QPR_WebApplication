@@ -1,4 +1,5 @@
-﻿@model QPR_Application.Models.Entities.departmentalproceedingsqrs
+﻿@* @model QPR_Application.Models.Entities.departmentalproceedingsqrs; *@
+@model QPR_Application.Models.ViewModels.DepartmentalProceedingsViewModel;
 
 @{
     ViewData["Title"] = "DepartmentalProceedings";
@@ -9,7 +10,7 @@
     <h3>Departmental Proceedings</h3>
 </div>
 <hr />
-<form asp-action="DepartmentalProceedings">
+<form asp-action="DepartmentalProceedings" id="DepartmentalProceedingsQPRForm">
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
             4.Departmental Inquiries (Nos)
@@ -64,39 +65,39 @@
                 </tr>
                 <tr>
                     <td align="left"> <b>&nbsp;&nbsp;Cases under CVC &nbsp;&nbsp;Jurisdiction</b> </td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_lastqtr" name="departproceedingsmajor_cvc_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_inquiries" name="departproceedingsmajor_cvc_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_total" name="departproceedingsmajor_cvc_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_reportsio" name="departproceedingsmajor_cvc_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_enquiries" name="departproceedingsmajor_cvc_enquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_greatersix" name="departproceedingsmajor_cvc_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_sixtotwelve" name="departproceedingsmajor_cvc_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_twelvetoeighteen" name="departproceedingsmajor_cvc_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_cvc_lesseighteen" name="departproceedingsmajor_cvc_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_cvc_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Other (non-CVC &nbsp;&nbsp;cases)</b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_lastqtr" name="departproceedingsmajor_other_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_inquiries" name="departproceedingsmajor_other_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_total" name="departproceedingsmajor_other_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_reportsio" name="departproceedingsmajor_other_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_enquiries" name="departproceedingsmajor_other_enquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_greatersix" name="departproceedingsmajor_other_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_sixtotwelve" name="departproceedingsmajor_other_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_twelvetoeighteen" name="departproceedingsmajor_other_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_other_lesseighteen" name="departproceedingsmajor_other_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_other_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Total</b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_lastqtr" name="departproceedingsmajor_total_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_inquiries" name="departproceedingsmajor_total_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_total" name="departproceedingsmajor_total_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_reportsio" name="departproceedingsmajor_total_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_enquiries" name="departproceedingsmajor_total_enquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_greatersix" name="departproceedingsmajor_total_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_sixtotwelve" name="departproceedingsmajor_total_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_twelvetoeighteen" name="departproceedingsmajor_total_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedingsmajor_total_lesseighteen" name="departproceedingsmajor_total_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_inquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_reportsio" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_greatersix" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedingsmajor_total_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
             </tbody>
         </table>
@@ -142,7 +143,7 @@
                         &gt;18 months
                     </th>
                 </tr>
-                <tr class="text-center tr-grey" >
+                <tr class="text-center tr-grey">
                     <td>&nbsp;<b>(1)</b></td>
                     <td>&nbsp;<b>(2)</b></td>
                     <td>&nbsp;<b>(3)</b></td>
@@ -156,39 +157,39 @@
                 </tr>
                 <tr>
                     <td align="left"> <b>&nbsp;&nbsp;Cases under CVC &nbsp;&nbsp;Jurisdiction</b> </td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_lastqtr" name="departproceedings_minor_cvc_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_inquiries" name="departproceedings_minor_cvc_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_total" name="departproceedings_minor_cvc_total" onkeypress="return isNumberKey(event);" class="form-control" ></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_reportsio" name="departproceedings_minor_cvc_reportsio" onkeypress="return isNumberKey(event);" class="form-control" ></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_enquiries" name="departproceedings_minor_cvc_enquiries" onkeypress="return isNumberKey(event);" class="form-control" ></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_greatersix" name="departproceedings_minor_cvc_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_sixtotwelve" name="departproceedings_minor_cvc_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_twelvetoeighteen" name="departproceedings_minor_cvc_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_cvc_lesseighteen" name="departproceedings_minor_cvc_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_cvc_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Other (non-CVC &nbsp;&nbsp;cases)</b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_lastqtr" name="departproceedings_minor_other_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_inquiries" name="departproceedings_minor_other_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_total" name="departproceedings_minor_other_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_reportsio" name="departproceedings_minor_other_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_enquiries" name="departproceedings_minor_other_enquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_greatersix" name="departproceedings_minor_other_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_sixtotwelve" name="departproceedings_minor_other_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_twelvetoeighteen" name="departproceedings_minor_other_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_other_lesseighteen" name="departproceedings_minor_other_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_other_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Total</b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_lastqtr" name="departproceedings_minor_total_lastqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_inquiries" name="departproceedings_minor_total_inquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total" name="departproceedings_minor_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_reportsio" name="departproceedings_minor_total_reportsio" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_enquiries" name="departproceedings_minor_total_enquiries" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_greatersix" name="departproceedings_minor_total_greatersix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_sixtotwelve" name="departproceedings_minor_total_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_twelvetoeighteen" name="departproceedings_minor_total_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="departproceedings_minor_total_lesseighteen" name="departproceedings_minor_total_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_lastqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_inquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_reportsio" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_enquiries" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_greatersix" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_twelvetoeighteen" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="Departmentalproceedingsqrs.departproceedings_minor_total_lesseighteen" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
             </tbody>
         </table>
@@ -213,10 +214,10 @@
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input id="name_of_officer" onkeypress="return isNumberKey(event);" name="totalOfficer" style="float:left;width:25%" type="number" class="form-control" maxlength="3">
-                            <input type="button" class="add-row-dept-proc btn btn-outline-primary ms-1" value="Add" style="width: 10%">
+                            @* <input id="name_of_officer" onkeypress="return isNumberKey(event);"  style="float:left;width:25%" type="number" class="form-control" maxlength="3"> *@
+                            <input type="button" id="add-row-dept-proc" class="btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
                         </span>
-                        <input id="totRows" name="totRows" type="hidden" value="0">
+                        <input id="totRows" type="hidden" value="@Model.AgainstChargedTables.Count">
                     </td>
                 </tr>
                 <tr>
@@ -234,6 +235,63 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for (int i = 0; i < Model.AgainstChargedTables.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AgainstChargedTables[i].departproceedings_detailsinquiry_chargedofficer</span>
+                                            @* <input asp-for="Agewisependency[i].prosependingcbifirno" class="form-control"  /> *@
+                                        </td>
+                                        <td>
+
+                                            <label class="control-label"></label>
+                                            <span>@Model.AgainstChargedTables[@i].departproceedings_detailsinquiry_chargesheet</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AgainstChargedTables[@i].departproceedings_detailsinquiry_ioappointment</span>
+
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AgainstChargedTables[@i].departproceedings_detailsinquiry_superannuation</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AgainstChargedTables[@i].departproceedings_detailsinquiry_remarks</span>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("DeleteAgainstChargedOfficers", new { pend_id = @Model.AgainstChargedTables[@i].pend_id })" class="btn btn-outline-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newRow">
+                                    <td>@(Model.AgainstChargedTables.Count + 1)</td>
+                                    <td>
+                                        <input asp-for='NewAgainstChargedTable.departproceedings_detailsinquiry_chargedofficer' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAgainstChargedTable.departproceedings_detailsinquiry_chargesheet' class='form-control datepicker' type='date' />
+                                    </td>
+
+                                    <td>
+                                        <input asp-for='NewAgainstChargedTable.departproceedings_detailsinquiry_ioappointment' class='form-control datepicker' type='date' />
+
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAgainstChargedTable.departproceedings_detailsinquiry_superannuation' class='form-control datepicker' type='date' />
+
+                                    <td>
+                                        <input asp-for='NewAgainstChargedTable.departproceedings_detailsinquiry_remarks' class='form-control' type='text' />
+
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
@@ -242,369 +300,98 @@
         </table>
     </div>
 
-    <div class="w-25 m-auto">
-        @if (ViewBag.ComplaintsMessage != null)
-        {
-            @ViewBag.ComplaintsMessage
-        }
-    </div>
-
+    @* <div class="w-25 m-auto">
+    @if (ViewBag.ComplaintsMessage != null)
+    {
+    @ViewBag.ComplaintsMessage
+    }
+    </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="ProsecutionSanctions">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('DepartmentalProceedingsQPRForm')" />
     </div>
 
 </form>
-@* 
-<div>
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="departproceedings_id" class="control-label"></label>
-        <input asp-for="departproceedings_id" class="form-control" />
-        <span asp-validation-for="departproceedings_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_inquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_total" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_total" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_reportsio" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_enquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_greatersix" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_cvc_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_cvc_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_cvc_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_inquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_total" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_total" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_reportsio" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_enquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_greatersix" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_other_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_other_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_other_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_inquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_total" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_total" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_reportsio" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_enquiries" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_greatersix" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedingsmajor_total_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedingsmajor_total_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedingsmajor_total_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_inquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_total" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_total" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_reportsio" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_enquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_greatersix" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_cvc_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_cvc_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_cvc_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_inquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_total" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_total" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_reportsio" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_enquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_greatersix" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_other_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_other_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_other_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_lastqtr" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_lastqtr" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_lastqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_inquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_inquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_inquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_reportsio" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_reportsio" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_reportsio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_enquiries" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_enquiries" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_enquiries" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_greatersix" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_greatersix" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_greatersix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_sixtotwelve" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_sixtotwelve" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_twelvetoeighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_twelvetoeighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_twelvetoeighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_minor_total_lesseighteen" class="control-label"></label>
-        <input asp-for="departproceedings_minor_total_lesseighteen" class="form-control" />
-        <span asp-validation-for="departproceedings_minor_total_lesseighteen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_serialnumber" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_serialnumber" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_serialnumber" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_chargedofficer" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_chargedofficer" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_chargedofficer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_chargesheet" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_chargesheet" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_chargesheet" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_ioappointment" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_ioappointment" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_ioappointment" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_superannuation" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_superannuation" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_superannuation" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="departproceedings_detailsinquiry_remarks" class="control-label"></label>
-        <input asp-for="departproceedings_detailsinquiry_remarks" class="form-control" />
-        <span asp-validation-for="departproceedings_detailsinquiry_remarks" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="create_date" class="control-label"></label>
-        <input asp-for="create_date" class="form-control" />
-        <span asp-validation-for="create_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="user_id" class="control-label"></label>
-        <input asp-for="user_id" class="form-control" />
-        <span asp-validation-for="user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="update_date" class="control-label"></label>
-        <input asp-for="update_date" class="form-control" />
-        <span asp-validation-for="update_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="last_user_id" class="control-label"></label>
-        <input asp-for="last_user_id" class="form-control" />
-        <span asp-validation-for="last_user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="qpr_id" class="control-label"></label>
-        <input asp-for="qpr_id" class="form-control" />
-        <span asp-validation-for="qpr_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ip" class="control-label"></label>
-        <input asp-for="ip" class="form-control" />
-        <span asp-validation-for="ip" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-
-    <a asp-action="Index">Back to List</a>
-</div>
- *@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+    document.getElementById('add-row-dept-proc').addEventListener('click', function () {
+        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').attr('required', true);
+        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').attr('required', true);
+        $('#newRow').removeClass('d-none');
+        $('#add-row-dept-proc').removeClass('btn-outline-primary');
+        $('#add-row-dept-proc').addClass('btn-outline-secondary');
+        $('#add-row-dept-proc').addClass('disabled');
+    });
+
+    function hideRow() {
+        event.preventDefault();
+        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').removeAttr('required');
+        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').removeAttr('required');
+        $('#newRow').addClass('d-none');
+        $('#add-row-dept-proc').addClass('btn-outline-primary');
+        $('#add-row-dept-proc').removeClass('btn-outline-secondary');
+        $('#add-row-dept-proc').removeClass('disabled');
+    }
+</script>
+
+<script>
+    $(function () {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+        if (complaintsMessage) {
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
+        }
+        performComTotal();
+    });
+
+    $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio, #Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio,#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries, #Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries,#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix, #departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries ').on('input', performComTotal);
+
+    function performComTotal() {
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen').val()) || 0));
+
+        $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen').val()) || 0));
+        $('#Departmentalproceedingsqrs_departproceedings_minor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen').val()) || 0));
+
+    }
+</script>

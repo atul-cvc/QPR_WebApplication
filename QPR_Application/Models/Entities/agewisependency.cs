@@ -23,18 +23,18 @@ namespace QPR_Application.Models.Entities
         public string prosependingcbifirno { get; set; }
         public string prosependingsanctionpc { get; set; }
 
-        public agewisependency()
-        {
-            pend_id = 0;
-            qpr_id = 0;
-            prosependingnamedesig = String.Empty;
-            prosependingdaterecommend = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-            prosependingdatereceipt = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-            prosependingstatusrequest = String.Empty;
-            prosependingnameauthority = String.Empty;
-            used_ip = String.Empty;
-            prosependingcbifirno = String.Empty;
-            prosependingsanctionpc = String.Empty;
-        }
+        //public agewisependency()
+        //{
+        //    pend_id = 0;
+        //    qpr_id = 0;
+        //    prosependingnamedesig = String.Empty;
+        //    prosependingdaterecommend = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+        //    prosependingdatereceipt = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+        //    prosependingstatusrequest = String.Empty;
+        //    prosependingnameauthority = String.Empty;
+        //    used_ip = String.Empty;
+        //    prosependingcbifirno = String.Empty;
+        //    prosependingsanctionpc = String.Empty;
+        //}
     }
 }

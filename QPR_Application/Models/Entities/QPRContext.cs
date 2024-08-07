@@ -106,6 +106,10 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<viginvestigationqrs>().HasKey(v => v.viginvestigations_id);
 
+            modelBuilder.Entity<departmentalproceedingsqrs>().HasKey(d => d.departproceedings_id);
+
+            modelBuilder.Entity<againstchargedtable>().HasKey(a => a.pend_id);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();

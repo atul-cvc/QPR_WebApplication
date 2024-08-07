@@ -11,7 +11,7 @@
 </div>
 <hr />
 
-<form asp-action="ProsecutionSanctions" id="mainEntityForm">
+<form asp-action="ProsecutionSanctions" id="ProsecutionSanctionsQPRForm">
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
             3.1 (A) Details regarding requests for Prosecution sanctions received and disposed   <label>  &nbsp; <a asp-action="Instructions" target="_blank">See Instruction Before Filling</a></label>
@@ -228,7 +228,7 @@
                             <tbody id="prosec-container">
                                 @for (int i = 0; i < Model.Agewisependency.Count; i++)
                                 {
-                                    var item = Model.Agewisependency.ElementAt(i);
+                                    @* var item = Model.Agewisependency.ElementAt(i); *@
                                     <tr class="text-center">
                                         <td>@(i + 1)</td> <!-- Serial number column -->
                                         <td>
@@ -236,15 +236,13 @@
                                             <span>@Model.Agewisependency[i].prosependingcbifirno</span>
                                             @* <input asp-for="Agewisependency[i].prosependingcbifirno" class="form-control"  /> *@
                                         </td>
-                                        <td>
-                                            
+                                        <td>                                            
                                             <label class="control-label"></label>
                                             <span>@Model.Agewisependency[@i].prosependingnamedesig</span>
                                         </td>
                                         <td>
                                             <label class="control-label"></label>
                                             <span>@Model.Agewisependency[@i].prosependingdaterecommend</span>
-
                                         </td>
                                         <td>
                                             <label class="control-label"></label>
@@ -256,7 +254,9 @@
                                             <span>@Model.Agewisependency[@i].prosependingstatusrequest</span></td>
                                         <td><label class="control-label"></label>
                                             <span>@Model.Agewisependency[@i].prosependingnameauthority</span></td>
-                                        <td><a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })" class="btn btn-outline-danger">Delete</a></td>
+                                        <td>
+                                            <a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })" class="btn btn-outline-danger">Delete</a>
+                                        </td>
                                     </tr>
                                 }
                                 <tr class="text-center d-none" id="newAgeWiseRow">
@@ -287,6 +287,7 @@
                                         </td>
                                         <td>
                                             <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" />
+                                            <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
                                         </td>
                                 </tr>
                             </tbody>
@@ -377,8 +378,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="VigilanceInvestigation">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('ProsecutionSanctionsQPRForm')" />
     </div>
 
 
@@ -391,23 +392,55 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-    <script>
-        document.getElementById('add-row-prosec').addEventListener('click', function () {
-            debugger;
-            $('#newAgeWiseRow').removeClass('d-none');
-            $('#add-row-prosec').removeClass('btn-outline-primary');
-            $('#add-row-prosec').addClass('btn-outline-secondary');
-            $('#add-row-prosec').addClass('disabled');
+   
+<script>
+    document.getElementById('add-row-prosec').addEventListener('click', function () {
+        // debugger;
+        $('#NewAgewisependency_prosependingcbifirno').attr('required', true);
+        $('#NewAgewisependency_prosependingnamedesig').attr('required', true);
+        $('#NewAgewisependency_prosependingsanctionpc').attr('required', true);
+        $('#NewAgewisependency_prosependingstatusrequest').attr('required', true);
+        $('#NewAgewisependency_prosependingnameauthority').attr('required', true);
+        $('#newAgeWiseRow').removeClass('d-none');
+        $('#add-row-prosec').removeClass('btn-outline-primary');
+        $('#add-row-prosec').addClass('btn-outline-secondary');
+        $('#add-row-prosec').addClass('disabled');
             
-        });
-    </script>
+    });
+    
+    function hideRow(){
+        event.preventDefault();
+        $('#NewAgewisependency_prosependingcbifirno').removeAttr('required');
+        $('#NewAgewisependency_prosependingnamedesig').removeAttr('required');
+        $('#NewAgewisependency_prosependingsanctionpc').removeAttr('required');
+        $('#NewAgewisependency_prosependingstatusrequest').removeAttr('required');
+        $('#NewAgewisependency_prosependingnameauthority').removeAttr('required');
+        $('#newAgeWiseRow').addClass('d-none');
+        $('#add-row-prosec').addClass('btn-outline-primary');
+        $('#add-row-prosec').removeClass('btn-outline-secondary');
+        $('#add-row-prosec').removeClass('disabled');
+
+    };
+    
+</script>
 
 <script>
+
     $(function () {
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
-            alert(complaintsMessage);
-            pageReloadWithoutQueryString();
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
         }
         performComTotal();
     });
@@ -447,69 +480,7 @@
         $('#Prosecutionsanctionsqrs_prosevigisuspensionendqtr').val(  (parseFloat($('#Prosecutionsanctionsqrs_prosevigitotal').val()) || 0) - (parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionqtr').val()) || 0) );
     }
 
-    @* function mySave(e) {
-        debugger;
-        var formData = new FormData(document.getElementById('mainEntityForm'));
-        
-
-
-        return false;
-    } *@
-</script>
-
-<script>
-    @* var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
-    $("#name_of_officer").val(morethanthree);
-
-    $(".add-row-prosec").click(function () {
-        alert('add-row-prosec clicked');
-        var name_of_officer = $("#name_of_officer").val();
-        if (name_of_officer)
-            var totRows = parseInt($("#totRows").val());
-        var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
-        $("#name_of_officer").val(morethanthree);
-        //debugger;
-        if (totRows == 0) {
-            $("#totRows").val(name_of_officer);
-        }
-        else if (totRows < name_of_officer) {
-            $("#totRows").val(name_of_officer);
-            name_of_officer = parseInt(name_of_officer) - parseInt(totRows)
-        } else {
-            alert("Total number of officer can not be less than already selected number of officers");
-            return;
-        }
-
-        cntCall++;
-        var markup = "";
-        for (var i = 0; i < parseInt(name_of_officer); i++) {
-
-            td>@item.prosependingcbifirno</td>
-                < td > @item.prosependingnamedesig</td>
-                < td > @item.prosependingdaterecommend</td>
-                < td > @item.prosependingdatereceipt</td>
-                < td > @item.prosependingsanctionpc</td>
-                < td > @item.prosependingstatusrequest</td>
-                < td > @item.prosependingnameauthority</td> 
-
-            markup = "<tr class='text-center'><td style='width:1%'>" + (cnt++) + "</td>";
-            markup = markup + "<td style='width:15%'><b><input asp-for='Agewisependency.prosependingcbifirno' path='' class='form-control'  type='text' name='ageWisePendingDto[" + i + "].prosePendingCBIFIRNo' /></b></td>";
-            markup = markup + "<td style='width:15%'><b><input asp-for='Agewisependency.prosependingnamedesig' path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingNameDesig' /></b></td>";
-            markup = markup + "<td style='width:13%'><b><input asp-for='Agewisependency.prosependingdaterecommend' path='' class='form-control datepicker' type='date' name='ageWisePendingDto[" + i + "].prosePendingDateRecommend' /></b></td>";
-            markup = markup + "<td style='width:13%'><b><input asp-for='Agewisependency.prosependingdatereceipt' path='' class='form-control datepicker'  type='date' name='ageWisePendingDto[" + i + "].prosePendingDateReceipt' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingsanctionpc' path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingSanctionPC' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingstatusrequest' path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingStatusRequest' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input asp-for='Agewisependency.prosependingnameauthority' path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingNameAuthority' /></b></td>";
-    //markup = markup + "<td style='width:1%'>" + "<input type='hidden' name='ageWisePendingDto[" + i + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunction(this,0);' class='delete-row'><button class='btn btn-outline-danger'>Delete</button><button class='btn btn-outline-success' onclick='return mySave()'>Save</button></td></tr>";
-                markup = markup + "<td style='width:1%'>" + "<button class='btn btn-outline-danger delete-row' onclick='return removeDisplayFunction(this,0);' >Delete</button><button class='btn btn-outline-success' onclick='return mySave(this)'>Save</button></td></tr>";
-
-            $("#officerNumber-prosec tbody").append(markup);
-
-
-        }
-        resetSerialNumber();
-    }); *@
-
     
 </script>
+
 

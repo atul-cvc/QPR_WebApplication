@@ -12,13 +12,15 @@ namespace QPR_Application.Repository
     public class QprRepo : IQprRepo
     {
         private readonly QPRContext _dbContext;
-        //private readonly IConfiguration _config;
+        private readonly IHttpContextAccessor _httpContext;
         private string _connString = string.Empty;
-        public QprRepo(QPRContext DbContext, IConfiguration config)
+
+        public QprRepo(QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext)
         {
             _dbContext = DbContext;
             //_config = config;
             _connString = config.GetConnectionString("SQLConnection") ?? String.Empty;
+            _httpContext = httpContext;
         }
 
         public async Task<List<Years>> GetYears()
@@ -91,27 +93,6 @@ namespace QPR_Application.Repository
             return refNum;
         }
 
-        //public async Task<string> GetPreviousReferenceNumber(string UserId)
-        //{
-        //    string refNum = "";
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(_connString))
-        //        {
-        //            using (SqlCommand cmd = new SqlCommand("SP_GetPreviousQprId", conn))
-        //            {
-        //                cmd.CommandType = CommandType.StoredProcedure;
-
-        //                // Add parameters to the stored procedure
-        //                cmd.Parameters.AddWithValue("@UserId", UserId);
-        //                conn.Open();
-        //                refNum = Convert.ToString(cmd.ExecuteScalar());
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex) { }
-        //    return refNum;
-        //}
         public string GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport)
         {
             string refNum = "";
@@ -193,8 +174,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
-
         public async Task CreateProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel)
         {
             try
@@ -204,11 +183,10 @@ namespace QPR_Application.Repository
                     await _dbContext.prosecutionsanctionsqrs.AddAsync(prosecViewModel.Prosecutionsanctionsqrs);
                 }
 
-                if (prosecViewModel.NewAgewisependency.qpr_id != null)
+                if (prosecViewModel.NewAgewisependency.qpr_id != null && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnamedesig) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingstatusrequest) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnameauthority) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingcbifirno) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingsanctionpc))
                 {
                     await _dbContext.agewisependency.AddAsync(prosecViewModel.NewAgewisependency);
                 }
-
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -216,7 +194,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task SaveProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel)
         {
             try
@@ -226,7 +203,7 @@ namespace QPR_Application.Repository
                     _dbContext.prosecutionsanctionsqrs.Update(prosecViewModel.Prosecutionsanctionsqrs);
                 }
 
-                if (prosecViewModel.NewAgewisependency.qpr_id != null && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnamedesig) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingstatusrequest) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnameauthority) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingcbifirno) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingsanctionpc) )
+                if (prosecViewModel.NewAgewisependency.qpr_id != null && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnamedesig) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingstatusrequest) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingnameauthority) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingcbifirno) && !String.IsNullOrEmpty(prosecViewModel.NewAgewisependency.prosependingsanctionpc))
                 {
                     await _dbContext.agewisependency.AddAsync(prosecViewModel.NewAgewisependency);
                 }
@@ -239,12 +216,91 @@ namespace QPR_Application.Repository
             }
         }
 
+        public async Task CreateDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel)
+        {
+            try
+            {
+                if (deptViewModel.Departmentalproceedingsqrs != null)
+                {
+                    deptViewModel.Departmentalproceedingsqrs.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    deptViewModel.Departmentalproceedingsqrs.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    deptViewModel.Departmentalproceedingsqrs.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                    deptViewModel.Departmentalproceedingsqrs.create_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
+
+                    await _dbContext.departmentalproceedingsqrs.AddAsync(deptViewModel.Departmentalproceedingsqrs);
+                }
+
+                againstchargedtable newAgainst = deptViewModel.NewAgainstChargedTable;
+                if (newAgainst != null &&  !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer) &&  !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
+                {
+                    newAgainst.used_ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    newAgainst.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+
+                    await _dbContext.againstchargedtable.AddAsync(newAgainst);
+                }
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel, departmentalproceedingsqrs prevData)
+        {
+            try
+            {
+                if (deptViewModel.Departmentalproceedingsqrs != null)
+                {
+
+                    deptViewModel.Departmentalproceedingsqrs.qpr_id = prevData.qpr_id;
+                    deptViewModel.Departmentalproceedingsqrs.user_id = prevData.user_id;
+                    deptViewModel.Departmentalproceedingsqrs.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName"); ;
+                    deptViewModel.Departmentalproceedingsqrs.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    //deptViewModel.Departmentalproceedingsqrs.create_date = prevData.create_date;
+                    deptViewModel.Departmentalproceedingsqrs.update_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
+                    deptViewModel.Departmentalproceedingsqrs.departproceedings_id = prevData.departproceedings_id;
+
+                    _dbContext.departmentalproceedingsqrs.Update(deptViewModel.Departmentalproceedingsqrs);
+                }
+
+                againstchargedtable newAgainst = deptViewModel.NewAgainstChargedTable;
+                if (newAgainst != null && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer)  && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
+                {
+                    newAgainst.used_ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    newAgainst.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+
+                    await _dbContext.againstchargedtable.AddAsync(newAgainst);
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+
+
         public async Task DeleteAgeWisePendency(int pend_id)
         {
             try
             {
                 agewisependency ageWisePend = await _dbContext.agewisependency.FirstOrDefaultAsync(i => i.pend_id == pend_id);
                 _dbContext.agewisependency.Remove(ageWisePend);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task DeleteAgainstChargedOfficers(int pend_id)
+        {
+            try
+            {
+                againstchargedtable againstCT = await _dbContext.againstchargedtable.FirstOrDefaultAsync(i => i.pend_id == pend_id);
+                _dbContext.againstchargedtable.Remove(againstCT);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)

@@ -30,46 +30,44 @@ namespace QPR_Application.Controllers
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
             _changePasswordRepo = changePasswordRepo;
-            var headers = _httpContext.HttpContext.Request.Headers;
-            GetPublicIPAddress();
         }
         public async Task<IActionResult> Index()
         {
             try
             {
-                if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
-                {
-                    _httpContext.HttpContext.Session.Remove("referenceNumber");
-                }
-
                 if (_httpContext.HttpContext?.Session.GetString("CurrentUser") != null)
                 {
+                    if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
+                    {
+                        _httpContext.HttpContext.Session.Remove("referenceNumber");
+                    }
+
                     userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
                     ViewBag.User = userObject;
-                }
-                List<SelectListItem> quarterItems = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "1", Text = "January to March" },
-                    new SelectListItem { Value = "2", Text = "April to June" },
-                    new SelectListItem { Value = "3", Text = "July to September" },
-                    new SelectListItem { Value = "4", Text = "October to December" }
-                };
-                var quarterList = new SelectList(quarterItems, "Value", "Text");
-                ViewBag.Quarters = quarterList;
+                    List<SelectListItem> quarterItems = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "1", Text = "January to March" },
+                        new SelectListItem { Value = "2", Text = "April to June" },
+                        new SelectListItem { Value = "3", Text = "July to September" },
+                        new SelectListItem { Value = "4", Text = "October to December" }
+                    };
+                    var quarterList = new SelectList(quarterItems, "Value", "Text");
+                    ViewBag.Quarters = quarterList;
 
-                List<Years> years = await _qprRepo.GetYears();
-                int currentYear = DateTime.Now.Year;
-                if (years.Count == 0 || years[0].Year != currentYear.ToString())
-                {
-                    years.Insert(0, new Years { Year = currentYear.ToString() });
+                    List<Years> years = await _qprRepo.GetYears();
+                    int currentYear = DateTime.Now.Year;
+                    if (years.Count == 0 || years[0].Year != currentYear.ToString())
+                    {
+                        years.Insert(0, new Years { Year = currentYear.ToString() });
+                    }
+                    ViewBag.Years = years;
+                    return View();
                 }
-                ViewBag.Years = years;
-                return View();
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Login");
             }
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -221,7 +219,7 @@ namespace QPR_Application.Controllers
                     string refNum = _httpContext.HttpContext?.Session.GetString("referenceNumber");
 
                     viginvestigationqrs vigInv = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
-                    viginvestigationqrs vigInvOld = await _complaintsRepo.GetVigilanceInvestigationData(GetPreviousReferenceNumber());
+                    viginvestigationqrs vigInvPrev = await _complaintsRepo.GetVigilanceInvestigationData(GetPreviousReferenceNumber());
                     if (vigInv == null)
                     {
                         vigInv = new viginvestigationqrs();
@@ -231,15 +229,15 @@ namespace QPR_Application.Controllers
                         _httpContext.HttpContext?.Session.SetString("viginvestigations_id", Convert.ToString(vigInv.viginvestigations_id));
                     }
 
-                    vigInv.viginvescvcopeningbalance = vigInvOld.viginvescvcbalancepending;
-                    vigInv.viginvescvoopeningbalance = vigInvOld.viginvescvobalancepending;
-                    vigInv.viginvestotalopeningbalance = vigInvOld.viginvestotalbalancepending;
-                    vigInv.viginvespendingopeningpending = vigInvOld.viginvespendingbalancepending;
-                    vigInv.viginvestacbireportqtr = vigInvOld.viginvestacbibalancepending;
-                    vigInv.viginvestacvoreportqtr = vigInvOld.viginvestacvobalancepending;
-                    vigInv.viginvestbcbireportbfqtr = vigInvOld.viginvestbcbibalancepending;
-                    vigInv.viginvestbcvoreportbfqtr = vigInvOld.viginvestbcvobalancepending;
-                    vigInv.viginvestatotalreportqtr = vigInvOld.viginvestatotalbalancepending;
+                    vigInv.viginvescvcopeningbalance = vigInvPrev.viginvescvcbalancepending;
+                    vigInv.viginvescvoopeningbalance = vigInvPrev.viginvescvobalancepending;
+                    vigInv.viginvestotalopeningbalance = vigInvPrev.viginvestotalbalancepending;
+                    vigInv.viginvespendingopeningpending = vigInvPrev.viginvespendingbalancepending;
+                    vigInv.viginvestacbireportqtr = vigInvPrev.viginvestacbibalancepending;
+                    vigInv.viginvestacvoreportqtr = vigInvPrev.viginvestacvobalancepending;
+                    vigInv.viginvestbcbireportbfqtr = vigInvPrev.viginvestbcbibalancepending;
+                    vigInv.viginvestbcvoreportbfqtr = vigInvPrev.viginvestbcvobalancepending;
+                    vigInv.viginvestatotalreportqtr = vigInvPrev.viginvestatotalbalancepending;
 
                     return View(vigInv);
                 }
@@ -262,13 +260,7 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("viginvestigations_id")))
                 {
                     viginvestigationqrs? vigInvOldData = await _complaintsRepo.GetVigilanceInvestigationData(_httpContext.HttpContext.Session.GetString("referenceNumber"));
-                    //if (vigInvOldData == null)
-                    //{
-                    //    throw new Exception("No previous record present for same qpr");
-                    //}
-                    //else
-                    //{
-                    //}
+
                     vigInv.viginvestigations_id = vigInvOldData.viginvestigations_id;
                     vigInv.user_id = vigInvOldData.user_id;
                     vigInv.create_date = vigInvOldData.create_date;
@@ -323,7 +315,7 @@ namespace QPR_Application.Controllers
                     string refNum = _httpContext.HttpContext?.Session.GetString("referenceNumber");
 
                     ProsecutionSanctionsViewModel proSec = await _complaintsRepo.GetProsecutionSanctionsViewData(refNum);
-                    ProsecutionSanctionsViewModel proSecOld = await _complaintsRepo.GetProsecutionSanctionsViewData(GetPreviousReferenceNumber());
+                    ProsecutionSanctionsViewModel proSecPrev = await _complaintsRepo.GetProsecutionSanctionsViewData(GetPreviousReferenceNumber());
 
 
                     if (proSec.Prosecutionsanctionsqrs == null)
@@ -334,13 +326,13 @@ namespace QPR_Application.Controllers
                     {
                         _httpContext.HttpContext?.Session.SetString("prosecutionsanctions_id", Convert.ToString(proSec.Prosecutionsanctionsqrs.prosecutionsanctions_id));
                     }
-                    proSec.NewAgewisependency = new agewisependency();
+                    //proSec.NewAgewisependency = new agewisependency();
 
-                    proSec.Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance = proSecOld.Prosecutionsanctionsqrs.prosesanctgroupcbalancepending;
-                    proSec.Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance = proSecOld.Prosecutionsanctionsqrs.prosesanctgroupbbalancepending;
-                    proSec.Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance = proSecOld.Prosecutionsanctionsqrs.prosesanctgroupabalancepending;
-                    proSec.Prosecutionsanctionsqrs.prosesanctjsopeningbalance = proSecOld.Prosecutionsanctionsqrs.prosesanctjsbalancepending;
-                    proSec.Prosecutionsanctionsqrs.prosevigiofficersuspension = proSecOld.Prosecutionsanctionsqrs.prosevigisuspensionendqtr;
+                    proSec.Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupcbalancepending;
+                    proSec.Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupbbalancepending;
+                    proSec.Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupabalancepending;
+                    proSec.Prosecutionsanctionsqrs.prosesanctjsopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctjsbalancepending;
+                    proSec.Prosecutionsanctionsqrs.prosevigiofficersuspension = proSecPrev.Prosecutionsanctionsqrs.prosevigisuspensionendqtr;
 
                     return View(proSec);
                 }
@@ -365,7 +357,7 @@ namespace QPR_Application.Controllers
                 prosecutionsanctionsqrs proSecNewData = prosecViewModel.Prosecutionsanctionsqrs;
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session?.GetString("prosecutionsanctions_id")))
                 {
-                    prosecutionsanctionsqrs proSecOldData = await _complaintsRepo.GetProsecutionSanctionsData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    prosecutionsanctionsqrs? proSecOldData = await _complaintsRepo.GetProsecutionSanctionsData(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
                     proSecNewData.user_id = proSecOldData.user_id;
                     proSecNewData.last_user_id = _httpContext.HttpContext.Session?.GetString("UserName");
                     proSecNewData.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
@@ -378,12 +370,11 @@ namespace QPR_Application.Controllers
                 else // for new record
                 {
                     proSecNewData.create_date = DateTime.Now.Date.ToString("dd-MM-yyyy"); ;
-                    proSecNewData.user_id= _httpContext.HttpContext.Session?.GetString("UserName");
-                    proSecNewData.last_user_id= _httpContext.HttpContext.Session?.GetString("UserName");
-                    proSecNewData.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
-                    proSecNewData.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    proSecNewData.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                    proSecNewData.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                    proSecNewData.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                    proSecNewData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     await _qprRepo.CreateProsecutionSanctionsViewModel(prosecViewModel);
-
                 }
                 message = "Saved";
             }
@@ -412,15 +403,32 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                if (!string.IsNullOrEmpty(message))
+                ClearSessionData();//display message
+                ViewBag.ComplaintsMessage = message;
+
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")))
                 {
-                    ViewBag.ComplaintsMessage = message;
-                }
-                string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                if (!String.IsNullOrEmpty(refNum))
-                {
-                    var deptProc = await _complaintsRepo.GetDepartmentalProceedingsData(refNum);
-                    return View(deptProc);
+                    string refNum = _httpContext.HttpContext?.Session.GetString("referenceNumber");
+
+                    DepartmentalProceedingsViewModel deptViewModel = await _complaintsRepo.GetDepartmentalProceedingsViewModelData(refNum);
+                    DepartmentalProceedingsViewModel deptViewModelPrev = await _complaintsRepo.GetDepartmentalProceedingsViewModelData(GetPreviousReferenceNumber());
+
+                    if (deptViewModel.Departmentalproceedingsqrs == null)
+                    {
+                        deptViewModel.Departmentalproceedingsqrs = new departmentalproceedingsqrs();
+                    }
+                    else
+                    {
+                        _httpContext.HttpContext?.Session.SetString("departproceedings_id", Convert.ToString(deptViewModel.Departmentalproceedingsqrs.departproceedings_id));
+                    }
+                    deptViewModel.Departmentalproceedingsqrs.departproceedingsmajor_cvc_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedingsmajor_cvc_enquiries;
+                    deptViewModel.Departmentalproceedingsqrs.departproceedingsmajor_other_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedingsmajor_other_enquiries;
+                    deptViewModel.Departmentalproceedingsqrs.departproceedingsmajor_total_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedingsmajor_total_enquiries;
+                    deptViewModel.Departmentalproceedingsqrs.departproceedings_minor_cvc_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedings_minor_cvc_enquiries;
+                    deptViewModel.Departmentalproceedingsqrs.departproceedings_minor_other_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedings_minor_other_enquiries;
+                    deptViewModel.Departmentalproceedingsqrs.departproceedings_minor_total_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedings_minor_total_enquiries;
+
+                    return View(deptViewModel);
                 }
             }
             catch (Exception ex)
@@ -431,13 +439,23 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SaveDepartmentalProceedings()
+        public async Task<IActionResult> SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptVM)
         {
             string message = "";
             try
             {
+                //if is it existing record
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session?.GetString("departproceedings_id")))
+                {
+                    departmentalproceedingsqrs deptProcOldData = await _complaintsRepo.GetDepartmentalProceedingsData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    await _qprRepo.SaveDepartmentalProceedings(deptVM, deptProcOldData);
+                }
+                else
+                {
+                    // for new record
+                    await _qprRepo.CreateDepartmentalProceedings(deptVM);
+                }
                 message = "Saved";
-
             }
             catch (Exception ex)
             {
@@ -448,10 +466,11 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DepartmentalProceedings(departmentalproceedingsqrs deptProc)
+        public async Task<IActionResult> DepartmentalProceedings(DepartmentalProceedingsViewModel deptProc)
         {
             try
             {
+                await SaveDepartmentalProceedings(deptProc);
                 return RedirectToAction("AdviceOfCVC");
             }
             catch (Exception ex)
@@ -785,29 +804,12 @@ namespace QPR_Application.Controllers
             //return RedirectToAction("Index", "Login");
         }
 
-        public async Task<string> GetPublicIPAddress()
-        {
-            string externalIP;
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetStringAsync("https://api64.ipify.org");
-                    return response.Trim();
-                }
-            }
-            catch (Exception ex)
-            {
-                return $"Failed to retrieve public IP: {ex.Message}";
-            }
-        }
-
         public void ClearSessionData()
         {
             _httpContext.HttpContext?.Session.Remove("complaint_id");
             _httpContext.HttpContext?.Session.Remove("viginvestigations_id");
             _httpContext.HttpContext?.Session.Remove("prosecutionsanctions_id");
-            _httpContext.HttpContext?.Session.Remove("prosecutionsanctions_id");
+            _httpContext.HttpContext?.Session.Remove("departproceedings_id");
         }
 
         public string GetPreviousReferenceNumber()
@@ -823,6 +825,11 @@ namespace QPR_Application.Controllers
         {
             await _qprRepo.DeleteAgeWisePendency(pend_id);
             return RedirectToAction("ProsecutionSanctions", new { message = "Deleted successfully" });
+        }
+        public async Task<IActionResult> DeleteAgainstChargedOfficers(int pend_id)
+        {
+            await _qprRepo.DeleteAgainstChargedOfficers(pend_id);
+            return RedirectToAction("DepartmentalProceedings", new { message = "Deleted successfully" });
         }
     }
 }

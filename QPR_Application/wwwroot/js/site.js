@@ -302,7 +302,7 @@ $(function () {
             return false;
         }
     });
-    
+
     $('input[type="number"]').on('keyup', function () {
         //debugger;
         var value = $(this).val();
@@ -447,4 +447,50 @@ function resetSerialNumberMajor() {
 
 function pageReloadWithoutQueryString() {
     window.location.href = window.location.origin + window.location.pathname;
+}
+
+function validateFields() {
+    // Get all input elements of type number
+    const inputs = document.querySelectorAll('form input[type="number"]');
+    // Check if any input has a value less than 0
+    //debugger;
+    for (let input of inputs) {
+        if (parseFloat(input.value) < 0) {
+            
+            Swal.fire({
+                // title: 'Are you sure?',
+                text: "All fields must be greater than or equal to 0",
+                icon: 'warning',
+                // showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay',
+            })
+
+            return false;
+        }
+    }
+    //debugger;
+    return true;
+}
+
+function confirmFormSubmission(formName) {
+    //debugger;
+    event.preventDefault(); // Prevent the form from submitting immediately
+    if (validateFields()) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Data will be saved automatically. Do you want to continue?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User confirmed, submit the form
+                document.getElementById(formName).submit();
+            }
+        });
+    }
 }

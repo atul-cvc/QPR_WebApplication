@@ -12,7 +12,7 @@
 
 
 
-<form asp-action="VigilanceInvestigation">
+<form asp-action="VigilanceInvestigation" id="VigilanceInvestigationsQPRForm">
     <div class="w-80 mt-5 mb-3 box-green">
         <b>
             2.1 Complaints, Audit reports, Inspection reports of works / procurements etc.Taken up for investigation (nos)
@@ -1112,8 +1112,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="Complaints">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveVigInvestigation" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveVigInvestigation" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('VigilanceInvestigationsQPRForm')" />
     </div>
 
 

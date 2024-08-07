@@ -20,7 +20,16 @@ namespace QPR_Application.Repository
         public Task SaveVigilanceInvestigation(viginvestigationqrs vigInv);
         public Task CreateProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel);
         public Task SaveProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel);
+        public Task CreateDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel);
+        public Task SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel, departmentalproceedingsqrs prevData);
+
+
+
+
+
+
         public Task DeleteAgeWisePendency(int pend_id);
+        public Task DeleteAgainstChargedOfficers(int pend_id);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

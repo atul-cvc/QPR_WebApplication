@@ -14,7 +14,7 @@ namespace QPR_Application.Repository
         {
             try
             {
-                var USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
+                registration USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
                 if (USER != null)
                 {
                     return USER;
