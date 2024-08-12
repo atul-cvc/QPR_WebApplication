@@ -44,7 +44,8 @@ namespace QPR_Application.Controllers
 
             if (ipAdd == "::1")
             {
-                ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
+                // Filter and return the first IPv4 address found
+                ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
             }
             if (ModelState.IsValid)
             {

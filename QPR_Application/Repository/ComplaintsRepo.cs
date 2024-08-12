@@ -7,9 +7,11 @@ namespace QPR_Application.Repository
     public class ComplaintsRepo : IComplaintsRepo
     {
         private readonly QPRContext _dbContext;
-        public ComplaintsRepo(QPRContext dbContext)
+        private readonly IHttpContextAccessor _httpContext;
+        public ComplaintsRepo(QPRContext dbContext, IHttpContextAccessor httpContext)
         {
             _dbContext = dbContext;
+            _httpContext = httpContext;
         }
         public async Task<complaintsqrs> GetComplaintsData(string refNum)
         {
@@ -29,13 +31,13 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
-        public async Task<ProsecutionSanctionsViewModel?> GetProsecutionSanctionsViewData(string refNum)        
+        public async Task<ProsecutionSanctionsViewModel?> GetProsecutionSanctionsViewData(string refNum)
         {
             try
             {
                 //prosecutionsanctionsqrs prsSec = ;
                 //List<agewisependency> ageWise = 
-                
+
                 ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
                 proSecViewModel.Prosecutionsanctionsqrs = await GetProsecutionSanctionsData(refNum);
                 proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
@@ -52,7 +54,9 @@ namespace QPR_Application.Repository
             {
                 return await _dbContext.prosecutionsanctionsqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                throw ex;
+            }
             return null;
         }
         public async Task<DepartmentalProceedingsViewModel> GetDepartmentalProceedingsViewModelData(string refNum)
@@ -76,22 +80,58 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
+        public async Task<AdviceOfCvcViewModel> GetAdviceOfCVCViewModel(string refNum)
+        {
+            try
+            {
+                AdviceOfCvcViewModel advice = new AdviceOfCvcViewModel();
+                advice.AdviceOfCvc = await _dbContext.adviceofcvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
+                advice.CvcAdvices = await _dbContext.cvcadvicetable.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                advice.AppeleateAuthorities = await _dbContext.appellateauthoritytable.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+
+                return advice;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return null;
+        }
         public async Task<adviceofcvcqrs?> GetAdviceOfCVCData(string refNum)
         {
             try
             {
-                return await _dbContext.adviceofcvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                return await _dbContext.adviceofcvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
             }
             catch (Exception ex) { }
+            return null;
+        }
+        public async Task<StatusOfPendencyViewModel?> GetStatusPendencyViewModel(string refNum)
+        {
+            try
+            {
+                StatusOfPendencyViewModel statusVM = new StatusOfPendencyViewModel();
+                statusVM.StatusOfPendency = await GetStatusPendencyData(refNum) ?? new statusofpendencyqrs();
+                if (statusVM.StatusOfPendency.pendency_status_id != 0)
+                {
+                    _httpContext.HttpContext?.Session.SetString("pendency_status_id", Convert.ToString(statusVM.StatusOfPendency.pendency_status_id));
+                }
+                return statusVM;
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
             return null;
         }
         public async Task<statusofpendencyqrs?> GetStatusPendencyData(string refNum)
         {
             try
             {
-                return await _dbContext.statusofpendencyqrs.FirstOrDefaultAsync(i => i.qpr_id == refNum);
+                return await _dbContext.statusofpendencyqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                throw ex;
+            }
             return null;
         }
         public async Task<punitivevigilanceqrs?> GetPunitiveVigilanceData(string refNum)

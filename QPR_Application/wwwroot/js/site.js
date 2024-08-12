@@ -45,47 +45,6 @@ var addauthority_cnt = 1;
 var addauthority_cntCall = 0;
 $(function () {
 
-    //var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
-    //$("#name_of_officer").val(morethanthree);
-
-    //$(".add-row").click(function () {
-    //    var name_of_officer = $("#name_of_officer").val();
-    //    if (name_of_officer)
-    //        var totRows = parseInt($("#totRows").val());
-    //    var morethanthree = parseInt($("#proseSanctTotalThreetoSix").val()) + parseInt($("#proseSanctTotallessSix").val());
-    //    $("#name_of_officer").val(morethanthree);
-    //    //debugger;
-    //    if (totRows == 0) {
-    //        $("#totRows").val(name_of_officer);
-    //    }
-    //    else if (totRows < name_of_officer) {
-    //        $("#totRows").val(name_of_officer);
-    //        name_of_officer = parseInt(name_of_officer) - parseInt(totRows)
-    //    } else {
-    //        alert("Total number of officer can not be less than already selected number of officers");
-    //        return;
-    //    }
-
-    //    cntCall++;
-    //    var markup = "";
-    //    for (var i = 0; i < parseInt(name_of_officer); i++) {
-
-    //        markup = "<tr class='text-center'><td style='width:1%'>" + (cnt++) + "</td>";
-    //        markup = markup + "<td style='width:15%'><b><input path='' class='form-control'  type='text' name='ageWisePendingDto[" + i + "].prosePendingCBIFIRNo' /></b></td>";
-    //        markup = markup + "<td style='width:15%'><b><input path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingNameDesig' /></b></td>";
-    //        markup = markup + "<td style='width:13%'><b><input path='' class='form-control datepicker' type='date' name='ageWisePendingDto[" + i + "].prosePendingDateRecommend' /></b></td>";
-    //        markup = markup + "<td style='width:13%'><b><input path='' class='form-control datepicker'  type='date' name='ageWisePendingDto[" + i + "].prosePendingDateReceipt' /></b></td>";
-    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='ageWisePendingDto[" + i + "].prosePendingSanctionPC' /></b></td>";
-    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingStatusRequest' /></b></td>";
-    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='ageWisePendingDto[" + i + "].prosePendingNameAuthority' /></b></td>";
-    //        markup = markup + "<td style='width:1%'>" + "<input type='hidden' name='ageWisePendingDto[" + i + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunction(this,0);' class='delete-row'><button class='btn btn-outline-danger'>Delete</button></td></tr>";
-
-    //        $("#officerNumber tbody").append(markup);
-
-
-    //    }
-    //    resetSerialNumber();
-    //});
     $(".add-row-dept-proc").click(function () {
         var name_of_officer = $("#name_of_officer").val();
         if (name_of_officer)
@@ -123,77 +82,77 @@ $(function () {
         resetSerialNumber();
     });
 
-    $(".add-row-advice_cvc").click(function () {
-        cnt = parseInt('0');
-        //alert(cnt);
-        var name_of_officer = $("#name_of_officer_advice_cvc").val();
-        var totRows = parseInt($("#totRows").val());
+    //$(".add-row-advice_cvc").click(function () {
+    //    cnt = parseInt('0');
+    //    //alert(cnt);
+    //    var name_of_officer = $("#name_of_officer_advice_cvc").val();
+    //    var totRows = parseInt($("#totRows").val());
 
-        if (totRows == 0) {
-            $("#totRows").val(name_of_officer);
-        }
-        else if (totRows < name_of_officer) {
-            $("#totRows").val(name_of_officer);
-            name_of_officer = parseInt(name_of_officer) - parseInt(totRows)
-        } else {
-            alert("Total number of officer can not be less than already selected number of officers");
-            return;
-        }
+    //    if (totRows == 0) {
+    //        $("#totRows").val(name_of_officer);
+    //    }
+    //    else if (totRows < name_of_officer) {
+    //        $("#totRows").val(name_of_officer);
+    //        name_of_officer = parseInt(name_of_officer) - parseInt(totRows)
+    //    } else {
+    //        alert("Total number of officer can not be less than already selected number of officers");
+    //        return;
+    //    }
 
-        cntCall++;
-        var markup = "";
-        for (var i = 0; i < parseInt(name_of_officer); i++) {
+    //    cntCall++;
+    //    var markup = "";
+    //    for (var i = 0; i < parseInt(name_of_officer); i++) {
 
-            markup = "<tr class='text-center'><td style='width:1%'>" + (cnt + i) + "</td>";
-            markup = markup + "<td style='width:14%'><b><select class='form-control text-center' name='cvcAdviceDto[" + (cnt + i) + "].stageType' id='cvcAdviceOption[" + (cnt + i) + "]' onchange='loadOptions(" + (cnt + i) + ")'><option value='0'>Select</option><option value='First Stage'>First Stage</option><option value='Second Stage'>Second Stage</option></select></b></td>";
-            markup = markup + "<td style='width:20%'><select class='form-control text-center' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_typecvcadvice' id='cvcAdviceType[" + (cnt + i) + "]'><option value='0'>Select</option><option value='Prosecution'>Prosecution</option><option value='Major PP'>Major PP</option><option value='Minor PP'>Minor PP</option><option value='Administrative Action'>Administrative Action</option><option value='Exoneration'>Exoneration</option></select></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_cvcfilenumber' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_dept_ref_number' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_name_designation' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_actiontaken_da' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_actiontaken_aa' /></b></td>";
-            markup = markup + "<td style='width:1%'>" + "<input type='hidden'  name='cvcAdviceDto[" + (cnt + i) + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunction(this,0);' ><button class='btn btn-outline-danger'>Delete</button></a></td></tr>";
-            $("#officerNumber tbody").append(markup);
+    //        markup = "<tr class='text-center'><td style='width:1%'>" + (cnt + i) + "</td>";
+    //        markup = markup + "<td style='width:14%'><b><select class='form-control text-center' name='cvcAdviceDto[" + (cnt + i) + "].stageType' id='cvcAdviceOption[" + (cnt + i) + "]' onchange='loadOptions(" + (cnt + i) + ")'><option value='0'>Select</option><option value='First Stage'>First Stage</option><option value='Second Stage'>Second Stage</option></select></b></td>";
+    //        markup = markup + "<td style='width:20%'><select class='form-control text-center' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_typecvcadvice' id='cvcAdviceType[" + (cnt + i) + "]'><option value='0'>Select</option><option value='Prosecution'>Prosecution</option><option value='Major PP'>Major PP</option><option value='Minor PP'>Minor PP</option><option value='Administrative Action'>Administrative Action</option><option value='Exoneration'>Exoneration</option></select></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_cvcfilenumber' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_dept_ref_number' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_name_designation' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_actiontaken_da' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' name='cvcAdviceDto[" + (cnt + i) + "].deviation_cvc_advice_firststage_actiontaken_aa' /></b></td>";
+    //        markup = markup + "<td style='width:1%'>" + "<input type='hidden'  name='cvcAdviceDto[" + (cnt + i) + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunction(this,0);' ><button class='btn btn-outline-danger'>Delete</button></a></td></tr>";
+    //        $("#officerNumber tbody").append(markup);
 
-        }
-        resetSerialNumber();
-    });
+    //    }
+    //    resetSerialNumber();
+    //});
 
-    $(".addauthority").click(function () {
-        //debugger;
+    //$(".addauthority").click(function () {
+    //    //debugger;
 
-        addauthority_cnt = parseInt('0');
-        var authorityMajor = $("#authorityMajor").val();
-        var authorityRows = parseInt($("#authorityRows").val());
+    //    addauthority_cnt = parseInt('0');
+    //    var authorityMajor = $("#authorityMajor").val();
+    //    var authorityRows = parseInt($("#authorityRows").val());
 
-        if (authorityRows == 0) {
-            $("#authorityRows").val(authorityMajor);
-        }
-        else if (authorityRows < authorityMajor) {
-            $("#authorityRows").val(authorityMajor);
-            authorityMajor = parseInt(authorityMajor) - parseInt(authorityRows)
-        } else {
-            alert("Total number of officer can not be less than already selected number of officers");
-            return;
-        }
+    //    if (authorityRows == 0) {
+    //        $("#authorityRows").val(authorityMajor);
+    //    }
+    //    else if (authorityRows < authorityMajor) {
+    //        $("#authorityRows").val(authorityMajor);
+    //        authorityMajor = parseInt(authorityMajor) - parseInt(authorityRows)
+    //    } else {
+    //        alert("Total number of officer can not be less than already selected number of officers");
+    //        return;
+    //    }
 
-        addauthority_cntCall++;
-        var markup = "";
-        for (var i = 0; i < parseInt(authorityMajor); i++) {
-            markup = "<tr class='text-center'><td style='width:1%'>" + (addauthority_cnt + i) + "</td>";
-            markup = markup + "<td style='width:14%'><b><select class='form-control' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].stageType' id='cvcAdviceOption1[" + (addauthority_cnt + i) + "]' onchange='loadOptions1(" + (addauthority_cnt + i) + ")'><option value='0'>Select</option><option value='First Stage'>First Stage</option><option value='Second Stage'>Second Stage</option></select></b></td>";
-            markup = markup + "<td style='width:8%'><select class='form-control' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_typecvcadvice' id='cvcAdviceType1[" + (addauthority_cnt + i) + "]'><option value='0'>Select</option><option value='Prosecution'>Prosecution</option><option value='Major PP'>Major PP</option><option value='Minor PP'>Minor PP</option><option value='Administrative Action'>Administrative Action</option><option value='Exoneration'>Exoneration</option></select></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_cvcfilenumber' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_dept_ref_number' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_name_designation' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_actiontaken_da' /></b></td>";
-            markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_actiontaken_aa' /></b></td>";
-            markup = markup + "<td style='width:1%'>" + "<input type='hidden' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunctionMajor(this,0);' class='delete-row btn btn-outline-danger'>Delete</a></td></tr>";
-            $("#officerauthority tbody").append(markup);
+    //    addauthority_cntCall++;
+    //    var markup = "";
+    //    for (var i = 0; i < parseInt(authorityMajor); i++) {
+    //        markup = "<tr class='text-center'><td style='width:1%'>" + (addauthority_cnt + i) + "</td>";
+    //        markup = markup + "<td style='width:14%'><b><select class='form-control' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].stageType' id='cvcAdviceOption1[" + (addauthority_cnt + i) + "]' onchange='loadOptions1(" + (addauthority_cnt + i) + ")'><option value='0'>Select</option><option value='First Stage'>First Stage</option><option value='Second Stage'>Second Stage</option></select></b></td>";
+    //        markup = markup + "<td style='width:8%'><select class='form-control' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_typecvcadvice' id='cvcAdviceType1[" + (addauthority_cnt + i) + "]'><option value='0'>Select</option><option value='Prosecution'>Prosecution</option><option value='Major PP'>Major PP</option><option value='Minor PP'>Minor PP</option><option value='Administrative Action'>Administrative Action</option><option value='Exoneration'>Exoneration</option></select></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_cvcfilenumber' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_dept_ref_number' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_name_designation' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control'  type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_actiontaken_da' /></b></td>";
+    //        markup = markup + "<td style='width:14%'><b><input path='' class='form-control' type='text' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].appellate_deviation_firststage_actiontaken_aa' /></b></td>";
+    //        markup = markup + "<td style='width:1%'>" + "<input type='hidden' name='appellateAuthorityDto[" + (addauthority_cnt + i) + "].pend_id' ><a href='javascript:void(0)'  onclick='return removeDisplayFunctionMajor(this,0);' class='delete-row btn btn-outline-danger'>Delete</a></td></tr>";
+    //        $("#officerauthority tbody").append(markup);
 
-        }
-        resetSerialNumberMajor();
-    });
+    //    }
+    //    resetSerialNumberMajor();
+    //});
 
     $(".add-row-status-pendency").click(function () {
         //debugger;
@@ -456,7 +415,7 @@ function validateFields() {
     //debugger;
     for (let input of inputs) {
         if (parseFloat(input.value) < 0) {
-            
+
             Swal.fire({
                 // title: 'Are you sure?',
                 text: "All fields must be greater than or equal to 0",
@@ -480,7 +439,7 @@ function confirmFormSubmission(formName) {
         Swal.fire({
             title: 'Are you sure?',
             text: "Data will be saved automatically. Do you want to continue?",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -493,4 +452,24 @@ function confirmFormSubmission(formName) {
             }
         });
     }
+}
+
+function confirmDel(url) {
+    //alert(url);
+    event.preventDefault();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Record will be deleted. Do you want to continue?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to the URL if user confirmed
+            window.location.href = url;
+        }
+    });
 }

@@ -67,28 +67,16 @@ namespace QPR_Application.Models.Entities
         public int departproceedings_minor_total_twelvetoeighteen { get; set; }
         public int departproceedings_minor_total_lesseighteen { get; set; }
         public int departproceedings_detailsinquiry_serialnumber { get; set; }
-        [StringLength(2000)]
         public string departproceedings_detailsinquiry_chargedofficer { get; set; }
-        [StringLength(2000)]
         public string departproceedings_detailsinquiry_chargesheet { get; set; }
-        [StringLength(2000)]
         public string departproceedings_detailsinquiry_ioappointment { get; set; }
-        [StringLength(2000)]
         public string departproceedings_detailsinquiry_superannuation { get; set; }
-        [StringLength(2000)]
         public string departproceedings_detailsinquiry_remarks { get; set; }
-        
-        [NotMapped]
-        [StringLength(2000)]
         public string create_date { get; set; }
-        [StringLength(2000)]
         public string user_id { get; set; }
-        [StringLength(2000)]
         public string update_date { get; set; }
-        [StringLength(2000)]
         public string last_user_id { get; set; }
         public long qpr_id { get; set; }
-        [StringLength(50)]
         public string ip { get; set; }
 
         // Constructor to initialize all int properties to zero

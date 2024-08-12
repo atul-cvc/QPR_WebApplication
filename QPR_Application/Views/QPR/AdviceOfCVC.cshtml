@@ -1,4 +1,4 @@
-﻿@model QPR_Application.Models.Entities.adviceofcvcqrs
+﻿@model QPR_Application.Models.ViewModels.AdviceOfCvcViewModel;
 
 @{
     ViewData["Title"] = "AdviceOfCVC";
@@ -9,7 +9,7 @@
     <h3>Advice Of CVC</h3>
 </div>
 <hr />
-<form asp-action="AdviceOfCVC">
+<form asp-action="AdviceOfCVC" id="AdviceOfCvcQPRForm">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
@@ -44,38 +44,38 @@
                 </tr>
                 <tr>
                     <td align="left"> <b>&nbsp;&nbsp;1st</b> </td>
-                    <td><b><input asp-for="advice_cvc_first_casespreviousqtr" name="advice_cvc_first_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_first_casesduringqtr" name="advice_cvc_first_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_first_adviceduringqtr" name="advice_cvc_first_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_first_adviceawaitedcvc" name="advice_cvc_first_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class=" form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_first_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_first_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_first_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_first_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class=" form-control" readonly></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;2nd</b></td>
-                    <td><b><input asp-for="advice_cvc_second_casespreviousqtr" name="advice_cvc_second_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_second_casesduringqtr" name="advice_cvc_second_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_second_adviceduringqtr" name="advice_cvc_second_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_second_adviceawaitedcvc" name="advice_cvc_second_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_second_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_second_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_second_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_second_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;1st stage &nbsp;&nbsp;reconsideration</b></td>
-                    <td><b><input asp-for="advice_cvc_firstreconsider_casespreviousqtr" name="advice_cvc_firstreconsider_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_firstreconsider_casesduringqtr" name="advice_cvc_firstreconsider_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_firstreconsider_adviceduringqtr" name="advice_cvc_firstreconsider_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_firstreconsider_adviceawaitedcvc" name="advice_cvc_firstreconsider_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_firstreconsider_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_firstreconsider_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_firstreconsider_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_firstreconsider_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;2nd stage &nbsp;&nbsp;reconsideration</b></td>
-                    <td><b><input asp-for="advice_cvc_secondreconsider_casespreviousqtr" name="advice_cvc_secondreconsider_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_secondreconsider_casesduringqtr" name="advice_cvc_secondreconsider_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_secondreconsider_adviceduringqtr" name="advice_cvc_secondreconsider_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_secondreconsider_adviceawaitedcvc" name="advice_cvc_secondreconsider_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_secondreconsider_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_secondreconsider_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_secondreconsider_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_secondreconsider_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Total</b></td>
-                    <td><b><input asp-for="advice_cvc_total_casespreviousqtr" name="advice_cvc_total_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_total_casesduringqtr" name="advice_cvc_total_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_total_adviceduringqtr" name="advice_cvc_total_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="advice_cvc_total_adviceawaitedcvc" name="advice_cvc_total_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_total_casespreviousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_total_casesduringqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_total_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.advice_cvc_total_adviceawaitedcvc" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
             </tbody>
         </table>
@@ -129,60 +129,60 @@
                 <tr>
                     <td align="left" rowspan="2"> <b>&nbsp;&nbsp;1st</b> </td>
                     <td><b>Major pp</b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_openingbalance" name="action_cvc_firstmajor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_adviceduringqtr" name="action_cvc_firstmajor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_disposed" name="action_cvc_firstmajor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_balancepending" name="action_cvc_firstmajor_balancepending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_greaterone" name="action_cvc_firstmajor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_onetothree" name="action_cvc_firstmajor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_threetosix" name="action_cvc_firstmajor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstmajor_lesssix" name="action_cvc_firstmajor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_balancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstmajor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td><b>Minor pp</b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_openingbalance" name="action_cvc_firstminor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_adviceduringqtr" name="action_cvc_firstminor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_disposed" name="action_cvc_firstminor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_balancepending" name="action_cvc_firstminor_balancepending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_greaterone" name="action_cvc_firstminor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_onetothree" name="action_cvc_firstminor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_threetosix" name="action_cvc_firstminor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_firstminor_lesssix" name="action_cvc_firstminor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_balancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_firstminor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left" rowspan="2"><b>&nbsp;&nbsp;2nd</b></td>
                     <td><b>Major Penalty</b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_openingbalance" name="action_cvc_secondmajor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_adviceduringqtr" name="action_cvc_secondmajor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_disposed" name="action_cvc_secondmajor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_balancepending" name="action_cvc_secondmajor_balancepending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_greaterone" name="action_cvc_secondmajor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_onetothree" name="action_cvc_secondmajor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_threetosix" name="action_cvc_secondmajor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondmajor_lesssix" name="action_cvc_secondmajor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_balancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondmajor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td><b>Minor Penalty</b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_openingbalance" name="action_cvc_secondminor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_adviceduringqtr" name="action_cvc_secondminor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_disposed" name="action_cvc_secondminor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_balancepending" name="action_cvc_secondminor_balancepending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_greaterone" name="action_cvc_secondminor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_onetothree" name="action_cvc_secondminor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_threetosix" name="action_cvc_secondminor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_secondminor_lesssix" name="action_cvc_secondminor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_openingbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_balancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_secondminor_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Total</b></td>
                     <td>&nbsp;</td>
-                    <td><b><input asp-for="action_cvc_total_openingbalance" name="action_cvc_total_openingbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_adviceduringqtr" name="action_cvc_total_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_disposed" name="action_cvc_total_disposed" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_balancepending" name="action_cvc_total_balancepending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_greaterone" name="action_cvc_total_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_onetothree" name="action_cvc_total_onetothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_threetosix" name="action_cvc_total_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="action_cvc_total_lesssix" name="action_cvc_total_lesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_openingbalance" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_adviceduringqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_disposed" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_balancepending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_greaterone" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_onetothree" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_threetosix" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="AdviceOfCvc.action_cvc_total_lesssix" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                 </tr>
             </tbody>
         </table>
@@ -199,7 +199,7 @@
             5.(C) Non-Acceptance / deviation of CVC Advice
         </b>
     </div>
-    @* <input id="name_of_officer_advice_cvc" class="form-control" onkeypress="return isNumberKey(event);" name="totalOfficer" style="width:25%" type="number" value="" maxlength="3"> *@
+    @* <input id="name_of_officer_advice_cvc" class="form-control" onkeypress="return isNumberKey(event);"  style="width:25%" type="number" value="" maxlength="3"> *@
 
     <div class="w-75 m-auto">
         <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
@@ -210,15 +210,15 @@
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input id="name_of_officer_advice_cvc" onkeypress="return isNumberKey(event);" name="totalOfficer" style="float:left;width:25%" type="number" class="form-control" maxlength="3">
-                            <input type="button" class="add-row-advice_cvc btn btn-outline-primary ms-1" value="Add" style="width: 10%">
+                            @* <input id="name_of_officer_advice_cvc" onkeypress="return isNumberKey(event);" style="float:left;width:25%" type="number" class="form-control" maxlength="3"> *@
+                            <input type="button" id="add-row-advice_cvc" class="btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
                         </span>
-                        <input id="totRows" name="totRows" type="hidden" value="0">
+                        <input id="totRows" type="hidden" value="@Model.CvcAdvices.Count">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <table id="officerNumber" path="ageWisePendingDto" class="table table-striped table-bordered  text-align-middle ">
+                        <table id="officerNumber" class="table table-striped table-bordered  text-align-middle ">
                             <thead>
                                 <tr class="text-center">
                                     <th style="width:1%"><b>S.No.</b></th>
@@ -230,9 +230,88 @@
                                     <th style="width:14%"><b>Name &amp; Designation of DA</b></th>
                                     <th style="width:14%"><b>Action taken by DA</b></th>
                                     <th style="width:1%"><b>Delete</b></th>
-                                </tr> 
+                                </tr>
                             </thead>
                             <tbody>
+                                @for (int i = 0; i < Model.CvcAdvices.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[i].stagetype</span>
+                                            @* <input asp-for="Agewisependency[i].prosependingcbifirno" class="form-control"  /> *@
+                                        </td>
+                                        <td>
+
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_typecvcadvice</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_cvcfilenumber</span>
+
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_dept_ref_number</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_name_designation</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_actiontaken_da</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.CvcAdvices[@i].deviation_cvc_advice_firststage_actiontaken_aa</span>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("DeleteCvcAdvice", new { pend_id = @Model.CvcAdvices[@i].pend_id })" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteCvcAdvice", new { pend_id = Model.CvcAdvices[i].pend_id })'); return false;">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newRow_CvcAdvice">
+                                    <td>@(Model.CvcAdvices.Count + 1)</td>
+                                    <td>
+                                        @Html.DropDownListFor(
+                                                 model => model.NewCvcAdvice.stagetype,
+                                                 new SelectList(Model.StageTypes, "Name", "Name"),
+                                                 "-- Select --",
+                                                 new { @class = "form-control text-center" }
+                                                 )
+                                    </td>
+                                    <td>
+                                        <select asp-for="NewCvcAdvice.deviation_cvc_advice_firststage_typecvcadvice" class="form-control text-center">
+                                            <option value="">-- Select --</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <input asp-for='NewCvcAdvice.deviation_cvc_advice_firststage_cvcfilenumber' class='form-control ' type='text' />
+
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewCvcAdvice.deviation_cvc_advice_firststage_dept_ref_number' class='form-control ' type='text' />
+
+                                    <td>
+                                        <input asp-for='NewCvcAdvice.deviation_cvc_advice_firststage_name_designation' class='form-control' type='text' />
+
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewCvcAdvice.deviation_cvc_advice_firststage_actiontaken_da' class='form-control ' type='text' />
+
+                                    <td>
+                                        <input asp-for='NewCvcAdvice.deviation_cvc_advice_firststage_actiontaken_aa' class='form-control' type='text' />
+
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowCVCAdvice()" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
@@ -241,7 +320,7 @@
         </table>
     </div>
 
-    
+
 
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
@@ -258,10 +337,10 @@
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input id="authorityMajor" class="form-control" onkeypress="return isNumberKey(event);" name="totalOfficerMajor" style="float:left;width:25%" type="number" value="" maxlength="3">
-                            <input type="button" class="addauthority btn btn-outline-primary ms-1" value="Add" style="width: 10%">
+                            @* <input id="authorityMajor" class="form-control" onkeypress="return isNumberKey(event);" style="float:left;width:25%" type="number" value="" maxlength="3"> *@
+                            <input type="button" id="addauthority" class="btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
                         </span>
-                        <input id="authorityRows" name="authorityRows" type="hidden" value="0">
+                        <input id="authorityRows" type="hidden" value="@Model.AppeleateAuthorities.Count">
                     </td>
 
                 </tr>
@@ -282,6 +361,81 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for (int i = 0; i < Model.AppeleateAuthorities.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[i].stagetype</span>
+                                            @* <input asp-for="Agewisependency[i].prosependingcbifirno" class="form-control"  /> *@
+                                        </td>
+                                        <td>
+
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_typecvcadvice</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_cvcfilenumber</span>
+
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_dept_ref_number</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_name_designation</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_actiontaken_da</span>
+                                        </td>
+                                        <td>
+                                            <label class="control-label"></label>
+                                            <span>@Model.AppeleateAuthorities[@i].appellate_deviation_firststage_actiontaken_aa</span>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("DeleteAppeleateAuthority", new { pend_id = @Model.AppeleateAuthorities[@i].pend_id })" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteAppeleateAuthority", new { pend_id = @Model.AppeleateAuthorities[@i].pend_id })'); return false;">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newRow_AppellateAuthority">
+                                    <td>@(Model.AppeleateAuthorities.Count + 1)</td>
+                                    <td>
+                                        @Html.DropDownListFor(
+                                                 model => model.NewAppeleateAuthority.stagetype,
+                                                 new SelectList(Model.StageTypes, "Name", "Name"),
+                                                 "-- Select --",
+                                                 new { @class = "form-control text-center" }
+                                                 )
+                                    </td>
+                                    <td>
+                                        <select asp-for="NewAppeleateAuthority.appellate_deviation_firststage_typecvcadvice" class="form-control text-center">
+                                            <option value="">-- Select --</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAppeleateAuthority.appellate_deviation_firststage_cvcfilenumber' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAppeleateAuthority.appellate_deviation_firststage_dept_ref_number' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAppeleateAuthority.appellate_deviation_firststage_name_designation' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAppeleateAuthority.appellate_deviation_firststage_actiontaken_da' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewAppeleateAuthority.appellate_deviation_firststage_actiontaken_aa' class='form-control ' type='text' />
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowAppelleate()" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
@@ -293,497 +447,183 @@
     <div class="center w-70 mt-2">
         <p><sup><span style="color: red;">*</span></sup>for 5 (C) &amp; 5 (D) - Type /Nature of CVC Advice – ( in drop down menu)</p>
         <p>&nbsp;Sanction for Prosecution/ Denial of Prosecution/ First stage –Major pp/ Minor pp/Admn Action </p>
-        <p>Second Stage – Imposition of Major penalty/Minor penalty/ Exoneration</p>
+        <p>&nbsp;Second Stage – Imposition of Major penalty/Minor penalty/ Exoneration</p>
 
-    </div>
-
-    <div class="w-25 m-auto">
-        @if (ViewBag.ComplaintsMessage != null)
-        {
-            @ViewBag.ComplaintsMessage
-        }
     </div>
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="DepartmentalProceedings">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('AdviceOfCvcQPRForm')" />
     </div>
 
 </form>
 
-
-
-<div class="row">
-   @*  <div class="col-md-4">
-
-        <div class="form-group">
-            <label asp-for="advice_cvc_id" class="control-label"></label>
-            <input asp-for="advice_cvc_id" class="form-control" />
-            <span asp-validation-for="advice_cvc_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_first_casespreviousqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_first_casespreviousqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_first_casespreviousqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_first_casesduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_first_casesduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_first_casesduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_first_adviceduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_first_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_first_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_first_adviceawaitedcvc" class="control-label"></label>
-            <input asp-for="advice_cvc_first_adviceawaitedcvc" class="form-control" />
-            <span asp-validation-for="advice_cvc_first_adviceawaitedcvc" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_second_casespreviousqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_second_casespreviousqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_second_casespreviousqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_second_casesduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_second_casesduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_second_casesduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_second_adviceduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_second_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_second_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_second_adviceawaitedcvc" class="control-label"></label>
-            <input asp-for="advice_cvc_second_adviceawaitedcvc" class="form-control" />
-            <span asp-validation-for="advice_cvc_second_adviceawaitedcvc" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_firstreconsider_casespreviousqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_firstreconsider_casespreviousqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_firstreconsider_casespreviousqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_firstreconsider_casesduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_firstreconsider_casesduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_firstreconsider_casesduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_firstreconsider_adviceduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_firstreconsider_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_firstreconsider_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="control-label"></label>
-            <input asp-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="form-control" />
-            <span asp-validation-for="advice_cvc_firstreconsider_adviceawaitedcvc" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_secondreconsider_casespreviousqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_secondreconsider_casespreviousqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_secondreconsider_casespreviousqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_secondreconsider_casesduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_secondreconsider_casesduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_secondreconsider_casesduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_secondreconsider_adviceduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_secondreconsider_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_secondreconsider_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="control-label"></label>
-            <input asp-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="form-control" />
-            <span asp-validation-for="advice_cvc_secondreconsider_adviceawaitedcvc" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_total_casespreviousqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_total_casespreviousqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_total_casespreviousqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_total_casesduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_total_casesduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_total_casesduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_total_adviceduringqtr" class="control-label"></label>
-            <input asp-for="advice_cvc_total_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="advice_cvc_total_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="advice_cvc_total_adviceawaitedcvc" class="control-label"></label>
-            <input asp-for="advice_cvc_total_adviceawaitedcvc" class="form-control" />
-            <span asp-validation-for="advice_cvc_total_adviceawaitedcvc" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_openingbalance" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_openingbalance" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_openingbalance" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_adviceduringqtr" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_disposed" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_disposed" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_disposed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_balancepending" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_balancepending" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_balancepending" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_greaterone" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_greaterone" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_greaterone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_onetothree" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_onetothree" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_onetothree" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_threetosix" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_threetosix" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_threetosix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstmajor_lesssix" class="control-label"></label>
-            <input asp-for="action_cvc_firstmajor_lesssix" class="form-control" />
-            <span asp-validation-for="action_cvc_firstmajor_lesssix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_openingbalance" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_openingbalance" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_openingbalance" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_adviceduringqtr" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_disposed" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_disposed" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_disposed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_balancepending" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_balancepending" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_balancepending" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_greaterone" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_greaterone" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_greaterone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_onetothree" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_onetothree" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_onetothree" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_threetosix" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_threetosix" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_threetosix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_firstminor_lesssix" class="control-label"></label>
-            <input asp-for="action_cvc_firstminor_lesssix" class="form-control" />
-            <span asp-validation-for="action_cvc_firstminor_lesssix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_openingbalance" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_openingbalance" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_openingbalance" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_adviceduringqtr" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_disposed" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_disposed" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_disposed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_balancepending" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_balancepending" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_balancepending" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_greaterone" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_greaterone" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_greaterone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_onetothree" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_onetothree" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_onetothree" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_threetosix" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_threetosix" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_threetosix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondmajor_lesssix" class="control-label"></label>
-            <input asp-for="action_cvc_secondmajor_lesssix" class="form-control" />
-            <span asp-validation-for="action_cvc_secondmajor_lesssix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_openingbalance" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_openingbalance" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_openingbalance" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_adviceduringqtr" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_disposed" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_disposed" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_disposed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_balancepending" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_balancepending" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_balancepending" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_greaterone" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_greaterone" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_greaterone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_onetothree" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_onetothree" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_onetothree" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_threetosix" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_threetosix" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_threetosix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_secondminor_lesssix" class="control-label"></label>
-            <input asp-for="action_cvc_secondminor_lesssix" class="form-control" />
-            <span asp-validation-for="action_cvc_secondminor_lesssix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_openingbalance" class="control-label"></label>
-            <input asp-for="action_cvc_total_openingbalance" class="form-control" />
-            <span asp-validation-for="action_cvc_total_openingbalance" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_adviceduringqtr" class="control-label"></label>
-            <input asp-for="action_cvc_total_adviceduringqtr" class="form-control" />
-            <span asp-validation-for="action_cvc_total_adviceduringqtr" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_disposed" class="control-label"></label>
-            <input asp-for="action_cvc_total_disposed" class="form-control" />
-            <span asp-validation-for="action_cvc_total_disposed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_balancepending" class="control-label"></label>
-            <input asp-for="action_cvc_total_balancepending" class="form-control" />
-            <span asp-validation-for="action_cvc_total_balancepending" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_greaterone" class="control-label"></label>
-            <input asp-for="action_cvc_total_greaterone" class="form-control" />
-            <span asp-validation-for="action_cvc_total_greaterone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_onetothree" class="control-label"></label>
-            <input asp-for="action_cvc_total_onetothree" class="form-control" />
-            <span asp-validation-for="action_cvc_total_onetothree" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_threetosix" class="control-label"></label>
-            <input asp-for="action_cvc_total_threetosix" class="form-control" />
-            <span asp-validation-for="action_cvc_total_threetosix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="action_cvc_total_lesssix" class="control-label"></label>
-            <input asp-for="action_cvc_total_lesssix" class="form-control" />
-            <span asp-validation-for="action_cvc_total_lesssix" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_typecvcadvice" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_typecvcadvice" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_typecvcadvice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_cvcfilenumber" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_cvcfilenumber" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_cvcfilenumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_dept_ref_number" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_dept_ref_number" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_dept_ref_number" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_name_designation" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_name_designation" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_name_designation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_actiontaken_da" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_actiontaken_da" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_actiontaken_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_typecvcadvice" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_typecvcadvice" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_typecvcadvice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_cvcfilenumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_dept_ref_number" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_dept_ref_number" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_dept_ref_number" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_name_designation" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_name_designation" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_name_designation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_actiontaken_da" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_actiontaken_da" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_actiontaken_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_typecvcadvice" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_typecvcadvice" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_typecvcadvice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_cvcfilenumber" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_cvcfilenumber" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_cvcfilenumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_dept_ref_number" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_dept_ref_number" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_dept_ref_number" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_name_designation" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_name_designation" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_name_designation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_actiontaken_da" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_actiontaken_da" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_actiontaken_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_firststage_actiontaken_aa" class="control-label"></label>
-            <input asp-for="appellate_deviation_firststage_actiontaken_aa" class="form-control" />
-            <span asp-validation-for="appellate_deviation_firststage_actiontaken_aa" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_typecvcadvice" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_typecvcadvice" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_typecvcadvice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_cvcfilenumber" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_cvcfilenumber" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_cvcfilenumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_dept_ref_number" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_dept_ref_number" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_dept_ref_number" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_name_designation" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_name_designation" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_name_designation" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_actiontaken_da" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_actiontaken_da" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_actiontaken_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="appellate_deviation_secondstage_actiontaken_aa" class="control-label"></label>
-            <input asp-for="appellate_deviation_secondstage_actiontaken_aa" class="form-control" />
-            <span asp-validation-for="appellate_deviation_secondstage_actiontaken_aa" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="create_date" class="control-label"></label>
-            <input asp-for="create_date" class="form-control" />
-            <span asp-validation-for="create_date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="user_id" class="control-label"></label>
-            <input asp-for="user_id" class="form-control" />
-            <span asp-validation-for="user_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="update_date" class="control-label"></label>
-            <input asp-for="update_date" class="form-control" />
-            <span asp-validation-for="update_date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="last_user_id" class="control-label"></label>
-            <input asp-for="last_user_id" class="form-control" />
-            <span asp-validation-for="last_user_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="qpr_id" class="control-label"></label>
-            <input asp-for="qpr_id" class="form-control" />
-            <span asp-validation-for="qpr_id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ip" class="control-label"></label>
-            <input asp-for="ip" class="form-control" />
-            <span asp-validation-for="ip" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_firststage_name_designation_da" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_firststage_name_designation_da" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_firststage_name_designation_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="deviation_cvc_advice_secondstage_name_designation_da" class="control-label"></label>
-            <input asp-for="deviation_cvc_advice_secondstage_name_designation_da" class="form-control" />
-            <span asp-validation-for="deviation_cvc_advice_secondstage_name_designation_da" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-        </div>
-    </div> *@
-</div>
-@* 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+    document.getElementById('add-row-advice_cvc').addEventListener('click', function () {
+        $('#NewCvcAdvice_stagetype').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').attr('required', true);
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').attr('required', true);
+        $('#newRow_CvcAdvice').removeClass('d-none');
+        $('#add-row-advice_cvc').removeClass('btn-outline-primary');
+        $('#add-row-advice_cvc').addClass('btn-outline-secondary');
+        $('#add-row-advice_cvc').addClass('disabled');
+    });
+
+    function hideRowCVCAdvice() {
+        event.preventDefault();
+        $('#NewCvcAdvice_stagetype').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').removeAttr('required');
+        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').removeAttr('required');
+        $('#newRow_CvcAdvice').addClass('d-none');
+        $('#add-row-advice_cvc').addClass('btn-outline-primary');
+        $('#add-row-advice_cvc').removeClass('btn-outline-secondary');
+        $('#add-row-advice_cvc').removeClass('disabled');
+    }
+
+    document.getElementById('addauthority').addEventListener('click', function () {
+        $('#NewAppeleateAuthority_stagetype').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').attr('required', true);
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').attr('required', true);
+        $('#newRow_AppellateAuthority').removeClass('d-none');
+        $('#addauthority').removeClass('btn-outline-primary');
+        $('#addauthority').addClass('btn-outline-secondary');
+        $('#addauthority').addClass('disabled');
+    });
+
+    function hideRowAppelleate() {
+        event.preventDefault();
+        $('#NewAppeleateAuthority_stagetype').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').removeAttr('required');
+        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').removeAttr('required');
+        $('#newRow_AppellateAuthority').addClass('d-none');
+        $('#addauthority').addClass('btn-outline-primary');
+        $('#addauthority').removeClass('btn-outline-secondary');
+        $('#addauthority').removeClass('disabled');
+    }
+</script>
+<script>
+    $(function () {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+
+        if (complaintsMessage) {
+
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'error'
+            }
+
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: notificationIcon,
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
+        }
+        performComTotal();
+    });
+
+    $('#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone,#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone,#AdviceOfCvc_action_cvc_secondmajor_disposed,#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_secondmajor_greaterone,#AdviceOfCvc_action_cvc_firstminor_greaterone,#AdviceOfCvc_action_cvc_secondminor_disposed,#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstmajor_openingbalance,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_disposed,#AdviceOfCvc_advice_cvc_second_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_casesduringqtr,#AdviceOfCvc_advice_cvc_total_casespreviousqtr,#AdviceOfCvc_advice_cvc_second_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').on('input', performComTotal);
+
+    function performComTotal() {
+        $('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
+
+        $('#AdviceOfCvc_advice_cvc_first_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_second_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_firstreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_secondreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
+        $('#AdviceOfCvc_advice_cvc_total_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val()) || 0));
+
+        $('#AdviceOfCvc_action_cvc_total_openingbalance').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0));
+
+        $('#AdviceOfCvc_action_cvc_firstmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_firstminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_secondmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_secondminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_disposed').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_total_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_total_disposed').val()) || 0));
+
+
+        $('#AdviceOfCvc_action_cvc_total_greaterone').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_greaterone').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_onetothree').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_onetothree').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_threetosix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_threetosix').val()) || 0));
+        $('#AdviceOfCvc_action_cvc_total_lesssix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_lesssix').val()) || 0));
+
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('#NewCvcAdvice_stagetype').change(function () {
+            var stageName = $(this).val();
+            $.ajax({
+                url: '@Url.Action("GetNatureListByStageType")',
+                type: 'GET',
+                data: { stageName: stageName },
+                success: function (data) {
+                    var itemDropdown = $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice');
+                    itemDropdown.empty();
+                    itemDropdown.append('<option value="">-- Select --</option>');
+                    $.each(data, function (index, item) {
+                        itemDropdown.append('<option value="' + item + '">' + item + '</option>');
+                    });
+                }
+            });
+        });
+    });
+    
+    $(document).ready(function () {
+        $('#NewAppeleateAuthority_stagetype').change(function () {
+            var stageName = $(this).val();
+            $.ajax({
+                url: '@Url.Action("GetNatureListByStageType")',
+                type: 'GET',
+                data: { stageName: stageName },
+                success: function (data) {
+                    var itemDropdown = $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice');
+                    itemDropdown.empty();
+                    itemDropdown.append('<option value="">-- Select --</option>');
+                    $.each(data, function (index, item) {
+                        itemDropdown.append('<option value="' + item + '">' + item + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>

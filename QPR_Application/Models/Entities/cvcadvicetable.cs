@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class cvcadvicetable
     {
-        public long? pend_id { get; set; }
-        public long? qpr_id { get; set; }
+        [Key]
+        public int pend_id { get; set; }
+        public long qpr_id { get; set; }
         public string stagetype { get; set; }
         public string deviation_cvc_advice_firststage_typecvcadvice { get; set; }
         public string deviation_cvc_advice_firststage_cvcfilenumber { get; set; }

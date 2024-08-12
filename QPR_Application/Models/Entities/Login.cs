@@ -13,9 +13,10 @@ namespace QPR_Application.Models.Entities
         //[Key]
         //public int Id { get; set; }
         //public string Role { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
         [StringLength(50)]
         public string Role { get; set; }

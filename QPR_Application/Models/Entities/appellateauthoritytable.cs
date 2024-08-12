@@ -8,26 +8,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class appellateauthoritytable
     {
-        public long? pend_id { get; set; }
-        public long? qpr_id { get; set; }
-        [StringLength(50)]
+        [Key]
+        public int pend_id { get; set; }
+        public long qpr_id { get; set; }
         public string stagetype { get; set; }
-        [StringLength(50)]
         public string appellate_deviation_firststage_typecvcadvice { get; set; }
-        [StringLength(100)]
         public string appellate_deviation_firststage_cvcfilenumber { get; set; }
-        [StringLength(100)]
         public string appellate_deviation_firststage_dept_ref_number { get; set; }
-        [StringLength(100)]
         public string appellate_deviation_firststage_name_designation { get; set; }
-        [StringLength(500)]
         public string appellate_deviation_firststage_actiontaken_da { get; set; }
-        [StringLength(1600)]
         public string appellate_deviation_firststage_actiontaken_aa { get; set; }
-        [StringLength(50)]
         public string used_ip { get; set; }
     }
 }

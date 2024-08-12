@@ -263,7 +263,7 @@
                                             <span>@Model.AgainstChargedTables[@i].departproceedings_detailsinquiry_remarks</span>
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("DeleteAgainstChargedOfficers", new { pend_id = @Model.AgainstChargedTables[@i].pend_id })" class="btn btn-outline-danger">Delete</a>
+                                            <a href="@Url.Action("DeleteAgainstChargedOfficers", new { pend_id = @Model.AgainstChargedTables[@i].pend_id })" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteAgainstChargedOfficers", new { pend_id = @Model.AgainstChargedTables[@i].pend_id })'); return false;">Delete</a>
                                         </td>
                                     </tr>
                                 }
@@ -288,7 +288,7 @@
 
                                     </td>
                                     <td>
-                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" />
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" onclick="return validateFields()" />
                                         <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
                                     </td>
                                 </tr>

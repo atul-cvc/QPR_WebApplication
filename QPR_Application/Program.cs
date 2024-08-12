@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
+using QPR_Application.Util;
 
 var time = 10;
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +23,8 @@ builder.Services.AddTransient<ILoginRepo, LoginRepo>();
 builder.Services.AddTransient<IAdminRepo, AdminRepo>();
 builder.Services.AddTransient<IManageUserRepo, ManageUserRepo>();
 builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
-builder.Services.AddTransient<IQprRepo, QprRepo>();
+builder.Services.AddScoped<QPRUtilility>();
+builder.Services.AddScoped<IQprRepo, QprRepo>();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddTransient<IComplaintsRepo, ComplaintsRepo>();
 builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();

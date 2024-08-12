@@ -1,4 +1,4 @@
-﻿@model QPR_Application.Models.Entities.statusofpendencyqrs
+﻿@model QPR_Application.Models.ViewModels.StatusOfPendencyViewModel;
 
 @{
     ViewData["Title"] = "StatusofPendencyFIandCACases";
@@ -68,15 +68,15 @@
                     <td>&nbsp;<b>(9)</b></td>
                 </tr>
                 <tr>
-                    <td><b><input asp-for="pendency_status_fi_previousqtr" name="pendency_status_fi_previousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_fi_addduringqtr" name="pendency_status_fi_addduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_fi_total" name="pendency_status_fi_total" onkeypress="return isNumberKey(event);" class="form-control "></b></td>
-                    <td><b><input asp-for="pendency_status_fi_reply_commission" name="pendency_status_fi_reply_commission" onkeypress="return isNumberKey(event);" class="form-control  "></b></td>
-                    <td><b><input asp-for="pendency_status_fi_reply_pending" name="pendency_status_fi_reply_pending" onkeypress="return isNumberKey(event);" class="form-control "></b></td>
-                    <td><b><input asp-for="pendency_status_fi_greaterthree" name="pendency_status_fi_greaterthree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_fi_threetosix" name="pendency_status_fi_threetosix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_fi_sixtotwelve" name="pendency_status_fi_sixtotwelve" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_fi_lessone" name="pendency_status_fi_lessone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_previousqtr"  onkeypress="return isNumberKey(event);" class="form-control" readonly ></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_addduringqtr"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_total" onkeypress="return isNumberKey(event);" class="form-control " readonly></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_reply_commission"  onkeypress="return isNumberKey(event);" class="form-control  "></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_reply_pending" onkeypress="return isNumberKey(event);" class="form-control " readonly></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_greaterthree"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_threetosix"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_sixtotwelve"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_fi_lessone"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
             </tbody>
         </table>
@@ -87,14 +87,13 @@
             <tbody>
                 <tr style="margin-top: 10px;">
                     <td width="15%" align="left" valign="middle">
-                        Details of
-                        FI Cases:
+                        Details of FI Cases:
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input path="" class="form-control" type="number" name="totalOfficer" maxlength="3" id="name_of_officer" style="float:left;width:25%" onkeypress="return isNumberKey(event);">
+                            <input path="" class="form-control" type="number"  maxlength="3" id="name_of_officer" style="float:left;width:25%" onkeypress="return isNumberKey(event);">
                             <input type="button" class="add-row-status-pendency btn btn-outline-primary ms-1" value="Add" style="width: 10%;">
-                            <input path="" type="hidden" name="totRows" id="totRows" value="0">
+                            <input path="" type="hidden"  id="totRows" value="0">
                         </span>
                     </td>
                 </tr>
@@ -165,15 +164,15 @@
                     <td>&nbsp;<b>(9)</b></td>
                 </tr>
                 <tr>
-                    <td><b><input asp-for="pendency_status_ca_previousqtr" name="pendency_status_ca_previousqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_addduringqtr" name="pendency_status_ca_addduringqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_total" name="pendency_status_ca_total" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_comments_commission" name="pendency_status_ca_comments_commission" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_comments_pending" name="pendency_status_ca_comments_pending" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_greaterone" name="pendency_status_ca_greaterone" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_onetotwo" name="pendency_status_ca_onetotwo" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_twotothree" name="pendency_status_ca_twotothree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="pendency_status_ca_lessthree" name="pendency_status_ca_lessthree" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_previousqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_addduringqtr"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_total" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_comments_commission"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_comments_pending" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_greaterone"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_onetotwo"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_twotothree"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="StatusOfPendency.pendency_status_ca_lessthree"  onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
             </tbody>
         </table>
@@ -184,14 +183,13 @@
             <tbody>
                 <tr style="margin-top: 10px;">
                     <td width="15%" align="left" valign="middle">
-                        Details of
-                        CA Cases:
+                        Details of CA Cases:
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input path="" class="form-control" type="number" name="totalOfficer1" maxlength="3" id="name_of_officer1" style="float:left;width:25%" onkeypress="return isNumberKey(event);">
+                            <input path="" class="form-control" type="number"  maxlength="3" id="name_of_officer1" style="float:left;width:25%" onkeypress="return isNumberKey(event);">
                             <input type="button" class="add-row1 btn btn-outline-primary ms-1" value="Add" style=" margin-top: 2px; width:10%">
-                            <input path="" type="hidden" name="totRows1" id="totRows1" value="0">
+                            <input path="" type="hidden"  id="totRows1" value="0">
                         </span>
                     </td>
                 </tr>
@@ -214,39 +212,26 @@
                             </thead>
                             <tbody>
 
-                                @*  <tr>
-                                <td style="width:14%"><b>1</b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[0].createdDate" value="CBI"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[0].fileNo" value="2105/BNK/27"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[0].complaindate" value="2023-11-02 00:00:00"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[0].boirackdate" value="PRAVIN KANTILAL MURABIA"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[0].decision" value="VIG/CCG/AHM/N-53/3247"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="text" name="CaComplaintDto[0].boDecision" value="CA"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="date" name="CaComplaintDto[0].boDecisionDate" value=""></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[0].allegationDeatils" value=""></b></td>
-                                <td style="width: 1%">
-                                <input path="" style="padding: 2px; width: 10vw" type="hidden" name="CaComplaintDto[0].table_id" value="0">
-                                <input path="" style="padding: 2px; width: 10vw" type="hidden" name="CaComplaintDto[0].status" value="1">
-                                -
-                                </td>
-                                </tr>
+                                @*
+
 
                                 <tr>
                                 <td style="width:14%"><b>2</b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[1].createdDate" value="CBI"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[1].fileNo" value="2105/BNK/28"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[1].complaindate" value="2021-07-12 00:00:00"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[1].boirackdate" value=" SRI SHASHI BHUSHAN MADHAR"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text" name="CaComplaintDto[1].decision" value="VIG/CHA/N-2364/5686"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="text" name="CaComplaintDto[1].boDecision" value="CA"></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="date" name="CaComplaintDto[1].boDecisionDate" value=""></b></td>
-                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text" name="CaComplaintDto[1].allegationDeatils" value=""></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text"  value="CBI"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text"  value="2105/BNK/28"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text"  value="2021-07-12 00:00:00"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text"  value=" SRI SHASHI BHUSHAN MADHAR"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width:10vw" type="text"  value="VIG/CHA/N-2364/5686"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="text"  value="CA"></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width:100%" type="date"  value=""></b></td>
+                                <td style="width:14%"><b><input path="" style="padding: 2px; width: 10vw" type="text"  value=""></b></td>
                                 <td style="width: 1%">
-                                <input path="" style="padding: 2px; width: 10vw" type="hidden" name="CaComplaintDto[1].table_id" value="0">
-                                <input path="" style="padding: 2px; width: 10vw" type="hidden" name="CaComplaintDto[1].status" value="1">
+                                <input path="" style="padding: 2px; width: 10vw" type="hidden"  value="0">
+                                <input path="" style="padding: 2px; width: 10vw" type="hidden"  value="1">
                                 -
                                 </td>
-                                </tr> *@
+                                </tr>
+                                *@
 
 
                             </tbody>
@@ -258,11 +243,11 @@
     </div>
 
     <div class="w-25 m-auto text-center">
-        
-            @if (ViewBag.ComplaintsMessage != null)
-            {
-                @ViewBag.ComplaintsMessage
-            }
+
+        @if (ViewBag.ComplaintsMessage != null)
+        {
+            @ViewBag.ComplaintsMessage
+        }
 
     </div>
 
@@ -275,158 +260,8 @@
 
 </form>
 
-
-@* <div class="row">
-    <div class="col-md-4">
-
-    <div class="form-group">
-    <label asp-for="pendency_status_id" class="control-label"></label>
-    <input asp-for="pendency_status_id" class="form-control" />
-    <span asp-validation-for="pendency_status_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_previousqtr" class="control-label"></label>
-    <input asp-for="pendency_status_fi_previousqtr" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_previousqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_addduringqtr" class="control-label"></label>
-    <input asp-for="pendency_status_fi_addduringqtr" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_addduringqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_total" class="control-label"></label>
-    <input asp-for="pendency_status_fi_total" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_reply_commission" class="control-label"></label>
-    <input asp-for="pendency_status_fi_reply_commission" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_reply_commission" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_reply_pending" class="control-label"></label>
-    <input asp-for="pendency_status_fi_reply_pending" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_reply_pending" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_greaterthree" class="control-label"></label>
-    <input asp-for="pendency_status_fi_greaterthree" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_greaterthree" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_threetosix" class="control-label"></label>
-    <input asp-for="pendency_status_fi_threetosix" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_threetosix" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_sixtotwelve" class="control-label"></label>
-    <input asp-for="pendency_status_fi_sixtotwelve" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_sixtotwelve" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_lessone" class="control-label"></label>
-    <input asp-for="pendency_status_fi_lessone" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_lessone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_fi_upload" class="control-label"></label>
-    <input asp-for="pendency_status_fi_upload" class="form-control" />
-    <span asp-validation-for="pendency_status_fi_upload" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_previousqtr" class="control-label"></label>
-    <input asp-for="pendency_status_ca_previousqtr" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_previousqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_addduringqtr" class="control-label"></label>
-    <input asp-for="pendency_status_ca_addduringqtr" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_addduringqtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_total" class="control-label"></label>
-    <input asp-for="pendency_status_ca_total" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_comments_commission" class="control-label"></label>
-    <input asp-for="pendency_status_ca_comments_commission" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_comments_commission" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_comments_pending" class="control-label"></label>
-    <input asp-for="pendency_status_ca_comments_pending" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_comments_pending" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_greaterone" class="control-label"></label>
-    <input asp-for="pendency_status_ca_greaterone" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_greaterone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_onetotwo" class="control-label"></label>
-    <input asp-for="pendency_status_ca_onetotwo" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_onetotwo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_twotothree" class="control-label"></label>
-    <input asp-for="pendency_status_ca_twotothree" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_twotothree" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_lessthree" class="control-label"></label>
-    <input asp-for="pendency_status_ca_lessthree" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_lessthree" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="pendency_status_ca_upload" class="control-label"></label>
-    <input asp-for="pendency_status_ca_upload" class="form-control" />
-    <span asp-validation-for="pendency_status_ca_upload" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="create_date" class="control-label"></label>
-    <input asp-for="create_date" class="form-control" />
-    <span asp-validation-for="create_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="user_id" class="control-label"></label>
-    <input asp-for="user_id" class="form-control" />
-    <span asp-validation-for="user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="update_date" class="control-label"></label>
-    <input asp-for="update_date" class="form-control" />
-    <span asp-validation-for="update_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="last_user_id" class="control-label"></label>
-    <input asp-for="last_user_id" class="form-control" />
-    <span asp-validation-for="last_user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="qpr_id" class="control-label"></label>
-    <input asp-for="qpr_id" class="form-control" />
-    <span asp-validation-for="qpr_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="ip" class="control-label"></label>
-    <input asp-for="ip" class="form-control" />
-    <span asp-validation-for="ip" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-
-    </div>
-    </div> *@
-
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    }
+}

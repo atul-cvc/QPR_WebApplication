@@ -17,7 +17,11 @@ namespace QPR_Application.Controllers
         {
             _httpContext.HttpContext.Session.Remove("CurrentUser");
             _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
+            foreach (var cookie in HttpContext.Request.Cookies.Keys)
+            {
+                // Delete each cookie by its name
+                Response.Cookies.Delete(cookie);
+            }
             return RedirectToAction("Index", "Login");
         }
     }

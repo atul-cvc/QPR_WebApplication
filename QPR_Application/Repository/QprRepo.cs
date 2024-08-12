@@ -6,6 +6,7 @@ using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
 using System;
 using System.Data;
+using System.Reflection;
 
 namespace QPR_Application.Repository
 {
@@ -13,14 +14,16 @@ namespace QPR_Application.Repository
     {
         private readonly QPRContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly IComplaintsRepo _complaintsRepo;
         private string _connString = string.Empty;
 
-        public QprRepo(QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext)
+        public QprRepo(QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
         {
             _dbContext = DbContext;
             //_config = config;
             _connString = config.GetConnectionString("SQLConnection") ?? String.Empty;
             _httpContext = httpContext;
+            _complaintsRepo = complaintsRepo;
         }
 
         public async Task<List<Years>> GetYears()
@@ -85,11 +88,11 @@ namespace QPR_Application.Repository
                     refNum = Convert.ToString(cmd.ExecuteScalar());
                     if (String.IsNullOrEmpty(refNum))
                     {
-
                     }
+                    cmd.Dispose();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { throw ex; }
             return refNum;
         }
 
@@ -231,7 +234,7 @@ namespace QPR_Application.Repository
                 }
 
                 againstchargedtable newAgainst = deptViewModel.NewAgainstChargedTable;
-                if (newAgainst != null &&  !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer) &&  !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
+                if (newAgainst != null && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer) && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
                 {
                     newAgainst.used_ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     newAgainst.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
@@ -265,7 +268,7 @@ namespace QPR_Application.Repository
                 }
 
                 againstchargedtable newAgainst = deptViewModel.NewAgainstChargedTable;
-                if (newAgainst != null && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer)  && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
+                if (newAgainst != null && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_chargedofficer) && !String.IsNullOrEmpty(newAgainst.departproceedings_detailsinquiry_remarks))
                 {
                     newAgainst.used_ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
                     newAgainst.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
@@ -280,8 +283,108 @@ namespace QPR_Application.Repository
             }
         }
 
+        public async Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM)
+        {
+            try
+            {
+                if (adviceVM.AdviceOfCvc != null)
+                {
+                    adviceVM.AdviceOfCvc.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    adviceVM.AdviceOfCvc.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    adviceVM.AdviceOfCvc.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                    adviceVM.AdviceOfCvc.create_date = new DateOnly();
+
+                    await _dbContext.adviceofcvcqrs.AddAsync(adviceVM.AdviceOfCvc);
+                }
+
+                await AddCvcAdvice(adviceVM.NewCvcAdvice);
+
+                await AddAppelleate(adviceVM.NewAppeleateAuthority);
+                
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task SaveAdviceCVC(AdviceOfCvcViewModel adviceVM)
+        {//, adviceofcvcqrs prevData
+            try
+            {
+                if (adviceVM.AdviceOfCvc != null)
+                {
+                    adviceofcvcqrs newData = adviceVM.AdviceOfCvc;
+                    adviceofcvcqrs prevData = await _complaintsRepo.GetAdviceOfCVCData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+
+                    newData.qpr_id = prevData.qpr_id;
+                    newData.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                    newData.update_date = new DateOnly();
+                    newData.advice_cvc_id = prevData.advice_cvc_id;
+                    newData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+
+                    _dbContext.adviceofcvcqrs.Update(adviceVM.AdviceOfCvc);
+                }
+
+                await AddCvcAdvice(adviceVM.NewCvcAdvice);
+
+                await AddAppelleate(adviceVM.NewAppeleateAuthority);
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
+
+
+
+
+
+
+
+
+
+
+        public async Task AddCvcAdvice(cvcadvicetable cvcAdvice)
+        {
+            try
+            {
+                if (AreAllPropertiesSet(cvcAdvice, ["pend_id", "qpr_id", "used_ip"]))
+                {
+                    cvcAdvice.used_ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    cvcAdvice.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+
+                    await _dbContext.cvcadvicetable.AddAsync(cvcAdvice);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task AddAppelleate(appellateauthoritytable appellateAuth)
+        {
+            try
+            {
+                if (AreAllPropertiesSet(appellateAuth, ["pend_id", "qpr_id", "used_ip"]))
+                {
+                    appellateAuth.used_ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    appellateAuth.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+
+                    await _dbContext.appellateauthoritytable.AddAsync(appellateAuth);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task DeleteAgeWisePendency(int pend_id)
         {
             try
@@ -307,6 +410,60 @@ namespace QPR_Application.Repository
             {
                 throw ex;
             }
+        }
+        public async Task DeleteCvcAdvice(int pend_id)
+        {
+            try
+            {
+                cvcadvicetable cvcAdvice = await _dbContext.cvcadvicetable.FirstOrDefaultAsync(i => i.pend_id == pend_id);
+                _dbContext.cvcadvicetable.Remove(cvcAdvice);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task DeleteAppeleateAuthority(int pend_id)
+        {
+            try
+            {
+                appellateauthoritytable appelleateAuth = await _dbContext.appellateauthoritytable.FirstOrDefaultAsync(i => i.pend_id == pend_id);
+                _dbContext.appellateauthoritytable.Remove(appelleateAuth);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static bool AreAllPropertiesSet<T>(T obj, string[] excludeArr = null)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentNullException(nameof(obj));
+            }
+
+            Type type = obj.GetType();
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo property in properties)
+            {
+                // Skip properties that can't be read or are in the excludeArr 
+                if (!property.CanRead || excludeArr.Contains(property.Name))
+                {
+                    continue;
+                }
+
+                object value = property.GetValue(obj);
+
+                // For value types, check if it's the default value
+                if (value == null || (property.PropertyType.IsValueType && Activator.CreateInstance(property.PropertyType).Equals(value)))
+                {
+                    return false; // Found a property with no value
+                }
+            }
+            return true; // All properties have values
         }
     }
 }

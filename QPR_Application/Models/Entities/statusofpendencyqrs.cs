@@ -8,41 +8,65 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class statusofpendencyqrs
     {
-        public int? pendency_status_id { get; set; }
-        public long? pendency_status_fi_previousqtr { get; set; }
-        public long? pendency_status_fi_addduringqtr { get; set; }
-        public long? pendency_status_fi_total { get; set; }
-        public long? pendency_status_fi_reply_commission { get; set; }
-        public long? pendency_status_fi_reply_pending { get; set; }
-        public long? pendency_status_fi_greaterthree { get; set; }
-        public long? pendency_status_fi_threetosix { get; set; }
-        public long? pendency_status_fi_sixtotwelve { get; set; }
-        public long? pendency_status_fi_lessone { get; set; }
-        public string pendency_status_fi_upload { get; set; }
-        public long? pendency_status_ca_previousqtr { get; set; }
-        public long? pendency_status_ca_addduringqtr { get; set; }
-        public long? pendency_status_ca_total { get; set; }
-        public long? pendency_status_ca_comments_commission { get; set; }
-        public long? pendency_status_ca_comments_pending { get; set; }
-        public long? pendency_status_ca_greaterone { get; set; }
-        public long? pendency_status_ca_onetotwo { get; set; }
-        public long? pendency_status_ca_twotothree { get; set; }
-        public long? pendency_status_ca_lessthree { get; set; }
-        public string pendency_status_ca_upload { get; set; }
-        [StringLength(100)]
+        [Key]
+        public int pendency_status_id { get; set; }
+        public int pendency_status_fi_previousqtr { get; set; }
+        public int pendency_status_fi_addduringqtr { get; set; }
+        public int pendency_status_fi_total { get; set; }
+        public int pendency_status_fi_reply_commission { get; set; }
+        public int pendency_status_fi_reply_pending { get; set; }
+        public int pendency_status_fi_greaterthree { get; set; }
+        public int pendency_status_fi_threetosix { get; set; }
+        public int pendency_status_fi_sixtotwelve { get; set; }
+        public int pendency_status_fi_lessone { get; set; }
+        public string? pendency_status_fi_upload { get; set; }
+        public int pendency_status_ca_previousqtr { get; set; }
+        public int pendency_status_ca_addduringqtr { get; set; }
+        public int pendency_status_ca_total { get; set; }
+        public int pendency_status_ca_comments_commission { get; set; }
+        public int pendency_status_ca_comments_pending { get; set; }
+        public int pendency_status_ca_greaterone { get; set; }
+        public int pendency_status_ca_onetotwo { get; set; }
+        public int pendency_status_ca_twotothree { get; set; }
+        public int pendency_status_ca_lessthree { get; set; }
+        public string? pendency_status_ca_upload { get; set; }
         public string create_date { get; set; }
-        [StringLength(100)]
         public string user_id { get; set; }
-        [StringLength(100)]
         public string update_date { get; set; }
-        [StringLength(100)]
         public string last_user_id { get; set; }
-        [StringLength(100)]
-        public string qpr_id { get; set; }
-        [StringLength(100)]
+        public long qpr_id { get; set; }
         public string ip { get; set; }
+        public statusofpendencyqrs()
+        {
+            pendency_status_id = 0;
+            pendency_status_fi_previousqtr = 0;
+            pendency_status_fi_addduringqtr = 0;
+            pendency_status_fi_total = 0;
+            pendency_status_fi_reply_commission = 0;
+            pendency_status_fi_reply_pending = 0;
+            pendency_status_fi_greaterthree = 0;
+            pendency_status_fi_threetosix = 0;
+            pendency_status_fi_sixtotwelve = 0;
+            pendency_status_fi_lessone = 0;
+            pendency_status_fi_upload = String.Empty;
+            pendency_status_ca_previousqtr = 0;
+            pendency_status_ca_addduringqtr = 0;
+            pendency_status_ca_total = 0;
+            pendency_status_ca_comments_commission = 0;
+            pendency_status_ca_comments_pending = 0;
+            pendency_status_ca_greaterone = 0;
+            pendency_status_ca_onetotwo = 0;
+            pendency_status_ca_twotothree = 0;
+            pendency_status_ca_lessthree = 0;
+            pendency_status_ca_upload = String.Empty;
+            user_id = String.Empty;
+            //create_date = String.Empty;
+            //update_date = String.Empty;
+            last_user_id = String.Empty;
+            qpr_id = 0;
+            ip = String.Empty;
+        }
     }
 }

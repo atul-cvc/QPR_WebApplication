@@ -22,6 +22,9 @@ namespace QPR_Application.Repository
         public Task SaveProsecutionSanctionsViewModel(ProsecutionSanctionsViewModel prosecViewModel);
         public Task CreateDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel);
         public Task SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel, departmentalproceedingsqrs prevData);
+        public Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM);
+        public Task SaveAdviceCVC(AdviceOfCvcViewModel adviceVM);
+        //, adviceofcvcqrs prevData
 
 
 
@@ -30,6 +33,8 @@ namespace QPR_Application.Repository
 
         public Task DeleteAgeWisePendency(int pend_id);
         public Task DeleteAgainstChargedOfficers(int pend_id);
+        public Task DeleteCvcAdvice(int pend_id);
+        public Task DeleteAppeleateAuthority(int pend_id);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

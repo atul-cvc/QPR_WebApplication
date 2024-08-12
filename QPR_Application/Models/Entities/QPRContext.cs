@@ -110,6 +110,14 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<againstchargedtable>().HasKey(a => a.pend_id);
 
+            modelBuilder.Entity<adviceofcvcqrs>().HasKey(a => a.advice_cvc_id);
+
+            modelBuilder.Entity<cvcadvicetable>().HasKey(c => c.pend_id);
+
+            modelBuilder.Entity<appellateauthoritytable>().HasKey(a => a.pend_id);
+
+            modelBuilder.Entity<statusofpendencyqrs>().HasKey(s => s.pendency_status_id);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();

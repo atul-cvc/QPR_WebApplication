@@ -255,7 +255,7 @@
                                         <td><label class="control-label"></label>
                                             <span>@Model.Agewisependency[@i].prosependingnameauthority</span></td>
                                         <td>
-                                            <a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })" class="btn btn-outline-danger">Delete</a>
+                                            <a href="@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.Agewisependency[@i].pend_id })'); return false;">Delete</a>
                                         </td>
                                     </tr>
                                 }
@@ -286,7 +286,7 @@
                                         
                                         </td>
                                         <td>
-                                            <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" />
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" onclick="return validateFields()" />
                                             <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
                                         </td>
                                 </tr>
