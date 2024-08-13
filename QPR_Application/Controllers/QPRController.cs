@@ -605,7 +605,6 @@ namespace QPR_Application.Controllers
                     statusVM.StatusOfPendency.pendency_status_fi_previousqtr = statusPrev.pendency_status_fi_reply_pending;
                     statusVM.StatusOfPendency.pendency_status_ca_previousqtr = statusPrev.pendency_status_ca_comments_pending;
 
-                    //statusVM.StatusOfPendency
                     return View(statusVM);
                 }
             }
@@ -617,11 +616,20 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SaveStatusofPendencyFIandCACases()
+        public async Task<IActionResult> SaveStatusofPendencyFIandCACases(StatusOfPendencyViewModel statusVM)
         {
             string message = "";
             try
             {
+                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("pendency_status_id")))
+                {
+                    //Save
+                }
+                else
+                {
+                    //Create new
+                    await _qprRepo.CreateStatusPendency(statusVM);
+                }
                 message = "Saved";
 
             }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
+using QPR_Application.Models.DTO.Response;
+
 
 namespace QPR_Application.Repository
 {
@@ -10,18 +12,21 @@ namespace QPR_Application.Repository
         {
             _dbContext = DbContext;
         }
-        public async Task<registration> Login(Login user)
+        public async Task<UserDetails> Login(Login user)
         {
             try
             {
-                registration USER = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
-                if (USER != null)
+                UserDetails UserDetails = new UserDetails();
+                UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
+                if (UserDetails.User != null)
                 {
-                    return USER;
+                    UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                    return UserDetails;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-
+                throw ex;
             }
             return null;
         }

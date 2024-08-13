@@ -32,10 +32,10 @@ namespace QPR_Application.Models.Entities
         public int pendency_status_ca_twotothree { get; set; }
         public int pendency_status_ca_lessthree { get; set; }
         public string? pendency_status_ca_upload { get; set; }
-        public string create_date { get; set; }
-        public string user_id { get; set; }
-        public string update_date { get; set; }
-        public string last_user_id { get; set; }
+        public DateOnly? create_date { get; set; }
+        public string? user_id { get; set; }
+        public string? update_date { get; set; }
+        public string? last_user_id { get; set; }
         public long qpr_id { get; set; }
         public string ip { get; set; }
         public statusofpendencyqrs()

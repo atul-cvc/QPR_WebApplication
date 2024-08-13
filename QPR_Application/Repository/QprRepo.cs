@@ -295,13 +295,13 @@ namespace QPR_Application.Repository
                     adviceVM.AdviceOfCvc.create_date = new DateOnly();
 
                     await _dbContext.adviceofcvcqrs.AddAsync(adviceVM.AdviceOfCvc);
+
+                    await AddCvcAdvice(adviceVM.NewCvcAdvice);
+
+                    await AddAppelleate(adviceVM.NewAppeleateAuthority);
+
+                    await _dbContext.SaveChangesAsync();
                 }
-
-                await AddCvcAdvice(adviceVM.NewCvcAdvice);
-
-                await AddAppelleate(adviceVM.NewAppeleateAuthority);
-                
-                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -337,16 +337,60 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
+        public async Task CreateStatusPendency(StatusOfPendencyViewModel statusVM)
+        {
+            try
+            {
+                if (statusVM.StatusOfPendency != null)
+                {
+                    statusVM.StatusOfPendency.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    statusVM.StatusOfPendency.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    statusVM.StatusOfPendency.create_date = new DateOnly();
+                    statusVM.StatusOfPendency.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
 
+                    await _dbContext.statusofpendencyqrs.AddAsync(statusVM.StatusOfPendency);
+                    if (statusVM.FiCasesQPRs != null)
+                    {
+                        for (int i = 0; i < statusVM.FiCasesQPRs.Count; i++)
+                        {
+                            await AddNewFiCaseQpr(statusVM.FiCasesQPRs[i]);
+                        }
+                    }
 
+                    if (statusVM.CaCasesQPRs != null)
+                    {
+                        for (int i = 0; i < statusVM.CaCasesQPRs.Count; i++)
+                        {
+                            await AddNewCaCasesQpr(statusVM.CaCasesQPRs[i]);
+                        }
+                    }
 
+                    if (statusVM.NewFICase != null)
+                        await AddNewFiCaseQpr(statusVM.NewFICase);
 
+                    if (statusVM.NewCACase != null)
+                        await AddNewCaCasesQpr(statusVM.NewCACase);
 
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public async Task SaveStatusPendency(StatusOfPendencyViewModel statusVM)
+        {
+            try
+            {
 
-
-
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         public async Task AddCvcAdvice(cvcadvicetable cvcAdvice)
@@ -431,6 +475,46 @@ namespace QPR_Application.Repository
                 appellateauthoritytable appelleateAuth = await _dbContext.appellateauthoritytable.FirstOrDefaultAsync(i => i.pend_id == pend_id);
                 _dbContext.appellateauthoritytable.Remove(appelleateAuth);
                 await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task AddNewFiCaseQpr(ficasesqpr fiCase)
+        {
+            try
+            {
+                if (AreAllPropertiesSet(fiCase, ["ficasesqpr_id", "qpr_id", "ip"]))
+                {
+                    fiCase.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    fiCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                    fiCase.status = true;
+                    fiCase.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    await _dbContext.ficasesqpr.AddAsync(fiCase);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task AddNewCaCasesQpr(cacasesqpr caCase)
+        {
+            try
+            {
+                if (AreAllPropertiesSet(caCase, ["ficasesqpr_id", "qpr_id", "ip"]))
+                {
+                    caCase.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
+                    caCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                    caCase.status = true;
+                    caCase.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    await _dbContext.cacasesqpr.AddAsync(caCase);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {

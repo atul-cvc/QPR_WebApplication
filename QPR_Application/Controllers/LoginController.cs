@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
+using QPR_Application.Models.DTO.Response;
 using QPR_Application.Repository;
 using System.Security.Claims;
 using System.Text.Json;
@@ -40,55 +41,63 @@ namespace QPR_Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Login login)
         {
-            string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
-
-            if (ipAdd == "::1")
+            try
             {
-                // Filter and return the first IPv4 address found
-                ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
-            }
-            if (ModelState.IsValid)
-            {
-                registration User = new registration();
-                User = await _loginRepo.Login(login);
+                string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                if (User != null)
+                if (ipAdd == "::1")
                 {
-                    string userObj = JsonSerializer.Serialize(User);
-                    if (!String.IsNullOrEmpty(userObj))
-                    {
-                        _httpContext.HttpContext.Session.SetString("CurrentUser", userObj);
-                        _httpContext.HttpContext.Session.SetString("UserName", User.userid);
-                        _httpContext.HttpContext.Session.SetString("ipAddress", ipAdd);
+                    // Filter and return the first IPv4 address found
+                    ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
+                }
+                if (ModelState.IsValid)
+                {
+                    //registration User = await _loginRepo.Login(login);
 
-                        List<Claim> claims = new List<Claim>()
+                    UserDetails uDetails = await _loginRepo.Login(login);
+
+                    if (uDetails.User != null)
+                    {
+                        string userObj = JsonSerializer.Serialize(uDetails.User);
+                        if (!String.IsNullOrEmpty(userObj))
                         {
-                            new Claim(ClaimTypes.NameIdentifier, User.userid),
-                            new Claim(ClaimTypes.Name, User.userid),
-                            new Claim(ClaimTypes.Role, User.logintype)
-                        };
-                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        AuthenticationProperties properties = new AuthenticationProperties()
+                            _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
+                            _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
+                            _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
+                            _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
+
+                            List<Claim> claims = new List<Claim>()
                         {
-                            AllowRefresh = true,
-                            IsPersistent = false
+                            new Claim(ClaimTypes.NameIdentifier, uDetails.User.userid),
+                            new Claim(ClaimTypes.Name, uDetails.User.userid),
+                            new Claim(ClaimTypes.Role, uDetails.User.logintype)
                         };
+                            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            AuthenticationProperties properties = new AuthenticationProperties()
+                            {
+                                AllowRefresh = true,
+                                IsPersistent = false
+                            };
 
-                        await _httpContext.HttpContext.SignInAsync(
-                            CookieAuthenticationDefaults.AuthenticationScheme,
-                            new ClaimsPrincipal(claimsIdentity),
-                            properties);
-                    }
+                            await _httpContext.HttpContext.SignInAsync(
+                                CookieAuthenticationDefaults.AuthenticationScheme,
+                                new ClaimsPrincipal(claimsIdentity),
+                                properties);
+                        }
 
-                    if (User.logintype == "ROLE_COORD")
-                    {
-                        return RedirectToAction("Index", "Admin");
-                    }
-                    if (User.logintype == "ROLE_CVO")
-                    {
-                        return RedirectToAction("Index", "QPR");
+                        if (uDetails.User.logintype == "ROLE_COORD")
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        if (uDetails.User.logintype == "ROLE_CVO")
+                        {
+                            return RedirectToAction("Index", "QPR");
+                        }
                     }
                 }
+            }
+            catch (Exception ex) {
+                
             }
             return RedirectToAction("Index");
         }

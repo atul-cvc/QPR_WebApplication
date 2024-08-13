@@ -1,9 +1,10 @@
-﻿using QPR_Application.Models.Entities;
+﻿using QPR_Application.Models.DTO.Response;
+using QPR_Application.Models.Entities;
 
 namespace QPR_Application.Repository
 {
     public interface ILoginRepo
     {
-        public Task<registration> Login(Login user);
+        public Task<UserDetails> Login(Login user);
     }
 }

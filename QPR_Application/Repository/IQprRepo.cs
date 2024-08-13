@@ -25,7 +25,8 @@ namespace QPR_Application.Repository
         public Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM);
         public Task SaveAdviceCVC(AdviceOfCvcViewModel adviceVM);
         //, adviceofcvcqrs prevData
-
+        public Task CreateStatusPendency(StatusOfPendencyViewModel statusVM);
+        public Task SaveStatusPendency(StatusOfPendencyViewModel statusVM);
 
 
 

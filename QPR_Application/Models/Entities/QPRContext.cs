@@ -118,6 +118,10 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<statusofpendencyqrs>().HasKey(s => s.pendency_status_id);
 
+            modelBuilder.Entity<ficasesqpr>().HasKey(f => f.ficasesqpr_id);
+
+            modelBuilder.Entity<cacasesqpr>().HasKey(c => c.cacasesqpr_id);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();
