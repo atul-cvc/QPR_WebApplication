@@ -92,7 +92,7 @@
                     <td width="35%" align="left">
                         <span class="d-flex">
                             @* <input path="" class="form-control" type="number" maxlength="3" id="name_of_officer" style="float:left;width:25%" onkeypress="return isNumberKey(event);"> *@
-                            <input type="button" class="add-row-status-pendency btn btn-outline-primary ms-1" value="Add" style="width: 10%;">
+                            <input type="button" id="add-row-ficase" class=" btn btn-outline-primary ms-1" value="Add" style="width: 10%;">
                             <input path="" type="hidden" id="totRows" value="@Model.FiCasesQPRs.Count">
                         </span>
                     </td>
@@ -103,61 +103,53 @@
                             <thead>
                                 <tr class="text-center">
                                     <th rowspan="2"><b>S. No.</b></th>
-                                    <th rowspan="2"><b>CVC case registration No.[CVO,CBI,OTH,CDI,REC,MIS number as given in the FL list]</b></th>
-                                    <th rowspan="2"><b>CVC File No.</b></th>
-                                    <th rowspan="2"><b>Date since pending</b></th>
+                                    <th width="5%" rowspan="2"><b>CVC case registration No.[CVO,CBI,OTH,CDI,REC,MIS number as given in the FL list]</b></th>
+                                    <th width="10%" rowspan="2"><b>CVC File No.</b></th>
+                                    <th width="10%" rowspan="2"><b>Date since pending</b></th>
                                     <th rowspan="2"><b>Name &amp; Designation of officers</b></th>
-                                    <th rowspan="2"><b>Departmental ref. No.</b></th>
-                                    <th rowspan="2"><b>Present Status</b></th>
-                                    <th rowspan="2"><b>Likely date for submission of response</b></th>
+                                    <th width="15%" rowspan="2"><b>Departmental ref. No.</b></th>
+                                    <th width="5%" rowspan="2"><b>Present Status</b></th>
+                                    <th width="10%" rowspan="2"><b>Likely date for submission of response</b></th>
                                     <th rowspan="2"><b>Remarks.</b></th>
                                     <th style="width: 1%">Delete</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @for(int i=0; i<Model.FiCasesQPRs.Count; i++)
+                                @for (int i = 0; i < Model.FiCasesQPRs.Count; i++)
                                 {
                                     <tr class="text-center">
                                         <td>@(i + 1)</td> <!-- Serial number column -->
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].cvc_case_reg_no</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].cvc_file_no</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].date_since_pend</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].name_officer</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].dept_ref_no</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].present_status</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].submission_date</span>
                                         </td>
                                         <td>
-                                            <label class="control-label"></label>
                                             <span>@Model.FiCasesQPRs[i].remark</span>
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("", new { pend_id = @Model.FiCasesQPRs[i].ficasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.FiCasesQPRs[@i].ficasesqpr_id})'); return false;">Delete</a>
+                                            <a href="@Url.Action("DeleteFiCaseRow", new { id = @Model.FiCasesQPRs[i].ficasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteFiCaseRow", new { id = @Model.FiCasesQPRs[i].ficasesqpr_id})'); return false;">Delete</a>
                                         </td>
                                     </tr>
                                 }
-                                <tr class="text-center d-none">
+                                <tr class="text-center d-none" id="newFICaseRow">
                                     <!-- Serial number column -->
                                     <td>@(Model.FiCasesQPRs.Count + 1)</td>
                                     <td>
@@ -167,7 +159,7 @@
                                         <input asp-for='NewFICase.cvc_file_no' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input asp-for='NewFICase.date_since_pend' class='form-control' type='text' />
+                                        <input asp-for='NewFICase.date_since_pend' class='form-control' type='date' />
                                     </td>
                                     <td>
                                         <input asp-for='NewFICase.name_officer' class='form-control' type='text' />
@@ -179,14 +171,14 @@
                                         <input asp-for='NewFICase.present_status' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input asp-for='NewFICase.submission_date' class='form-control' type='text' />
+                                        <input asp-for='NewFICase.submission_date' class='form-control' type='date' />
                                     </td>
                                     <td>
                                         <input asp-for='NewFICase.remark' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input type="submit" value="Save" class="btn btn-success" asp-action="" onclick="return validateFields()" />
-                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowFICase()" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -261,7 +253,7 @@
                     <td width="35%" align="left">
                         <span class="d-flex">
                             @* <input path="" class="form-control" type="number" maxlength="3" id="name_of_officer1" style="float:left;width:25%" onkeypress="return isNumberKey(event);"> *@
-                            <input type="button" class="add-row1 btn btn-outline-primary ms-1" value="Add" style=" margin-top: 2px; width:10%">
+                            <input type="button" id="add-row-cacase" class="btn btn-outline-primary ms-1" value="Add" style=" margin-top: 2px; width:10%">
                             <input path="" type="hidden" id="totRows1" value="@Model.CaCasesQPRs.Count">
                         </span>
                     </td>
@@ -315,18 +307,22 @@
                                         </td>
                                         <td>
                                             @* <span>@Model.CaCasesQPRs[i].submission_date</span> *@
-                                            <input asp-for="@Model.CaCasesQPRs[i].submission_date" class="form-control " type="date"/>
+                                            <input asp-for="@Model.CaCasesQPRs[i].submission_date" class="form-control " type="date" />
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].remark " class="form-control" />
                                             @* <span>@Model.CaCasesQPRs[i].remark</span> *@
                                         </td>
+                                        <td hidden>
+                                            <input asp-for="@Model.CaCasesQPRs[i].cacasesqpr_id " hidden class="form-control" readonly />
+                                            @* <span>@Model.CaCasesQPRs[i].remark</span> *@
+                                        </td>
                                         <td>
-                                            <a href="@Url.Action("", new { pend_id = @Model.CaCasesQPRs[i].cacasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteAgeWisePendency", new { pend_id = @Model.CaCasesQPRs[@i].cacasesqpr_id})'); return false;">Delete</a>
+                                            <a href="@Url.Action("DeleteCaCaseRow", new { id = @Model.CaCasesQPRs[i].cacasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteCaCaseRow", new { id = @Model.CaCasesQPRs[@i].cacasesqpr_id})'); return false;">Delete</a>
                                         </td>
                                     </tr>
                                 }
-                                <tr class="text-center d-none">
+                                <tr class="text-center d-none" id="newCACase">
                                     <!-- Serial number column -->
                                     <td>@(Model.CaCasesQPRs.Count + 1)</td>
                                     <td>
@@ -336,7 +332,7 @@
                                         <input asp-for='NewCACase.cvc_file_no' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input asp-for='NewCACase.date_since_pend' class='form-control' type='text' />
+                                        <input asp-for='NewCACase.date_since_pend' class='form-control' type='date' />
                                     </td>
                                     <td>
                                         <input asp-for='NewCACase.name_officer' class='form-control' type='text' />
@@ -348,14 +344,14 @@
                                         <input asp-for='NewCACase.present_status' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input asp-for='NewCACase.submission_date' class='form-control' type='text' />
+                                        <input asp-for='NewCACase.submission_date' class='form-control' type='date' />
                                     </td>
                                     <td>
                                         <input asp-for='NewCACase.remark' class='form-control' type='text' />
                                     </td>
                                     <td>
-                                        <input type="submit" value="Save" class="btn btn-success" asp-action="" onclick="return validateFields()" />
-                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRow()" />
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowCACase()" />
                                     </td>
                                 </tr>
 
@@ -391,8 +387,81 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
 <script>
 
+    document.getElementById('add-row-ficase').addEventListener('click', function () {
+        // debugger;
+        $('#NewFICase_cvc_case_reg_no').attr('required', true);
+        $('#NewFICase_cvc_file_no').attr('required', true);
+        $('#NewFICase_date_since_pend').attr('required', true);
+        $('#NewFICase_name_officer').attr('required', true);
+        $('#NewFICase_dept_ref_no').attr('required', true);
+        $('#NewFICase_present_status').attr('required', true);
+        $('#NewFICase_submission_date').attr('required', true);
+        $('#NewFICase_remark').attr('required', true);
+        $('#newFICaseRow').removeClass('d-none');
+        $('#add-row-ficase').removeClass('btn-outline-primary');
+        $('#add-row-ficase').addClass('btn-outline-secondary');
+        $('#add-row-ficase').addClass('disabled');
+
+    });
+
+    function hideRowFICase() {
+        event.preventDefault();
+        $('#NewFICase_cvc_case_reg_no').removeAttr('required');            
+        $('#NewFICase_cvc_file_no').removeAttr('required');            
+        $('#NewFICase_date_since_pend').removeAttr('required');            
+        $('#NewFICase_name_officer').removeAttr('required');            
+        $('#NewFICase_dept_ref_no').removeAttr('required');            
+        $('#NewFICase_present_status').removeAttr('required');            
+        $('#NewFICase_submission_date').removeAttr('required');            
+        $('#NewFICase_remark').removeAttr('required');
+        $('#newFICaseRow').addClass('d-none');
+        $('#add-row-ficase').addClass('btn-outline-primary');
+        $('#add-row-ficase').removeClass('btn-outline-secondary');
+        $('#add-row-ficase').removeClass('disabled');
+
+    };
+
+    document.getElementById('add-row-cacase').addEventListener('click', function () {
+        // debugger;
+        $('#NewCACase_cvc_case_reg_no').attr('required', true);
+        $('#NewCACase_cvc_file_no').attr('required', true);
+        $('#NewCACase_date_since_pend').attr('required', true);
+        $('#NewCACase_name_officer').attr('required', true);
+        $('#NewCACase_dept_ref_no').attr('required', true);
+        $('#NewCACase_present_status').attr('required', true);
+        $('#NewCACase_submission_date').attr('required', true);
+        $('#NewCACase_remark').attr('required', true);
+        $('#newCACase').removeClass('d-none');
+        $('#add-row-cacase').removeClass('btn-outline-primary');
+        $('#add-row-cacase').addClass('btn-outline-secondary');
+        $('#add-row-cacase').addClass('disabled');
+
+    });
+
+    function hideRowCACase() {
+        event.preventDefault();
+        $('#NewCACase_cvc_case_reg_no').removeAttr('required');
+        $('#NewCACase_cvc_file_no').removeAttr('required');
+        $('#NewCACase_date_since_pend').removeAttr('required');
+        $('#NewCACase_name_officer').removeAttr('required');
+        $('#NewCACase_dept_ref_no').removeAttr('required');
+        $('#NewCACase_present_status').removeAttr('required');
+        $('#NewCACase_submission_date').removeAttr('required');
+        $('#NewCACase_remark').removeAttr('required');
+        $('#newCACase').addClass('d-none');
+        $('#add-row-cacase').addClass('btn-outline-primary');
+        $('#add-row-cacase').removeClass('btn-outline-secondary');
+        $('#add-row-cacase').removeClass('disabled');
+
+    };
+
+</script>
+
+
+<script>
     $(function () {
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
@@ -429,7 +498,7 @@
 
         $('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
         $('#StatusOfPendency_pendency_status_fi_reply_pending').val((parseFloat($('#StatusOfPendency_pendency_status_fi_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_fi_reply_commission').val()) || 0));
-    
+
         $('#StatusOfPendency_pendency_status_ca_total').val((parseFloat($('#StatusOfPendency_pendency_status_ca_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_ca_previousqtr').val()) || 0));
         $('#StatusOfPendency_pendency_status_ca_comments_pending').val((parseFloat($('#StatusOfPendency_pendency_status_ca_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_ca_comments_commission').val()) || 0));
 

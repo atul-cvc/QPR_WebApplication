@@ -292,7 +292,7 @@ namespace QPR_Application.Repository
                     adviceVM.AdviceOfCvc.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     adviceVM.AdviceOfCvc.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
                     adviceVM.AdviceOfCvc.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
-                    adviceVM.AdviceOfCvc.create_date = new DateOnly();
+                    adviceVM.AdviceOfCvc.create_date = DateOnly.FromDateTime(DateTime.Now);
 
                     await _dbContext.adviceofcvcqrs.AddAsync(adviceVM.AdviceOfCvc);
 
@@ -319,8 +319,9 @@ namespace QPR_Application.Repository
 
                     newData.qpr_id = prevData.qpr_id;
                     newData.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
-                    newData.update_date = new DateOnly();
+                    newData.update_date = DateOnly.FromDateTime(DateTime.Now);
                     newData.advice_cvc_id = prevData.advice_cvc_id;
+                    newData.create_date = prevData.create_date;
                     newData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
 
                     _dbContext.adviceofcvcqrs.Update(adviceVM.AdviceOfCvc);
@@ -345,14 +346,16 @@ namespace QPR_Application.Repository
                 {
                     statusVM.StatusOfPendency.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     statusVM.StatusOfPendency.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
-                    statusVM.StatusOfPendency.create_date = new DateOnly();
+                    statusVM.StatusOfPendency.create_date = DateOnly.FromDateTime(DateTime.Now);
                     statusVM.StatusOfPendency.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
 
                     await _dbContext.statusofpendencyqrs.AddAsync(statusVM.StatusOfPendency);
+
                     if (statusVM.FiCasesQPRs != null)
                     {
                         for (int i = 0; i < statusVM.FiCasesQPRs.Count; i++)
                         {
+                            //await _dbContext.ficasesqpr.AddAsync(statusVM.FiCasesQPRs[i]);
                             await AddNewFiCaseQpr(statusVM.FiCasesQPRs[i]);
                         }
                     }
@@ -361,6 +364,7 @@ namespace QPR_Application.Repository
                     {
                         for (int i = 0; i < statusVM.CaCasesQPRs.Count; i++)
                         {
+                            //await _dbContext.cacasesqpr.AddAsync(statusVM.CaCasesQPRs[i]);
                             await AddNewCaCasesQpr(statusVM.CaCasesQPRs[i]);
                         }
                     }
@@ -384,7 +388,69 @@ namespace QPR_Application.Repository
         {
             try
             {
+                if (statusVM.StatusOfPendency != null)
+                {
+                    statusofpendencyqrs newData = statusVM.StatusOfPendency;
+                    statusofpendencyqrs oldData = await _complaintsRepo.GetStatusPendencyData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
 
+                    newData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    newData.qpr_id = oldData.qpr_id;
+                    newData.create_date = oldData.create_date;
+                    newData.update_date = DateOnly.FromDateTime(DateTime.Now);
+                    newData.user_id = oldData.user_id;
+                    newData.pendency_status_id = oldData.pendency_status_id;
+                    newData.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    _dbContext.statusofpendencyqrs.Update(newData);
+
+                    if (statusVM.FiCasesQPRs != null)
+                    {
+                        for (int i = 0; i < statusVM.FiCasesQPRs.Count; i++)
+                        {
+                            //await AddNewFiCaseQpr(statusVM.FiCasesQPRs[i]);
+                            ficasesqpr newDataFI = statusVM.FiCasesQPRs[i];
+                            ficasesqpr oldDataFI = await _dbContext.ficasesqpr.AsNoTracking().FirstOrDefaultAsync(f => f.ficasesqpr_id == statusVM.FiCasesQPRs[i].ficasesqpr_id);
+                            newDataFI.qpr_id = oldDataFI.qpr_id;
+                            newDataFI.user_id = oldDataFI.user_id;
+                            newDataFI.status = oldDataFI.status;
+                            newDataFI.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                            newDataFI.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                            _dbContext.ficasesqpr.Update(newDataFI);
+                        }
+                    }
+
+                    if (statusVM.CaCasesQPRs != null)
+                    {
+                        for (int i = 0; i < statusVM.CaCasesQPRs.Count; i++)
+                        {
+                            cacasesqpr newDataCA = statusVM.CaCasesQPRs[i];
+                            cacasesqpr oldDataCA = await _dbContext.cacasesqpr.AsNoTracking().FirstOrDefaultAsync(c => c.cacasesqpr_id == statusVM.CaCasesQPRs[i].cacasesqpr_id);
+                            if (oldDataCA != null)
+                            {
+                                newDataCA.qpr_id = oldDataCA.qpr_id;
+                                newDataCA.user_id = oldDataCA.user_id;
+                                newDataCA.status = oldDataCA.status;
+                                newDataCA.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                                newDataCA.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                                newDataCA.update_date = DateOnly.FromDateTime(DateTime.Now);
+
+                                _dbContext.cacasesqpr.Update(newDataCA);
+                            } else
+                            {
+
+                            }
+                        }
+                    }
+
+                    if (statusVM.NewFICase != null)
+                        await AddNewFiCaseQpr(statusVM.NewFICase);
+
+                    if (statusVM.NewCACase != null)
+                        await AddNewCaCasesQpr(statusVM.NewCACase);
+
+                    await _dbContext.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -485,12 +551,13 @@ namespace QPR_Application.Repository
         {
             try
             {
-                if (AreAllPropertiesSet(fiCase, ["ficasesqpr_id", "qpr_id", "ip"]))
+                fiCase.ip = _httpContext.HttpContext.Session.GetString("ipAddress");
+                fiCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                fiCase.status = true;
+                fiCase.user_id = _httpContext.HttpContext.Session.GetString("UserName");
+                fiCase.last_user_id = _httpContext.HttpContext.Session.GetString("UserName");
+                if (AreAllPropertiesSet(fiCase, ["ficasesqpr_id", "qpr_id", "ip", "submission_date", "last_user_id", "update_date", "remark"]))
                 {
-                    fiCase.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
-                    fiCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
-                    fiCase.status = true;
-                    fiCase.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
 
                     await _dbContext.ficasesqpr.AddAsync(fiCase);
                     await _dbContext.SaveChangesAsync();
@@ -505,16 +572,42 @@ namespace QPR_Application.Repository
         {
             try
             {
-                if (AreAllPropertiesSet(caCase, ["ficasesqpr_id", "qpr_id", "ip"]))
+                caCase.ip = _httpContext.HttpContext.Session.GetString("ipAddress");
+                caCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                caCase.status = true;
+                caCase.user_id = _httpContext.HttpContext.Session.GetString("UserName");
+                if (AreAllPropertiesSet(caCase, ["cacasesqpr_id", "submission_date", "last_user_id", "update_date", "remark"]))
                 {
-                    caCase.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
-                    caCase.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
-                    caCase.status = true;
-                    caCase.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
-
                     await _dbContext.cacasesqpr.AddAsync(caCase);
                     await _dbContext.SaveChangesAsync();
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task DeleteFiCaseRow(int id)
+        {
+            try
+            {
+                ficasesqpr fiCase = await _dbContext.ficasesqpr.FirstOrDefaultAsync(i => i.ficasesqpr_id == id);
+                _dbContext.ficasesqpr.Remove(fiCase);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task DeleteCaCaseRow(int id)
+        {
+            try
+            {
+                cacasesqpr caCase = await _dbContext.cacasesqpr.FirstOrDefaultAsync(i => i.cacasesqpr_id== id);
+                _dbContext.cacasesqpr.Remove(caCase);
+                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

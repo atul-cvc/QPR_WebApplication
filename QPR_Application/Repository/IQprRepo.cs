@@ -36,6 +36,8 @@ namespace QPR_Application.Repository
         public Task DeleteAgainstChargedOfficers(int pend_id);
         public Task DeleteCvcAdvice(int pend_id);
         public Task DeleteAppeleateAuthority(int pend_id);
+        public Task DeleteFiCaseRow(int id);
+        public Task DeleteCaCaseRow(int id);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

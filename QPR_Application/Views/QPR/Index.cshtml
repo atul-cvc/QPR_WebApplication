@@ -33,7 +33,7 @@
                         <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-2">
-                        @Html.DropDownList("SelectedYear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center ", id = "yearDropdown" })
+                        @Html.DropDownList("SelectedYear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center ", id = "yearDropdown", onChange = "quarterSelection()" })
                         <span asp-validation-for="SelectedYear" class="text-danger"></span>
                     </div>
                 </div>
@@ -68,19 +68,19 @@
                     </div>
                     <div class="col-md-3">
                         <input type="checkbox" name="CVOFulltime" asp-for="CVOFulltime" id="CVOFulltime" class="myCheckboxClass" />
-                        
+
                     </div>
                     <div class="col-md-2">
                         <label>Part Time : </label>
                     </div>
                     <div class="col-md-3">
                         <input type="checkbox" name="CVOParttime" asp-for="CVOParttime" id="CVOParttime" class="myCheckboxClass" />
-                        
+
                     </div>
                 </div>
-                <div class="row mt-2 d-none" id="FullTime_PartTime_Validation" >
+                <div class="row mt-2 d-none" id="FullTime_PartTime_Validation">
                     <div class="col-12 text-center">
-                        <span class="text-danger" > Please select either Fulltime or Parttime </span>
+                        <span class="text-danger"> Please select either Fulltime or Parttime </span>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,43 @@
             $('#FullTime_PartTime_Validation').removeClass('d-none'); // Show validation message
         }
     });
+</script>
+<script>
+    function quarterSelection() {
+        var year = document.getElementById("yearDropdown").value;
+        var currentYear = new Date().getFullYear();
+        var currentMonth = (new Date().getMonth()) + 1;
+        // alert('year : ' + year);
+        if (year < currentYear) {
+            var options = "<option >------ Select Quarter ------</option>";
+            options = options + "<option value=" + 1 + ">January to March</option>";
+            options = options + "<option value=" + 2 + ">April to June</option>";
+            options = options + "<option value=" + 3 + ">July to September</option>";
+            options = options + "<option value=" + 4 + ">October to December</option>";
 
-    
+            document.getElementById("quarterDropdown").innerHTML = options;
+        }
+        else if (year == currentYear) {
 
+            var options = "<option >------ Select Quarter ------</option>";
+
+            if (currentMonth > 3 && currentMonth <= 6) {
+                options = options + "<option value=" + 1 + ">January to March</option>";
+            }
+            else if (currentMonth > 6 && currentMonth <= 9) {
+                options = options + "<option value=" + 1 + ">January to March</option>";
+                options = options + "<option value=" + 2 + ">April to June</option>";
+
+            }
+            else if (currentMonth > 9 && currentMonth <= 12) {
+                options = options + "<option value=" + 1 + ">January to March</option>";
+                options = options + "<option value=" + 2 + ">April to June</option>";
+                options = options + "<option value=" + 3 + ">July to September</option>";
+            }
+
+
+            document.getElementById("quarterDropdown").innerHTML = options;
+        }
+    }
 </script>
 

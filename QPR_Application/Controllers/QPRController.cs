@@ -624,6 +624,7 @@ namespace QPR_Application.Controllers
                 if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("pendency_status_id")))
                 {
                     //Save
+                    await _qprRepo.SaveStatusPendency(statusVM);
                 }
                 else
                 {
@@ -904,6 +905,16 @@ namespace QPR_Application.Controllers
         {
             await _qprRepo.DeleteAppeleateAuthority(pend_id);
             return RedirectToAction("AdviceOfCVC", new { message = "Deleted successfully" });
+        }
+        public async Task<IActionResult> DeleteFiCaseRow(int id)
+        {
+            await _qprRepo.DeleteFiCaseRow(id);
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
+        }
+        public async Task<IActionResult> DeleteCaCaseRow(int id)
+        {
+            await _qprRepo.DeleteCaCaseRow(id);
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
         }
         public IActionResult GetNatureListByStageType(string stageName)
         {
