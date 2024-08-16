@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,7 +21,6 @@
     <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 </head>
 <body>
-    @* style="background-color:#f8f8f8;" *@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -35,6 +37,19 @@
                     </ul>
                     <div class="d-sm-flex">
                         <ul class="navbar-nav flex-grow-1">
+                            @if (Convert.ToInt32(@HttpContextAccessor.HttpContext.Session.GetString("qtrreport")) > 0)
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark">
+                                        Quater : @HttpContextAccessor.HttpContext.Session.GetString("qtrreport")
+                                    </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark">
+                                        Year :  @HttpContextAccessor.HttpContext.Session.GetString("qtryear")
+                                    </span>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
                             </li>

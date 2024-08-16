@@ -163,7 +163,13 @@ namespace QPR_Application.Repository
         {
             try
             {
-                return await _dbContext.punitivevigilanceqrs.FirstOrDefaultAsync(i => i.qpr_id == refNum);
+                punitivevigilanceqrs pVig = await _dbContext.punitivevigilanceqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum)); 
+                //?? new punitivevigilanceqrs();
+                if(pVig.punitive_vigilance_id != 0)
+                {
+                    _httpContext.HttpContext?.Session.SetString("punitive_vigilance_id", Convert.ToString(pVig.punitive_vigilance_id));
+                }
+                return pVig;
             }
             catch (Exception ex) { }
             return null;

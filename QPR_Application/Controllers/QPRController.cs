@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 //using System.Net;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Util;
+using Microsoft.AspNetCore.Http;
 
 namespace QPR_Application.Controllers
 {
@@ -44,6 +45,8 @@ namespace QPR_Application.Controllers
                     {
                         _httpContext.HttpContext.Session.Remove("referenceNumber");
                     }
+                    _httpContext.HttpContext.Session.Remove("qtryear");
+                    _httpContext.HttpContext.Session.Remove("qtrreport");
 
                     userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
                     ViewBag.User = userObject;
@@ -621,7 +624,7 @@ namespace QPR_Application.Controllers
             string message = "";
             try
             {
-                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("pendency_status_id")))
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("pendency_status_id")))
                 {
                     //Save
                     await _qprRepo.SaveStatusPendency(statusVM);
@@ -643,10 +646,11 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StatusofPendencyFIandCACases(statusofpendencyqrs statusPend)
+        public async Task<IActionResult> StatusofPendencyFIandCACases(StatusOfPendencyViewModel statusVM)
         {
             try
             {
+                await SaveStatusofPendencyFIandCACases(statusVM);
                 return RedirectToAction("PunitiveVigilance");
             }
             catch (Exception ex)
@@ -666,8 +670,8 @@ namespace QPR_Application.Controllers
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 if (!String.IsNullOrEmpty(refNum))
                 {
-                    var data = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
-                    return View(data);
+                    punitivevigilanceqrs punitiveVigilance = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
+                    return View(punitiveVigilance);
                 }
             }
             catch (Exception ex)
@@ -678,11 +682,19 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SavePunitiveVigilance(punitivevigilanceqrs pvig)
+        public async Task<IActionResult> SavePunitiveVigilance(punitivevigilanceqrs pvig)
         {
             string message = "";
             try
             {
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("punitive_vigilance_id")))
+                {
+                    await _qprRepo.SavePunitiveVigilance(pvig);
+                }
+                else
+                {
+                    await _qprRepo.CreatePunitiveVigilance(pvig);
+                }
                 message = "Saved";
 
             }
@@ -699,6 +711,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
+                await SavePunitiveVigilance(pvig);
                 return RedirectToAction("PreventiveVigilance");
             }
             catch (Exception ex)

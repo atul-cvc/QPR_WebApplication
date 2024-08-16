@@ -391,14 +391,14 @@ namespace QPR_Application.Repository
                 if (statusVM.StatusOfPendency != null)
                 {
                     statusofpendencyqrs newData = statusVM.StatusOfPendency;
-                    statusofpendencyqrs oldData = await _complaintsRepo.GetStatusPendencyData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    statusofpendencyqrs prevData = await _complaintsRepo.GetStatusPendencyData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
 
                     newData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
-                    newData.qpr_id = oldData.qpr_id;
-                    newData.create_date = oldData.create_date;
+                    newData.qpr_id = prevData.qpr_id;
+                    newData.create_date = prevData.create_date;
                     newData.update_date = DateOnly.FromDateTime(DateTime.Now);
-                    newData.user_id = oldData.user_id;
-                    newData.pendency_status_id = oldData.pendency_status_id;
+                    newData.user_id = prevData.user_id;
+                    newData.pendency_status_id = prevData.pendency_status_id;
                     newData.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
 
                     _dbContext.statusofpendencyqrs.Update(newData);
@@ -436,7 +436,8 @@ namespace QPR_Application.Repository
                                 newDataCA.update_date = DateOnly.FromDateTime(DateTime.Now);
 
                                 _dbContext.cacasesqpr.Update(newDataCA);
-                            } else
+                            }
+                            else
                             {
 
                             }
@@ -449,6 +450,51 @@ namespace QPR_Application.Repository
                     if (statusVM.NewCACase != null)
                         await AddNewCaCasesQpr(statusVM.NewCACase);
 
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task CreatePunitiveVigilance(punitivevigilanceqrs pVig)
+        {
+            try
+            {
+                if (pVig != null)
+                {
+                    pVig.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    pVig.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    pVig.create_date = DateOnly.FromDateTime(DateTime.Now);
+                    pVig.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    await _dbContext.punitivevigilanceqrs.AddAsync(pVig);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task SavePunitiveVigilance(punitivevigilanceqrs pVig)
+        {
+            try
+            {
+                if (pVig != null)
+                {
+                    punitivevigilanceqrs prevData = await _complaintsRepo.GetPunitiveVigilanceData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    pVig.create_date = prevData.create_date;
+                    pVig.qpr_id = prevData.qpr_id;
+                    pVig.punitive_vigilance_id = prevData.punitive_vigilance_id;
+                    pVig.user_id = prevData.user_id;
+                    pVig.update_date = DateOnly.FromDateTime(DateTime.Now);
+                    pVig.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    pVig.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    _dbContext.punitivevigilanceqrs.Update(pVig);
                     await _dbContext.SaveChangesAsync();
                 }
             }
@@ -605,7 +651,7 @@ namespace QPR_Application.Repository
         {
             try
             {
-                cacasesqpr caCase = await _dbContext.cacasesqpr.FirstOrDefaultAsync(i => i.cacasesqpr_id== id);
+                cacasesqpr caCase = await _dbContext.cacasesqpr.FirstOrDefaultAsync(i => i.cacasesqpr_id == id);
                 _dbContext.cacasesqpr.Remove(caCase);
                 await _dbContext.SaveChangesAsync();
             }

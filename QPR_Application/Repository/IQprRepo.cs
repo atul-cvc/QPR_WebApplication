@@ -27,7 +27,8 @@ namespace QPR_Application.Repository
         //, adviceofcvcqrs prevData
         public Task CreateStatusPendency(StatusOfPendencyViewModel statusVM);
         public Task SaveStatusPendency(StatusOfPendencyViewModel statusVM);
-
+        public Task CreatePunitiveVigilance(punitivevigilanceqrs pVig);
+        public Task SavePunitiveVigilance(punitivevigilanceqrs pVig);
 
 
 

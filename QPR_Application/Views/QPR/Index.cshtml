@@ -29,12 +29,13 @@
                         <label>REPORT FOR THE QUARTER ENDING  : </label>
                     </div>
                     <div class="form-group col-md-2">
-                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
-                        <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-2">
                         @Html.DropDownList("SelectedYear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center ", id = "yearDropdown", onChange = "quarterSelection()" })
                         <span asp-validation-for="SelectedYear" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
+                        <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
+                        <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -101,12 +102,19 @@
     });
 
     $('button[type="submit"]').click(function (e) {
-        // debugger;
+        debugger;
+
+        $('#selectQuarterValidation').addClass('d-none');
         var selectedYear = $('#yearDropdown').val();
         var selectedQuarter = $('#quarterDropdown').val();
         var contactNumber = $('#CVCContactNo').val();
         var cvoFulltime = $('#CVOFulltime').prop('checked');
         var cvoParttime = $('#CVOParttime').prop('checked');
+        if (selectedYear != '' && (selectedQuarter == '' || selectedQuarter == 0)) {
+            e.preventDefault();
+            $('#selectQuarterValidation').removeClass('d-none');
+            return;
+        }
         if ((cvoFulltime === false && cvoParttime === false) && (selectedYear != '' && selectedQuarter != '' && contactNumber != '')) {
             e.preventDefault(); // Prevent form submission
             $('#FullTime_PartTime_Validation').removeClass('d-none'); // Show validation message
@@ -119,31 +127,29 @@
         var currentYear = new Date().getFullYear();
         var currentMonth = (new Date().getMonth()) + 1;
         // alert('year : ' + year);
+        var options0 = "<option value=\"0\">------ Select Quarter ------</option>";
+        var options1 = "<option value=" + 1 + ">January to March</option>";
+        var options2 = "<option value=" + 2 + ">April to June</option>";
+        var options3 = "<option value=" + 3 + ">July to September</option>";
+        var options4 = "<option value=" + 4 + ">October to December</option>";
         if (year < currentYear) {
-            var options = "<option >------ Select Quarter ------</option>";
-            options = options + "<option value=" + 1 + ">January to March</option>";
-            options = options + "<option value=" + 2 + ">April to June</option>";
-            options = options + "<option value=" + 3 + ">July to September</option>";
-            options = options + "<option value=" + 4 + ">October to December</option>";
+            var options = options0 + options1 + options2 + options3 + options4
 
             document.getElementById("quarterDropdown").innerHTML = options;
         }
         else if (year == currentYear) {
 
-            var options = "<option >------ Select Quarter ------</option>";
+            var options = options0;
 
             if (currentMonth > 3 && currentMonth <= 6) {
-                options = options + "<option value=" + 1 + ">January to March</option>";
+                options += options1;
             }
             else if (currentMonth > 6 && currentMonth <= 9) {
-                options = options + "<option value=" + 1 + ">January to March</option>";
-                options = options + "<option value=" + 2 + ">April to June</option>";
+                options += options1 + options2;
 
             }
             else if (currentMonth > 9 && currentMonth <= 12) {
-                options = options + "<option value=" + 1 + ">January to March</option>";
-                options = options + "<option value=" + 2 + ">April to June</option>";
-                options = options + "<option value=" + 3 + ">July to September</option>";
+                options += options1 + options2 + options3;
             }
 
 

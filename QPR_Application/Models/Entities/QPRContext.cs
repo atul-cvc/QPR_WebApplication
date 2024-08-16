@@ -122,6 +122,8 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<cacasesqpr>().HasKey(c => c.cacasesqpr_id);
 
+            modelBuilder.Entity<punitivevigilanceqrs>().HasKey(p => p.punitive_vigilance_id);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();

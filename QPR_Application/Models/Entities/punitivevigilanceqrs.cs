@@ -8,78 +8,152 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class punitivevigilanceqrs
     {
-        public string punitive_vigilance_id { get; set; }
-        public string punitive_vigilance_finaldisposal_major_threetosix_months { get; set; }
-        public string punitive_vigilance_finaldisposal_major_sixtotwelve_months { get; set; }
-        public string punitive_vigilance_finaldisposal_major_onetotwo_year { get; set; }
-        public string punitive_vigilance_finaldisposal_major_overtwo_year { get; set; }
-        public string punitive_vigilance_finaldisposal_major_overthree_year { get; set; }
-        public string punitive_vigilance_finaldisposal_minor_threetosix_months { get; set; }
-        public string punitive_vigilance_finaldisposal_minor_sixtotwelve_months { get; set; }
-        public string punitive_vigilance_finaldisposal_minor_onetotwo_year { get; set; }
-        public string punitive_vigilance_finaldisposal_minor_overtwo_year { get; set; }
-        public string punitive_vigilance_finaldisposal_minor_overthree_year { get; set; }
-        public string punitive_vigilance_majorpenalty_numberofcase { get; set; }
-        public string punitive_vigilance_majorpenalty_numberofofficer_against { get; set; }
-        public string punitive_vigilance_majorpenalty_cutinpension { get; set; }
-        public string punitive_vigilance_majorpenalty_dismissal { get; set; }
-        public string punitive_vigilance_majorpenalty_reduction_scale { get; set; }
-        public string punitive_vigilance_majorpenalty_other_majorpenalties { get; set; }
-        public string punitive_vigilance_majorpenalty_minorpenalties { get; set; }
-        public string punitive_vigilance_majorpenalty_censure_warning { get; set; }
-        public string punitive_vigilance_majorpenalty_noaction { get; set; }
-        public string punitive_vigilance_minorpenalty_numberofcase { get; set; }
-        public string punitive_vigilance_minorpenalty_numberofofficer_against { get; set; }
-        public string punitive_vigilance_minorpenalty_reduction_lowerstage { get; set; }
-        public string punitive_vigilance_minorpenalty_postponement { get; set; }
-        public string punitive_vigilance_minorpenalty_recovery_pay { get; set; }
-        public string punitive_vigilance_minorpenalty_holding_promotion { get; set; }
-        public string punitive_vigilance_minorpenalty_censure { get; set; }
-        public string punitive_vigilance_minorpenalty_exoneration { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_numberofofficer { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_officeragainst { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_pensioncut { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_dismissal { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_reductionscale { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_majorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_minorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_censure { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupc_noaction { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_numberofofficer { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_officeragainst { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_pensioncut { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_dismissal { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_reductionscale { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_majorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_minorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_censure { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupb_noaction { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_numberofofficer { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_officeragainst { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_pensioncut { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_dismissal { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_reductionscale { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_majorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_minorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_censure { get; set; }
-        public string punitivevigilance_riskwisebreakup_groupa_noaction { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_numberofofficer { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_officeragainst { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_pensioncut { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_dismissal { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_reductionscale { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_majorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_minorpenalties { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_censure { get; set; }
-        public string punitivevigilance_riskwisebreakup_js_noaction { get; set; }
-        public string create_date { get; set; }
+        [Key]
+        public int punitive_vigilance_id { get; set; }
+        public int punitive_vigilance_finaldisposal_major_threetosix_months { get; set; }
+        public int punitive_vigilance_finaldisposal_major_sixtotwelve_months { get; set; }
+        public int punitive_vigilance_finaldisposal_major_onetotwo_year { get; set; }
+        public int punitive_vigilance_finaldisposal_major_overtwo_year { get; set; }
+        public int punitive_vigilance_finaldisposal_major_overthree_year { get; set; }
+        public int punitive_vigilance_finaldisposal_minor_threetosix_months { get; set; }
+        public int punitive_vigilance_finaldisposal_minor_sixtotwelve_months { get; set; }
+        public int punitive_vigilance_finaldisposal_minor_onetotwo_year { get; set; }
+        public int punitive_vigilance_finaldisposal_minor_overtwo_year { get; set; }
+        public int punitive_vigilance_finaldisposal_minor_overthree_year { get; set; }
+        public int punitive_vigilance_majorpenalty_numberofcase { get; set; }
+        public int punitive_vigilance_majorpenalty_numberofofficer_against { get; set; }
+        public int punitive_vigilance_majorpenalty_cutinpension { get; set; }
+        public int punitive_vigilance_majorpenalty_dismissal { get; set; }
+        public int punitive_vigilance_majorpenalty_reduction_scale { get; set; }
+        public int punitive_vigilance_majorpenalty_other_majorpenalties { get; set; }
+        public int punitive_vigilance_majorpenalty_minorpenalties { get; set; }
+        public int punitive_vigilance_majorpenalty_censure_warning { get; set; }
+        public int punitive_vigilance_majorpenalty_noaction { get; set; }
+        public int punitive_vigilance_minorpenalty_numberofcase { get; set; }
+        public int punitive_vigilance_minorpenalty_numberofofficer_against { get; set; }
+        public int punitive_vigilance_minorpenalty_reduction_lowerstage { get; set; }
+        public int punitive_vigilance_minorpenalty_postponement { get; set; }
+        public int punitive_vigilance_minorpenalty_recovery_pay { get; set; }
+        public int punitive_vigilance_minorpenalty_holding_promotion { get; set; }
+        public int punitive_vigilance_minorpenalty_censure { get; set; }
+        public int punitive_vigilance_minorpenalty_exoneration { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_numberofofficer { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_officeragainst { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_pensioncut { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_dismissal { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_reductionscale { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_majorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_minorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_censure { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupc_noaction { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_numberofofficer { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_officeragainst { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_pensioncut { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_dismissal { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_reductionscale { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_majorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_minorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_censure { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupb_noaction { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_numberofofficer { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_officeragainst { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_pensioncut { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_dismissal { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_reductionscale { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_majorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_minorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_censure { get; set; }
+        public int punitivevigilance_riskwisebreakup_groupa_noaction { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_numberofofficer { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_officeragainst { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_pensioncut { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_dismissal { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_reductionscale { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_majorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_minorpenalties { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_censure { get; set; }
+        public int punitivevigilance_riskwisebreakup_js_noaction { get; set; }
+        public DateOnly create_date { get; set; }
         public string user_id { get; set; }
-        public string update_date { get; set; }
+        public DateOnly? update_date { get; set; }
         public string last_user_id { get; set; }
-        public string qpr_id { get; set; }
+        public long qpr_id { get; set; }
         public string ip { get; set; }
+
+        public punitivevigilanceqrs()
+        {
+            punitive_vigilance_id = 0;
+            punitive_vigilance_finaldisposal_major_threetosix_months = 0;
+            punitive_vigilance_finaldisposal_major_sixtotwelve_months = 0;
+            punitive_vigilance_finaldisposal_major_onetotwo_year = 0;
+            punitive_vigilance_finaldisposal_major_overtwo_year = 0;
+            punitive_vigilance_finaldisposal_major_overthree_year = 0;
+            punitive_vigilance_finaldisposal_minor_threetosix_months = 0;
+            punitive_vigilance_finaldisposal_minor_sixtotwelve_months = 0;
+            punitive_vigilance_finaldisposal_minor_onetotwo_year = 0;
+            punitive_vigilance_finaldisposal_minor_overtwo_year = 0;
+            punitive_vigilance_finaldisposal_minor_overthree_year = 0;
+            punitive_vigilance_majorpenalty_numberofcase = 0;
+            punitive_vigilance_majorpenalty_numberofofficer_against = 0;
+            punitive_vigilance_majorpenalty_cutinpension = 0;
+            punitive_vigilance_majorpenalty_dismissal = 0;
+            punitive_vigilance_majorpenalty_reduction_scale = 0;
+            punitive_vigilance_majorpenalty_other_majorpenalties = 0;
+            punitive_vigilance_majorpenalty_minorpenalties = 0;
+            punitive_vigilance_majorpenalty_censure_warning = 0;
+            punitive_vigilance_majorpenalty_noaction = 0;
+            punitive_vigilance_minorpenalty_numberofcase = 0;
+            punitive_vigilance_minorpenalty_numberofofficer_against = 0;
+            punitive_vigilance_minorpenalty_reduction_lowerstage = 0;
+            punitive_vigilance_minorpenalty_postponement = 0;
+            punitive_vigilance_minorpenalty_recovery_pay = 0;
+            punitive_vigilance_minorpenalty_holding_promotion = 0;
+            punitive_vigilance_minorpenalty_censure = 0;
+            punitive_vigilance_minorpenalty_exoneration = 0;
+            punitivevigilance_riskwisebreakup_groupc_numberofofficer = 0;
+            punitivevigilance_riskwisebreakup_groupc_officeragainst = 0;
+            punitivevigilance_riskwisebreakup_groupc_pensioncut = 0;
+            punitivevigilance_riskwisebreakup_groupc_dismissal = 0;
+            punitivevigilance_riskwisebreakup_groupc_reductionscale = 0;
+            punitivevigilance_riskwisebreakup_groupc_majorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupc_minorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupc_censure = 0;
+            punitivevigilance_riskwisebreakup_groupc_noaction = 0;
+            punitivevigilance_riskwisebreakup_groupb_numberofofficer = 0;
+            punitivevigilance_riskwisebreakup_groupb_officeragainst = 0;
+            punitivevigilance_riskwisebreakup_groupb_pensioncut = 0;
+            punitivevigilance_riskwisebreakup_groupb_dismissal = 0;
+            punitivevigilance_riskwisebreakup_groupb_reductionscale = 0;
+            punitivevigilance_riskwisebreakup_groupb_majorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupb_minorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupb_censure = 0;
+            punitivevigilance_riskwisebreakup_groupb_noaction = 0;
+            punitivevigilance_riskwisebreakup_groupa_numberofofficer = 0;
+            punitivevigilance_riskwisebreakup_groupa_officeragainst = 0;
+            punitivevigilance_riskwisebreakup_groupa_pensioncut = 0;
+            punitivevigilance_riskwisebreakup_groupa_dismissal = 0;
+            punitivevigilance_riskwisebreakup_groupa_reductionscale = 0;
+            punitivevigilance_riskwisebreakup_groupa_majorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupa_minorpenalties = 0;
+            punitivevigilance_riskwisebreakup_groupa_censure = 0;
+            punitivevigilance_riskwisebreakup_groupa_noaction = 0;
+            punitivevigilance_riskwisebreakup_js_numberofofficer = 0;
+            punitivevigilance_riskwisebreakup_js_officeragainst = 0;
+            punitivevigilance_riskwisebreakup_js_pensioncut = 0;
+            punitivevigilance_riskwisebreakup_js_dismissal = 0;
+            punitivevigilance_riskwisebreakup_js_reductionscale = 0;
+            punitivevigilance_riskwisebreakup_js_majorpenalties = 0;
+            punitivevigilance_riskwisebreakup_js_minorpenalties = 0;
+            punitivevigilance_riskwisebreakup_js_censure = 0;
+            punitivevigilance_riskwisebreakup_js_noaction = 0;
+            create_date = new DateOnly();
+            user_id = string.Empty;
+            //update_date = new DateOnly();
+            last_user_id = string.Empty;
+            qpr_id = 0;
+            ip = string.Empty;
+        }
     }
 }

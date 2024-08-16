@@ -10,7 +10,7 @@
 </div>
 <hr />
 
-<form asp-action="PunitiveVigilance">
+<form asp-action="PunitiveVigilance" id="PunitiveVigilanceQPRForm">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="w-80 mt-5 mb-3 box-green ">
         <b>
@@ -252,390 +252,23 @@
         </table>
     </div>
 
-    <div class="w-25 m-auto text-center">
+    @* <div class="w-25 m-auto text-center">
 
-        @if (ViewBag.ComplaintsMessage != null)
-        {
-            @ViewBag.ComplaintsMessage
-        }
+    @if (ViewBag.ComplaintsMessage != null)
+    {
+    @ViewBag.ComplaintsMessage
+    }
 
-    </div>
+    </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="StatusofPendencyFIandCACases">Back</a>
-        <input type="submit" class="btn btn-success" asp-action="SavePunitiveVigilance" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePunitiveVigilance" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('PunitiveVigilanceQPRForm')" />
     </div>
 
 </form>
 
-
-<div class="row">
-    @*
-    <div class="col-md-4">
-    <form asp-action="PunitiveVigilance">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_id" class="control-label"></label>
-    <input asp-for="punitive_vigilance_id" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_major_threetosix_months" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_major_threetosix_months" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_major_threetosix_months" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_major_sixtotwelve_months" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_major_sixtotwelve_months" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_major_sixtotwelve_months" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_major_onetotwo_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_major_onetotwo_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_major_onetotwo_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_major_overtwo_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_major_overtwo_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_major_overtwo_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_major_overthree_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_major_overthree_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_major_overthree_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_minor_threetosix_months" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_minor_threetosix_months" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_minor_threetosix_months" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_minor_sixtotwelve_months" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_minor_sixtotwelve_months" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_minor_sixtotwelve_months" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_minor_onetotwo_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_minor_onetotwo_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_minor_onetotwo_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_minor_overtwo_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_minor_overtwo_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_minor_overtwo_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_finaldisposal_minor_overthree_year" class="control-label"></label>
-    <input asp-for="punitive_vigilance_finaldisposal_minor_overthree_year" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_finaldisposal_minor_overthree_year" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_numberofcase" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_numberofcase" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_numberofcase" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_numberofofficer_against" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_numberofofficer_against" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_numberofofficer_against" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_cutinpension" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_cutinpension" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_cutinpension" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_dismissal" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_dismissal" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_dismissal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_reduction_scale" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_reduction_scale" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_reduction_scale" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_other_majorpenalties" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_other_majorpenalties" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_other_majorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_minorpenalties" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_minorpenalties" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_minorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_censure_warning" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_censure_warning" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_censure_warning" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_majorpenalty_noaction" class="control-label"></label>
-    <input asp-for="punitive_vigilance_majorpenalty_noaction" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_majorpenalty_noaction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_numberofcase" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_numberofcase" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_numberofcase" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_numberofofficer_against" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_numberofofficer_against" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_numberofofficer_against" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_reduction_lowerstage" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_reduction_lowerstage" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_reduction_lowerstage" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_postponement" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_postponement" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_postponement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_recovery_pay" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_recovery_pay" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_recovery_pay" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_holding_promotion" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_holding_promotion" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_holding_promotion" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_censure" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_censure" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_censure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitive_vigilance_minorpenalty_exoneration" class="control-label"></label>
-    <input asp-for="punitive_vigilance_minorpenalty_exoneration" class="form-control" />
-    <span asp-validation-for="punitive_vigilance_minorpenalty_exoneration" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_numberofofficer" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_numberofofficer" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_numberofofficer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_officeragainst" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_officeragainst" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_officeragainst" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_pensioncut" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_pensioncut" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_pensioncut" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_dismissal" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_dismissal" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_dismissal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_reductionscale" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_reductionscale" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_reductionscale" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_majorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_majorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_majorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_minorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_minorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_minorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_censure" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_censure" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_censure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupc_noaction" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupc_noaction" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupc_noaction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_numberofofficer" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_numberofofficer" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_numberofofficer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_officeragainst" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_officeragainst" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_officeragainst" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_pensioncut" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_pensioncut" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_pensioncut" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_dismissal" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_dismissal" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_dismissal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_reductionscale" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_reductionscale" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_reductionscale" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_majorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_majorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_majorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_minorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_minorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_minorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_censure" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_censure" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_censure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupb_noaction" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupb_noaction" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupb_noaction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_numberofofficer" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_numberofofficer" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_numberofofficer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_officeragainst" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_officeragainst" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_officeragainst" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_pensioncut" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_pensioncut" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_pensioncut" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_dismissal" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_dismissal" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_dismissal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_reductionscale" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_reductionscale" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_reductionscale" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_majorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_majorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_majorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_minorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_minorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_minorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_censure" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_censure" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_censure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_groupa_noaction" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_groupa_noaction" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_groupa_noaction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_numberofofficer" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_numberofofficer" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_numberofofficer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_officeragainst" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_officeragainst" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_officeragainst" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_pensioncut" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_pensioncut" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_pensioncut" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_dismissal" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_dismissal" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_dismissal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_reductionscale" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_reductionscale" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_reductionscale" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_majorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_majorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_majorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_minorpenalties" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_minorpenalties" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_minorpenalties" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_censure" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_censure" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_censure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="punitivevigilance_riskwisebreakup_js_noaction" class="control-label"></label>
-    <input asp-for="punitivevigilance_riskwisebreakup_js_noaction" class="form-control" />
-    <span asp-validation-for="punitivevigilance_riskwisebreakup_js_noaction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="create_date" class="control-label"></label>
-    <input asp-for="create_date" class="form-control" />
-    <span asp-validation-for="create_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="user_id" class="control-label"></label>
-    <input asp-for="user_id" class="form-control" />
-    <span asp-validation-for="user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="update_date" class="control-label"></label>
-    <input asp-for="update_date" class="form-control" />
-    <span asp-validation-for="update_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="last_user_id" class="control-label"></label>
-    <input asp-for="last_user_id" class="form-control" />
-    <span asp-validation-for="last_user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="qpr_id" class="control-label"></label>
-    <input asp-for="qpr_id" class="form-control" />
-    <span asp-validation-for="qpr_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="ip" class="control-label"></label>
-    <input asp-for="ip" class="form-control" />
-    <span asp-validation-for="ip" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-    </form>
-    </div>
-    *@
-</div>
-
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
 
 @section Scripts {
     @{
@@ -643,22 +276,46 @@
     }
 }
 
+
 <script>
-    
     $(function () {
-        Swal.fire({
-            // title: 'Hello!',
-            text: complaintsMessage,
-            icon: 'success',
-            confirmButtonText: 'Okay'
-        }).then((result) => {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+        if (complaintsMessage) {
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'error'
+            }
+
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: notificationIcon,
+                confirmButtonText: 'Okay'
+            }).then((result) => {
                 if (result.isConfirmed) {
-                    // Call your function here
                     pageReloadWithoutQueryString();
                 } else {
                     // Optional: Handle cancel action
-                    console.log('Action canceled.');
                 }
             });
+        }
+        performComTotal();
     });
+
+    //$('#StatusOfPendency_pendency_status_fi_addduringqtr, #StatusOfPendency_pendency_status_fi_reply_commission, #StatusOfPendency_pendency_status_ca_addduringqtr, #StatusOfPendency_pendency_status_ca_comments_commission').on('input', performComTotal);
+
+
+    function performComTotal() {
+
+        //$('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
+        
+    }
+
+
 </script>
+
