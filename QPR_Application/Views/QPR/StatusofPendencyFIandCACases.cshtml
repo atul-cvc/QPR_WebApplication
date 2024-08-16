@@ -11,7 +11,7 @@
 <hr />
 
 
-<form asp-action="StatusofPendencyFIandCACases">
+<form asp-action="StatusofPendencyFIandCACases" id="StatusOfPendencyQPRForm">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="center w-70 mt-2">
@@ -121,28 +121,31 @@
                                     <tr class="text-center">
                                         <td>@(i + 1)</td> <!-- Serial number column -->
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].cvc_case_reg_no</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].cvc_case_reg_no " class="form-control" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].cvc_file_no</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].cvc_file_no " class="form-control" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].date_since_pend</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].date_since_pend " class="form-control " type="date" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].name_officer</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].name_officer " class="form-control" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].dept_ref_no</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].dept_ref_no " class="form-control" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].present_status</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].present_status " class="form-control" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].submission_date</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].submission_date" class="form-control " type="date" />
                                         </td>
                                         <td>
-                                            <span>@Model.FiCasesQPRs[i].remark</span>
+                                            <input asp-for="@Model.FiCasesQPRs[i].remark " class="form-control" />
+                                        </td>
+                                        <td hidden>
+                                            <input asp-for="@Model.FiCasesQPRs[i].ficasesqpr_id " hidden class="form-control" readonly />
                                         </td>
                                         <td>
                                             <a href="@Url.Action("DeleteFiCaseRow", new { id = @Model.FiCasesQPRs[i].ficasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteFiCaseRow", new { id = @Model.FiCasesQPRs[i].ficasesqpr_id})'); return false;">Delete</a>
@@ -281,41 +284,31 @@
                                     <tr class="text-center">
                                         <td>@(i + 1)</td> <!-- Serial number column -->
                                         <td>
-                                            @* <span>@Model.CaCasesQPRs[i].cvc_case_reg_no</span> *@
                                             <input asp-for="@Model.CaCasesQPRs[i].cvc_case_reg_no " class="form-control" />
-
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].cvc_file_no " class="form-control" />
-                                            @* <span>@Model.CaCasesQPRs[i].cvc_file_no</span> *@
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].date_since_pend " class="form-control " type="date" />
-                                            @* <span>@Model.CaCasesQPRs[i].date_since_pend</span> *@
                                         </td>
                                         <td>
-                                            @* <span>@Model.CaCasesQPRs[i].name_officer</span> *@
                                             <input asp-for="@Model.CaCasesQPRs[i].name_officer " class="form-control" />
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].dept_ref_no " class="form-control" />
-                                            @* <span>@Model.CaCasesQPRs[i].dept_ref_no</span> *@
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].present_status " class="form-control" />
-                                            @* <span>@Model.CaCasesQPRs[i].present_status</span> *@
                                         </td>
                                         <td>
-                                            @* <span>@Model.CaCasesQPRs[i].submission_date</span> *@
                                             <input asp-for="@Model.CaCasesQPRs[i].submission_date" class="form-control " type="date" />
                                         </td>
                                         <td>
                                             <input asp-for="@Model.CaCasesQPRs[i].remark " class="form-control" />
-                                            @* <span>@Model.CaCasesQPRs[i].remark</span> *@
                                         </td>
                                         <td hidden>
                                             <input asp-for="@Model.CaCasesQPRs[i].cacasesqpr_id " hidden class="form-control" readonly />
-                                            @* <span>@Model.CaCasesQPRs[i].remark</span> *@
                                         </td>
                                         <td>
                                             <a href="@Url.Action("DeleteCaCaseRow", new { id = @Model.CaCasesQPRs[i].cacasesqpr_id})" class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteCaCaseRow", new { id = @Model.CaCasesQPRs[@i].cacasesqpr_id})'); return false;">Delete</a>
@@ -375,8 +368,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="AdviceOfCVC">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('StatusOfPendencyQPRForm')" />
     </div>
 
 
