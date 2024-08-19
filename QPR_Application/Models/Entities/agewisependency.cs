@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class agewisependency
     {
         [Key]
