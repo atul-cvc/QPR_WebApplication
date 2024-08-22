@@ -8,23 +8,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class preventivevigi_a_qpr
     {
-        [StringLength(50)]
-        public string preventivevigi_a_id { get; set; }
-        [StringLength(50)]
-        public string preventive_vigilance_id { get; set; }
-        [StringLength(50)]
-        public string preventivevigi_a_detailsvigi_subsidiaries_serial_number { get; set; }
-        [StringLength(1000)]
+        [Key]
+        public int preventivevigi_a_id { get; set; }
+        public int? preventive_vigilance_id { get; set; }
+        public string? preventivevigi_a_detailsvigi_subsidiaries_serial_number { get; set; }
         public string preventivevigi_a_detailsvigi_subsidiaries_nameofsub { get; set; }
-        [StringLength(1000)]
         public string preventivevigi_a_detailsvigi_subsidiaries_staff_appointed { get; set; }
-        [StringLength(1000)]
         public string preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol { get; set; }
-        public int? qpr_id { get; set; }
-        [StringLength(50)]
+        public long qpr_id { get; set; }
         public string ip { get; set; }
     }
 }

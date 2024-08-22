@@ -124,6 +124,10 @@ namespace QPR_Application.Models.Entities
 
             modelBuilder.Entity<punitivevigilanceqrs>().HasKey(p => p.punitive_vigilance_id);
 
+            modelBuilder.Entity<preventivevigilanceqrs>().HasKey(p => p.preventive_vigilance_id);
+
+            modelBuilder.Entity<vigilanceactivitiescvcqrs>().HasKey(v => v.vigilance_activites_id);
+
             modelBuilder.Entity<cmptable>(entity =>
             {
                 entity.Property(e => e.complaintnumber).ValueGeneratedNever();

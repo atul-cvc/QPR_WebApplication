@@ -16,7 +16,9 @@ namespace QPR_Application.Repository
         public Task<StatusOfPendencyViewModel?> GetStatusPendencyViewModel(string refNum);
         public Task<statusofpendencyqrs?> GetStatusPendencyData(string refNum);
         public Task<punitivevigilanceqrs?> GetPunitiveVigilanceData(string refNum);
+        public Task<PreventiveVigilanceViewModel?> GetPreventiveVigilanceViewModel(string refNum);
         public Task<preventivevigilanceqrs?> GetPreventiveVigilanceData(string refNum);
-        public Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActiviteiesData(string refNum);
+        //public Task<PreventiveVigilanceActivitiesViewModel?> GetPreventiveVigilanceActivitiesViewModel(string refNum);
+        public Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActivitiesData(string refNum);
     }
 }

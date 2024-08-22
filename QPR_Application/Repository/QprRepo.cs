@@ -338,6 +338,7 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
+
         public async Task CreateStatusPendency(StatusOfPendencyViewModel statusVM)
         {
             try
@@ -383,7 +384,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task SaveStatusPendency(StatusOfPendencyViewModel statusVM)
         {
             try
@@ -436,10 +436,6 @@ namespace QPR_Application.Repository
                                 newDataCA.update_date = DateOnly.FromDateTime(DateTime.Now);
 
                                 _dbContext.cacasesqpr.Update(newDataCA);
-                            }
-                            else
-                            {
-
                             }
                         }
                     }
@@ -503,6 +499,133 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
+
+        public async Task CreatePreventiveVigilance(PreventiveVigilanceViewModel pVig)
+        {
+            try
+            {
+                if (pVig != null)
+                {
+                    pVig.PreventiveVigilanceQRS.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    pVig.PreventiveVigilanceQRS.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    pVig.PreventiveVigilanceQRS.create_date = DateOnly.FromDateTime(DateTime.Now);
+                    pVig.PreventiveVigilanceQRS.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    await _dbContext.preventivevigilanceqrs.AddAsync(pVig.PreventiveVigilanceQRS);
+                    await _dbContext.SaveChangesAsync();
+
+                    await AddNewPrevVigA(pVig.NewPreventivVigi_A, pVig.PreventiveVigilanceQRS.preventive_vigilance_id);
+                    await AddNewPrevVigB(pVig.NewPreventivVigi_B, pVig.PreventiveVigilanceQRS.preventive_vigilance_id);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task SavePreventiveVigilance(PreventiveVigilanceViewModel pVig)
+        {
+            try
+            {
+                preventivevigilanceqrs prevData = await _complaintsRepo.GetPreventiveVigilanceData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                pVig.PreventiveVigilanceQRS.preventive_vigilance_id = prevData.preventive_vigilance_id;
+                pVig.PreventiveVigilanceQRS.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                pVig.PreventiveVigilanceQRS.qpr_id = prevData.qpr_id;
+                pVig.PreventiveVigilanceQRS.create_date = prevData.create_date;
+                pVig.PreventiveVigilanceQRS.update_date = DateOnly.FromDateTime(DateTime.Now);
+                pVig.PreventiveVigilanceQRS.user_id = prevData.user_id;
+                pVig.PreventiveVigilanceQRS.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                if (String.IsNullOrEmpty(pVig.PreventiveVigilanceQRS.file1))
+                    pVig.PreventiveVigilanceQRS.file1 = prevData.file1;
+
+                _dbContext.preventivevigilanceqrs.Update(pVig.PreventiveVigilanceQRS);
+                await _dbContext.SaveChangesAsync();
+
+                if (pVig.PrevVigiA.Count > 0)
+                {
+                    for (int i = 0; i < pVig.PrevVigiA.Count; i++)
+                    {
+                        pVig.PrevVigiA[i].qpr_id = prevData.qpr_id;
+                        pVig.PrevVigiA[i].ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                        pVig.PrevVigiA[i].preventive_vigilance_id = prevData.preventive_vigilance_id;
+                        if (AreAllPropertiesSet(pVig.PrevVigiA[i], ["preventivevigi_a_id", "preventivevigi_a_detailsvigi_subsidiaries_serial_number", "preventive_vigilance_id"]))
+                        {
+                            _dbContext.preventivevigi_a_qpr.Update(pVig.PrevVigiA[i]);
+                            await _dbContext.SaveChangesAsync();
+                        }
+                    }
+                }
+
+                if (pVig.PrevVigiB.Count > 0)
+                {
+                    for (int i = 0; i < pVig.PrevVigiB.Count; i++)
+                    {
+                        pVig.PrevVigiB[i].qpr_id = prevData.qpr_id;
+                        pVig.PrevVigiB[i].ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                        pVig.PrevVigiB[i].preventive_vigilance_id = prevData.preventive_vigilance_id;
+                        if (AreAllPropertiesSet(pVig.PrevVigiB[i], ["preventivevigi_b_id", "preventivevigi_b_detailsvigi_subsidiaries_serial_number", "preventive_vigilance_id"]))
+                        {
+                            _dbContext.preventivevigi_b_qpr.Update(pVig.PrevVigiB[i]);
+                            await _dbContext.SaveChangesAsync();
+                        }
+                    }
+                }
+
+                if (pVig.NewPreventivVigi_A != null)
+                    await AddNewPrevVigA(pVig.NewPreventivVigi_A, prevData.preventive_vigilance_id);
+
+                if (pVig.NewPreventivVigi_A != null)
+                    await AddNewPrevVigB(pVig.NewPreventivVigi_B, prevData.preventive_vigilance_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task CreatePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities)
+        {
+            try
+            {
+                if(vigilanceactivities != null)
+                {
+                    vigilanceactivities.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                    vigilanceactivities.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                    vigilanceactivities.create_date = DateOnly.FromDateTime(DateTime.Now);
+                    vigilanceactivities.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+
+                    await _dbContext.vigilanceactivitiescvcqrs.AddAsync(vigilanceactivities);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities)
+        {
+            try
+            {
+                vigilanceactivitiescvcqrs prevData = await _complaintsRepo.GetPreventiveVigilanceActivitiesData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                vigilanceactivities.qpr_id = prevData.qpr_id;
+                vigilanceactivities.create_date = prevData.create_date;
+                vigilanceactivities.update_date = DateOnly.FromDateTime(DateTime.Now);
+                vigilanceactivities.user_id = prevData.user_id;
+                vigilanceactivities.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                vigilanceactivities.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+                
+                _dbContext.vigilanceactivitiescvcqrs.Update(vigilanceactivities);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         public async Task AddCvcAdvice(cvcadvicetable cvcAdvice)
@@ -633,7 +756,45 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
+        public async Task AddNewPrevVigA(preventivevigi_a_qpr prevVigA, int preventive_vigilance_id)
+        {
+            try
+            {
+                prevVigA.preventive_vigilance_id = preventive_vigilance_id;
+                prevVigA.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                prevVigA.ip = _httpContext.HttpContext.Session.GetString("ipAddress");
 
+                if (AreAllPropertiesSet(prevVigA, ["preventivevigi_a_id", "preventivevigi_a_detailsvigi_subsidiaries_serial_number", "preventive_vigilance_id"]))
+                {
+                    await _dbContext.preventivevigi_a_qpr.AddAsync(prevVigA);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task AddNewPrevVigB(preventivevigi_b_qpr prevVigB, int preventive_vigilance_id)
+        {
+            try
+            {
+                prevVigB.preventive_vigilance_id = preventive_vigilance_id;
+                prevVigB.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
+                prevVigB.ip = _httpContext.HttpContext.Session.GetString("ipAddress");
+
+                if (AreAllPropertiesSet(prevVigB, ["preventivevigi_b_id", "preventivevigi_b_detailsvigi_subsidiaries_serial_number", "preventive_vigilance_id"]))
+                {
+                    await _dbContext.preventivevigi_b_qpr.AddAsync(prevVigB);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+       
         public async Task DeleteFiCaseRow(int id)
         {
             try
@@ -659,6 +820,31 @@ namespace QPR_Application.Repository
             {
                 throw ex;
             }
+        }
+        public async Task DeletePrevVigi(int id, string tableName)
+        {
+            try
+            {
+                if (tableName.Equals("PrevVigiA"))
+                {
+                    preventivevigi_a_qpr prevA = await _dbContext.preventivevigi_a_qpr.FirstOrDefaultAsync(i => i.preventivevigi_a_id == id);
+                    _dbContext.Remove(prevA);
+                }
+                if (tableName.Equals("PrevVigiB"))
+                {
+                    preventivevigi_b_qpr prevB = await _dbContext.preventivevigi_b_qpr.FirstOrDefaultAsync(i => i.preventivevigi_b_id == id);
+                    _dbContext.Remove(prevB);
+                }
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private DbSet<T> GetDbSet<T>() where T : class
+        {
+            return _dbContext.Set<T>();
         }
         public static bool AreAllPropertiesSet<T>(T obj, string[] excludeArr = null)
         {

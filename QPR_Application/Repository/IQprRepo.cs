@@ -29,7 +29,12 @@ namespace QPR_Application.Repository
         public Task SaveStatusPendency(StatusOfPendencyViewModel statusVM);
         public Task CreatePunitiveVigilance(punitivevigilanceqrs pVig);
         public Task SavePunitiveVigilance(punitivevigilanceqrs pVig);
-
+        public Task CreatePreventiveVigilance(PreventiveVigilanceViewModel pVig);
+        public Task SavePreventiveVigilance(PreventiveVigilanceViewModel pVig);
+        public Task AddNewPrevVigA(preventivevigi_a_qpr prevVigA, int preventive_vigilance_id);
+        public Task AddNewPrevVigB(preventivevigi_b_qpr prevVigB, int preventive_vigilance_id);
+        public Task CreatePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
+        public Task SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
 
 
 
@@ -39,6 +44,7 @@ namespace QPR_Application.Repository
         public Task DeleteAppeleateAuthority(int pend_id);
         public Task DeleteFiCaseRow(int id);
         public Task DeleteCaCaseRow(int id);
+        public Task DeletePrevVigi(int id, string tableName);
 
         //public Task<complaintsqrs> GetComplaintsqrs();
     }

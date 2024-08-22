@@ -1,11 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
-using System;
 using System.Data;
-using System.Diagnostics;
 
 namespace QPR_Application.Repository
 {
@@ -163,9 +160,8 @@ namespace QPR_Application.Repository
         {
             try
             {
-                punitivevigilanceqrs pVig = await _dbContext.punitivevigilanceqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum)); 
-                //?? new punitivevigilanceqrs();
-                if(pVig.punitive_vigilance_id != 0)
+                punitivevigilanceqrs pVig = await _dbContext.punitivevigilanceqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
+                if (pVig != null && pVig.punitive_vigilance_id != 0)
                 {
                     _httpContext.HttpContext?.Session.SetString("punitive_vigilance_id", Convert.ToString(pVig.punitive_vigilance_id));
                 }
@@ -174,20 +170,64 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
+
+        public async Task<PreventiveVigilanceViewModel> GetPreventiveVigilanceViewModel(string refNum)
+        {
+            try
+            {
+                PreventiveVigilanceViewModel pVigVM = new PreventiveVigilanceViewModel();
+                pVigVM.PreventiveVigilanceQRS = await GetPreventiveVigilanceData(refNum) ?? new preventivevigilanceqrs();
+                if (pVigVM.PreventiveVigilanceQRS != null && pVigVM.PreventiveVigilanceQRS.preventive_vigilance_id != 0)
+                {
+                    pVigVM.PrevVigiA = await _dbContext.preventivevigi_a_qpr.AsNoTracking().Where(a => a.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                    pVigVM.PrevVigiB = await _dbContext.preventivevigi_b_qpr.AsNoTracking().Where(b => b.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                }
+                if (pVigVM.PreventiveVigilanceQRS != null && pVigVM.PreventiveVigilanceQRS.preventive_vigilance_id != 0)
+                {
+                    _httpContext.HttpContext?.Session.SetString("preventive_vigilance_id", Convert.ToString(pVigVM.PreventiveVigilanceQRS.preventive_vigilance_id));
+                }
+                return pVigVM;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return null;
+        }
         public async Task<preventivevigilanceqrs?> GetPreventiveVigilanceData(string refNum)
         {
             try
             {
-                return await _dbContext.preventivevigilanceqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+                return await _dbContext.preventivevigilanceqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
             }
             catch (Exception ex) { }
             return null;
         }
-        public async Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActiviteiesData(string refNum)
+
+        //public async Task<PreventiveVigilanceActivitiesViewModel> GetPreventiveVigilanceActivitisViewModel(string refNum)
+        //{
+        //    try
+        //    {
+        //        PreventiveVigilanceActivitiesViewModel data = new PreventiveVigilanceActivitiesViewModel();
+        //        data.VigilanceActivities = await GetPreventiveVigilanceActivitiesData(refNum) ?? new vigilanceactivitiescvcqrs();
+        //        return data;
+        //    } catch (Exception ex) {
+        //        throw ex;
+        //    }
+        //    return null;
+        //}
+        public async Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActivitiesData(string refNum)
         {
             try
             {
-                return await _dbContext.vigilanceactivitiescvcqrs.FirstOrDefaultAsync(i => i.qpr_id == refNum);
+                vigilanceactivitiescvcqrs data = await _dbContext.vigilanceactivitiescvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt32(refNum));
+
+                if (data != null && data.vigilance_activites_id != 0)
+                {
+                    _httpContext.HttpContext?.Session.SetString("vigilance_activites_id", Convert.ToString(data.vigilance_activites_id));
+                }
+
+                return data;
             }
             catch (Exception ex) { }
             return null;
@@ -214,7 +254,7 @@ namespace QPR_Application.Repository
                             {
                                 ficasesqpr fiCase = new ficasesqpr();
                                 fiCase.qpr_id = 0;
-                                fiCase.ip= String.Empty;
+                                fiCase.ip = String.Empty;
                                 fiCase.user_id = String.Empty;
                                 fiCase.submission_date = null;
                                 fiCase.ficasesqpr_id = 0;
@@ -265,7 +305,7 @@ namespace QPR_Application.Repository
                             {
                                 cacasesqpr caCase = new cacasesqpr();
                                 caCase.qpr_id = 0;
-                                caCase.ip= String.Empty;
+                                caCase.ip = String.Empty;
                                 caCase.user_id = String.Empty;
                                 caCase.submission_date = null;
                                 caCase.cacasesqpr_id = 0;

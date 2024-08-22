@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace QPR_Application.Util
 {
-    public class QPRUtilility
+    public class QPRUtilility 
     {
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
@@ -91,6 +91,38 @@ namespace QPR_Application.Util
                 throw ex;
             }
             return null;
+        }
+
+        public async Task<string> UploadFileAsync(IFormFile file)
+        {
+            try
+            {
+                string _uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/QPRUploads");
+
+                // Ensure the uploads folder exists
+                if (!Directory.Exists(_uploadsFolder))
+                {
+                    Directory.CreateDirectory(_uploadsFolder);
+                }
+                if (file == null || file.Length == 0)
+                {
+                    throw new ArgumentException("No file provided.");
+                }
+                // Generate a unique file name
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(_uploadsFolder, fileName);
+
+                // Save the file
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                //return new string("");
+                return $"/QPRUploads/{fileName}";
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
         }
     }
 }

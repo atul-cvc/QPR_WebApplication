@@ -1,4 +1,4 @@
-﻿@model QPR_Application.Models.Entities.preventivevigilanceqrs
+﻿@model QPR_Application.Models.ViewModels.PreventiveVigilanceViewModel
 
 @{
     ViewData["Title"] = "PreventiveVigilance";
@@ -11,7 +11,7 @@
 <hr />
 
 
-<form asp-action="PreventiveVigilance">
+<form asp-action="PreventiveVigilance" id="PreventiveVigilanceQPRForm" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
@@ -52,59 +52,59 @@
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Periodic Inspection</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_periodic_end_previous_qtr" name="preventivevig_bycvo_periodic_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_periodic_during_qtr" name="preventivevig_bycvo_periodic_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_periodic_system_improvement" name="preventivevig_bycvo_periodic_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_periodic_recovery_effected" name="preventivevig_bycvo_periodic_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Surprise Inspection</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_surprise_end_previous_qtr" name="preventivevig_bycvo_surprise_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_surprise_during_qtr" name="preventivevig_bycvo_surprise_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_surprise_system_improvement" name="preventivevig_bycvo_surprise_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_surprise_recovery_effected" name="preventivevig_bycvo_surprise_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_surprise_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_surprise_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_surprise_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_surprise_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Major Work / Procurements-CTE Type &nbsp;&nbsp;Inspection</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_majorwork_end_previous_qtr" name="preventivevig_bycvo_majorwork_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_majorwork_during_qtr" name="preventivevig_bycvo_majorwork_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_majorwork_system_improvement" name="preventivevig_bycvo_majorwork_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_majorwork_recovery_effected" name="preventivevig_bycvo_majorwork_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_majorwork_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_majorwork_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_majorwork_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_majorwork_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Scrutiny of Files</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_file_end_previous_qtr" name="preventivevig_bycvo_scrutiny_file_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_file_during_qtr" name="preventivevig_bycvo_scrutiny_file_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_file_system_improvement" name="preventivevig_bycvo_scrutiny_file_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_file_recovery_effected" name="preventivevig_bycvo_scrutiny_file_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_file_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_file_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_file_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_file_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Scrutiny of Property Returns</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_property_end_previous_qtr" name="preventivevig_bycvo_scrutiny_property_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_property_during_qtr" name="preventivevig_bycvo_scrutiny_property_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_property_system_improvement" name="preventivevig_bycvo_scrutiny_property_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_scrutiny_property_recovery_effected" name="preventivevig_bycvo_scrutiny_property_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_property_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_property_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_property_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_property_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Audit reports examined</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_audit_reports_end_previous_qtr" name="preventivevig_bycvo_audit_reports_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_audit_reports_during_qtr" name="preventivevig_bycvo_audit_reports_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_cvc_audit_reports_system_improvement" name="preventivevig_cvc_audit_reports_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_audit_reports_recovery_effected" name="preventivevig_bycvo_audit_reports_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_audit_reports_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_audit_reports_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_cvc_audit_reports_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_audit_reports_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Training Programs / &nbsp;&nbsp;Workshopsheld</b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_training_programs_end_previous_qtr" name="preventivevig_bycvo_training_programs_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevig_bycvo_training_programs_during_qtr" name="preventivevig_bycvo_training_programs_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_training_programs_system_improvement" name="preventivevigi_bycvo_training_programs_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_training_programs_recovery_effected" name="preventivevigi_bycvo_training_programs_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_training_programs_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_training_programs_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_training_programs_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_training_programs_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>System Improvements &nbsp;&nbsp;undertaken</b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_system_improvements_end_previous_qtr" name="preventivevigi_bycvo_system_improvements_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_system_improvements_during_qtr" name="preventivevigi_bycvo_system_improvements_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_system_improvements_system_improvement" name="preventivevigi_bycvo_system_improvements_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_bycvo_system_improvements_recovery_effected" name="preventivevigi_bycvo_system_improvements_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                 </tr>
             </tbody>
         </table>
@@ -148,11 +148,11 @@
                     <td>&nbsp;<b>(5)</b></td>
                 </tr>
                 <tr>
-                    <td><b><input asp-for="preventivevigi_management_job_rotation_sensitivenumberpost" name="preventivevigi_management_job_rotation_sensitivenumberpost" title="Please mention total no. of posts." onkeypress="return isNumberKey(event);" class="form-control" onfocus="changeTotalSensitivePost();"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_job_rotation_postduerotation" name="preventivevigi_management_job_rotation_postduerotation" onkeypress="return isNumberKey(event);" class="form-control" onfocus="changeYearSensitivePost();"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_job_rotation_post_qtrrotation" name="preventivevigi_management_job_rotation_post_qtrrotation" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_job_rotation_postnotrotated" name="preventivevigi_management_job_rotation_postnotrotated" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_job_rotation_reasons" name="preventivevigi_management_job_rotation_reasons" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost" title="Please mention total no. of posts." onkeypress="return isNumberKey(event);" class="form-control SenseJob" onfocus="changeTotalSensitivePost();"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postduerotation" onkeypress="return isNumberKey(event);" class="form-control SenseJob" onfocus="changeYearSensitivePost();"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_post_qtrrotation" onkeypress="return isNumberKey(event);" class="form-control SenseJob"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postnotrotated" onkeypress="return isNumberKey(event);" class="form-control SenseJob"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_reasons" class="form-control SenseJob"></b></td>
                 </tr>
             </tbody>
         </table>
@@ -183,10 +183,10 @@
 
                 </tr>
                 <tr>
-                    <td><b><input asp-for="preventivevigi_management_frj_numberofficer_covered" name="preventivevigi_management_frj_numberofficer_covered" title="Total no. of officers covered for 56J" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_frj_reviews_undertaken" name="preventivevigi_management_frj_reviews_undertaken" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_frj_case_under_fr" name="preventivevigi_management_frj_case_under_fr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
-                    <td><b><input asp-for="preventivevigi_management_frj_action_taken" name="preventivevigi_management_frj_action_taken" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_frj_numberofficer_covered" title="Total no. of officers covered for 56J" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_frj_reviews_undertaken" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_frj_case_under_fr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_frj_action_taken" class="form-control"></b></td>
                 </tr>
             </tbody>
         </table>
@@ -207,10 +207,10 @@
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input type="text" class="form-control" name="detail_vig_machanism_a" maxlength="3" id="detail_vig_machanism_a" style="width:25%" onkeypress="return isNumberKey(event);">
-                            <input type="button" class="add-row-preventive btn btn-outline-primary ms-1" value="Add" style="width:10%">
+                            @* <input type="text" class="form-control" name="detail_vig_machanism_a" maxlength="3" id="detail_vig_machanism_a" style="width:25%" onkeypress="return isNumberKey(event);"> *@
+                            <input type="button" id="add-row-preventiveA" class=" btn btn-outline-primary ms-1" value="Add" style="width:10%">
                         </span>
-                        <input type="hidden" name="totRows-preventive" id="totRows-preventive" >
+                        <input type="hidden" name="totRows-preventive" id="totRows-preventive" value="@Model.PrevVigiA.Count">
                     </td>
                 </tr>
                 <tr class="text-center">
@@ -226,6 +226,45 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for (int i = 0; i < Model.PrevVigiA.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <input asp-for="PrevVigiA[i].preventivevigi_a_detailsvigi_subsidiaries_nameofsub " class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="PrevVigiA[i].preventivevigi_a_detailsvigi_subsidiaries_staff_appointed " class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="PrevVigiA[i].preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol " class="form-control" />
+                                        </td>
+                                        <td hidden>
+                                            <input asp-for="PrevVigiA[i].preventivevigi_a_id " hidden class="form-control" readonly />
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeletePrevVigi", new { id =@Model.PrevVigiA[i].preventivevigi_a_id, tableName="PrevVigiA" })'); return false;">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newPrevARow">
+                                    <td>
+                                        @(Model.PrevVigiA.Count + 1) <!-- Serial number column -->
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_A.preventivevigi_a_detailsvigi_subsidiaries_nameofsub' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_A.preventivevigi_a_detailsvigi_subsidiaries_staff_appointed' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_A.preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePreventiveVigilance" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowNewPrevA()" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
@@ -249,11 +288,11 @@
                     </td>
                     <td width="35%" align="left">
                         <span class="d-flex">
-                            <input class="form-control" type="text" name="detail_vig_machanism_b" maxlength="3" id="detail_vig_machanism_b" style="float:left;width:25%" onkeypress="return isNumberKey(event);">
+                            @* <input class="form-control" type="text" name="detail_vig_machanism_b" maxlength="3" id="detail_vig_machanism_b" style="float:left;width:25%" onkeypress="return isNumberKey(event);"> *@
 
-                            <input type="button" class="RowsSecond btn btn-outline-primary ms-1" value="Add" style="margin-top:2px;width:10%;">
+                            <input type="button" id="add-row-preventiveB" class="btn btn-outline-primary ms-1" value="Add" style="margin-top:2px;width:10%;">
                         </span>
-                        <input type="hidden" name="totRowsSecond" id="totRowsSecond" >
+                        <input type="hidden" name="totRowsSecond" id="totRowsSecond">
                     </td>
                 </tr>
                 <tr>
@@ -269,6 +308,45 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for (int i = 0; i < Model.PrevVigiB.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@(i + 1)</td> <!-- Serial number column -->
+                                        <td>
+                                            <input asp-for="PrevVigiB[i].preventivevigi_management_detailsvig_b_nameofsub " class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="PrevVigiB[i].preventivevigi_management_detailsvig_b_contral_method " class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="PrevVigiB[i].preventivevigi_management_detailsvig_b_likely_time " class="form-control" />
+                                        </td>
+                                        <td hidden>
+                                            <input asp-for="PrevVigiB[i].preventivevigi_b_id " hidden class="form-control" readonly />
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-danger" onclick="confirmDel('@Url.Action("DeletePrevVigi", new { id =@Model.PrevVigiB[i].preventivevigi_b_id, tableName="PrevVigiB" })'); return false;">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="text-center d-none" id="newPrevBRow">
+                                    <td>
+                                        @(Model.PrevVigiB.Count + 1) <!-- Serial number column -->
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_B.preventivevigi_management_detailsvig_b_nameofsub' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_B.preventivevigi_management_detailsvig_b_contral_method' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input asp-for='NewPreventivVigi_B.preventivevigi_management_detailsvig_b_likely_time' class='form-control' type='text' />
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePreventiveVigilance" onclick="return validateFields()" />
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger mt-1" onclick="hideRowNewPrevB()" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
@@ -290,9 +368,9 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(A) Whether agreed list for current year prepared</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_agreed_list" name="preventivevigi_whether_agreed_list" onclick="agreedList(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_agreed_list1" name="preventivevigi_whether_agreed_list" onclick="agreedList(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_whether_agreed_list_date" name="preventivevigi_whether_agreed_list_date" type="date" value="" style="display: none;">
+                            <input id="preventivevigi_whether_agreed_list" name="PreventiveVigilanceQRS.preventivevigi_whether_agreed_list" onclick="agreedList(1);" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list == "Yes" ? "checked" : "") type="radio" value="Yes">Yes
+                            <input id="preventivevigi_whether_agreed_list1" name="PreventiveVigilanceQRS.preventivevigi_whether_agreed_list" onclick="agreedList(0);" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list == "No" ? "checked" : "") type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_whether_agreed_list_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list == "No" ? "d-none" : "")">
                         </b>
                     </td>
                 </tr>
@@ -300,9 +378,9 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(B) Whether list of officers of doubtful integrity prepared</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_officer_list" name="preventivevigi_whether_officer_list" onclick="preventivevigi(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_officer_list1" name="preventivevigi_whether_officer_list" onclick="preventivevigi(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_whether_officer_list_date" name="preventivevigi_whether_officer_list_date" type="date" value="" style="display: none;">
+                            <input id="preventivevigi_whether_officer_list" name="PreventiveVigilanceQRS.preventivevigi_whether_officer_list" onclick="preventivevigi(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_whether_officer_list1" name="PreventiveVigilanceQRS.preventivevigi_whether_officer_list" onclick="preventivevigi(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_whether_officer_list_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list == "No" ? "d-none" : "")">
                         </b>
                     </td>
                 </tr>
@@ -310,8 +388,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether annual property returns/Personal files of the officials in Agreed / Odilist scrutinised </b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_annual_property1" name="preventivevigi_whether_annual_property" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_annual_property2" name="preventivevigi_whether_annual_property" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_whether_annual_property1" name="PreventiveVigilanceQRS.preventivevigi_whether_annual_property" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_annual_property == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_whether_annual_property2" name="PreventiveVigilanceQRS.preventivevigi_whether_annual_property" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_annual_property == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -319,8 +397,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(d) Whether any information shared with CBI on (C)</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_any_information1" name="preventivevigi_whether_any_information" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_any_information2" name="preventivevigi_whether_any_information" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_whether_any_information1" name="PreventiveVigilanceQRS.preventivevigi_whether_any_information" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_any_information == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_whether_any_information2" name="PreventiveVigilanceQRS.preventivevigi_whether_any_information" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_any_information == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -328,9 +406,9 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(E) whether data relating to pendency of complaints and advice sreconciled with cvc</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_data_relating" name="preventivevigi_whether_data_relating" onclick="preventivevigiE(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_data_relating1" name="preventivevigi_whether_data_relating" onclick="preventivevigiE(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_whether_data_relating_date" name="preventivevigi_whether_data_relating_date" type="date" value="" style="display: none;">
+                            <input id="preventivevigi_whether_data_relating" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_whether_data_relating1" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_whether_data_relating_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "d-none" : "")">
                         </b>
                     </td>
                 </tr>
@@ -351,55 +429,52 @@
                 <tr><td style="text-align: left;" colspan="2">&nbsp;&nbsp;&nbsp;<b>(1) Extent of IT usage and the e-governance</b></td></tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) Percentage of E-payment</b></td>
-                    <td >
+                    <td>
                         <b class="d-flex justify-content-center">
-                            <input class="form-control" asp-for="preventivevigi_other_it_epayment" name="preventivevigi_other_it_epayment" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree" ><label>%</label>
+                            <input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_it_epayment" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree"><label>%</label>
                         </b>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b) Percentage of E-tendering / E-auction</b></td>
-                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventivevigi_other_it_etendering" name="preventivevigi_other_it_etendering" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree" >%</b></td>
+                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_it_etendering" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c) Procurements / Contracts made thru Central Procurement Portal</b></td>
-                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventivevigi_other_it_contracts" name="preventivevigi_other_it_contracts" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree" >%</b></td>
+                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_it_contracts" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(d) Percentage of procurement through Government E Marketplace(GeM) wherever applicable</b></td>
-                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventivevigi_other_it_emarketplace" name="preventivevigi_other_it_emarketplace" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree" >%</b></td>
+                    <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_it_emarketplace" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(B) Whether QPR due have been furnished to CTE</b></td>
                     <td>
-                        <b >
-                            <input id="preventivevigi_other_qpr_cte" name="preventivevigi_other_qpr_cte" onclick="otherActivitesB(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_qpr_cte1" name="preventivevigi_other_qpr_cte" onclick="otherActivitesB(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_other_qpr_cte_date" name="preventivevigi_other_qpr_cte_date" type="date" value="" style="display: none;">
+                        <b>
+                            <input id="preventivevigi_other_qpr_cte" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_qpr_cte1" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "d-none" : "")">
                         </b>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether Review of vigilance work was done by the Board / Head of Department </b></td>
-                    <td>
+                    <td width="15%">
                         <b>
-                            <input id="preventivevigi_other_review_vigi" name="preventivevigi_other_review_vigi" onclick="otherActivitesC(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_review_vigi1" name="preventivevigi_other_review_vigi" onclick="otherActivitesC(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_other_review_vigi_date" name="preventivevigi_other_review_vigi_date" type="date" value="" style="display: none;">
+                            <input id="preventivevigi_other_review_vigi" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(1)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_review_vigi1" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(0)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_review_vigi_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "d-none" : "")">
                         </b>
 
-                        <div id="fileToUpload" style="display: none;">
+                        <div id="fileToUpload" class="@(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "d-none" : "")">
                             <br>
-                            <input id="file1" name="file1" type="file" value="">
-                            <input id="file1_path" name="file1_path" type="hidden" value="">
-                            <br>
+                            <span id="NoUpload">Document Not Uploaded</span>
 
+                            <input asp-for="@Model.FormFile" type="file" />
 
+                            @* <input asp-for="PreventiveVigilanceQRS.file1" /> *@
 
-                            <br><label>Document Not Uploaded</label>
-
-
-
+                            <div id="fileUploadResult" class="text-center mt-3"></div>
                         </div>
                     </td>
                 </tr>
@@ -407,9 +482,9 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(D) Whether structured meeting held by the C.E.O./ Head of Department with CVO</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_structured_meeting" name="preventivevigi_other_structured_meeting" onclick="otherActivitesD(1);" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_structured_meeting1" name="preventivevigi_other_structured_meeting" onclick="otherActivitesD(0);" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_other_structured_meeting_date" name="preventivevigi_other_structured_meeting_date" type="date" value="" style="display: none;">
+                            <input id="preventivevigi_other_structured_meeting" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_structured_meeting1" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting   == "No" ? "d-none" : "")">
                         </b>
                     </td>
                 </tr>
@@ -417,8 +492,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(E) Whether Report on implementation of Integrity Pact sent</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_report_implementation1" name="preventivevigi_other_report_implementation" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_report_implementation2" name="preventivevigi_other_report_implementation" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_report_implementation1" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_report_implementation2" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -426,9 +501,9 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(F) Whether applications being used are reporting deviations as alerts</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_application_being" name="preventivevigi_other_application_being" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_application_being1" name="preventivevigi_other_application_being" style=" width:15%;padding:1px;" type="radio" value="No">No
-                            <input id="preventivevigi_other_application_being2" name="preventivevigi_other_application_being" style=" width:15%;padding:1px;" type="radio" value="Other">Other
+                            <input id="preventivevigi_other_application_being" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Yes" ? "checked" : "") type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_application_being1" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "checked" : "") type="radio" value="No">No
+                            <input id="preventivevigi_other_application_being2" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "d-none" : "") type="radio" value="Other">Other
                         </b>
                     </td>
                 </tr>
@@ -436,8 +511,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(G) Whether Changes in technology is being dovetailed with changes in instructions Guidelines / Manuals</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_change_tech1" name="preventivevigi_other_change_tech" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_change_tech2" name="preventivevigi_other_change_tech" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_change_tech1" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_change_tech2" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -445,8 +520,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(H) Whether E- Learning methodology is being used</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_e_learning1" name="preventivevigi_other_e_learning" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_e_learning2" name="preventivevigi_other_e_learning" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_e_learning1" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_e_learning2" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -454,8 +529,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(I) Whether Pending Disciplinary Cases are Monitored</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_pending_disciplinary1" name="preventivevigi_other_pending_disciplinary" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_pending_disciplinary2" name="preventivevigi_other_pending_disciplinary" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_pending_disciplinary1" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_pending_disciplinary2" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -463,8 +538,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(J) Whether CVO Deputed for Training Abroad</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_cvo_deputed1" name="preventivevigi_other_cvo_deputed" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_cvo_deputed2" name="preventivevigi_other_cvo_deputed" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_cvo_deputed1" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_cvo_deputed2" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -472,8 +547,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(K) Visits Abroad by CVO,if any</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_visit_cvo1" name="preventivevigi_other_visit_cvo" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_visit_cvo2" name="preventivevigi_other_visit_cvo" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_visit_cvo1" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_visit_cvo2" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -481,21 +556,21 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(L) Whether Prior Approval of Commission obtained for Official foreign visits by CVO</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_prior_approval1" name="preventivevigi_other_prior_approval" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_prior_approval2" name="preventivevigi_other_prior_approval" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_prior_approval1" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_prior_approval2" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(M) Expenditure incurred on festival gifts any(Rs.)<br>(see CVC's Office Order No.40/8/2003 dated 27.08.2003)</b></td>
-                    <td><b><input class="form-control" asp-for="preventivevigi_other_expenditure" name="preventivevigi_other_expenditure" onkeypress="return isNumberKey(event);" style=" width:95%; padding:2px;" type="text" value=""></b></td>
+                    <td><b><input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_expenditure" typeof="number" onkeypress="return isNumberKey(event);" style="padding:2px;" type="text"></b></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(N) Whether tour details of CVO submitted to CVC <br>(see CVC's Cicular No 26/07/010 dated 15.07.2010)</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_tour_details1" name="preventivevigi_other_tour_details" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_tour_details2" name="preventivevigi_other_tour_details" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_tour_details1" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_tour_details2" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -503,21 +578,21 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(O) Whether  Guidelines on Appointment of Outsiders / Retired officers as I.O for Oral Inquiries laid down including Provisions in CDA Rules<br>(Only for orgns. other than Govt : see Circular no. 98/MSC/23 dt 25.3.2003 )</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_guidelines_appointment1" name="preventivevigi_other_guidelines_appointment" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_guidelines_appointment2" name="preventivevigi_other_guidelines_appointment" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_guidelines_appointment1" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_guidelines_appointment2" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(P) Victimisation of vigilance officials Reported to Commission, if any. <br>(Circular No.16/3/06 dt 28.3.2006)</b></td>
-                    <td><b><input class="form-control" asp-for="preventivevigi_other_victimisation_vigilance" name="preventivevigi_other_victimisation_vigilance" style=" width:95%; padding:2px;" type="text" value=""></b></td>
+                    <td><b><input class="form-control" asp-for="PreventiveVigilanceQRS.preventivevigi_other_victimisation_vigilance" style="padding:2px;" type="text"></b></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(Q) Whether secrecy of Passwords monitored by CVO in Terms of Policy Approved by the Respective Board<br>(For Banks Only)</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_secrcy_password1" name="preventivevigi_other_secrcy_password" style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_secrcy_password2" name="preventivevigi_other_secrcy_password" style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_secrcy_password1" name="PreventiveVigilanceQRS.preventivevigi_other_secrcy_password" @(Model.PreventiveVigilanceQRS.preventivevigi_other_secrcy_password == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
+                            <input id="preventivevigi_other_secrcy_password2" name="PreventiveVigilanceQRS.preventivevigi_other_secrcy_password" @(Model.PreventiveVigilanceQRS.preventivevigi_other_secrcy_password == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
                         </b>
                     </td>
                 </tr>
@@ -544,608 +619,232 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="PunitiveVigilance">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePreventiveVigilance" />
-        <input type="submit" value="Next" class="btn btn-primary " />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SavePreventiveVigilance" onclick="return validateFields()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('PreventiveVigilanceQPRForm')" />
     </div>
 
 </form>
-
-
-<div class="row">
-    @*  <div class="col-md-4">
-    <form asp-action="PreventiveVigilance">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-    <label asp-for="preventive_vigilance_id" class="control-label"></label>
-    <input asp-for="preventive_vigilance_id" class="form-control" />
-    <span asp-validation-for="preventive_vigilance_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_periodic_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_periodic_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_periodic_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_periodic_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_periodic_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_periodic_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_periodic_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_periodic_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_periodic_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_periodic_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_periodic_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_periodic_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_surprise_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_surprise_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_surprise_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_surprise_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_surprise_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_surprise_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_surprise_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_surprise_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_surprise_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_surprise_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_surprise_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_surprise_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_majorwork_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_majorwork_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_majorwork_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_majorwork_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_majorwork_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_majorwork_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_majorwork_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_majorwork_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_majorwork_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_majorwork_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_majorwork_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_majorwork_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_file_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_file_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_file_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_file_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_file_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_file_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_file_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_file_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_file_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_file_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_file_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_file_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_property_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_property_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_property_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_property_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_property_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_property_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_property_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_property_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_property_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_scrutiny_property_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_scrutiny_property_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_scrutiny_property_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_audit_reports_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_audit_reports_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_audit_reports_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_audit_reports_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_audit_reports_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_audit_reports_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_cvc_audit_reports_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevig_cvc_audit_reports_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevig_cvc_audit_reports_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_audit_reports_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_audit_reports_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_audit_reports_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_training_programs_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_training_programs_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_training_programs_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevig_bycvo_training_programs_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevig_bycvo_training_programs_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevig_bycvo_training_programs_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_training_programs_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_training_programs_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_training_programs_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_training_programs_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_training_programs_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_training_programs_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_system_improvements_end_previous_qtr" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_system_improvements_end_previous_qtr" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_system_improvements_end_previous_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_system_improvements_during_qtr" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_system_improvements_during_qtr" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_system_improvements_during_qtr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_system_improvements_system_improvement" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_system_improvements_system_improvement" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_system_improvements_system_improvement" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_bycvo_system_improvements_recovery_effected" class="control-label"></label>
-    <input asp-for="preventivevigi_bycvo_system_improvements_recovery_effected" class="form-control" />
-    <span asp-validation-for="preventivevigi_bycvo_system_improvements_recovery_effected" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_job_rotation_sensitivenumberpost" class="control-label"></label>
-    <input asp-for="preventivevigi_management_job_rotation_sensitivenumberpost" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_job_rotation_sensitivenumberpost" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_job_rotation_postduerotation" class="control-label"></label>
-    <input asp-for="preventivevigi_management_job_rotation_postduerotation" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_job_rotation_postduerotation" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_job_rotation_post_qtrrotation" class="control-label"></label>
-    <input asp-for="preventivevigi_management_job_rotation_post_qtrrotation" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_job_rotation_post_qtrrotation" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_job_rotation_postnotrotated" class="control-label"></label>
-    <input asp-for="preventivevigi_management_job_rotation_postnotrotated" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_job_rotation_postnotrotated" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_frj_numberofficer_covered" class="control-label"></label>
-    <input asp-for="preventivevigi_management_frj_numberofficer_covered" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_frj_numberofficer_covered" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_frj_reviews_undertaken" class="control-label"></label>
-    <input asp-for="preventivevigi_management_frj_reviews_undertaken" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_frj_reviews_undertaken" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_frj_case_under_fr" class="control-label"></label>
-    <input asp-for="preventivevigi_management_frj_case_under_fr" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_frj_case_under_fr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_a_serial_number" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_a_serial_number" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_a_serial_number" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_a_nameofsub" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_a_nameofsub" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_a_nameofsub" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_a_staff_appointed" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_a_staff_appointed" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_a_staff_appointed" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_a_methodofcontrol" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_a_methodofcontrol" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_a_methodofcontrol" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_b_serial_number" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_b_serial_number" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_b_serial_number" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_b_nameofsub" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_b_nameofsub" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_b_nameofsub" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_b_contral_method" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_b_contral_method" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_b_contral_method" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_detailsvig_b_likely_time" class="control-label"></label>
-    <input asp-for="preventivevigi_management_detailsvig_b_likely_time" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_detailsvig_b_likely_time" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_agreed_list" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_agreed_list" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_agreed_list" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_agreed_list_date" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_agreed_list_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_agreed_list_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_officer_list" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_officer_list" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_officer_list" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_officer_list_date" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_officer_list_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_officer_list_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_annual_property" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_annual_property" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_annual_property" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_any_information" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_any_information" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_any_information" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_data_relating" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_data_relating" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_data_relating" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_whether_data_relating_date" class="control-label"></label>
-    <input asp-for="preventivevigi_whether_data_relating_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_whether_data_relating_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_it_epayment" class="control-label"></label>
-    <input asp-for="preventivevigi_other_it_epayment" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_it_epayment" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_it_etendering" class="control-label"></label>
-    <input asp-for="preventivevigi_other_it_etendering" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_it_etendering" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_it_contracts" class="control-label"></label>
-    <input asp-for="preventivevigi_other_it_contracts" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_it_contracts" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_it_emarketplace" class="control-label"></label>
-    <input asp-for="preventivevigi_other_it_emarketplace" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_it_emarketplace" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_qpr_cte" class="control-label"></label>
-    <input asp-for="preventivevigi_other_qpr_cte" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_qpr_cte" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_qpr_cte_date" class="control-label"></label>
-    <input asp-for="preventivevigi_other_qpr_cte_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_qpr_cte_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_review_vigi" class="control-label"></label>
-    <input asp-for="preventivevigi_other_review_vigi" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_review_vigi" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_review_vigi_date" class="control-label"></label>
-    <input asp-for="preventivevigi_other_review_vigi_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_review_vigi_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_structured_meeting" class="control-label"></label>
-    <input asp-for="preventivevigi_other_structured_meeting" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_structured_meeting" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_structured_meeting_date" class="control-label"></label>
-    <input asp-for="preventivevigi_other_structured_meeting_date" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_structured_meeting_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_report_implementation" class="control-label"></label>
-    <input asp-for="preventivevigi_other_report_implementation" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_report_implementation" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_application_being" class="control-label"></label>
-    <input asp-for="preventivevigi_other_application_being" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_application_being" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_change_tech" class="control-label"></label>
-    <input asp-for="preventivevigi_other_change_tech" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_change_tech" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_e_learning" class="control-label"></label>
-    <input asp-for="preventivevigi_other_e_learning" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_e_learning" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_pending_disciplinary" class="control-label"></label>
-    <input asp-for="preventivevigi_other_pending_disciplinary" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_pending_disciplinary" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_cvo_deputed" class="control-label"></label>
-    <input asp-for="preventivevigi_other_cvo_deputed" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_cvo_deputed" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_visit_cvo" class="control-label"></label>
-    <input asp-for="preventivevigi_other_visit_cvo" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_visit_cvo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_prior_approval" class="control-label"></label>
-    <input asp-for="preventivevigi_other_prior_approval" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_prior_approval" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_expenditure" class="control-label"></label>
-    <input asp-for="preventivevigi_other_expenditure" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_expenditure" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_tour_details" class="control-label"></label>
-    <input asp-for="preventivevigi_other_tour_details" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_tour_details" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_guidelines_appointment" class="control-label"></label>
-    <input asp-for="preventivevigi_other_guidelines_appointment" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_guidelines_appointment" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_victimisation_vigilance" class="control-label"></label>
-    <input asp-for="preventivevigi_other_victimisation_vigilance" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_victimisation_vigilance" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_other_secrcy_password" class="control-label"></label>
-    <input asp-for="preventivevigi_other_secrcy_password" class="form-control" />
-    <span asp-validation-for="preventivevigi_other_secrcy_password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="create_date" class="control-label"></label>
-    <input asp-for="create_date" class="form-control" />
-    <span asp-validation-for="create_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="user_id" class="control-label"></label>
-    <input asp-for="user_id" class="form-control" />
-    <span asp-validation-for="user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="update_date" class="control-label"></label>
-    <input asp-for="update_date" class="form-control" />
-    <span asp-validation-for="update_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="last_user_id" class="control-label"></label>
-    <input asp-for="last_user_id" class="form-control" />
-    <span asp-validation-for="last_user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="qpr_id" class="control-label"></label>
-    <input asp-for="qpr_id" class="form-control" />
-    <span asp-validation-for="qpr_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="ip" class="control-label"></label>
-    <input asp-for="ip" class="form-control" />
-    <span asp-validation-for="ip" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_job_rotation_reasons" class="control-label"></label>
-    <input asp-for="preventivevigi_management_job_rotation_reasons" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_job_rotation_reasons" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="preventivevigi_management_frj_action_taken" class="control-label"></label>
-    <input asp-for="preventivevigi_management_frj_action_taken" class="form-control" />
-    <span asp-validation-for="preventivevigi_management_frj_action_taken" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="file1" class="control-label"></label>
-    <input asp-for="file1" class="form-control" />
-    <span asp-validation-for="file1" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-    </form>
-    </div> *@
-</div>
-
-@* <div>
-    <a asp-action="Index">Back to List</a>
-    </div> *@
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script>
+    $('#add-row-preventiveA').on('click', function () {
+        // debugger;
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').attr('required', true);
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').attr('required', true);
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').attr('required', true);
+        $('#newPrevARow').removeClass('d-none');
+        $('#add-row-preventiveA').removeClass('btn-outline-primary');
+        $('#add-row-preventiveA').addClass('btn-outline-secondary');
+        $('#add-row-preventiveA').addClass('disabled');
+
+    });
+
+    function hideRowNewPrevA() {
+        event.preventDefault();
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').removeAttr('required');
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').removeAttr('required');
+        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').removeAttr('required');
+        $('#newPrevARow').addClass('d-none');
+        $('#add-row-preventiveA').addClass('btn-outline-primary');
+        $('#add-row-preventiveA').removeClass('btn-outline-secondary');
+        $('#add-row-preventiveA').removeClass('disabled');
+
+    };
+
+    $('#add-row-preventiveB').on('click', function () {
+        // debugger;
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').attr('required', true);
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').attr('required', true);
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').attr('required', true);
+        $('#newPrevBRow').removeClass('d-none');
+        $('#add-row-preventiveB').removeClass('btn-outline-primary');
+        $('#add-row-preventiveB').addClass('btn-outline-secondary');
+        $('#add-row-preventiveB').addClass('disabled');
+
+    });
+
+    function hideRowNewPrevB() {
+        event.preventDefault();
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').removeAttr('required');
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').removeAttr('required');
+        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').removeAttr('required');
+        $('#newPrevBRow').addClass('d-none');
+        $('#add-row-preventiveB').addClass('btn-outline-primary');
+        $('#add-row-preventiveB').removeClass('btn-outline-secondary');
+        $('#add-row-preventiveB').removeClass('disabled');
+
+    };
+
+</script>
 
 <script>
-    var cnt = -1;
-    var cntCall = 0;
-
-    $(".add-row-preventive").click(function () {
-        // debugger;
-        var detail_vig_machanism_a = parseInt($("#detail_vig_machanism_a").val());
-        var totRows = parseInt($("#totRows-preventive").val());
-
-        if (totRows == 0) {
-            $("#totRows-preventive").val(detail_vig_machanism_a);
+    $(document).on("keyup", ".SenseJob", function () {
+        var rotation_postduerotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val());
+        var rotation_post_qtrrotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val());
+        var total = 0;
+        if (rotation_postduerotation < rotation_post_qtrrotation) {
+            $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val(0);
+            $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val(0);
         }
-        else if (totRows < detail_vig_machanism_a) {
-            $("#totRows-preventive").val(detail_vig_machanism_a);
-            detail_vig_machanism_a = parseInt(detail_vig_machanism_a) - parseInt(totRows)
-        } else {
-            alert("Total number of officer can not be less than already selected number of officers");
-            return;
+        else {
+            total = rotation_postduerotation - rotation_post_qtrrotation;
         }
 
+        $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postnotrotated').val(total);
+    });
+</script>
 
-        cntCall++;
-        var markup = "";
-        for (var i = 0; i < parseInt(detail_vig_machanism_a); i++) {
-
-            markup = "<tr><td style='width:1%'>" + (cnt++) + "</td><td style='width:8%'><input class='form-control' name='VigiA[" + (cnt) + "].preventivevigi_management_detailsvig_a_nameofsub'  /></td>";
-            markup = markup + "<td style='width:8%'><input type='text' class='form-control' name='VigiA[" + (cnt) + "].preventivevigi_management_detailsvig_a_staff_appointed'  ></td>";
-            markup = markup + "<td style='width:18%'><input type='text' class='form-control' name='VigiA[" + (cnt) + "].preventivevigi_management_detailsvig_a_methodofcontrol' ><input type='hidden' name='VigiA[" + (cnt) + "].preventiveVigiA_Id' ></td>";
-            markup = markup + "<td style='width:3%'>" + "<a href='javascript:void(0)'  onclick='return removeDisplayFunction(this);' class='delete-row btn btn-outline-danger empty' >Delete</a></td></tr>";
-
-            $("#officerNumber-preventive tbody").append(markup);
-
-
+<script>
+    $(function () {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+        debugger;
+        var filePath = '@Model.PreventiveVigilanceQRS.file1';
+        if (filePath != null && filePath != '') {
+            $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
+            $('#NoUpload').addClass('d-none');
         }
-        resetSerialNumberPreventive();
+
+        if (complaintsMessage) {
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'error'
+            }
+
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: notificationIcon,
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
+        }
+        performComTotal();
+        agreedList(0);
+        preventivevigi(0);
+        otherActivitesB(0);
+        otherActivitesC(0);
+        otherActivitesD(0);
+        preventivevigiE(0);
+        verifyCheckboxes();
     });
 
-    function resetSerialNumberPreventive() {
-        var sno = 1;
-        $("#officerNumber-preventive tbody tr").each(function (i) {
+    //$('').on('input', performComTotal);
 
-            // find the first td in the row
-            $(this).find("td:first").text(sno++);
 
-        });
+    function performComTotal() {
+        //$('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
     }
 
-    function removeDisplayFunction(btndel, pendId) {
-        // debugger;
-        // var class = btndel.attr('class')
-        var classes = btndel.className;
-        if (!classes.includes('empty') && pendId != 0) {
-            $.ajax({
-                type: "POST",
-                url: "/pro11/user/cvofficer/deleteRowVigiA",
-                data: {
-                    "pendId": pendId
-                },
-                success: function (data) {
-                    alert(data);
-                    console.log("SUCCESS: ", data);
-                },
-                error: function (e) {
-                    console.log("ERROR: ", e);
 
+</script>
+
+<script>
+    function agreedList(isShow) {
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').addClass('d-none');
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeAttr('required');
+    }
+    function preventivevigi(isShow) {
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').addClass('d-none');
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeAttr('required');
+    }
+    function preventivevigiE(isShow) {
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').addClass('d-none');
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeAttr('required');
+    }
+    function otherActivitesB(isShow) {
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').addClass('d-none');
+        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeAttr('required');
+    }
+    function otherActivitesC(isShow) {
+        if (isShow == 1) {
+
+            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeClass('d-none');
+            $('#fileToUpload').removeClass('d-none');
+            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').attr('required', true);
+        } else {
+            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeAttr('required');
+            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').addClass('d-none');
+            $('#fileToUpload').addClass('d-none');
+
+        }
+
+    }
+    function otherActivitesD(isShow) {
+        if (isShow == 1) {
+            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeClass('d-none');
+            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').attr('required', true)
+        } else {
+            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').addClass('d-none');
+            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeAttr('required');
+        }
+    }
+
+    function verifyCheckboxes() {
+        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list" == "Yes") {
+            agreedList(1);
+        }
+        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list" == "Yes") {
+            preventivevigi(1);
+        }
+        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating" == "Yes") {
+            preventivevigiE(1);
+        }
+        if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" == "Yes") {
+            otherActivitesB(1);
+        }
+        if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi" == "Yes") {
+            otherActivitesC(1);
+
+        } if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" == "Yes") {
+            otherActivitesD(1);
+        }
+    }
+</script>
+
+<script>
+    function uploadFilePreventiveVigilance() {
+        if (validateFields()) {
+            var fileInput = $('#file1')[0];
+            var file = fileInput.files[0]; // Get the first file (if multiple files are allowed, this can be adjusted)
+            var formData = new FormData();
+            formData.append('File', file);
+
+
+            $.ajax({
+                url: '@Url.Action("UploadFile")', // Adjust controller and action name
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response.fileUrl);
+                    if (response != "") {
+                        $('#fileUploadResult').html('<a href="' + response.fileUrl + '" target="_blank">View Uploaded File</a>');
+                        $('#PreventiveVigilanceQRS_file1').val(response.fileUrl);
+                        $('#NoUpload').addClass('d-none');
+                    }
+                    return true;
                 },
-                done: function (e) {
-                    console.log("DONE");
+                error: function (xhr, status, error) {
+                    $('#fileUploadResult').html('<p>Error: ' + error + '</p>');
                 }
             });
         }
     }
 
-    $(".RowsSecond").click(function () {
-        var detail_vig_machanism_b = parseInt($("#detail_vig_machanism_b").val());
-        var totRowsSecond = parseInt($("#totRowsSecond").val());
-
-        if (totRowsSecond == 0) {
-            $("#totRowsSecond").val(detail_vig_machanism_b);
-        }
-        else if (totRowsSecond < detail_vig_machanism_b) {
-            $("#totRowsSecond").val(detail_vig_machanism_b);
-            detail_vig_machanism_b = parseInt(detail_vig_machanism_b) - parseInt(totRowsSecond)
-        } else {
-            alert("Total number of officer can not be less than already selected number of officers");
-            return;
-        }
-
-        cntCall1++;
-        var markup = "";
-        for (var i = 0; i < parseInt(detail_vig_machanism_b); i++) {
-
-            markup = "<tr><td style='width:1%'>" + (cnt1++) + "</td><td style='width:8%'><input clas path='' name='VigiB[" + (cnt1) + "].preventivevigi_management_detailsvig_b_nameofsub' style='width:99%' /></td>";
-            markup = markup + "<td style='width:8%'><input path=''  name='VigiB[" + (cnt1) + "].preventivevigi_management_detailsvig_b_contral_method'  style='width:99%'></td>";
-            markup = markup + "<td style='width:8%'><input path=''  name='VigiB[" + (cnt1) + "].preventivevigi_management_detailsvig_b_likely_time' style='width:99%'><input path='' type='hidden'  name='VigiB[" + (cnt1) + "].preventiveVigiB_Id' style='width:99%'></td>";
-            markup = markup + "<td style='width:3%'>" + "<a href='javascript:void(0)'  onclick='return removeDisplayBFunction(this);' class='delete-row btn btn-outline-danger'>Delete</td></tr>";
-
-            $("#officerNumber2 tbody").append(markup);
-
-        }
-    });
-
-    function resetSerialNumberTwo() {
-        var sno = 1;
-        $("#officerNumber2 tbody tr").each(function (i) {
-
-            // find the first td in the row
-            $(this).find("td:first").text(sno++);
-
-        });
-    }
-
-    function removeDisplayBFunction(btndel, pendId) {
-
-        if (pendId != 0) {
-            $.ajax({
-                type: "POST",
-                url: "/pro11/user/cvofficer/deleteRowVigiB",
-                data: {
-                    "pendId": pendId
-                },
-                success: function (data) {
-                    alert(data);
-                    console.log("SUCCESS: ", data);
-                },
-                error: function (e) {
-                    console.log("ERROR: ", e);
-
-                },
-                done: function (e) {
-                    console.log("DONE");
-                }
-            });
-        }
-    }
-
+    
 </script>

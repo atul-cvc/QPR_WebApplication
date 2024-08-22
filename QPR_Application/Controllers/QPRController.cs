@@ -211,7 +211,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("Complaints", "QPR", new { message });
         }
@@ -296,7 +296,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("VigilanceInvestigation", "QPR", new { message });
         }
@@ -397,7 +397,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("ProsecutionSanctions", new { message });
         }
@@ -483,7 +483,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("DepartmentalProceedings", new { message });
         }
@@ -639,7 +639,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("StatusofPendencyFIandCACases", new { message });
         }
@@ -663,6 +663,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
+                _httpContext.HttpContext?.Session.Remove("punitive_vigilance_id");
                 if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
@@ -700,7 +701,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("PunitiveVigilance", new { message });
         }
@@ -723,6 +724,8 @@ namespace QPR_Application.Controllers
         {
             try
             {
+                _httpContext.HttpContext?.Session.Remove("preventive_vigilance_id");
+                //_httpContext.HttpContext.Session.Remove("preventive_file1");
                 if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
@@ -730,7 +733,28 @@ namespace QPR_Application.Controllers
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 if (!String.IsNullOrEmpty(refNum))
                 {
-                    var data = await _complaintsRepo.GetPreventiveVigilanceData(refNum);
+                    PreventiveVigilanceViewModel data = await _complaintsRepo.GetPreventiveVigilanceViewModel(refNum);
+                    preventivevigilanceqrs dataOld = await _complaintsRepo.GetPreventiveVigilanceData(GetPreviousReferenceNumber());
+                    if (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")) > 1)
+                    {
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_periodic_end_previous_qtr = dataOld.preventivevig_bycvo_periodic_end_previous_qtr + dataOld.preventivevig_bycvo_periodic_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_surprise_end_previous_qtr = dataOld.preventivevig_bycvo_surprise_end_previous_qtr + dataOld.preventivevig_bycvo_surprise_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_majorwork_end_previous_qtr = dataOld.preventivevig_bycvo_majorwork_end_previous_qtr + dataOld.preventivevig_bycvo_majorwork_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_file_end_previous_qtr = dataOld.preventivevig_bycvo_scrutiny_file_end_previous_qtr + dataOld.preventivevig_bycvo_scrutiny_file_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_scrutiny_property_end_previous_qtr = dataOld.preventivevig_bycvo_scrutiny_property_end_previous_qtr + dataOld.preventivevig_bycvo_scrutiny_property_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_audit_reports_end_previous_qtr = dataOld.preventivevig_bycvo_audit_reports_end_previous_qtr + dataOld.preventivevig_bycvo_audit_reports_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevig_bycvo_training_programs_end_previous_qtr = dataOld.preventivevig_bycvo_training_programs_end_previous_qtr + dataOld.preventivevig_bycvo_training_programs_during_qtr;
+                        data.PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_end_previous_qtr = dataOld.preventivevigi_bycvo_system_improvements_end_previous_qtr + dataOld.preventivevigi_bycvo_system_improvements_during_qtr;
+                        //data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost = dataOld.preventivevigi_management_job_rotation_postnotrotated;
+
+                        data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost = dataOld.preventivevigi_management_job_rotation_sensitivenumberpost;
+                        if (dataOld.preventivevigi_management_job_rotation_postnotrotated != 0)
+                        {
+                            data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postduerotation = dataOld.preventivevigi_management_job_rotation_postnotrotated ;
+                        }
+
+                    }
+
                     return View(data);
                 }
             }
@@ -742,26 +766,46 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SavePreventiveVigilance(preventivevigilanceqrs prev_vig)
+        public async Task<IActionResult> SavePreventiveVigilance(PreventiveVigilanceViewModel p_vig)
         {
             string message = "";
             try
             {
+                string fileURL = string.Empty;
+
+                if (p_vig.FormFile != null)
+                    fileURL = await UploadFile(p_vig.FormFile);
+
+                if (!string.IsNullOrEmpty(fileURL))
+                    p_vig.PreventiveVigilanceQRS.file1 = fileURL;
+
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("preventive_vigilance_id")))
+                {
+                    //save
+                    await _qprRepo.SavePreventiveVigilance(p_vig);
+                }
+                else
+                {
+                    //create
+                    await _qprRepo.CreatePreventiveVigilance(p_vig);
+                }
+
                 message = "Saved";
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
             return RedirectToAction("PreventiveVigilance", new { message });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PreventiveVigilance(preventivevigilanceqrs prev_vig)
+        public async Task<IActionResult> PreventiveVigilance(PreventiveVigilanceViewModel prev_vig)
         {
             try
             {
+                await SavePreventiveVigilance(prev_vig);
                 return RedirectToAction("PreventiveVigilanceActivities");
             }
             catch (Exception ex)
@@ -773,6 +817,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
+                _httpContext.HttpContext?.Session.Remove("vigilance_activites_id");
                 if (!string.IsNullOrEmpty(message))
                 {
                     ViewBag.ComplaintsMessage = message;
@@ -780,8 +825,9 @@ namespace QPR_Application.Controllers
                 string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
                 if (!String.IsNullOrEmpty(refNum))
                 {
-                    var data = await _complaintsRepo.GetPreventiveVigilanceActiviteiesData(refNum);
-                    return View(data);
+                    PreventiveVigilanceActivitiesViewModel prevVM = new PreventiveVigilanceActivitiesViewModel();
+                    prevVM.VigilanceActivities = await _complaintsRepo.GetPreventiveVigilanceActivitiesData(refNum) ?? new vigilanceactivitiescvcqrs();
+                    return View(prevVM);
                 }
             }
             catch (Exception ex)
@@ -792,18 +838,35 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs activities)
+        public async Task<IActionResult> SavePreventiveVigilanceActivities(PreventiveVigilanceActivitiesViewModel activities)
         {
             string message = "";
             try
             {
+                string fileURL = string.Empty;
+                if (activities.FormFile != null)
+                    fileURL = await UploadFile(activities.FormFile);
+
+                if (!string.IsNullOrEmpty(fileURL))
+                    activities.VigilanceActivities.vigilance_activites_upload_doc = fileURL;
+
+                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("preventive_vigilance_id")))
+                {
+                    //save
+                    await _qprRepo.SavePreventiveVigilanceActivities(activities.VigilanceActivities);
+                } else
+                {
+                    //create
+                    await _qprRepo.CreatePreventiveVigilanceActivities(activities.VigilanceActivities);
+                }
+
                 message = "Saved";
             }
             catch (Exception ex)
             {
-                message = "Error occured while saving. Please try after sometime";
+                message = "Error occured while saving. Please try again";
             }
-            return RedirectToAction("PreventiveVigilanceActivities", new { message = message });
+            return RedirectToAction("PreventiveVigilanceActivities", new { message });
         }
 
         [HttpPost]
@@ -929,6 +992,11 @@ namespace QPR_Application.Controllers
             await _qprRepo.DeleteCaCaseRow(id);
             return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
         }
+        public async Task<IActionResult> DeletePrevVigi(int id, string tableName)
+        {
+            await _qprRepo.DeletePrevVigi(id, tableName);
+            return RedirectToAction("PreventiveVigilance", new { message = "Deleted successfully" });
+        }
         public IActionResult GetNatureListByStageType(string stageName)
         {
             List<string> itemList = new List<string>();
@@ -941,6 +1009,27 @@ namespace QPR_Application.Controllers
                 _logger.LogError(ex.Message ?? ex.InnerException.ToString());
             }
             return Json(itemList);
+        }
+
+        public async Task<string> UploadFile(IFormFile file)
+        {
+            try
+            {
+                if (file != null && file.Length > 0)
+                {
+                    var fileUrl = await _qprUtil.UploadFileAsync(file);
+                    _httpContext.HttpContext.Session.SetString("preventive_file1", fileUrl);
+
+
+                    // Return the file URL as part of a JSON response
+                    return fileUrl;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return "";
         }
     }
 }
