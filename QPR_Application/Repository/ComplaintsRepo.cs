@@ -46,7 +46,7 @@ namespace QPR_Application.Repository
 
                 ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
                 proSecViewModel.Prosecutionsanctionsqrs = await GetProsecutionSanctionsData(refNum);
-                proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); ;
+                proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); 
 
                 return proSecViewModel;
                 //return await _dbContext.prosecutionsanctionsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
@@ -66,7 +66,7 @@ namespace QPR_Application.Repository
             }
             return null;
         }
-        public async Task<DepartmentalProceedingsViewModel> GetDepartmentalProceedingsViewModelData(string refNum)
+        public async Task<DepartmentalProceedingsViewModel> GetDepartmentalProceedingsViewModel(string refNum)
         {
             try
             {
@@ -204,18 +204,6 @@ namespace QPR_Application.Repository
             return null;
         }
 
-        //public async Task<PreventiveVigilanceActivitiesViewModel> GetPreventiveVigilanceActivitisViewModel(string refNum)
-        //{
-        //    try
-        //    {
-        //        PreventiveVigilanceActivitiesViewModel data = new PreventiveVigilanceActivitiesViewModel();
-        //        data.VigilanceActivities = await GetPreventiveVigilanceActivitiesData(refNum) ?? new vigilanceactivitiescvcqrs();
-        //        return data;
-        //    } catch (Exception ex) {
-        //        throw ex;
-        //    }
-        //    return null;
-        //}
         public async Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActivitiesData(string refNum)
         {
             try

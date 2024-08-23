@@ -10,7 +10,12 @@ namespace QPR_Application.Models.ViewModels
         public List<appellateauthoritytable> AppeleateAuthorities { get; set; }
         public cvcadvicetable NewCvcAdvice { get; set; }
         public appellateauthoritytable NewAppeleateAuthority { get; set; }
-        public List<TypesAdviceCVC> StageTypes {  get; set; }
-        public List<string> NatureTypes {  get; set; }
+        public List<TypesAdviceCVC> StageTypes { get; set; }
+        public List<string> NatureTypes { get; set; }
+        public AdviceOfCvcViewModel()
+        {
+            CvcAdvices = new List<cvcadvicetable>();
+            AppeleateAuthorities = new List<appellateauthoritytable>();
+        }
     }
 }

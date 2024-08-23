@@ -7,7 +7,13 @@ namespace QPR_Application.Models.ViewModels
         public statusofpendencyqrs StatusOfPendency { get; set; }
         public List<ficasesqpr> FiCasesQPRs { get; set; }
         public List<cacasesqpr> CaCasesQPRs { get; set; }
-        public ficasesqpr NewFICase {  get; set; }
+        public ficasesqpr NewFICase { get; set; }
         public cacasesqpr NewCACase { get; set; }
+
+        public StatusOfPendencyViewModel()
+        {
+            FiCasesQPRs = new List<ficasesqpr>();
+            CaCasesQPRs = new List<cacasesqpr>();
+        }
     }
 }

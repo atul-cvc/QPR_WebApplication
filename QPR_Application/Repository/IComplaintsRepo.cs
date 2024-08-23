@@ -9,7 +9,7 @@ namespace QPR_Application.Repository
         public Task<viginvestigationqrs?> GetVigilanceInvestigationData(string refNum);
         public Task<prosecutionsanctionsqrs?> GetProsecutionSanctionsData(string refNum);
         public Task<ProsecutionSanctionsViewModel?> GetProsecutionSanctionsViewData(string refNum);
-        public Task<DepartmentalProceedingsViewModel?> GetDepartmentalProceedingsViewModelData(string refNum);
+        public Task<DepartmentalProceedingsViewModel?> GetDepartmentalProceedingsViewModel(string refNum);
         public Task<departmentalproceedingsqrs?> GetDepartmentalProceedingsData(string refNum);
         public Task<AdviceOfCvcViewModel?> GetAdviceOfCVCViewModel(string refNum);
         public Task<adviceofcvcqrs?> GetAdviceOfCVCData(string refNum);

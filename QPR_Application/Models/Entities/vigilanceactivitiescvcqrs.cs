@@ -8,27 +8,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class vigilanceactivitiescvcqrs
     {
-        [Required]
-        public string vigilance_activites_id { get; set; }
-        public string vigilance_activites_upload_doc { get; set; }
-        public string vigilance_activites_any_remark { get; set; }
-        public string vigilance_activites_place { get; set; }
-        [Required]
-        public string vigilance_activites_date { get; set; }
-        [Required]
-        public string create_date { get; set; }
-        [Required]
+        [Key]
+        public int vigilance_activites_id { get; set; }
+        public string? vigilance_activites_upload_doc { get; set; }
+        public string? vigilance_activites_any_remark { get; set; }
+        public string? vigilance_activites_place { get; set; }
+        public DateOnly? vigilance_activites_date { get; set; }
+        public DateOnly create_date { get; set; }
         public string user_id { get; set; }
-        [Required]
-        public string update_date { get; set; }
-        [Required]
-        public string last_user_id { get; set; }
-        [Required]
-        public string qpr_id { get; set; }
-        [Required]
+        public DateOnly? update_date { get; set; }
+        public string? last_user_id { get; set; }
+        public long qpr_id { get; set; }
         public string ip { get; set; }
     }
 }

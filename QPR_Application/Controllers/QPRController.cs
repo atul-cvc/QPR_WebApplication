@@ -430,8 +430,8 @@ namespace QPR_Application.Controllers
                 {
                     string refNum = _httpContext.HttpContext?.Session.GetString("referenceNumber");
 
-                    DepartmentalProceedingsViewModel deptViewModel = await _complaintsRepo.GetDepartmentalProceedingsViewModelData(refNum);
-                    DepartmentalProceedingsViewModel deptViewModelPrev = await _complaintsRepo.GetDepartmentalProceedingsViewModelData(GetPreviousReferenceNumber());
+                    DepartmentalProceedingsViewModel deptViewModel = await _complaintsRepo.GetDepartmentalProceedingsViewModel(refNum);
+                    DepartmentalProceedingsViewModel deptViewModelPrev = await _complaintsRepo.GetDepartmentalProceedingsViewModel(GetPreviousReferenceNumber());
 
                     if (deptViewModel.Departmentalproceedingsqrs == null)
                     {
@@ -843,14 +843,10 @@ namespace QPR_Application.Controllers
             string message = "";
             try
             {
-                string fileURL = string.Empty;
                 if (activities.FormFile != null)
-                    fileURL = await UploadFile(activities.FormFile);
+                    activities.VigilanceActivities.vigilance_activites_upload_doc = await UploadFile(activities.FormFile);
 
-                if (!string.IsNullOrEmpty(fileURL))
-                    activities.VigilanceActivities.vigilance_activites_upload_doc = fileURL;
-
-                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("preventive_vigilance_id")))
+                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("vigilance_activites_id")))
                 {
                     //save
                     await _qprRepo.SavePreventiveVigilanceActivities(activities.VigilanceActivities);
@@ -875,12 +871,40 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                return RedirectToAction("Download QPR");
+                return RedirectToAction("FinalSubmitQPR");
             }
             catch (Exception ex)
             {
             }
             return View();
+        }
+
+        public async Task<IActionResult> FinalSubmitQPR()
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")))
+                {
+                    string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
+                    var userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+                    ViewBag.UserName = userObject.userid;
+                    ViewBag.QprID = refNum;
+                    ViewBag.QPRYear = _httpContext.HttpContext.Session.GetString("qtryear");
+                    switch (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")))
+                    {
+                        case 1: ViewBag.QtrReport = "January to March"; break;
+                        case 2: ViewBag.QtrReport = "April to June"; break;
+                        case 3: ViewBag.QtrReport = "July to September"; break;
+                        case 4: ViewBag.QtrReport = "October to December"; break;
+                    }
+                    return View();
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult Instructions()

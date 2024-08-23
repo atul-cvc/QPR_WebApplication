@@ -94,3 +94,10 @@ input[type=number] {
 textarea:focus, input:focus {
     outline: none;
 }
+
+/* Apply styles only when printing */
+@media print {
+    .no-print {
+        display: none; /* Hide this element during printing */
+    }
+}

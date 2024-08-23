@@ -1,0 +1,33 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "QPRFinalSubmit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div class="mt-5 mb-5" style="margin-bottom: 26em !important">
+    <h3 style="font-weight:400">Welcome @ViewBag.UserName</h3>
+
+
+    <div class="m-auto mt-5">
+        <div align="center">
+            <img src="/images/check-sign.png" class="me-2" align="middle" width="30" height="30" style="background-color: var(--bs-body-bg)"><label style="font-size:100%; ">You have already submitted form for this quarter.</label>
+            <br><br><br>
+            <div class="pt-3" style="width:40%;  background-color: rgb(218, 237, 241);">
+                <h3 style="font-size:200%; ">QUARTERLY PERFORMANCE REPORT</h3><br>
+                <label style="font-size:200%; ">@ViewBag.QtrReport, @ViewBag.QPRYear</label>
+                <br><br>
+                <div align="center"><h5>To print and download <a target="blank" href="@Url.Action("DownloadQPR", "QPRDownload", new { qprId = ViewBag.QprID })">click here</a></h5></div>
+                <br>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

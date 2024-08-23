@@ -1,4 +1,4 @@
-﻿@model QPR_Application.Models.Entities.vigilanceactivitiescvcqrs
+﻿@model QPR_Application.Models.ViewModels.PreventiveVigilanceActivitiesViewModel
 
 @{
     ViewData["Title"] = "PreventiveVigilanceActivities";
@@ -15,7 +15,7 @@
 </div>
 <hr />
 
-<form asp-action="PreventiveVigilanceActivities">
+<form asp-action="PreventiveVigilanceActivities" id="PreventiveVigilanceActivitiesQPRForm" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="w-80 mt-5 mb-3 box-green ">
@@ -42,11 +42,14 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(c) Business Process Re-engineering</b></td>
                     <td>
                         <b>
-                            <input asp-for="vigilance_activites_upload_doc" name="vigilance_activites_upload_doc" type="file">
-                            <input id="vigilance_activites_upload_doc_path" name="vigilance_activites_upload_doc_path" type="hidden">
+                            <input asp-for="FormFile" type="file" class="form-control">
+                            @* <input asp-for="VigilanceActivities.vigilance_activites_upload_doc" hidden> *@
                         </b>
                     </td>
-                    <td><label>Document Not Uploaded</label></td>
+                    <td class="text-center">
+                        <div id="fileUploadResult" class="text-center"></div>
+                        <label id="NoUpload">Document Not Uploaded</label>
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(d) Transparency Initiatives</b></td>
@@ -78,24 +81,24 @@
             <tbody>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Remarks, if any</b></td>
-                    <td><input asp-for="vigilance_activites_any_remark" name="vigilance_activites_any_remark" class="form-control" type="text"></td>
+                    <td><input asp-for="VigilanceActivities.vigilance_activites_any_remark" name="vigilance_activites_any_remark" class="form-control" type="text"></td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Place</b></td>
-                    <td><input asp-for="vigilance_activites_place" name="vigilance_activites_place" class="form-control" type="text"></td>
+                    <td><input asp-for="VigilanceActivities.vigilance_activites_place" name="vigilance_activites_place" class="form-control" type="text"></td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
                 <tr>
                     <td align="left"><b>&nbsp;&nbsp;Date</b></td>
-                    <td align="left"><input asp-for="vigilance_activites_date" name="vigilance_activites_date" class="form-control datepicker w-25" type="date"></td>
+                    <td align="left"><input asp-for="VigilanceActivities.vigilance_activites_date" class="form-control w-25" required type="date"></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
+@* 
     <div class="w-25 m-auto text-center">
 
         @if (ViewBag.ComplaintsMessage != null)
@@ -103,7 +106,7 @@
             @ViewBag.ComplaintsMessage
         }
 
-    </div>
+    </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="PreventiveVigilance">Back</a>
@@ -115,79 +118,46 @@
 </form>
 
 
-
-<div class="row">
-    @* <div class="col-md-4">
-    <form asp-action="PreventiveVigilanceActivities">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-    <label asp-for="vigilance_activites_id" class="control-label"></label>
-    <input asp-for="vigilance_activites_id" class="form-control" />
-    <span asp-validation-for="vigilance_activites_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="vigilance_activites_upload_doc" class="control-label"></label>
-    <input asp-for="vigilance_activites_upload_doc" class="form-control" />
-    <span asp-validation-for="vigilance_activites_upload_doc" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="vigilance_activites_any_remark" class="control-label"></label>
-    <input asp-for="vigilance_activites_any_remark" class="form-control" />
-    <span asp-validation-for="vigilance_activites_any_remark" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="vigilance_activites_place" class="control-label"></label>
-    <input asp-for="vigilance_activites_place" class="form-control" />
-    <span asp-validation-for="vigilance_activites_place" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="vigilance_activites_date" class="control-label"></label>
-    <input asp-for="vigilance_activites_date" class="form-control" />
-    <span asp-validation-for="vigilance_activites_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="create_date" class="control-label"></label>
-    <input asp-for="create_date" class="form-control" />
-    <span asp-validation-for="create_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="user_id" class="control-label"></label>
-    <input asp-for="user_id" class="form-control" />
-    <span asp-validation-for="user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="update_date" class="control-label"></label>
-    <input asp-for="update_date" class="form-control" />
-    <span asp-validation-for="update_date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="last_user_id" class="control-label"></label>
-    <input asp-for="last_user_id" class="form-control" />
-    <span asp-validation-for="last_user_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="qpr_id" class="control-label"></label>
-    <input asp-for="qpr_id" class="form-control" />
-    <span asp-validation-for="qpr_id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="ip" class="control-label"></label>
-    <input asp-for="ip" class="form-control" />
-    <span asp-validation-for="ip" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-    </form>
-    </div> *@
-</div>
-
-<div>
-    @* <a asp-action="Index">Back to List</a> *@
-</div>
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+    $(function () {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+
+        var filePath = '@Model.VigilanceActivities.vigilance_activites_upload_doc';
+        if (filePath != null && filePath != '') {
+            $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
+            $('#NoUpload').addClass('d-none');
+        }
+
+        if (complaintsMessage) {
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'error'
+            }
+
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: notificationIcon,
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
+        }
+        // performComTotal();
+    });
+</script>

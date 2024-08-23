@@ -616,7 +616,9 @@ namespace QPR_Application.Repository
                 vigilanceactivities.user_id = prevData.user_id;
                 vigilanceactivities.last_user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
                 vigilanceactivities.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
-                
+                vigilanceactivities.vigilance_activites_id = prevData.vigilance_activites_id;
+
+
                 _dbContext.vigilanceactivitiescvcqrs.Update(vigilanceactivities);
                 await _dbContext.SaveChangesAsync();
             }

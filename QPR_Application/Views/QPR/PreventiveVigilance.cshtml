@@ -503,7 +503,7 @@
                         <b>
                             <input id="preventivevigi_other_application_being" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Yes" ? "checked" : "") type="radio" value="Yes">Yes
                             <input id="preventivevigi_other_application_being1" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "checked" : "") type="radio" value="No">No
-                            <input id="preventivevigi_other_application_being2" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "d-none" : "") type="radio" value="Other">Other
+                            <input id="preventivevigi_other_application_being2" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Other" ? "checked" : "") type="radio" value="Other">Other
                         </b>
                     </td>
                 </tr>
@@ -814,7 +814,7 @@
         }
     }
 </script>
-
+@* 
 <script>
     function uploadFilePreventiveVigilance() {
         if (validateFields()) {
@@ -847,4 +847,4 @@
     }
 
     
-</script>
+</script> *@
