@@ -10,6 +10,7 @@ namespace QPR_Application.Models.ViewModels
 
         public ProsecutionSanctionsViewModel()
         {
+            Prosecutionsanctionsqrs = new prosecutionsanctionsqrs();
             Agewisependency = new List<agewisependency>();
         }
     }

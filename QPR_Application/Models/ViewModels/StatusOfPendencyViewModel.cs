@@ -12,6 +12,7 @@ namespace QPR_Application.Models.ViewModels
 
         public StatusOfPendencyViewModel()
         {
+            StatusOfPendency = new statusofpendencyqrs();
             FiCasesQPRs = new List<ficasesqpr>();
             CaCasesQPRs = new List<cacasesqpr>();
         }

@@ -14,6 +14,7 @@ namespace QPR_Application.Models.ViewModels
         public List<string> NatureTypes { get; set; }
         public AdviceOfCvcViewModel()
         {
+            AdviceOfCvc = new adviceofcvcqrs();
             CvcAdvices = new List<cvcadvicetable>();
             AppeleateAuthorities = new List<appellateauthoritytable>();
         }

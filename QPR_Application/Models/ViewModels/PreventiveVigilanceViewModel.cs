@@ -13,6 +13,7 @@ namespace QPR_Application.Models.ViewModels
 
         public PreventiveVigilanceViewModel()
         {
+            PreventiveVigilanceQRS = new preventivevigilanceqrs();
             PrevVigiA = new List<preventivevigi_a_qpr>();
             PrevVigiB = new List<preventivevigi_b_qpr>();
         }

@@ -16,7 +16,7 @@ namespace QPR_Application.Models.Entities
         public string? vigilance_activites_any_remark { get; set; }
         public string? vigilance_activites_place { get; set; }
         public DateOnly? vigilance_activites_date { get; set; }
-        public DateOnly create_date { get; set; }
+        public DateOnly? create_date { get; set; }
         public string user_id { get; set; }
         public DateOnly? update_date { get; set; }
         public string? last_user_id { get; set; }

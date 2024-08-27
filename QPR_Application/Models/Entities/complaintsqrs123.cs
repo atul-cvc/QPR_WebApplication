@@ -123,7 +123,7 @@ namespace QPR_Application.Models.Entities
         public long? qpr_id { get; set; }
         public string cvcpidpi_delay_one_month { get; set; }
         public string otherpidpi_delay_one_month { get; set; }
-        public string toatlpidpi_delay_one_month { get; set; }
+        public string totalpidpi_delay_one_month { get; set; }
         public int? scrutinyreportbfpreviousyearconcurrent { get; set; }
         public int? scrutinyreportexaminedqtrconcurrent { get; set; }
         public int? scrutinyreportidentifiedexamiconcurrent { get; set; }

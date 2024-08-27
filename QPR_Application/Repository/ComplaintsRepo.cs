@@ -10,13 +10,11 @@ namespace QPR_Application.Repository
     {
         private readonly QPRContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
-        //private readonly IConfiguration _iConfig;
         private readonly string _connString;
         public ComplaintsRepo(QPRContext dbContext, IHttpContextAccessor httpContext, IConfiguration iConfig)
         {
             _dbContext = dbContext;
             _httpContext = httpContext;
-            //_iConfig = iConfig;
             _connString = iConfig.GetConnectionString("SQLConnection");
         }
         public async Task<complaintsqrs> GetComplaintsData(string refNum)
@@ -46,7 +44,7 @@ namespace QPR_Application.Repository
 
                 ProsecutionSanctionsViewModel proSecViewModel = new ProsecutionSanctionsViewModel();
                 proSecViewModel.Prosecutionsanctionsqrs = await GetProsecutionSanctionsData(refNum);
-                proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync(); 
+                proSecViewModel.Agewisependency = await _dbContext.agewisependency.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
 
                 return proSecViewModel;
                 //return await _dbContext.prosecutionsanctionsqrs.FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
@@ -89,9 +87,9 @@ namespace QPR_Application.Repository
         }
         public async Task<AdviceOfCvcViewModel> GetAdviceOfCVCViewModel(string refNum)
         {
+            AdviceOfCvcViewModel advice = new AdviceOfCvcViewModel();
             try
             {
-                AdviceOfCvcViewModel advice = new AdviceOfCvcViewModel();
                 advice.AdviceOfCvc = await _dbContext.adviceofcvcqrs.AsNoTracking().FirstOrDefaultAsync(i => i.qpr_id == Convert.ToInt64(refNum));
                 advice.CvcAdvices = await _dbContext.cvcadvicetable.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
                 advice.AppeleateAuthorities = await _dbContext.appellateauthoritytable.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
@@ -100,9 +98,9 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
-            return null;
+            return advice.AdviceOfCvc != null ? advice : null;
         }
         public async Task<adviceofcvcqrs?> GetAdviceOfCVCData(string refNum)
         {
@@ -170,7 +168,6 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
-
         public async Task<PreventiveVigilanceViewModel> GetPreventiveVigilanceViewModel(string refNum)
         {
             try
@@ -203,7 +200,6 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
-
         public async Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActivitiesData(string refNum)
         {
             try
@@ -219,6 +215,14 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex) { }
             return null;
+        }
+        public async Task<List<string>> GetAllQPRIds(string qprYear)
+        {
+            List<string> qprIds = new List<string>();
+            string userId = _httpContext?.HttpContext?.Session.GetString("UserName");
+            qprIds = await _dbContext.qpr.Where(qpr => qpr.qtryear == qprYear && qpr.userid == userId).Select(qpr => Convert.ToString(qpr.referencenumber)).ToListAsync();
+
+            return qprIds;
         }
         public List<ficasesqpr> GetFurtherClarification(string OrgCode)
         {

@@ -75,10 +75,10 @@ namespace QPR_Application.Models.Entities
         public int punitivevigilance_riskwisebreakup_js_minorpenalties { get; set; }
         public int punitivevigilance_riskwisebreakup_js_censure { get; set; }
         public int punitivevigilance_riskwisebreakup_js_noaction { get; set; }
-        public DateOnly create_date { get; set; }
-        public string user_id { get; set; }
+        public DateOnly? create_date { get; set; }
+        public string? user_id { get; set; }
         public DateOnly? update_date { get; set; }
-        public string last_user_id { get; set; }
+        public string? last_user_id { get; set; }
         public long qpr_id { get; set; }
         public string ip { get; set; }
 

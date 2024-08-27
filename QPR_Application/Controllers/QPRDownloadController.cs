@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Repository;
+using QPR_Application.Util;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace QPR_Application.Controllers
 {
@@ -12,16 +15,14 @@ namespace QPR_Application.Controllers
     {
         private readonly IHttpContextAccessor _httpContext;
         private readonly IComplaintsRepo _complaintsRepo;
+        private readonly QPRUtilility _qprUtil;
 
-        public QPRDownloadController(IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
+        public QPRDownloadController(IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, QPRUtilility qprUtil)
         {
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
+            _qprUtil = qprUtil;
         }
-        //public IActionResult Index(string refNum)
-        //{
-        //    return View();
-        //}
         public async Task<IActionResult> DownloadQPR(string qprId)
         {
             try
@@ -49,6 +50,37 @@ namespace QPR_Application.Controllers
             qprVM.preventiveViewModel = await _complaintsRepo.GetPreventiveVigilanceViewModel(refNum);
             qprVM.preventiveActivitiesVM = await _complaintsRepo.GetPreventiveVigilanceActivitiesData(refNum);
             return qprVM;
+        }
+        public async Task<IActionResult> AnnualReport()
+        {
+            return View();
+        }
+        public async Task<IActionResult> DownloadAnnualReport(string year)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(year))
+                {
+                    List<string> qprIds = await _complaintsRepo.GetAllQPRIds(year);
+                    List<QPRReportViewModel> qprQuarterDataList = new List<QPRReportViewModel>();
+                    QPRReportViewModel qprAnnualData = new QPRReportViewModel();
+                    if (qprIds.Count > 0)
+                    {
+                        for (int i = 0; i < qprIds.Count; i++)
+                        {
+                            QPRReportViewModel qprData = await GetQPRDownloadData(qprIds[i]);
+                            qprQuarterDataList.Add(qprData);
+                        }
+                    }
+                    qprAnnualData = _qprUtil.PopulateAnnualReportData(qprQuarterDataList);
+                    return View(qprAnnualData);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            //return View();
+            return RedirectToAction("Index", "QPR");
         }
     }
 }

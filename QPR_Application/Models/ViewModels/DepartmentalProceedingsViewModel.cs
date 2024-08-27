@@ -9,6 +9,7 @@ namespace QPR_Application.Models.ViewModels
         public againstchargedtable NewAgainstChargedTable { get; set; }
         public DepartmentalProceedingsViewModel()
         {
+            Departmentalproceedingsqrs = new departmentalproceedingsqrs();
             AgainstChargedTables = new List<againstchargedtable>();
         }
     }
