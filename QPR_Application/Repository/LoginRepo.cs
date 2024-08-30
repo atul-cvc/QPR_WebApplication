@@ -21,8 +21,14 @@ namespace QPR_Application.Repository
                 if (UserDetails.User != null)
                 {
                     UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
-                    return UserDetails;
                 }
+                //await _dbContext.Database.CloseConnectionAsync();
+                //var connection = _dbContext.Database.GetDbConnection();
+                //if (connection.State == System.Data.ConnectionState.Open)
+                //{
+                //}
+                //    await connection.CloseAsync();
+                return UserDetails;
             }
             catch (Exception ex)
             {

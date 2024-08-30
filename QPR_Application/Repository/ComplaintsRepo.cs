@@ -118,13 +118,13 @@ namespace QPR_Application.Repository
                 StatusOfPendencyViewModel statusVM = new StatusOfPendencyViewModel();
                 statusVM.StatusOfPendency = await GetStatusPendencyData(refNum) ?? new statusofpendencyqrs();
 
-                statusVM.FiCasesQPRs = await _dbContext.ficasesqpr.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                statusVM.FiCasesQPRs = await GetFICases(refNum);
                 if (statusVM.FiCasesQPRs.Count == 0)
                 {
                     List<ficasesqpr> pends = GetFurtherClarification(_httpContext.HttpContext.Session.GetString("orgcode"));
                 }
 
-                statusVM.CaCasesQPRs = await _dbContext.cacasesqpr.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+                statusVM.CaCasesQPRs = await GetCACases(refNum);
                 if (statusVM.CaCasesQPRs.Count == 0)
                 {
                     statusVM.CaCasesQPRs = GetCommentsAwaited(_httpContext.HttpContext.Session.GetString("orgcode"));
@@ -323,6 +323,28 @@ namespace QPR_Application.Repository
             {
                 throw ex;
 
+            }
+            return null;
+        }
+        public async Task<List<ficasesqpr>> GetFICases(string refNum)
+        {
+            try
+            {
+                return await _dbContext.ficasesqpr.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+        public async Task<List<cacasesqpr>> GetCACases(string refNum)
+        {
+            try
+            {
+                return await _dbContext.cacasesqpr.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt64(refNum)).ToListAsync();
+            }
+            catch (Exception ex)
+            {
             }
             return null;
         }

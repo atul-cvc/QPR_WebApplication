@@ -9,7 +9,7 @@ namespace QPR_Application.Repository
     public interface IQprRepo
     {
         public Task<List<Years>> GetYears();
-
+        public Task<List<Years>> GetYearsFinalSubmit(string userId);
         public Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId);
         public Task<string> GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
         //public Task<string> GetPreviousReferenceNumber(string UserId);

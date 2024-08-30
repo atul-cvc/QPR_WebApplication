@@ -31,6 +31,9 @@
             background-color: white;
             opacity: 1;
         }
+        /* .form-control{
+                                                                                                                                   border: none !important;
+                                                                                                                                } */
     </style>
 
     <div class="d-flex">
@@ -42,7 +45,11 @@
     <center>
         <label>
             <h3 style="font-size:150%; ">
-                QUARTERLY PERFORMANCE REPORT - STATE BANK OF INDIA : @@MODELPLACEHOLDER<br>October to December, 2023 : @@MODELPLACEHOLDER<br>Date of Submission: @@MODELPLACEHOLDER
+                QUARTERLY PERFORMANCE REPORT - STATE BANK OF INDIA : @@MODELPLACEHOLDER
+                <br>
+                October to December, 2023 : @@MODELPLACEHOLDER
+                <br>
+                Date of Submission: @@MODELPLACEHOLDER
             </h3>
         </label>
     </center>
@@ -539,7 +546,7 @@
                         </td>
                         <td>
                             <b>
-                                <input readonly asp-for="complaints.totalpidpi_delay_one_month" class="form-control" />
+                                <input readonly asp-for="complaints.toatlpidpi_delay_one_month" class="form-control" />
                                 @* <input readonly  class="form-control" id="totalpidpi_delay_one_month" name="totalpidpi_delay_one_month" type="text" value=""> *@
                             </b>
                         </td>
@@ -1654,52 +1661,52 @@
                             <td align="left"><b>CBI</b></td>
                             <td>
                                 <b>
-                                    <input readonly readonly asp-for="vigInvestigation.viginvestbcbireportbfqtr" name="viginvestbcbireportbfqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly readonly asp-for="vigInvestigation.viginvestbcbireportbfqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbireceiveqtr" name="viginvestbcbireceiveqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbireceiveqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbitotal" name="viginvestbcbitotal" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbitotal" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbisentdaaction" name="viginvestbcbisentdaaction" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbisentdaaction" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbidisposedqtr" name="viginvestbcbidisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbidisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbibalancepending" name="viginvestbcbibalancepending" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbibalancepending" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbigreaterthree" name="viginvestbcbigreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbigreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbithreetosix" name="viginvestbcbithreetosix" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbithreetosix" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbisixtotwelve" name="viginvestbcbisixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbisixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcbilesstwelve" name="viginvestbcbilesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcbilesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                         </tr>
@@ -1712,47 +1719,47 @@
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvoreceiveqtr" name="viginvestbcvoreceiveqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvoreceiveqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvototal" name="viginvestbcvototal" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvototal" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvosentdaaction" name="viginvestbcvosentdaaction" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvosentdaaction" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvodisposedqtr" name="viginvestbcvodisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvodisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvobalancepending" name="viginvestbcvobalancepending" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvobalancepending" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvogreaterthree" name="viginvestbcvogreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvogreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvothreetosix" name="viginvestbcvothreetosix" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvothreetosix" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvosixtotwelve" name="viginvestbcvosixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvosixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbcvolesstwelve" name="viginvestbcvolesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbcvolesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                         </tr>
@@ -1760,50 +1767,50 @@
                             <td align="left"><b>TOTAL</b></td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalreportbfqtr" name="viginvestbtotalreportbfqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalreportbfqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
-                                <b><input readonly asp-for="vigInvestigation.viginvestbtotalreceiveqtr" name="viginvestbtotalreceiveqtr" onkeypress="return isNumberKey(event);" class="form-control" /></b>
+                                <b><input readonly asp-for="vigInvestigation.viginvestbtotalreceiveqtr" onkeypress="return isNumberKey(event);" class="form-control" /></b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotal" name="viginvestbtotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" class="form-control">
-                                </b>
-                            </td>
-                            <td>
-                                <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalsentdaaction" name="viginvestbtotalsentdaaction" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotaldisposedqtr" name="viginvestbtotaldisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalsentdaaction" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalbalancepending" name="viginvestbtotalbalancepending" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotaldisposedqtr" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalgreaterthree" name="viginvestbtotalgreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalbalancepending" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalthreetosix" name="viginvestbtotalthreetosix" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalgreaterthree" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotalsixtotwelve" name="viginvestbtotalsixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalthreetosix" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                             <td>
                                 <b>
-                                    <input readonly asp-for="vigInvestigation.viginvestbtotallesstwelve" name="viginvestbtotallesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotalsixtotwelve" onkeypress="return isNumberKey(event);" class="form-control">
+                                </b>
+                            </td>
+                            <td>
+                                <b>
+                                    <input readonly asp-for="vigInvestigation.viginvestbtotallesstwelve" onkeypress="return isNumberKey(event);" class="form-control">
                                 </b>
                             </td>
                         </tr>
@@ -1945,43 +1952,43 @@
                     </tr>
                     <tr>
                         <td align="left"> <b>Group C</b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcmajorpp" name="viginvestreskgroupcmajorpp" onkeypress="return isNumberKey(event);" class="form-control" /></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcminorpp" name="viginvestreskgroupcminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcotheraction" name="viginvestreskgroupcotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcclosure" name="viginvestreskgroupcclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupctotal" name="viginvestreskgroupctotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcmajorpp" onkeypress="return isNumberKey(event);" class="form-control" /></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupcclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupctotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     </tr>
                     <tr>
                         <td align="left"> <b>Group B</b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbmajorpp" name="viginvestreskgroupbmajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbminorpp" name="viginvestreskgroupbminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbotheraction" name="viginvestreskgroupbotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbclosure" name="viginvestreskgroupbclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbtotal" name="viginvestreskgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbmajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     </tr>
                     <tr>
                         <td align="left"> <b>Group A upto DS/Dir level</b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupamajorpp" name="viginvestreskgroupamajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaminorpp" name="viginvestreskgroupaminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaotheraction" name="viginvestreskgroupaotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaclosure" name="viginvestreskgroupaclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupatotal" name="viginvestreskgroupatotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupamajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupaclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupatotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     </tr>
                     <tr>
                         <td align="left"> <b>JS and above</b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsmajorpp" name="viginvestreskgroupjsmajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsminorpp" name="viginvestreskgroupjsminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsotheraction" name="viginvestreskgroupjsotheraction" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsclosure" name="viginvestreskgroupjsclosure" class="form-control"></b> </td>
-                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjstotal" name="viginvestreskgroupjstotal" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsmajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsotheraction" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjsclosure" class="form-control"></b> </td>
+                        <td> <b><input readonly asp-for="vigInvestigation.viginvestreskgroupjstotal" class="form-control"></b> </td>
                     </tr>
                     <tr>
                         <td align="left"> <b>Total</b> </td>
-                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalmajorpp" name="viginvestresktotalmajorpp" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
-                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalminorpp" name="viginvestresktotalminorpp" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
-                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalotheraction" name="viginvestresktotalotheraction" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
-                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalclosure" name="viginvestresktotalclosure" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
-                        <td> <b><input asp-for="vigInvestigation.viginvestresktotal" name="viginvestresktotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalmajorpp" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalminorpp" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalotheraction" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                        <td> <b><input asp-for="vigInvestigation.viginvestresktotalclosure" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                        <td> <b><input asp-for="vigInvestigation.viginvestresktotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
                     </tr>
                 </tbody>
             </table>
@@ -2054,7 +2061,7 @@
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupclesssix" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     </tr>
                     <tr>
-                        <td align="left"><b>GroprosecVM.up B</b></td>
+                        <td align="left"><b>Group B</b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupbreciveqtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
@@ -2067,7 +2074,7 @@
                     </tr>
 
                     <tr>
-                        <td align="left"><b>GroprosecVM.up A up to DS/Director level</b></td>
+                        <td align="left"><b>Group A up to DS/Director level</b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupareciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupatotal" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
@@ -2079,7 +2086,7 @@
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctgroupalesssix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                     </tr>
                     <tr>
-                        <td align="left"><b>Js prosecVM.and above</b></td>
+                        <td align="left"><b>Js and above</b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctjsopeningbalance" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctjsreciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctjstotal" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
@@ -2091,7 +2098,7 @@
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesanctjslesssix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                     </tr>
                     <tr>
-                        <td align="left"><b>TotprosecVM.al</b></td>
+                        <td align="left"><b>Total</b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesancttotalopeningbalance" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesancttotalreciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                         <td><b><input readonly asp-for="prosecVM.Prosecutionsanctionsqrs.prosesancttotal" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
@@ -2820,7 +2827,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -2868,16 +2875,16 @@
             </table>
         </div>
 
-        <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+        <div class="w-80 m-auto">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr>
                         <td colspan="4">
-                            <table id="officerNumber-status-pendency" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table table-striped table-bordered text-align-middle">
+                            <table id="officerNumber-status-pendency" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table  table-bordered text-align-middle">
                                 <thead>
                                     <tr class="text-center">
                                         <th rowspan="2"><b>S. No.</b></th>
-                                        <th width="5%" rowspan="2"><b>CVC case registration No.[CVO,CBI,OTH,CDI,REC,MIS number as given in the FL list]</b></th>
+                                        <th width="5%" rowspan="2"><b>CVC case registration No. [CVO,CBI,OTH,CDI,REC, MIS number as given in the FL list]</b></th>
                                         <th width="10%" rowspan="2"><b>CVC File No.</b></th>
                                         <th width="10%" rowspan="2"><b>Date since pending</b></th>
                                         <th rowspan="2"><b>Name &amp; Designation of officers</b></th>
@@ -2933,7 +2940,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr class="text-center">
                         <th rowspan="2"><b>B/F from previous quarter</b></th>
@@ -2980,16 +2987,16 @@
             </table>
         </div>
 
-        <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+        <div class="w-80 m-auto">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr>
                         <td colspan="4">
-                            <table id="officerNumber1" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table table-striped table-bordered text-align-middle">
+                            <table id="officerNumber1" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table  table-bordered text-align-middle">
                                 <thead>
                                     <tr class="text-center">
                                         <th rowspan="2"><b>S. No.</b></th>
-                                        <th width="5%" rowspan="2"><b>CVC case registration No.[CVO,CBI,OTH,CDI,REC,MIS number as given in the FL list]</b></th>
+                                        <th width="5%" rowspan="2"><b>CVC case registration No. [CVO,CBI,OTH,CDI,REC, MIS number as given in the FL list]</b></th>
                                         <th width="10%" rowspan="2"><b>CVC File No.</b></th>
                                         <th width="10%" rowspan="2"><b>Date since pending</b></th>
                                         <th rowspan="2"><b>Name &amp; Designation of officers</b></th>
@@ -3060,7 +3067,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3107,7 +3114,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3155,7 +3162,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3201,7 +3208,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr class="text-center">
                         <th rowspan="2" width="15%"><b>Group</b></th>
@@ -3303,7 +3310,7 @@
 
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3399,7 +3406,7 @@
 
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3436,7 +3443,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr></tr>
                     <tr class="text-center">
@@ -3474,7 +3481,7 @@
                 <tbody>
                     <tr class="text-center">
                         <td colspan="4">
-                            <table id="officerNumber-preventive" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table table-striped table-bordered text-align-middle">
+                            <table id="officerNumber-preventive" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class="table  table-bordered text-align-middle">
                                 <thead>
                                     <tr>
                                         <th style="width:1%"><b>S.No.</b></th>
@@ -3518,7 +3525,7 @@
                 <tbody>
                     <tr>
                         <td colspan="4">
-                            <table id="officerNumber2" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class=" table table-striped table-bordered text-align-middle secondOfficerNumber2">
+                            <table id="officerNumber2" width="100%" border="1" align="center" cellpadding="10" cellspacing="1" class=" table  table-bordered text-align-middle secondOfficerNumber2">
                                 <thead>
                                     <tr>
                                         <th style="width:1%"><b>S.No.</b></th>
@@ -3558,218 +3565,353 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(A) Whether agreed list for current year prepared</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center m-auto ">@(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list)</span>
-                                <input readonly asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list_date" type="date" class="form-control w-70 @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list == "No" ? "d-none" : "")">
-                            </b>
-                        </td>
+                    <tr class="@(Model.preventivevigilanceqrsList.Count == 1 ? "d-none" : "")">
+                        <td></td>
+                        <td class="text-center" colspan="4" style="font-weight:bold; font-size:xx-large">YEAR</td>
+                    </tr>
+                    <tr class="@(Model.preventivevigilanceqrsList.Count == 1 ? "d-none" : "")">
+                        <td style="width:52%"></td>
+                        <td class="text-center" style="font-weight:bold; font-size:xx-large">1<sup>st</sup> </td>
+                        <td class="text-center" style="font-weight:bold; font-size:xx-large">2<sup>nd</sup> </td>
+                        <td class="text-center" style="font-weight:bold; font-size:xx-large">3<sup>rd</sup> </td>
+                        <td class="text-center" style="font-weight:bold; font-size:xx-large">4<sup>th</sup> </td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(B) Whether list of officers of doubtful integrity prepared</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center  m-auto ">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_officer_list</span>
-                                <input readonly asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_officer_list_date" type="date" class="form-control w-70 @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_officer_list == "No" ? "d-none" : "")">
-                            </b>
-                        </td>
+                        <td style="text-align: left; width:52%"><b>&nbsp;&nbsp;(A) Whether agreed list for current year prepared</b></td>
+                        @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                        {
+                            <td class="text-center w-12">
+                                <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                    <span class="text-center align-content-center m-auto ">@Model.preventivevigilanceqrsList[i].preventivevigi_whether_agreed_list</span>
+                                    <input readonly asp-for="@Model.preventivevigilanceqrsList[i].preventivevigi_whether_agreed_list_date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_whether_agreed_list == "No" ? "d-none" : "")" />
+                                </b>
+                            </td>
+                        }
                     </tr>
                     <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether annual property returns/Personal files of the officials in Agreed / Odilist scrutinised </b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center  m-auto">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_annual_property</span>
-                            </b>
-                        </td>
+                        <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(B) Whether list of officers of doubtful integrity prepared</b></td>
+                        @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                        {
+                            <td class="text-center w-12">
+                                <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                    <span class="text-center align-content-center  m-auto ">@Model.preventivevigilanceqrsList[i].preventivevigi_whether_officer_list</span>
+                                    <input readonly asp-for="@Model.preventivevigilanceqrsList[i].preventivevigi_whether_officer_list_date" type="date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_whether_officer_list == "No" ? "d-none" : "")">
+                                </b>
+                            </td>
+                        }
                     </tr>
                     <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(d) Whether any information shared with CBI on (C)</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center  m-auto">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_any_information</span>
-                            </b>
-                        </td>
+                        <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(C) Whether annual property returns/Personal files of the officials in Agreed / Odilist scrutinised </b></td>
+                        @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                        {
+                            <td class="text-center w-12">
+                                <b class="d-flex justify-content-around">
+                                    <span class="text-center align-content-center  m-auto">@Model.preventivevigilanceqrsList[i].preventivevigi_whether_annual_property</span>
+                                </b>
+                            </td>
+                        }
                     </tr>
                     <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(E) whether data relating to pendency of complaints and advice sreconciled with cvc</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center  m-auto ">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_data_relating</span>
-                                <input readonly asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_data_relating_date" type="date" class="form-control w-70 @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "d-none" : "")">
-                            </b>
-                        </td>
+                        <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(d) Whether any information shared with CBI on (C)</b></td>
+                        @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                        {
+                            <td class="text-center w-12">
+                                <b class="d-flex justify-content-around">
+                                    <span class="text-center align-content-center  m-auto">@Model.preventivevigilanceqrsList[i].preventivevigi_whether_any_information</span>
+                                </b>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(E) whether data relating to pendency of complaints and advice sreconciled with cvc</b></td>
+                        @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                        {
+                            <td class="text-center w-12">
+                                <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                    <span class="text-center align-content-center  m-auto ">@(Model.preventivevigilanceqrsList[i].preventivevigi_whether_data_relating == "1" ? "Yes" : "No")</span>
+                                    <input readonly asp-for="@Model.preventivevigilanceqrsList[i].preventivevigi_whether_data_relating_date" type="date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_whether_data_relating == "0" ? "d-none" : "")">
+                                </b>
+                            </td>
+                        }
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="w-80 mt-5 mb-3 box-green ">
-            <b>
-                8.3 Other Activities
-            </b>
-        </div>
+        <div>
+            <div class="w-80 mt-5 mb-3 box-green ">
+                <b>
+                    8.3 Other Activities
+                </b>
+            </div>
 
-        <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
-                <tbody>
-                    <tr><td style="text-align: left;" colspan="2">&nbsp;&nbsp;<b>(A) Leveraging Technology</b></td></tr>
-                    <tr><td style="text-align: left;" colspan="2">&nbsp;&nbsp;&nbsp;<b>(1) Extent of IT usage and the e-governance</b></td></tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) Percentage of E-payment</b></td>
-                        <td>
-                            <b class="d-flex justify-content-center">
-                                <input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_it_epayment" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree"><label>%</label>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b) Percentage of E-tendering / E-auction</b></td>
-                        <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_it_etendering" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c) Procurements / Contracts made thru Central Procurement Portal</b></td>
-                        <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_it_contracts" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(d) Percentage of procurement through Government E Marketplace(GeM) wherever applicable</b></td>
-                        <td><b class="d-flex justify-content-center"><input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_it_emarketplace" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">%</b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(B) Whether QPR due have been furnished to CTE</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center me-2">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte</span>
-                                <input readonly asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte_date" type="date" class="form-control @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "d-none" : "")">
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether Review of vigilance work was done by the Board / Head of Department </b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center me-2">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_review_vigi</span>
-                                <input asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_review_vigi_date" class="form-control @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "d-none" : "") " />
-                            </b>
+            <div class="w-75 m-auto">
+                <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: left;" colspan="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "2")">
+                                &nbsp;&nbsp;<b>
+                                    (A) Leveraging Technology
+                                </b>
+                            </td>
+                            @if(Model.preventivevigilanceqrsList.Count > 1)
+                            {
+                                <td colspan="4"></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;" colspan="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "2")">
+                                &nbsp;&nbsp;&nbsp;<b>
+                                    (1) Extent of IT usage and the e-governance
+                                </b>
+                            </td>
+                            @if (Model.preventivevigilanceqrsList.Count > 1)
+                            {
+                                <td colspan="4"></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;left;width:52%"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) Percentage of E-payment</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center @(Model.preventivevigilanceqrsList.Count > 1 ? "w-12" : "")">
+                                    <b class="d-flex justify-content-center">
+                                        <span class="me-1">@Model.preventivevigilanceqrsList[i].preventivevigi_other_it_epayment</span>
+                                        <label>%</label>
+                                        @* <input readonly class="form-control" asp-for="preventivevigilanceqrsList[i].preventivevigi_other_it_epayment" onkeypress="return isNumberKey(event);" style="padding: 2px; width:50%;" type="number"> *@
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; left;width:52%"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b) Percentage of E-tendering / E-auction</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center @(Model.preventivevigilanceqrsList.Count > 1 ? "w-12" : "")">
+                                    <b class="d-flex justify-content-center">
+                                        <span class="me-1">@Model.preventivevigilanceqrsList[i].preventivevigi_other_it_etendering</span>
+                                        <label>%</label>
+                                        @* <input readonly class="form-control" asp-for="preventivevigilanceqrsList[i].preventivevigi_other_it_etendering" onkeypress="return isNumberKey(event);" style="padding: 2px; width:50%;" type="number">% *@
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c) Procurements / Contracts made thru Central Procurement Portal</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td><b class="d-flex justify-content-center">
+                                        <span class="me-1">@Model.preventivevigilanceqrsList[i].preventivevigi_other_it_contracts</span>
+                                        <label>%</label>
+                                    @* <input readonly class="form-control" asp-for="preventivevigilanceqrsList[i].preventivevigi_other_it_contracts" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">% *@
+                                </b></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(d) Percentage of procurement through Government E Marketplace(GeM) wherever applicable</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td><b class="d-flex justify-content-center">
+                                        <span class="me-1">@Model.preventivevigilanceqrsList[i].preventivevigi_other_it_emarketplace</span>
+                                        <label>%</label>
+                                    @* <input readonly class="form-control" asp-for="preventivevigilanceqrsList[i].preventivevigi_other_it_emarketplace" onkeypress="return isNumberKey(event);" min="0" max="100" style="padding: 2px; width:50%;" type="number" class="greaterThree">% *@
+                                    </b></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; left;width:52%"><b>&nbsp;&nbsp;(B) Whether QPR due have been furnished to CTE</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center @(Model.preventivevigilanceqrsList.Count > 1 ? "w-12" : "")">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span class="text-center align-content-center me-2">@(Model.preventivevigilanceqrsList[i].preventivevigi_other_qpr_cte == "1" ? "Yes" : "No")</span>
+                                        <input readonly asp-for="preventivevigilanceqrsList[i].preventivevigi_other_qpr_cte_date" type="date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_other_qpr_cte == "0" ? "d-none" : "")">
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether Review of vigilance work was done by the Board / Head of Department </b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span class="text-center align-content-center me-2">@(Model.preventivevigilanceqrsList[i].preventivevigi_other_review_vigi == "1" ? "Yes" : "No")</span>
+                                        <input readonly asp-for="preventivevigilanceqrsList[i].preventivevigi_other_review_vigi_date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_other_review_vigi == "0" ? "d-none" : "") " />
+                                    </b>
 
-                            <div id="fileToUpload" class="@(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "d-none" : "")">
-                                <br>
-                                <span id="NoUpload">Document Not Uploaded</span>
-
-                                <div id="fileUploadResult" class="text-center mt-3"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(D) Whether structured meeting held by the C.E.O./ Head of Department with CVO</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span class="text-center align-content-center me-2">@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting</span>
-                                <input asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting_date" type="date" class="form-control @(Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting   == "No" ? "d-none" : "")">
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(E) Whether Report on implementation of Integrity Pact sent</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_report_implementation</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(F) Whether applications being used are reporting deviations as alerts</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_application_being</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(G) Whether Changes in technology is being dovetailed with changes in instructions Guidelines / Manuals</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_change_tech</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(H) Whether E- Learning methodology is being used</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_e_learning</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(I) Whether Pending Disciplinary Cases are Monitored</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(J) Whether CVO Deputed for Training Abroad</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(K) Visits Abroad by CVO,if any</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(L) Whether Prior Approval of Commission obtained for Official foreign visits by CVO</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_prior_approval</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(M) Expenditure incurred on festival gifts any(Rs.)<br>(see CVC's Office Order No.40/8/2003 dated 27.08.2003)</b></td>
-                        <td><b><input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_expenditure" typeof="number" onkeypress="return isNumberKey(event);" style="padding:2px;" type="text"></b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(N) Whether tour details of CVO submitted to CVC <br>(see CVC's Cicular No 26/07/010 dated 15.07.2010)</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_tour_details</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(O) Whether  Guidelines on Appointment of Outsiders / Retired officers as I.O for Oral Inquiries laid down including Provisions in CDA Rules<br>(Only for orgns. other than Govt : see Circular no. 98/MSC/23 dt 25.3.2003 )</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment</span>
-                            </b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(P) Victimisation of vigilance officials Reported to Commission, if any. <br>(Circular No.16/3/06 dt 28.3.2006)</b></td>
-                        <td><b><input class="form-control" asp-for="preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_victimisation_vigilance" style="padding:2px;" type="text"></b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(Q) Whether secrecy of Passwords monitored by CVO in Terms of Policy Approved by the Respective Board<br>(For Banks Only)</b></td>
-                        <td>
-                            <b class="d-flex justify-content-around">
-                                <span>@Model.preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_other_secrcy_password</span>
-                            </b>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                    <div id="fileToUpload" class="@(Model.preventivevigilanceqrsList[i].preventivevigi_other_review_vigi == "No" ? "d-none" : "")">
+                                        <br>
+                                        <span id="NoUpload">@(string.IsNullOrEmpty(Model.preventivevigilanceqrsList[i].file1) ? "Document Not Uploaded" : "")</span>
+                                        @if (!string.IsNullOrEmpty(Model.preventivevigilanceqrsList[i].file1))
+                                        {
+                                            <a href="@Model.preventivevigilanceqrsList[i].file1" target="_blank">View Document</a>
+                                        }
+                                        <div id="fileUploadResult" class="text-center mt-3"></div>
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(D) Whether structured meeting held by the C.E.O./ Head of Department with CVO</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span class="text-center align-content-center me-2">@(Model.preventivevigilanceqrsList[i].preventivevigi_other_structured_meeting == "1" ? "Yes" : "No")</span>
+                                        <input readonly asp-for="preventivevigilanceqrsList[i].preventivevigi_other_structured_meeting_date" type="date" class="form-control m-auto w-75 @(Model.preventivevigilanceqrsList[i].preventivevigi_other_structured_meeting   == "0" ? "d-none" : "")">
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(E) Whether Report on implementation of Integrity Pact sent</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_report_implementation == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(F) Whether applications being used are reporting deviations as alerts</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_application_being == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(G) Whether Changes in technology is being dovetailed with changes in instructions Guidelines / Manuals</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_change_tech == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(H) Whether E- Learning methodology is being used</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_e_learning == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(I) Whether Pending Disciplinary Cases are Monitored</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_pending_disciplinary == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(J) Whether CVO Deputed for Training Abroad</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_cvo_deputed == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(K) Visits Abroad by CVO,if any</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_visit_cvo == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(L) Whether Prior Approval of Commission obtained for Official foreign visits by CVO</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_prior_approval == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(M) Expenditure incurred on festival gifts any(Rs.)<br>(see CVC's Office Order No.40/8/2003 dated 27.08.2003)</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_expenditure)</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(N) Whether tour details of CVO submitted to CVC <br>(see CVC's Cicular No 26/07/010 dated 15.07.2010)</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_tour_details == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(O) Whether  Guidelines on Appointment of Outsiders / Retired officers as I.O for Oral Inquiries laid down including Provisions in CDA Rules<br>(Only for orgns. other than Govt : see Circular no. 98/MSC/23 dt 25.3.2003 )</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_guidelines_appointment == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(P) Victimisation of vigilance officials Reported to Commission, if any. <br>(Circular No.16/3/06 dt 28.3.2006)</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@(Model.preventivevigilanceqrsList[i].preventivevigi_other_victimisation_vigilance == "1" ? "Yes" : "No")</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;width:52%"><b>&nbsp;&nbsp;(Q) Whether secrecy of Passwords monitored by CVO in Terms of Policy Approved by the Respective Board<br>(For Banks Only)</b></td>
+                            @for (int i = 0; i < Model.preventivevigilanceqrsList.Count; i++)
+                            {
+                                <td class="text-center w-12">
+                                    <b class="@(Model.preventivevigilanceqrsList.Count > 1 ? "" : "d-flex justify-content-around")">
+                                        <span>@Model.preventivevigilanceqrsList[i].preventivevigi_other_secrcy_password</span>
+                                    </b>
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </section>
@@ -3787,7 +3929,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr class="text-center">
                         <td><b>Eg:</b></td>
@@ -3802,7 +3944,7 @@
                     </tr>
                     <tr class="d-flex-inline">
                         <td style="text-align: left;"><b>&nbsp;&nbsp;(c) Business Process Re-engineering</b></td>
-                        
+
                         <td class="text-center">
                             <div id="fileUploadResult2" class="text-center"></div>
                             <label id="NoUpload2">Document Not Uploaded</label>
@@ -3834,7 +3976,7 @@
         </div>
 
         <div class="w-75 m-auto">
-            <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
+            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
                 <tbody>
                     <tr>
                         <td align="left"><b>&nbsp;&nbsp;Remarks, if any</b></td>
@@ -3850,7 +3992,7 @@
                     <tr></tr>
                     <tr>
                         <td align="left"><b>&nbsp;&nbsp;Date</b></td>
-                        <td align="left"><input readonly asp-for="preventiveActivitiesVM.vigilance_activites_date" class="form-control w-25"  type="date"></td>
+                        <td align="left"><input readonly asp-for="preventiveActivitiesVM.vigilance_activites_date" class="form-control w-25" type="date"></td>
                     </tr>
                 </tbody>
             </table>
@@ -3864,16 +4006,20 @@
 
     <script>
         $(function () {
-            var filePath = '@Model.preventiveViewModel.PreventiveVigilanceQRS.file1';
-            if (filePath != null && filePath != '') {
-                $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
-                $('#NoUpload').addClass('d-none');
-            }
+            // alert('count : ' + '@Model.preventivevigilanceqrsList.Count');
+            if ('@Model.preventivevigilanceqrsList.Count' == '1')
+            {
+                var filePath = '@Model.preventiveViewModel.PreventiveVigilanceQRS.file1';
+                if (filePath != null && filePath != '') {
+                    $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
+                    $('#NoUpload').addClass('d-none');
+                }
 
-            var filePath2 = '@Model.preventiveActivitiesVM.vigilance_activites_upload_doc';
-            if (filePath2 != null && filePath2 != '') {
-                $('#fileUploadResult2').html('<a href="' + filePath2 + '" target="_blank">View Uploaded File</a>');
-                $('#NoUpload2').addClass('d-none');
+                var filePath2 = '@Model.preventiveActivitiesVM.vigilance_activites_upload_doc';
+                if (filePath2 != null && filePath2 != '') {
+                    $('#fileUploadResult2').html('<a href="' + filePath2 + '" target="_blank">View Uploaded File</a>');
+                    $('#NoUpload2').addClass('d-none');
+                }
             }
         })
     </script>

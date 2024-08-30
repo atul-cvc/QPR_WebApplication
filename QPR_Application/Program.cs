@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using QPR_Application.Util;
@@ -14,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<QPRContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection").ToString()));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection")));
 
 builder.Services.AddHttpContextAccessor();
 
@@ -37,7 +36,6 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
 
-//builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     // Configure session options here

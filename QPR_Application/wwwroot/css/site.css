@@ -37,6 +37,15 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+.w-10 {
+    width: 10%;
+}
+.w-12 {
+    width:12%;
+}
+.w-15 {
+    width: 15%;
+}
 .w-70 {
     width: 70%;
 }
@@ -99,5 +108,13 @@ textarea:focus, input:focus {
 @media print {
     .no-print {
         display: none; /* Hide this element during printing */
+    }
+
+    .form-control{
+        border: none !important;
+    }
+
+    td input {
+        font-size: 75%;
     }
 }

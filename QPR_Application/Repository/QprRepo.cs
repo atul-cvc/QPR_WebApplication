@@ -39,6 +39,19 @@ namespace QPR_Application.Repository
             }
             return years;
         }
+        public async Task<List<Years>> GetYearsFinalSubmit(string userId)
+        {
+            List<Years> years = new List<Years>();
+            try
+            {
+                years = await _dbContext.Set<Years>().FromSqlRaw("EXECUTE dbo.GetYearsFromQPRFinallySubmitted @UserID", new SqlParameter("@UserID", userId)).ToListAsync();
+                return years;
+            }
+            catch (Exception ex)
+            {
+            }
+            return years;
+        }
 
         public async Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId)
         {

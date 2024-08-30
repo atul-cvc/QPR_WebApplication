@@ -54,37 +54,33 @@
                     <td>
                         <b>
                             @* <input id="ComCVCOpeningBalance" name="ComCVCOpeningBalance" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="qty1 comcvc" readonly="readonly" value="0"> *@
-                            <input type="number" asp-for="comcvcopeningbalance" class="form-control" readonly />
+                            <input type="number" asp-for="comcvcopeningbalance" class="form-control qty1" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
                             @* <input id="ComCVCReceived_during_quarter" name="ComCVCReceived_during_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="qty1 comRec" value="0"> *@
-                            <input type="number" asp-for="comcvcreceived_during_quarter" class="form-control" />
+                            <input type="number" asp-for="comcvcreceived_during_quarter" class="form-control qty1" />
                         </b>
                     </td>
 
                     <td>
                         <b>
-                            @* <input id="comCVCTotal" name="comCVCTotal" onkeypress="return isNumberKey(event);" style="padding: 2px;" readonly="true" type="text" class="total comtotal subbptotal" value="0"> *@
                             <input asp-for="comcvctotal" class="form-control" readonly />
                         </b>
                     </td>
                     <td>
                         <b>
-                            @* <input id="comCVCDisposal_during_quarter" name="comCVCDisposal_during_quarter" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comDis subbptotal disQTR" value="0"> *@
                             <input asp-for="comcvcdisposal_during_quarter" class="form-control" />
                         </b>
                     </td>
                     <td>
                         <b>
-                            @* <input id="comCVCBalance_pending" name="comCVCBalance_pending" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comBalance totalsubbptotal" readonly="readonly" value="0"> *@
-                            <input asp-for="comcvcbalance_pending" class="form-control" />
+                            <input readonly asp-for="comcvcbalance_pending" class="form-control" />
                         </b>
                     </td>
                     <td>
                         <b>
-                            @* <input id="comCVCage_less_one" name="comCVCage_less_one" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="comGreaterOne bPTotalCVC" value="0"> *@
                             <input asp-for="comcvcage_less_one" class="form-control" />
                         </b>
                     </td>
@@ -126,7 +122,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="comotherbalance_pending" class="form-control" />
+                            <input readonly asp-for="comotherbalance_pending" class="form-control" />
                         </b>
                     </td>
                     <td>
@@ -448,7 +444,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="otherpidpi_report_quarter" class="form-control" max="@Model.otherpidpi_total" />
+                            <input asp-for="otherpidpi_report_quarter" class="form-control" />
                             @* <input id="otherpidpi_report_quarter" name="otherpidpi_report_quarter" onkeypress="return isNumberKey(event);" style="margin-top:18px;" type="text" data-field="cvcsecond" class="pidpiReports othBalPenTotal disQTRPidpiOther" value="0"> *@
                         </b>
                     </td>
@@ -535,7 +531,7 @@
                     </td>
                     <td>
                         <b>
-                            <input asp-for="totalpidpi_delay_one_month" class="form-control" readonly />
+                            <input asp-for="toatlpidpi_delay_one_month" class="form-control" readonly />
                             @* <input class="form-control" id="totalpidpi_delay_one_month" name="totalpidpi_delay_one_month" type="text" value=""> *@
                         </b>
                     </td>
@@ -1109,10 +1105,20 @@
     $(function () {
         var complaintsMessage = '@ViewBag.ComplaintsMessage';
         if (complaintsMessage) {
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'error'
+            }
+
             Swal.fire({
                 // title: complaintsMessage,
                 text: complaintsMessage,
-                icon: 'success',
+                icon: notificationIcon,
                 confirmButtonText: 'Okay'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -1124,8 +1130,6 @@
         }
         performComTotal();
     });
-
-
 
     $(' #scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
 
@@ -1228,4 +1232,68 @@
 
     }
 
+    //(1)Total : CVC(Opening Balance) + CVC(received during Qtr)
+
+</script>
+<script>
+    $(document).on("keyup", "#comcvcreceived_during_quarter", verifySumQTY1);
+    $(document).on("keyup", "#comotherreceived_during_quarter", verifySumQTY2);
+    $(document).on('blur', '#comcvcage_pendency_betweenthree_six', verifySUMCVCAWP);
+    $(document).on('blur', '#comotherage_pendency_betweenthree_six', verifySUMOTHAWP);
+
+
+    function verifySumQTY1() {
+        var pend = 0;
+        pend = parseFloat($("#comcvctotal").val()) - parseFloat($("#comcvcdisposal_during_quarter").val());
+        // debugger;
+        if (pend < 0) {
+            $("#comcvcdisposal_during_quarter").val(0);
+            $("#comcvcage_less_one").val(0);
+            $("#comcvcage_pendency_betweenone_three").val(0);
+            $("#comcvcage_pendency_betweenThree_Six").val(0);
+        }
+        performComTotal();
+    }
+
+    function verifySumQTY2() {
+        var pend = 0;
+        pend = parseFloat($("#comotherreceived_during_quarter").val()) - parseFloat($("#comotherdisposal_during_quarter").val());
+        if (pend < 0) {
+            $("#comotherdisposal_during_quarter").val(0);
+            $("#comotherage_less_one").val(0);
+            $("#comotherage_pendency_betweenone_three").val(0);
+            $("#comotherage_pendency_betweenthree_six").val(0);
+        }
+    }
+
+    function verifySUMCVCAWP(){
+        // debugger;
+        var total = parseFloat($("#comcvcage_less_one").val()) + parseFloat($("#comcvcage_pendency_betweenone_three").val()) + parseFloat($("#comcvcage_pendency_betweenthree_six").val());
+        var pend = parseFloat($("#comcvcbalance_pending").val());
+        if(pend!=total)
+        {
+            // alert('CVC Age wise Pendency Not Greater then CVC Balance Pending');
+            Swal.fire({
+                // title: complaintsMessage,
+                text: 'CVC Age wise Pendency not equal to CVC Balance Pending',
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+        }
+    }
+    function verifySUMOTHAWP() {
+        // debugger;
+        var total = parseFloat($("#comotherage_less_one").val()) + parseFloat($("#comotherage_pendency_betweenone_three").val()) + parseFloat($("#comotherage_pendency_betweenthree_six").val());
+        var pend = parseFloat($("#comotherbalance_pending").val());
+        if(pend!=total)
+        {
+            // alert('CVC Age wise Pendency Not Greater then CVC Balance Pending');
+            Swal.fire({
+                // title: complaintsMessage,
+                text: 'Other Age wise Pendency not equal to Other Balance Pending',
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+        }
+    }
 </script>

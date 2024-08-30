@@ -406,8 +406,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(E) whether data relating to pendency of complaints and advice sreconciled with cvc</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_whether_data_relating" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_whether_data_relating1" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_whether_data_relating" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_whether_data_relating1" name="PreventiveVigilanceQRS.preventivevigi_whether_data_relating" onclick="preventivevigiE(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                             <input asp-for="PreventiveVigilanceQRS.preventivevigi_whether_data_relating_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating == "No" ? "d-none" : "")">
                         </b>
                     </td>
@@ -451,8 +451,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(B) Whether QPR due have been furnished to CTE</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_qpr_cte" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_qpr_cte1" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_qpr_cte" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_qpr_cte1" name="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" onclick="otherActivitesB(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                             <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_qpr_cte_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte == "No" ? "d-none" : "")">
                         </b>
                     </td>
@@ -461,8 +461,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(C) Whether Review of vigilance work was done by the Board / Head of Department </b></td>
                     <td width="15%">
                         <b>
-                            <input id="preventivevigi_other_review_vigi" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(1)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_review_vigi1" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(0)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_review_vigi" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(1)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_review_vigi1" name="PreventiveVigilanceQRS.preventivevigi_other_review_vigi" onclick="otherActivitesC(0)" @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                             <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_review_vigi_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi == "No" ? "d-none" : "")">
                         </b>
 
@@ -482,8 +482,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(D) Whether structured meeting held by the C.E.O./ Head of Department with CVO</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_structured_meeting" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_structured_meeting1" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_structured_meeting" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(1);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_structured_meeting1" name="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" onclick="otherActivitesD(0);" @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                             <input asp-for="PreventiveVigilanceQRS.preventivevigi_other_structured_meeting_date" type="date" class="form-control @(Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting   == "No" ? "d-none" : "")">
                         </b>
                     </td>
@@ -492,8 +492,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(E) Whether Report on implementation of Integrity Pact sent</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_report_implementation1" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_report_implementation2" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_report_implementation1" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_report_implementation2" name="PreventiveVigilanceQRS.preventivevigi_other_report_implementation" @(Model.PreventiveVigilanceQRS.preventivevigi_other_report_implementation == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -501,8 +501,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(F) Whether applications being used are reporting deviations as alerts</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_application_being" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Yes" ? "checked" : "") type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_application_being1" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "checked" : "") type="radio" value="No">No
+                            <input id="preventivevigi_other_application_being" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Yes" ? "checked" : "") type="radio" value="1">Yes
+                            <input id="preventivevigi_other_application_being1" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "No" ? "checked" : "") type="radio" value="0">No
                             <input id="preventivevigi_other_application_being2" name="PreventiveVigilanceQRS.preventivevigi_other_application_being" style=" width:15%;padding:1px;" @(Model.PreventiveVigilanceQRS.preventivevigi_other_application_being == "Other" ? "checked" : "") type="radio" value="Other">Other
                         </b>
                     </td>
@@ -511,8 +511,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(G) Whether Changes in technology is being dovetailed with changes in instructions Guidelines / Manuals</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_change_tech1" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_change_tech2" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_change_tech1" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_change_tech2" name="PreventiveVigilanceQRS.preventivevigi_other_change_tech" @(Model.PreventiveVigilanceQRS.preventivevigi_other_change_tech == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -520,8 +520,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(H) Whether E- Learning methodology is being used</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_e_learning1" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_e_learning2" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_e_learning1" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_e_learning2" name="PreventiveVigilanceQRS.preventivevigi_other_e_learning" @(Model.PreventiveVigilanceQRS.preventivevigi_other_e_learning == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -529,8 +529,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(I) Whether Pending Disciplinary Cases are Monitored</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_pending_disciplinary1" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_pending_disciplinary2" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_pending_disciplinary1" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_pending_disciplinary2" name="PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary" @(Model.PreventiveVigilanceQRS.preventivevigi_other_pending_disciplinary == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -538,8 +538,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(J) Whether CVO Deputed for Training Abroad</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_cvo_deputed1" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_cvo_deputed2" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_cvo_deputed1" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_cvo_deputed2" name="PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed" @(Model.PreventiveVigilanceQRS.preventivevigi_other_cvo_deputed == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -547,8 +547,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(K) Visits Abroad by CVO,if any</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_visit_cvo1" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_visit_cvo2" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_visit_cvo1" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_visit_cvo2" name="PreventiveVigilanceQRS.preventivevigi_other_visit_cvo" @(Model.PreventiveVigilanceQRS.preventivevigi_other_visit_cvo == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -556,8 +556,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(L) Whether Prior Approval of Commission obtained for Official foreign visits by CVO</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_prior_approval1" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_prior_approval2" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_prior_approval1" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_prior_approval2" name="PreventiveVigilanceQRS.preventivevigi_other_prior_approval" @(Model.PreventiveVigilanceQRS.preventivevigi_other_prior_approval == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -569,8 +569,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(N) Whether tour details of CVO submitted to CVC <br>(see CVC's Cicular No 26/07/010 dated 15.07.2010)</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_tour_details1" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_tour_details2" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_tour_details1" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_tour_details2" name="PreventiveVigilanceQRS.preventivevigi_other_tour_details" @(Model.PreventiveVigilanceQRS.preventivevigi_other_tour_details == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>
@@ -578,8 +578,8 @@
                     <td style="text-align: left;"><b>&nbsp;&nbsp;(O) Whether  Guidelines on Appointment of Outsiders / Retired officers as I.O for Oral Inquiries laid down including Provisions in CDA Rules<br>(Only for orgns. other than Govt : see Circular no. 98/MSC/23 dt 25.3.2003 )</b></td>
                     <td>
                         <b>
-                            <input id="preventivevigi_other_guidelines_appointment1" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="Yes">Yes
-                            <input id="preventivevigi_other_guidelines_appointment2" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="No">No
+                            <input id="preventivevigi_other_guidelines_appointment1" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "Yes" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="1">Yes
+                            <input id="preventivevigi_other_guidelines_appointment2" name="PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment" @(Model.PreventiveVigilanceQRS.preventivevigi_other_guidelines_appointment == "No" ? "checked" : "") style=" width:15%;padding:1px;" type="radio" value="0">No
                         </b>
                     </td>
                 </tr>

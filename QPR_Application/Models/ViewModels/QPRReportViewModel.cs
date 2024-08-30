@@ -12,6 +12,7 @@ namespace QPR_Application.Models.ViewModels
         public StatusOfPendencyViewModel statusVM { get; set; }
         public punitivevigilanceqrs punitiveVig { get; set; }
         public PreventiveVigilanceViewModel preventiveViewModel { get; set; }
+        public List<preventivevigilanceqrs> preventivevigilanceqrsList { get; set; }
         public vigilanceactivitiescvcqrs preventiveActivitiesVM { get; set; }
 
         public QPRReportViewModel()
@@ -25,6 +26,7 @@ namespace QPR_Application.Models.ViewModels
             punitiveVig = new punitivevigilanceqrs();
             preventiveViewModel = new PreventiveVigilanceViewModel();
             preventiveActivitiesVM = new vigilanceactivitiescvcqrs();
+            preventivevigilanceqrsList = new List<preventivevigilanceqrs>();
         }
     }
 }

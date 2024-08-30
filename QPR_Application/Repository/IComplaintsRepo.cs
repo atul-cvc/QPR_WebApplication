@@ -23,5 +23,7 @@ namespace QPR_Application.Repository
         public Task<List<string>> GetAllQPRIds(string qprYear);
         public List<ficasesqpr> GetFurtherClarification(string OrgCode);
         public List<cacasesqpr> GetCommentsAwaited(string OrgCode);
+        public Task<List<ficasesqpr>> GetFICases(string refNum);
+        public Task<List<cacasesqpr>> GetCACases(string refNum);
     }
 }

@@ -1,0 +1,29 @@
+﻿@using QPR_Application.Models.DTO.Response;
+@model List<Years>;
+
+@{
+    ViewData["Title"] = "Annual Report";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="mt-5">
+    <form method="post" asp-action="DownloadAnnualReport">
+        <!-- Adjust the action attribute as needed -->
+        <div class="w-50 m-auto">
+            <div class="d-flex justify-content-center align-items-center mt-5">
+                <label for="yearSelected">Year:</label>
+                <select id="yearSelected" name="yearSelected" class="form-control w-25 text-center" required>
+                    <option disabled selected value="">---- Select a year ----</option>
+                    @foreach (var year in Model)
+                    {
+                        <option value="@year.Year">@year.Year</option>
+                    }
+                </select>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>

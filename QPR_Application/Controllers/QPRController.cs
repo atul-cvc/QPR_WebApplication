@@ -163,6 +163,7 @@ namespace QPR_Application.Controllers
             try
             {
                 await SaveComplaints(complaint);
+                _httpContext.HttpContext.Session.Remove("complaint_id");
                 return RedirectToAction("VigilanceInvestigation");
             }
             catch (Exception ex)
@@ -183,13 +184,7 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("complaint_id")))
                 {
                     complaintsqrs complaintOldData = await _complaintsRepo.GetComplaintsData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
-                    //if (complaintOldData == null)
-                    //{
-                    //    throw new Exception("No previous record present");
-                    //}
-                    //else
-                    //{
-                    //}
+                    
                     complaint.complaints_id = complaintOldData.complaints_id;
                     complaint.user_id = complaintOldData.user_id;
                     complaint.create_date = complaintOldData.create_date;
