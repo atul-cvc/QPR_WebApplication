@@ -10,9 +10,6 @@ namespace QPR_Application.Models.Entities
 {
     public partial class Login
     {
-        //[Key]
-        //public int Id { get; set; }
-        //public string Role { get; set; }
         [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
 

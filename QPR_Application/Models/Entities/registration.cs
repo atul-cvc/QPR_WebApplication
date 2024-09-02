@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 
 namespace QPR_Application.Models.Entities
 {
@@ -35,5 +36,6 @@ namespace QPR_Application.Models.Entities
         public string cvocontactnumberoffice { get; set; }
         public string fulltime { get; set; }
         public string parttime { get; set; }
+        public string PasswordSalt { get; set; }
     }
 }

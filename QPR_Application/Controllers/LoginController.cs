@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Response;
+using QPR_Application.Models.DTO.Utility;
 using QPR_Application.Repository;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Net;
+using QPR_Application.Util;
+using System.Security.Cryptography;
 
 namespace QPR_Application.Controllers
 {
@@ -42,7 +45,7 @@ namespace QPR_Application.Controllers
         public async Task<IActionResult> Index(Login login)
         {
             try
-            {
+            {                
                 string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
 
                 if (ipAdd == "::1")
@@ -52,12 +55,11 @@ namespace QPR_Application.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    //registration User = await _loginRepo.Login(login);
-
                     UserDetails uDetails = await _loginRepo.Login(login);
 
                     if (uDetails.User != null)
                     {
+
                         string userObj = JsonSerializer.Serialize(uDetails.User);
                         if (!String.IsNullOrEmpty(userObj))
                         {
@@ -96,8 +98,9 @@ namespace QPR_Application.Controllers
                     }
                 }
             }
-            catch (Exception ex) {
-                
+            catch (Exception ex)
+            {
+
             }
             return RedirectToAction("Index");
         }

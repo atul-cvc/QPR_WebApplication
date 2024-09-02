@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Response;
+using QPR_Application.Util.VerifyPassword;
 
 
 namespace QPR_Application.Repository
@@ -17,18 +18,18 @@ namespace QPR_Application.Repository
             try
             {
                 UserDetails UserDetails = new UserDetails();
-                UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
+                //UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
+                UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && i.status == "t" && i.islocked == "0");
+                Boolean passwordVerified = false;
                 if (UserDetails.User != null)
                 {
-                    UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                    passwordVerified = new VerifyPassword().VerifyUserPassword(user, UserDetails.User);
                 }
-                //await _dbContext.Database.CloseConnectionAsync();
-                //var connection = _dbContext.Database.GetDbConnection();
-                //if (connection.State == System.Data.ConnectionState.Open)
-                //{
-                //}
-                //    await connection.CloseAsync();
-                return UserDetails;
+                if (UserDetails.User != null && passwordVerified)
+                {
+                    UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                    return UserDetails;
+                }
             }
             catch (Exception ex)
             {

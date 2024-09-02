@@ -21,10 +21,40 @@
     <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 </head>
 <body>
+    <style>
+        /* Basic styles for links */
+        .nav-link {
+            position: relative; /* Required for positioning the pseudo-element */
+            text-decoration: none; /* Remove default underline */
+            color: #333; /* Link color */
+            font-size:16px;
+        }
+
+        /* Underline effect */
+        .nav-link::after {
+            content: ''; /* Empty content for pseudo-element */
+            position: absolute; /* Absolute positioning */
+            left: 50%; /* Center the pseudo-element horizontally */
+            bottom: -2px; /* Position slightly below text */
+            width: 100%; /* Full width of the link */
+            height: 2px; /* Height of the underline */
+            background-color: #007bff; /* Underline color */
+            transform: scaleX(0); /* Initial state: scale to 0 (invisible) */
+            transform-origin: center; /* Scale from the center */
+            transition: transform 0.3s ease; /* Smooth transition for animation */
+            /* Adjust to move pseudo-element back to align with the text */
+            margin-left: -50%;
+        }
+
+        /* Hover effect */
+        .nav-link:hover::after {
+            transform: scaleX(1); /* Scale to full width on hover */
+        }
+    </style>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       @*  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QPR Application</a>
+                <a class="navbar-brand" href="#">QPR Application</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,6 +66,19 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark me-1" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark me-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <div class="d-sm-flex">
@@ -53,11 +96,61 @@
                                     </span>
                                 </li>
                             }
-                            <li class="nav-item">
-                                <a class="nav-link text-dark me-1" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
-                            </li>
+
                             <li class="nav-item ms-auto">
                                 <a class=" btn btn-outline-dark" asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav> *@
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">QPR Application</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark me-1" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Requests
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
+                                <li><a class="dropdown-item" href="#">Raise Request</a></li>
+                                <li><a class="dropdown-item" href="#">View Request Status</a></li>
+                                @* <li><a class="dropdown-item" href="#">Something else here</a></li> *@
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-sm-flex">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (Convert.ToInt32(@HttpContextAccessor.HttpContext.Session.GetString("qtrreport")) > 0)
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark">
+                                        Quarter : @HttpContextAccessor.HttpContext.Session.GetString("qtrreport")
+                                    </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark">
+                                        Year : @HttpContextAccessor.HttpContext.Session.GetString("qtryear")
+                                    </span>
+                                </li>
+                            }
+                            <li class="nav-item ms-auto">
+                                <a class="btn btn-outline-dark" asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -77,6 +170,8 @@
         </div>
     </footer>
     <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

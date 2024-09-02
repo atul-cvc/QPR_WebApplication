@@ -25,7 +25,6 @@ namespace QPR_Application.Repository
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
         }
-
         public async Task<List<Years>> GetYears()
         {
             List<Years> years = new List<Years>();
@@ -52,8 +51,7 @@ namespace QPR_Application.Repository
             }
             return years;
         }
-
-        public async Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId)
+        public string GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
             //var connString = _config.GetConnectionString("SQLConnection");
             string refNum = "";
@@ -76,10 +74,9 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return refNum;
         }
-
-        public async Task<string> GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip)
+        public string GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip)
         {
-            string refNum = "";
+            string? refNum = "";
 
             try
             {
@@ -108,7 +105,6 @@ namespace QPR_Application.Repository
             catch (Exception ex) { throw ex; }
             return refNum;
         }
-
         public string GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport)
         {
             string refNum = "";
@@ -141,7 +137,6 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return refNum;
         }
-
         public async Task CreateComplaints(complaintsqrs complaint)
         {
             try
@@ -231,7 +226,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task CreateDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel)
         {
             try
@@ -261,7 +255,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel, departmentalproceedingsqrs prevData)
         {
             try
@@ -295,7 +288,6 @@ namespace QPR_Application.Repository
             {
             }
         }
-
         public async Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM)
         {
             try
@@ -351,7 +343,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task CreateStatusPendency(StatusOfPendencyViewModel statusVM)
         {
             try
@@ -467,7 +458,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task CreatePunitiveVigilance(punitivevigilanceqrs pVig)
         {
             try
@@ -512,7 +502,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task CreatePreventiveVigilance(PreventiveVigilanceViewModel pVig)
         {
             try
@@ -596,12 +585,11 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task CreatePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities)
         {
             try
             {
-                if(vigilanceactivities != null)
+                if (vigilanceactivities != null)
                 {
                     vigilanceactivities.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     vigilanceactivities.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
@@ -617,7 +605,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
         public async Task SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities)
         {
             try
@@ -640,9 +627,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-
-
-
         public async Task AddCvcAdvice(cvcadvicetable cvcAdvice)
         {
             try
@@ -809,7 +793,6 @@ namespace QPR_Application.Repository
                 throw ex;
             }
         }
-       
         public async Task DeleteFiCaseRow(int id)
         {
             try
@@ -856,10 +839,6 @@ namespace QPR_Application.Repository
             {
                 throw ex;
             }
-        }
-        private DbSet<T> GetDbSet<T>() where T : class
-        {
-            return _dbContext.Set<T>();
         }
         public static bool AreAllPropertiesSet<T>(T obj, string[] excludeArr = null)
         {

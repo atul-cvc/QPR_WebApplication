@@ -118,3 +118,7 @@ textarea:focus, input:focus {
         font-size: 75%;
     }
 }
+
+.swal2-html-container {
+    font-size: 15px !important; /* Adjust the font size as needed */
+}

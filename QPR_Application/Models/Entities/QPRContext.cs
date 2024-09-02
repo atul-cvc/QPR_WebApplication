@@ -80,6 +80,7 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<workex> workex { get; set; }
         public virtual DbSet<Years> Years { get; set; }
         public virtual DbSet<LoginUser> LoginUser { get; set; }
+        public virtual DbSet<UserRequests> UserRequests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -127,6 +128,10 @@ namespace QPR_Application.Models.Entities
             modelBuilder.Entity<preventivevigilanceqrs>().HasKey(p => p.preventive_vigilance_id);
 
             modelBuilder.Entity<vigilanceactivitiescvcqrs>().HasKey(v => v.vigilance_activites_id);
+
+            modelBuilder.Entity<QPRRequestSubjects>().HasKey(s => s.subject_id);
+
+            modelBuilder.Entity<UserRequests>().HasKey(u => u.request_id);
 
             modelBuilder.Entity<cmptable>(entity =>
             {

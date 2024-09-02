@@ -412,7 +412,6 @@
                     <td>
                         <b>
                             <input asp-for="cvcpidpi_less_six" class="form-control" />
-                            @* <input id="cvcpidpi_less_six" name="cvcpidpi_less_six" onkeypress="return isNumberKey(event);" style="padding: 2px;" type="text" class="pidpiGreaterTwo  bPTotalpidpiCVCFinal" value="0"> *@
                         </b>
                     </td>
                     <td>
@@ -1131,7 +1130,7 @@
         performComTotal();
     });
 
-    $(' #scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
+    $('#scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
 
     function performComTotal() {
         // Set the result to the total field
@@ -1238,8 +1237,18 @@
 <script>
     $(document).on("keyup", "#comcvcreceived_during_quarter", verifySumQTY1);
     $(document).on("keyup", "#comotherreceived_during_quarter", verifySumQTY2);
+    $(document).on("keyup", "#comcvcdisposal_during_quarter", totNotGreater1);
+    $(document).on("keyup", "#comotherdisposal_during_quarter", totNotGreater2);
+
+    $("#complaints_signed_complaints,#complaints_department,#complaints_cbi,#complaints_other,#complaints_audit,#complaints_detected").on("blur", totNotOther);
+
+    $("#complaints_cbi_action, #complaints_cvoinvestigation,#complaints_signed_filed,#complaints_signed_notconfirmed, #complaints_actionfornovigilance").on("blur", DisposedTotal);
+
     $(document).on('blur', '#comcvcage_pendency_betweenthree_six', verifySUMCVCAWP);
     $(document).on('blur', '#comotherage_pendency_betweenthree_six', verifySUMOTHAWP);
+
+    $("#cvcpidpi_less_six,#cvcpidpi_three_to_six,#cvcpidpi_three_month").on("blur", PidpiTotalCVC);
+    $("#otherpidpi_three_month,#otherpidpi_three_to_six,#otherpidpi_less_six").on("blur", PidpiTotalOther);
 
 
     function verifySumQTY1() {
@@ -1266,34 +1275,178 @@
         }
     }
 
-    function verifySUMCVCAWP(){
-        // debugger;
+    function totNotGreater1() {
+        if (parseFloat($("#comcvcdisposal_during_quarter").val()) > parseFloat($("#comcvctotal").val())) {
+            Swal.fire({
+                text: `Disposal cannot be greater than total`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#comcvcdisposal_during_quarter").val(0);
+            performComTotal();
+        }
+    }
+
+    function totNotGreater2() {
+        if (parseFloat($("#comotherdisposal_during_quarter").val()) > parseFloat($("#comothertotal").val())) {
+            Swal.fire({
+                text: `Disposal cannot be greater than total`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#comotherdisposal_during_quarter").val(0);
+            performComTotal();
+        }
+    }
+
+    function totNotOther() {
+        var tot = 0;
+        tot += (parseFloat($("#complaints_signed_complaints").val()) || 0);
+        tot += (parseFloat($("#complaints_department").val()) || 0);
+        tot += (parseFloat($("#complaints_cbi").val()) || 0);
+        tot += (parseFloat($("#complaints_other").val()) || 0);
+        tot += (parseFloat($("#complaints_audit").val()) || 0);
+        tot += (parseFloat($("#complaints_detected").val()) || 0);
+
+        var recv = $("#comotherreceived_during_quarter").val();
+        var msg = `Total of "1.1 Break Up of Complaints Received Under Source OTHERS During The Quarter" must be equal to: ${recv}`;
+
+        if (parseFloat($("#comotherreceived_during_quarter").val()) < tot) {
+            Swal.fire({
+                text: `${msg}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#complaints_signed_complaints").val(0);
+            $("#complaints_department").val(0);
+            $("#complaints_cbi").val(0);
+            $("#complaints_other").val(0);
+            $("#complaints_audit").val(0);
+            $("#complaints_detected").val(0);
+        }
+    }
+
+    function DisposedTotal() {
+        var tot = parseFloat($("#complaints_cbi_action").val()) || 0;
+        tot += parseFloat($("#complaints_cvoinvestigation").val()) || 0;
+        tot += parseFloat($("#complaints_signed_filed").val()) || 0;
+        tot += parseFloat($("#complaints_signed_notconfirmed").val()) || 0;
+        tot += parseFloat($("#complaints_actionfornovigilance").val()) || 0;
+        var disposedTotal = $("#comtotaldisposal_during_quarter").val();
+        var msg = `Total of "1.2 Break Up of Diposal of Complaints During the Quarter" must be equal to: ${disposedTotal}`;
+
+        if (disposedTotal < tot) {
+            Swal.fire({
+                text: `${msg}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#complaints_cbi_action").val(0);
+            $("#complaints_cvoinvestigation").val(0);
+            $("#complaints_signed_filed").val(0);
+            $("#complaints_signed_notconfirmed").val(0);
+            $("#complaints_actionfornovigilance").val(0);
+        }
+    }
+
+    function verifySUMCVCAWP() {
         var total = parseFloat($("#comcvcage_less_one").val()) + parseFloat($("#comcvcage_pendency_betweenone_three").val()) + parseFloat($("#comcvcage_pendency_betweenthree_six").val());
         var pend = parseFloat($("#comcvcbalance_pending").val());
-        if(pend!=total)
-        {
-            // alert('CVC Age wise Pendency Not Greater then CVC Balance Pending');
+        if (pend != total) {
             Swal.fire({
-                // title: complaintsMessage,
-                text: 'CVC Age wise Pendency not equal to CVC Balance Pending',
+                text: `CVC Age wise Pendency total must be equal to ${pend}`,
                 icon: 'info',
                 confirmButtonText: 'Okay'
             });
         }
     }
     function verifySUMOTHAWP() {
-        // debugger;
+        debugger;
         var total = parseFloat($("#comotherage_less_one").val()) + parseFloat($("#comotherage_pendency_betweenone_three").val()) + parseFloat($("#comotherage_pendency_betweenthree_six").val());
         var pend = parseFloat($("#comotherbalance_pending").val());
-        if(pend!=total)
-        {
-            // alert('CVC Age wise Pendency Not Greater then CVC Balance Pending');
+        if (pend != total) {
             Swal.fire({
-                // title: complaintsMessage,
-                text: 'Other Age wise Pendency not equal to Other Balance Pending',
+                text: `Other Age wise Pendency total must be equal to ${pend}`,
                 icon: 'info',
                 confirmButtonText: 'Okay'
             });
+        }
+    }
+
+
+    function PidpiTotalCVC() {
+        var tot = parseFloat($("#cvcpidpi_less_six").val()) || 0;
+        tot += parseFloat($("#cvcpidpi_three_to_six").val()) || 0;
+        tot += parseFloat($("#cvcpidpi_three_month").val()) || 0;
+        var pidpiCVCpend = parseFloat($("#cvcpidpi_balance_pending").val());
+        if (tot > pidpiCVCpend) {
+            Swal.fire({
+                text: `Total must be equal to: ${pidpiCVCpend}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#cvcpidpi_less_six").val(0);
+            $("#cvcpidpi_three_to_six").val(0);
+            $("#cvcpidpi_three_month").val(0);
+        }
+    }
+
+    function PidpiTotalOther() {
+        var tot = parseFloat($("#otherpidpi_less_six").val()) || 0;
+        tot += parseFloat($("#otherpidpi_three_to_six").val()) || 0;
+        tot += parseFloat($("#otherpidpi_three_month").val()) || 0;
+        var pidpiOthPend = parseFloat($("#otherpidpi_balance_pending").val());
+        if (tot > pidpiOthPend) {
+            Swal.fire({
+                text: `Total must be equal to: ${pidpiOthPend}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#otherpidpi_less_six").val(0);
+            $("#otherpidpi_three_to_six").val(0);
+            $("#otherpidpi_three_month").val(0);
+        }
+    }
+
+    
+    $("#cvcpidpiinvesbalancegreterthreemonth,#cvcpidpiinvesbalancebetweenthreetosix,#cvcpidpiinvesbalancebetweensixtotwelve,#cvcpidpiinvesbalancelesstwelve").on("blur", AdvicePidpiCVC);
+
+    function AdvicePidpiCVC() {
+        var tot = parseFloat($("#cvcpidpiinvesbalancelesstwelve").val()) || 0;
+        tot += parseFloat($("#cvcpidpiinvesbalancebetweensixtotwelve").val()) || 0;
+        tot += parseFloat($("#cvcpidpiinvesbalancebetweenthreetosix").val()) || 0;
+        tot += parseFloat($("#cvcpidpiinvesbalancegreterthreemonth").val()) || 0;
+        var pidpiAdviceCVC = parseFloat($("#cvcpidpiinvestotaladvicereceive").val());
+        if (tot > pidpiAdviceCVC) {
+            Swal.fire({
+                text: `Total of Pending must be Equal to : ${pidpiAdviceCVC}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#cvcpidpiinvesbalancelesstwelve").val(0);
+            $("#cvcpidpiinvesbalancebetweensixtotwelve").val(0);
+            $("#cvcpidpiinvesbalancebetweenthreetosix").val(0);
+            $("#cvcpidpiinvesbalancegreterthreemonth").val(0);
+        }
+    }
+    $("#cvopidpiinvesbalancegreterthreemonth,#cvopidpiinvesbalancebetweenthreetosix,#cvopidpiinvesbalancebetweensixtotwelve,#cvopidpiinvesbalancelesstwelve").on("blur", AdvicePidpiOther);
+    function AdvicePidpiOther() {
+        var tot = parseFloat($("#cvopidpiinvesbalancelesstwelve").val()) || 0;
+        tot += parseFloat($("#cvopidpiinvesbalancebetweensixtotwelve").val()) || 0;
+        tot += parseFloat($("#cvopidpiinvesbalancebetweenthreetosix").val()) || 0;
+        tot += parseFloat($("#cvopidpiinvesbalancegreterthreemonth").val()) || 0;
+
+        var pidpiAdviceOther = parseFloat($("#cvopidpiinvestotaladvicereceive").val());
+        if (tot > pidpiAdviceOther) {
+            Swal.fire({
+                text: `Total of Pending must be Equal to : ${pidpiAdviceOther}`,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+            $("#cvopidpiinvesbalancelesstwelve").val(0);
+            $("#cvopidpiinvesbalancebetweensixtotwelve").val(0);
+            $("#cvopidpiinvesbalancebetweenthreetosix").val(0);
+            $("#cvopidpiinvesbalancegreterthreemonth").val(0);
         }
     }
 </script>

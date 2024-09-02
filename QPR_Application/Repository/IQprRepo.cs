@@ -10,9 +10,8 @@ namespace QPR_Application.Repository
     {
         public Task<List<Years>> GetYears();
         public Task<List<Years>> GetYearsFinalSubmit(string userId);
-        public Task<string> GetReferenceNumber(GetQPR qprDetails, string UserId);
-        public Task<string> GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
-        //public Task<string> GetPreviousReferenceNumber(string UserId);
+        public string GetReferenceNumber(GetQPR qprDetails, string UserId);
+        public string GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
         public string GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport);
         public Task CreateComplaints(complaintsqrs complaint);
         public Task SaveComplaints(complaintsqrs complaint);
@@ -24,7 +23,6 @@ namespace QPR_Application.Repository
         public Task SaveDepartmentalProceedings(DepartmentalProceedingsViewModel deptViewModel, departmentalproceedingsqrs prevData);
         public Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM);
         public Task SaveAdviceCVC(AdviceOfCvcViewModel adviceVM);
-        //, adviceofcvcqrs prevData
         public Task CreateStatusPendency(StatusOfPendencyViewModel statusVM);
         public Task SaveStatusPendency(StatusOfPendencyViewModel statusVM);
         public Task CreatePunitiveVigilance(punitivevigilanceqrs pVig);
@@ -35,9 +33,6 @@ namespace QPR_Application.Repository
         public Task AddNewPrevVigB(preventivevigi_b_qpr prevVigB, int preventive_vigilance_id);
         public Task CreatePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
         public Task SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
-
-
-
         public Task DeleteAgeWisePendency(int pend_id);
         public Task DeleteAgainstChargedOfficers(int pend_id);
         public Task DeleteCvcAdvice(int pend_id);
@@ -45,7 +40,5 @@ namespace QPR_Application.Repository
         public Task DeleteFiCaseRow(int id);
         public Task DeleteCaCaseRow(int id);
         public Task DeletePrevVigi(int id, string tableName);
-
-        //public Task<complaintsqrs> GetComplaintsqrs();
     }
 }
