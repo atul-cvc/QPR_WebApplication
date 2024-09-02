@@ -86,11 +86,11 @@ namespace QPR_Application.Controllers
                 _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
                 _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
-                var refNum = await _qprRepo.GetReferenceNumber(qprDetails, UserId);
+                var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
                 string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
                 if (String.IsNullOrEmpty(refNum))
                 {
-                    refNum = await _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                    refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
                 }
                 _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
 
@@ -156,22 +156,6 @@ namespace QPR_Application.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Complaints(complaintsqrs complaint)
-        {
-            try
-            {
-                await SaveComplaints(complaint);
-                _httpContext.HttpContext.Session.Remove("complaint_id");
-                return RedirectToAction("VigilanceInvestigation");
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return View(complaint);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -184,7 +168,7 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("complaint_id")))
                 {
                     complaintsqrs complaintOldData = await _complaintsRepo.GetComplaintsData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
-                    
+
                     complaint.complaints_id = complaintOldData.complaints_id;
                     complaint.user_id = complaintOldData.user_id;
                     complaint.create_date = complaintOldData.create_date;
@@ -210,6 +194,24 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Complaints", "QPR", new { message });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Complaints(complaintsqrs complaint)
+        {
+            try
+            {
+                await SaveComplaints(complaint);
+                _httpContext.HttpContext.Session.Remove("complaint_id");
+                return RedirectToAction("VigilanceInvestigation");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View(complaint);
+        }
+
         public async Task<IActionResult> VigilanceInvestigation(string message = "")
         {
             try
