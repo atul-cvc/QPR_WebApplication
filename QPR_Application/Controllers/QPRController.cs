@@ -6,12 +6,8 @@ using QPR_Application.Repository;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
-//using System;
-//using Microsoft.AspNetCore.Http;
-//using System.Net;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Util;
-using Microsoft.AspNetCore.Http;
 
 namespace QPR_Application.Controllers
 {
@@ -98,6 +94,7 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
+
         public async Task<IActionResult> Complaints(string message = "")
         {
             try
@@ -155,7 +152,6 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

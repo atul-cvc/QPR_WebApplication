@@ -1,0 +1,139 @@
+﻿@model QPR_Application.Models.ViewModels.UserRequestsViewModel;
+@using QPR_Application.Models.DTO.Response;
+
+@{
+    ViewData["Title"] = "Raise Request";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var years = (IEnumerable<Years>)ViewBag.Years;
+    var Quarters = (IEnumerable<SelectListItem>)ViewBag.Quarters;
+}
+
+
+<div>
+    <h3 class="text-center">Raise a Requests</h3>
+</div>
+<hr />
+
+
+<div class="mt-5 mb-5" style="margin-bottom: 26em !important">
+    <div class="w-75 m-auto mt-5">
+        <form method="post" asp-action="RaiseRequest">
+            <div class="p-3" style="border: 1px solid #73AD21 !important">
+                <div class="row mt-3">
+                    <div class="col-md-4 align-content-center">
+                        <label>Select Request Subject : </label>
+                    </div>
+                    <div class="col-md-4 ">
+                        <select asp-for="UserRequest.subject_id" class="form-control w-50 text-center" required onchange="SubjectChanged()">
+                            <option disabled selected value="">---- Select ----</option>
+                            @foreach (var subject in Model.RequestSubjects)
+                            {
+                                <option value="@subject.subject_id">@subject.subject_name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3 d-none" id="yearDropdownContainer">
+                    <div class="col-md-4 align-content-center">
+                        <label>Select Qpr Year : </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.DropDownList("UserRequest.qtryear", new SelectList(years, "Year", "Year"), "------ Select Year ------", new { @class = "form-control text-center w-50", id = "yearDropdown", onChange = "quarterSelection()" })
+                        <span asp-validation-for="UserRequest.qtryear" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3 d-none" id="quarterDropdownContainer">
+                    <div class="col-md-4 align-content-center">
+                        <label>Select Qpr Quarter : </label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownList("UserRequest.qtrreport", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center w-50", id = "quarterDropdown", })
+                        <span asp-validation-for="UserRequest.qtrreport" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn btn-success" >Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // $('#UserRequest_subject_id').change(function () {
+    //     var selectedValue = $(this).val();
+
+    //     // Hide all content divs
+    //     $('#content1').hide();
+    //     $('#content2').hide();
+
+    //     // Show content based on the selected value
+    //     if (selectedValue === '1') {
+    //         $('#content1').show();
+    //     } else if (selectedValue === '2') {
+    //         $('#content2').show();
+    //     }
+    // });
+
+    $('button[type="submit"]').click(function (e) {
+        debugger;
+        if (parseFloat($('#quarterDropdown').val()) > 0)
+            return true;
+        return false;
+    });
+
+
+    function quarterSelection() {
+        debugger;
+        var year = document.getElementById("yearDropdown").value;
+        var currentYear = new Date().getFullYear();
+        var currentMonth = (new Date().getMonth()) + 1;
+        // alert('year : ' + year);
+        var options0 = "<option value=\"0\">------ Select Quarter ------</option>";
+        var options1 = "<option value=" + 1 + ">January to March</option>";
+        var options2 = "<option value=" + 2 + ">April to June</option>";
+        var options3 = "<option value=" + 3 + ">July to September</option>";
+        var options4 = "<option value=" + 4 + ">October to December</option>";
+        if (year < currentYear) {
+            var options = options0 + options1 + options2 + options3 + options4
+
+            document.getElementById("quarterDropdown").innerHTML = options;
+        }
+        else if (year == currentYear) {
+
+            var options = options0;
+
+            if (currentMonth > 3 && currentMonth <= 6) {
+                options += options1;
+            }
+            else if (currentMonth > 6 && currentMonth <= 9) {
+                options += options1 + options2;
+
+            }
+            else if (currentMonth > 9 && currentMonth <= 12) {
+                options += options1 + options2 + options3;
+            }
+
+
+            document.getElementById("quarterDropdown").innerHTML = options;
+        }
+    }
+
+    function SubjectChanged() {
+        if ($('#UserRequest_subject_id').val() == 1) {
+            // alert('hi');
+            $('#yearDropdownContainer').removeClass('d-none')
+            $('#yearDropdown').attr('required', true);
+            $('#quarterDropdownContainer').removeClass('d-none');
+            $('#quarterDropdown').attr('required', true);
+        } else {
+            $('#yearDropdownContainer').addClass('d-none');
+            $('#yearDropdown').removeAttr('required');
+            $('#quarterDropdownContainer').addClass('d-none');
+            $('#quarterDropdown').removeAttr('required');
+        }
+    }
+
+    
+</script>

@@ -81,6 +81,7 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<Years> Years { get; set; }
         public virtual DbSet<LoginUser> LoginUser { get; set; }
         public virtual DbSet<UserRequests> UserRequests { get; set; }
+        public virtual DbSet<QPRRequestSubjects> QPRRequestSubjects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -51,6 +51,19 @@ namespace QPR_Application.Repository
             }
             return years;
         }
+        public async Task<List<Years>> GetQPRRequestYear()
+        {
+            List<Years> years = new List<Years>();
+            try
+            {
+                years = await _dbContext.Set<Years>().FromSqlRaw("EXECUTE dbo.GetQPRRequestYear @UserID", new SqlParameter("@UserID", _httpContext.HttpContext?.Session?.GetString("UserName"))).ToListAsync();
+                return years;
+            }
+            catch (Exception ex)
+            {
+            }
+            return years;
+        }
         public string GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
             //var connString = _config.GetConnectionString("SQLConnection");

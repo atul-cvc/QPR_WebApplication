@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
@@ -24,6 +26,7 @@ builder.Services.AddTransient<IManageUserRepo, ManageUserRepo>();
 builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
 builder.Services.AddScoped<QPRUtilility>();
 builder.Services.AddScoped<IQprRepo, QprRepo>();
+builder.Services.AddScoped<IRequestsRepo, RequestsRepo>();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddTransient<IComplaintsRepo, ComplaintsRepo>();
 builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
@@ -35,6 +38,20 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ExcludeCVO", policy =>
+        policy.RequireAssertion(context =>
+            !context.User.IsInRole("ROLE_CVO")));
+});
+
+//[Authorize(Policy = "ExcludeCVO")]
+//public IActionResult RestrictedAction()
+//{
+//    // Your action logic here
+//    return View();
+//}
 
 builder.Services.AddSession(options =>
 {

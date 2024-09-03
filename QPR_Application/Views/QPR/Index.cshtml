@@ -35,7 +35,7 @@
                     <div class="form-group col-md-2">
                         @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
                         <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
-                        <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span>
+                        @* <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span> *@
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -102,13 +102,13 @@
     });
 
     $('button[type="submit"]').click(function (e) {
-
         $('#selectQuarterValidation').addClass('d-none');
         var selectedYear = $('#yearDropdown').val();
         var selectedQuarter = $('#quarterDropdown').val();
         var contactNumber = $('#CVCContactNo').val();
         var cvoFulltime = $('#CVOFulltime').prop('checked');
         var cvoParttime = $('#CVOParttime').prop('checked');
+        debugger;
         if (selectedYear != '' && (selectedQuarter == '' || selectedQuarter == 0)) {
             e.preventDefault();
             $('#selectQuarterValidation').removeClass('d-none');

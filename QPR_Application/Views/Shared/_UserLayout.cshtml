@@ -128,9 +128,8 @@
                                 Requests
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
-                                <li><a class="dropdown-item" href="#">Raise Request</a></li>
-                                <li><a class="dropdown-item" href="#">View Request Status</a></li>
-                                @* <li><a class="dropdown-item" href="#">Something else here</a></li> *@
+                                <li><a class="dropdown-item" asp-controller="Requests" asp-action="RaiseRequest">Raise Request</a></li>
+                                <li><a class="dropdown-item" asp-controller="Requests" asp-action="ViewRequestStatus">View Request Status</a></li>
                             </ul>
                         </li>
                     </ul>
