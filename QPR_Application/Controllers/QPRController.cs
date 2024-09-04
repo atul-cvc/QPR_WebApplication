@@ -132,12 +132,12 @@ namespace QPR_Application.Controllers
                         complaint.cvopidpiinvestadvicecvc = complaintPrevious.cvopidpiinvestotaladvicereceive - complaintPrevious.cvopidpiinvesactionduringquarter;
                         complaint.totalpidpiinvestadvicecvc = complaintPrevious.totalpidpiinvestotaladvicereceive - complaintPrevious.totalpidpiinvesactionduringquarter;
                         complaint.napidpibroughtforward = complaintPrevious.napidpipendingqtr;
-                        complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation;
-                        complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent;
-                        complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal;
-                        complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory;
-                        complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers;
-                        complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal;
+                        //complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation;
+                        //complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent;
+                        //complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal;
+                        //complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory;
+                        //complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers;
+                        //complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal;
                     }
 
                     return View(complaint);
