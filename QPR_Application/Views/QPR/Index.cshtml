@@ -35,7 +35,7 @@
                     <div class="form-group col-md-2">
                         @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
                         <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
-                        @* <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span> *@
+                        <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span>
                     </div>
                 </div>
                 <div class="row mt-2">

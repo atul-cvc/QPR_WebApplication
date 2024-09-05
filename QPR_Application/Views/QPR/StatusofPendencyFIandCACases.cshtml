@@ -82,7 +82,7 @@
         </table>
     </div>
 
-    <div class="w-75 m-auto">
+    <div class="w-90 m-auto">
         <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
             <tbody>
                 <tr style="margin-top: 10px;">
@@ -497,5 +497,60 @@
 
     }
 
+</script>
+<script>
 
+    $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").on("keyup", function () {
+        @* debugger; *@
+        var total = 0;
+        $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val())) {
+            $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").on("keyup", function () {
+        @* debugger; *@
+        var total = 0;
+        $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val())) {
+            $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
 </script>

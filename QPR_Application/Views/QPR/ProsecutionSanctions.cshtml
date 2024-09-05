@@ -1,5 +1,4 @@
-﻿@* @model QPR_Application.Models.Entities.prosecutionsanctionsqrs *@
-@model QPR_Application.Models.ViewModels.ProsecutionSanctionsViewModel
+﻿@model QPR_Application.Models.ViewModels.ProsecutionSanctionsViewModel
 
 @{
     ViewData["Title"] = "ProsecutionSanctions";
@@ -435,4 +434,125 @@
 
 </script>
 
+<script>
+    $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").on("keyup", function () {
+        var total = 0;
+        $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
+            $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+    $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").on("keyup", function () {
+        var total = 0;
+        $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
+            $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").on("keyup", function () {
+        var total = 0;
+        $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
+            $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").on("keyup", function () {
+        var total = 0;
+        $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
+            $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").on("keyup", function () {
+        if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
+            $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val($("#Prosecutionsanctionsqrs_prosevigitotal").val());
+        }
+        performComTotal();
+    });
+</script>
 

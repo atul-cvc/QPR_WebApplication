@@ -7,7 +7,7 @@ using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using QPR_Application.Util;
 
-var time = 10;
+var time = 30; //Minutes
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

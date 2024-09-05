@@ -104,7 +104,7 @@
                     <td>&nbsp;<b>(9)</b></td>
                 </tr>
                 <tr>
-                    <td><b><input asp-for="punitive_vigilance_majorpenalty_numberofcase" name="punitive_vigilance_majorpenalty_numberofcase" class="form-control"></b></td>
+                    <td><b><input asp-for="punitive_vigilance_majorpenalty_numberofcase" name="punitive_vigilance_majorpenalty_numberofcase" class="form-control" readonly></b></td>
                     <td><b><input asp-for="punitive_vigilance_majorpenalty_numberofofficer_against" name="punitive_vigilance_majorpenalty_numberofofficer_against" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="punitive_vigilance_majorpenalty_cutinpension" name="punitive_vigilance_majorpenalty_cutinpension" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="punitive_vigilance_majorpenalty_dismissal" name="punitive_vigilance_majorpenalty_dismissal" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
@@ -151,7 +151,7 @@
 
                 </tr>
                 <tr>
-                    <td><b><input asp-for="punitive_vigilance_minorpenalty_numberofcase" name="punitive_vigilance_minorpenalty_numberofcase" class="form-control"></b></td>
+                    <td><b><input asp-for="punitive_vigilance_minorpenalty_numberofcase" name="punitive_vigilance_minorpenalty_numberofcase" class="form-control" readonly></b></td>
                     <td><b><input asp-for="punitive_vigilance_minorpenalty_numberofofficer_against" name="punitive_vigilance_minorpenalty_numberofofficer_against" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="punitive_vigilance_minorpenalty_reduction_lowerstage" name="punitive_vigilance_minorpenalty_reduction_lowerstage" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="punitive_vigilance_minorpenalty_postponement" name="punitive_vigilance_minorpenalty_postponement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
@@ -311,10 +311,255 @@
 
 
     function performComTotal() {
-
         //$('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
-        
+
+        var total = 0;
+        $("#punitive_vigilance_finaldisposal_major_threetosix_months,#punitive_vigilance_finaldisposal_major_sixtotwelve_months,#punitive_vigilance_finaldisposal_major_onetotwo_year,#punitive_vigilance_finaldisposal_major_overtwo_year,#punitive_vigilance_finaldisposal_major_overthree_year").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        $("#punitive_vigilance_majorpenalty_numberofcase").val(total);
+
+        total = 0;
+        $("#punitive_vigilance_finaldisposal_minor_threetosix_months,#punitive_vigilance_finaldisposal_minor_sixtotwelve_months,#punitive_vigilance_finaldisposal_minor_onetotwo_year,#punitive_vigilance_finaldisposal_minor_overtwo_year,#punitive_vigilance_finaldisposal_minor_overthree_year").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        $("#punitive_vigilance_minorpenalty_numberofcase").val(total);
+
     }
+
+</script>
+
+<script>
+    $("#punitive_vigilance_finaldisposal_major_threetosix_months,#punitive_vigilance_finaldisposal_major_sixtotwelve_months,#punitive_vigilance_finaldisposal_major_onetotwo_year,#punitive_vigilance_finaldisposal_major_overtwo_year,#punitive_vigilance_finaldisposal_major_overthree_year").on("keyup", function () {
+        var total = 0;
+        $("#punitive_vigilance_finaldisposal_major_threetosix_months,#punitive_vigilance_finaldisposal_major_sixtotwelve_months,#punitive_vigilance_finaldisposal_major_onetotwo_year,#punitive_vigilance_finaldisposal_major_overtwo_year,#punitive_vigilance_finaldisposal_major_overthree_year").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        $("#punitive_vigilance_majorpenalty_numberofcase").val(total);
+        // performComTotal();
+    });
+
+    $("#punitive_vigilance_finaldisposal_minor_threetosix_months,#punitive_vigilance_finaldisposal_minor_sixtotwelve_months,#punitive_vigilance_finaldisposal_minor_onetotwo_year,#punitive_vigilance_finaldisposal_minor_overtwo_year,#punitive_vigilance_finaldisposal_minor_overthree_year").on("keyup", function () {
+        var total = 0;
+        $("#punitive_vigilance_finaldisposal_minor_threetosix_months,#punitive_vigilance_finaldisposal_minor_sixtotwelve_months,#punitive_vigilance_finaldisposal_minor_onetotwo_year,#punitive_vigilance_finaldisposal_minor_overtwo_year,#punitive_vigilance_finaldisposal_minor_overthree_year").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        $("#punitive_vigilance_minorpenalty_numberofcase").val(total);
+        // performComTotal();
+    });
+
+    $("#punitive_vigilance_majorpenalty_numberofofficer_against").on("keyup", function () {
+        if (parseFloat($("#punitive_vigilance_majorpenalty_numberofofficer_against").val()) > parseFloat($("#punitive_vigilance_majorpenalty_numberofcase").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Cannot be more than no of case: ' + parseFloat($("#punitive_vigilance_majorpenalty_numberofcase").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#punitive_vigilance_majorpenalty_numberofofficer_against").val(0);
+        }
+    })
+
+
+    $("#punitive_vigilance_minorpenalty_numberofofficer_against").on("keyup", function () {
+        if (parseFloat($("#punitive_vigilance_minorpenalty_numberofofficer_against").val()) > parseFloat($("#punitive_vigilance_minorpenalty_numberofcase").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Cannot be more than no of case: ' + parseFloat($("#punitive_vigilance_minorpenalty_numberofcase").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#punitive_vigilance_minorpenalty_numberofofficer_against").val(0);
+        }
+    })
+
+    $("#punitive_vigilance_majorpenalty_cutinpension,#punitive_vigilance_majorpenalty_dismissal,#punitive_vigilance_majorpenalty_reduction_scale,#punitive_vigilance_majorpenalty_other_majorpenalties,#punitive_vigilance_majorpenalty_minorpenalties,#punitive_vigilance_majorpenalty_censure_warning,#punitive_vigilance_majorpenalty_noaction").on("keyup", function () {
+        var total = 0;
+        $("#punitive_vigilance_majorpenalty_cutinpension,#punitive_vigilance_majorpenalty_dismissal,#punitive_vigilance_majorpenalty_reduction_scale,#punitive_vigilance_majorpenalty_other_majorpenalties,#punitive_vigilance_majorpenalty_minorpenalties,#punitive_vigilance_majorpenalty_censure_warning,#punitive_vigilance_majorpenalty_noaction").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#punitive_vigilance_majorpenalty_numberofofficer_against").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#punitive_vigilance_majorpenalty_numberofofficer_against").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#punitive_vigilance_majorpenalty_numberofofficer_against").val())) {
+            $("#punitive_vigilance_majorpenalty_cutinpension,#punitive_vigilance_majorpenalty_dismissal,#punitive_vigilance_majorpenalty_reduction_scale,#punitive_vigilance_majorpenalty_other_majorpenalties,#punitive_vigilance_majorpenalty_minorpenalties,#punitive_vigilance_majorpenalty_censure_warning,#punitive_vigilance_majorpenalty_noaction").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#punitive_vigilance_minorpenalty_reduction_lowerstage,#punitive_vigilance_minorpenalty_postponement,#punitive_vigilance_minorpenalty_recovery_pay,#punitive_vigilance_minorpenalty_holding_promotion,#punitive_vigilance_minorpenalty_censure,#punitive_vigilance_minorpenalty_exoneration").on("keyup", function () {
+        var total = 0;
+        $("#punitive_vigilance_minorpenalty_reduction_lowerstage,#punitive_vigilance_minorpenalty_postponement,#punitive_vigilance_minorpenalty_recovery_pay,#punitive_vigilance_minorpenalty_holding_promotion,#punitive_vigilance_minorpenalty_censure,#punitive_vigilance_minorpenalty_exoneration").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#punitive_vigilance_minorpenalty_numberofofficer_against").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#punitive_vigilance_minorpenalty_numberofofficer_against").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#punitive_vigilance_minorpenalty_numberofofficer_against").val())) {
+            $("#punitive_vigilance_minorpenalty_reduction_lowerstage,#punitive_vigilance_minorpenalty_postponement,#punitive_vigilance_minorpenalty_recovery_pay,#punitive_vigilance_minorpenalty_holding_promotion,#punitive_vigilance_minorpenalty_censure,#punitive_vigilance_minorpenalty_exoneration").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#punitivevigilance_riskwisebreakup_groupc_numberofofficer,#punitivevigilance_riskwisebreakup_groupb_numberofofficer,#punitivevigilance_riskwisebreakup_groupa_numberofofficer,#punitivevigilance_riskwisebreakup_js_numberofofficer").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_numberofofficer,#punitivevigilance_riskwisebreakup_groupb_numberofofficer,#punitivevigilance_riskwisebreakup_groupa_numberofofficer,#punitivevigilance_riskwisebreakup_js_numberofofficer").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalNoOfCase = parseFloat($("#punitive_vigilance_minorpenalty_numberofcase").val()) + parseFloat($("#punitive_vigilance_majorpenalty_numberofcase").val())
+        if (totalNoOfCase != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalNoOfCase,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > totalNoOfCase) {
+            $("#punitivevigilance_riskwisebreakup_groupc_numberofofficer,#punitivevigilance_riskwisebreakup_groupb_numberofofficer,#punitivevigilance_riskwisebreakup_groupa_numberofofficer,#punitivevigilance_riskwisebreakup_js_numberofofficer").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    
+
+    $("#punitivevigilance_riskwisebreakup_groupc_officeragainst,#punitivevigilance_riskwisebreakup_groupb_officeragainst,#punitivevigilance_riskwisebreakup_groupa_officeragainst,#punitivevigilance_riskwisebreakup_js_officeragainst").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_officeragainst,#punitivevigilance_riskwisebreakup_groupb_officeragainst,#punitivevigilance_riskwisebreakup_groupa_officeragainst,#punitivevigilance_riskwisebreakup_js_officeragainst").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalNoOfCase = parseFloat($("#punitive_vigilance_majorpenalty_numberofofficer_against").val()) + parseFloat($("#punitive_vigilance_minorpenalty_numberofofficer_against").val())
+        if (totalNoOfCase != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalNoOfCase,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalNoOfCase) {
+            $("#punitivevigilance_riskwisebreakup_groupc_officeragainst,#punitivevigilance_riskwisebreakup_groupb_officeragainst,#punitivevigilance_riskwisebreakup_groupa_officeragainst,#punitivevigilance_riskwisebreakup_js_officeragainst").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    
+    $("#punitivevigilance_riskwisebreakup_groupc_pensioncut,#punitivevigilance_riskwisebreakup_groupb_pensioncut,#punitivevigilance_riskwisebreakup_groupa_pensioncut,#punitivevigilance_riskwisebreakup_js_pensioncut").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_pensioncut,#punitivevigilance_riskwisebreakup_groupb_pensioncut,#punitivevigilance_riskwisebreakup_groupa_pensioncut,#punitivevigilance_riskwisebreakup_js_pensioncut").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        // var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_cutinpension").val());
+        if (parseFloat($("#punitive_vigilance_majorpenalty_cutinpension").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#punitive_vigilance_majorpenalty_cutinpension").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > parseFloat($("#punitive_vigilance_majorpenalty_cutinpension").val())) {
+            $("#punitivevigilance_riskwisebreakup_groupc_pensioncut,#punitivevigilance_riskwisebreakup_groupb_pensioncut,#punitivevigilance_riskwisebreakup_groupa_pensioncut,#punitivevigilance_riskwisebreakup_js_pensioncut").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+    
+    
+    $("#punitivevigilance_riskwisebreakup_groupc_dismissal,#punitivevigilance_riskwisebreakup_groupb_dismissal,#punitivevigilance_riskwisebreakup_groupa_dismissal,#punitivevigilance_riskwisebreakup_js_dismissal").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_dismissal,#punitivevigilance_riskwisebreakup_groupb_dismissal,#punitivevigilance_riskwisebreakup_groupa_dismissal,#punitivevigilance_riskwisebreakup_js_dismissal").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        // var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_cutinpension").val());
+        if (parseFloat($("#punitive_vigilance_majorpenalty_dismissal").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#punitive_vigilance_majorpenalty_dismissal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > parseFloat($("#punitive_vigilance_majorpenalty_dismissal").val())) {
+            $("#punitivevigilance_riskwisebreakup_groupc_dismissal,#punitivevigilance_riskwisebreakup_groupb_dismissal,#punitivevigilance_riskwisebreakup_groupa_dismissal,#punitivevigilance_riskwisebreakup_js_dismissal").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
 
 
 </script>

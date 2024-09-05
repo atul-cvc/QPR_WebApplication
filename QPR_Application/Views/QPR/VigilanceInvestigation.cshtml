@@ -1072,7 +1072,7 @@
                     <td> <b><input asp-for="viginvestreskgroupbminorpp" name="viginvestreskgroupbminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupbotheraction" name="viginvestreskgroupbotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupbclosure" name="viginvestreskgroupbclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                    <td> <b><input asp-for="viginvestreskgroupbtotal" name="viginvestreskgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                    <td> <b><input asp-for="viginvestreskgroupbtotal" name="viginvestreskgroupbtotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
                 </tr>
                 <tr>
                     <td align="left"> <b>Group A upto DS/Dir level</b> </td>
@@ -1080,7 +1080,7 @@
                     <td> <b><input asp-for="viginvestreskgroupaminorpp" name="viginvestreskgroupaminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupaotheraction" name="viginvestreskgroupaotheraction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupaclosure" name="viginvestreskgroupaclosure" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
-                    <td> <b><input asp-for="viginvestreskgroupatotal" name="viginvestreskgroupatotal" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
+                    <td> <b><input asp-for="viginvestreskgroupatotal" name="viginvestreskgroupatotal" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
                 </tr>
                 <tr>
                     <td align="left"> <b>JS and above</b> </td>
@@ -1088,7 +1088,7 @@
                     <td> <b><input asp-for="viginvestreskgroupjsminorpp" name="viginvestreskgroupjsminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupjsotheraction" name="viginvestreskgroupjsotheraction" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestreskgroupjsclosure" name="viginvestreskgroupjsclosure" class="form-control"></b> </td>
-                    <td> <b><input asp-for="viginvestreskgroupjstotal" name="viginvestreskgroupjstotal" class="form-control"></b> </td>
+                    <td> <b><input asp-for="viginvestreskgroupjstotal" name="viginvestreskgroupjstotal" class="form-control" readonly></b> </td>
                 </tr>
                 <tr>
                     <td align="left"> <b>Total</b> </td>
@@ -1238,7 +1238,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Disposal cannot be greater than Total(3)',
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
             $("#viginvescvcreportsrecivqtr").val($("#viginvescvctotal").val());
             performComTotal();
@@ -1252,7 +1252,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Disposal cannot be greater than Total(3)',
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
             $("#viginvescvoreportsrecivqtr").val($("#viginvescvototal").val());
             performComTotal();
@@ -1273,7 +1273,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Total must be equal to: ' + parseFloat($("#viginvescvcbalancepending").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
             // $("#viginvescvoreportsrecivqtr").val($("#viginvescvototal").val());
         }
@@ -1300,7 +1300,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Total must be equal to: ' + parseFloat($("#viginvescvobalancepending").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
         }
         if (total > parseFloat($("#viginvescvobalancepending").val())) {
@@ -1326,7 +1326,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Total must be equal to: ' + parseFloat($("#viginvespendingbalancepending").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
         }
         if (total > parseFloat($("#viginvespendingbalancepending").val())) {
@@ -1347,7 +1347,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Disposal cannot be greater than Total : ' + parseFloat($("#viginvestacbitotal").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
             $("#viginvestacbidisposedqtr").val($("#viginvestacbitotal").val());
         }
@@ -1362,14 +1362,44 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Disposal cannot be greater than Total : ' + parseFloat($("#viginvestacvototal").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
             $("#viginvestacvodisposedqtr").val($("#viginvestacvototal").val());
         }
         performComTotal();
     })
+    $("#viginvestbcbidisposedqtr").on("keyup", function () {
+        // debugger;
+        if (parseFloat($("#viginvestbcbidisposedqtr").val()) > parseFloat($("#viginvestbcbitotal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Disposal cannot be greater than Total(4) = ' + parseFloat($("#viginvestbcbitotal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#viginvestbcbidisposedqtr").val(0);
+        }
+        performComTotal();
+    })
+    $("#viginvestbcvodisposedqtr").on("keyup", function () {
+        // debugger;
+        if (parseFloat($("#viginvestbcvodisposedqtr").val()) > parseFloat($("#viginvestbcvototal").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Disposal cannot be greater than Total(4) = ' + parseFloat($("#viginvestbcvototal").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#viginvestbcvodisposedqtr").val(0);
+        }
+        performComTotal();
+    })
 
-    $("#viginvestacbilesstwelve,#viginvestacbisixtotwelve,#viginvestacbithreetosix,#viginvestacbigreaterthree").on("keyup", function () {
+    $("#viginvestacbilesstwelve,#viginvestacbisixtotwelve,#viginvestacbithreetosix,#viginvestacbigreaterthree").on("blur", function () {
         //viginvestacbibalancepending
         var total = 0;
         $("#viginvestacbilesstwelve, #viginvestacbisixtotwelve, #viginvestacbithreetosix, #viginvestacbigreaterthree").each(function () {
@@ -1384,7 +1414,7 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Total must be equal to: ' + parseFloat($("#viginvestacbibalancepending").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
         }
         if (total > parseFloat($("#viginvestacbibalancepending").val())) {
@@ -1396,7 +1426,7 @@
         performComTotal();
     })
 
-    $("#viginvestacvolesstwelve,#viginvestacvosixtotwelve,#viginvestacvothreetosix,#viginvestacvogreaterthree").on("keyup", function () {
+    $("#viginvestacvolesstwelve,#viginvestacvosixtotwelve,#viginvestacvothreetosix,#viginvestacvogreaterthree").on("blur", function () {
         //viginvestacvobalancepending
         var total = 0;
         $("#viginvestacvolesstwelve, #viginvestacvosixtotwelve, #viginvestacvothreetosix, #viginvestacvogreaterthree").each(function () {
@@ -1411,11 +1441,145 @@
                 icon: 'info', // Type of icon (success, error, warning, info)
                 title: 'Total must be equal to: ' + parseFloat($("#viginvestacvobalancepending").val()),
                 showConfirmButton: false,
-                timer: 5000, // Duration in milliseconds
+                timer: 3000, // Duration in milliseconds
             });
         }
         if (total > parseFloat($("#viginvestacvobalancepending").val())) {
             $("#viginvestacvolesstwelve, #viginvestacvosixtotwelve, #viginvestacvothreetosix, #viginvestacvogreaterthree").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestbcbilesstwelve,#viginvestbcbisixtotwelve,#viginvestbcbithreetosix,#viginvestbcbigreaterthree").on("blur", function () {
+        //viginvestbcbibalancepending
+        var total = 0;
+        $("#viginvestbcbilesstwelve, #viginvestbcbisixtotwelve, #viginvestbcbithreetosix, #viginvestbcbigreaterthree").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#viginvestbcbibalancepending").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestbcbibalancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#viginvestbcbibalancepending").val())) {
+            $("#viginvestbcbilesstwelve, #viginvestbcbisixtotwelve, #viginvestbcbithreetosix, #viginvestbcbigreaterthree").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestbcvolesstwelve,#viginvestbcvosixtotwelve,#viginvestbcvothreetosix,#viginvestbcvogreaterthree").on("blur", function () {
+        //viginvestbcvobalancepending
+        var total = 0;
+        $("#viginvestbcvolesstwelve, #viginvestbcvosixtotwelve, #viginvestbcvothreetosix, #viginvestbcvogreaterthree").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (total != parseFloat($("#viginvestbcvobalancepending").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestbcvobalancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#viginvestbcvobalancepending").val())) {
+            $("#viginvestbcvolesstwelve, #viginvestbcvosixtotwelve, #viginvestbcvothreetosix, #viginvestbcvogreaterthree").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestreskgroupcmajorpp,#viginvestreskgroupbmajorpp,#viginvestreskgroupamajorpp,#viginvestreskgroupjsmajorpp").on("keyup", function () {
+        if (parseFloat($("#viginvestresktotalmajorpp").val()) != parseFloat($("#viginvestmajorpp").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestmajorpp").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (parseFloat($("#viginvestresktotalmajorpp").val()) > parseFloat($("#viginvestmajorpp").val())) {
+            $("#viginvestreskgroupcmajorpp,#viginvestreskgroupbmajorpp,#viginvestreskgroupamajorpp,#viginvestreskgroupjsmajorpp").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestreskgroupcminorpp,#viginvestreskgroupbminorpp,#viginvestreskgroupaminorpp,#viginvestreskgroupjsminorpp").on("keyup", function () {
+       if (parseFloat($("#viginvestresktotalminorpp").val()) != parseFloat($("#viginvestminorpp").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestminorpp").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (parseFloat($("#viginvestresktotalminorpp").val()) > parseFloat($("#viginvestminorpp").val())) {
+            $("#viginvestreskgroupcminorpp,#viginvestreskgroupbminorpp,#viginvestreskgroupaminorpp,#viginvestreskgroupjsminorpp").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestreskgroupcotheraction,#viginvestreskgroupbotheraction,#viginvestreskgroupaotheraction,#viginvestreskgroupjsotheraction").on("keyup", function () {
+        if (parseFloat($("#viginvestresktotalotheraction").val()) != parseFloat($("#viginvestotheradmnaction").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestotheradmnaction").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (parseFloat($("#viginvestresktotalotheraction").val()) > parseFloat($("#viginvestotheradmnaction").val())) {
+            $("#viginvestreskgroupcotheraction,#viginvestreskgroupbotheraction,#viginvestreskgroupaotheraction,#viginvestreskgroupjsotheraction").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    })
+
+    $("#viginvestreskgroupcclosure,#viginvestreskgroupbclosure,#viginvestreskgroupaclosure,#viginvestreskgroupjsclosure").on("keyup", function () {
+        if (parseFloat($("#viginvestresktotalclosure").val()) != parseFloat($("#viginvestclosure").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#viginvestclosure").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (parseFloat($("#viginvestresktotalclosure").val()) > parseFloat($("#viginvestclosure").val())) {
+            $("#viginvestreskgroupcclosure,#viginvestreskgroupbclosure,#viginvestreskgroupaclosure,#viginvestreskgroupjsclosure").each(function () {
                 // Convert to float and default to 0 if NaN
                 $(this).val(0);
             });

@@ -605,7 +605,7 @@
             });
         });
     });
-    
+
     $(document).ready(function () {
         $('#NewAppeleateAuthority_stagetype').change(function () {
             var stageName = $(this).val();
@@ -623,5 +623,210 @@
                 }
             });
         });
+    });
+</script>
+<script>
+    $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_advice_cvc_first_casesduringqtr, #AdviceOfCvc_advice_cvc_first_casespreviousqtr").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + total,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val())) {
+            $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val(0);
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_advice_cvc_second_casesduringqtr, #AdviceOfCvc_advice_cvc_second_casespreviousqtr").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + total,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val())) {
+            $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val(0);
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + total,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val())) {
+            $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val(0);
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + total,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val())) {
+            $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val(0);
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val())) {
+            $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val())) {
+            $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val())) {
+            $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+
+    $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").on("keyup", function () {
+        debugger;
+        var total = 0;
+        $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()) != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+        if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val())) {
+            $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
     });
 </script>
