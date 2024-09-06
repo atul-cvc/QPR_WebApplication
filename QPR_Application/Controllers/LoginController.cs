@@ -45,7 +45,7 @@ namespace QPR_Application.Controllers
         public async Task<IActionResult> Index(Login login)
         {
             try
-            {                
+            {
                 string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
 
                 if (ipAdd == "::1")
@@ -66,14 +66,15 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
                             _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
                             _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
-                            _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
+                            if (uDetails.OrgDetails != null)
+                                _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
 
                             List<Claim> claims = new List<Claim>()
-                        {
-                            new Claim(ClaimTypes.NameIdentifier, uDetails.User.userid),
-                            new Claim(ClaimTypes.Name, uDetails.User.userid),
-                            new Claim(ClaimTypes.Role, uDetails.User.logintype)
-                        };
+                            {
+                                new Claim(ClaimTypes.NameIdentifier, uDetails.User.userid),
+                                new Claim(ClaimTypes.Name, uDetails.User.userid),
+                                new Claim(ClaimTypes.Role, uDetails.User.logintype)
+                            };
                             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                             AuthenticationProperties properties = new AuthenticationProperties()
                             {

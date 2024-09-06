@@ -438,7 +438,6 @@
     });
 
     $("#punitivevigilance_riskwisebreakup_groupc_numberofofficer,#punitivevigilance_riskwisebreakup_groupb_numberofofficer,#punitivevigilance_riskwisebreakup_groupa_numberofofficer,#punitivevigilance_riskwisebreakup_js_numberofofficer").on("keyup", function () {
-        debugger;
         var total = 0;
         $("#punitivevigilance_riskwisebreakup_groupc_numberofofficer,#punitivevigilance_riskwisebreakup_groupb_numberofofficer,#punitivevigilance_riskwisebreakup_groupa_numberofofficer,#punitivevigilance_riskwisebreakup_js_numberofofficer").each(function () {
             // Convert to float and default to 0 if NaN
@@ -466,10 +465,9 @@
         performComTotal();
     });
 
-    
+
 
     $("#punitivevigilance_riskwisebreakup_groupc_officeragainst,#punitivevigilance_riskwisebreakup_groupb_officeragainst,#punitivevigilance_riskwisebreakup_groupa_officeragainst,#punitivevigilance_riskwisebreakup_js_officeragainst").on("keyup", function () {
-        debugger;
         var total = 0;
         $("#punitivevigilance_riskwisebreakup_groupc_officeragainst,#punitivevigilance_riskwisebreakup_groupb_officeragainst,#punitivevigilance_riskwisebreakup_groupa_officeragainst,#punitivevigilance_riskwisebreakup_js_officeragainst").each(function () {
             // Convert to float and default to 0 if NaN
@@ -498,9 +496,8 @@
         performComTotal();
     });
 
-    
+
     $("#punitivevigilance_riskwisebreakup_groupc_pensioncut,#punitivevigilance_riskwisebreakup_groupb_pensioncut,#punitivevigilance_riskwisebreakup_groupa_pensioncut,#punitivevigilance_riskwisebreakup_js_pensioncut").on("keyup", function () {
-        debugger;
         var total = 0;
         $("#punitivevigilance_riskwisebreakup_groupc_pensioncut,#punitivevigilance_riskwisebreakup_groupb_pensioncut,#punitivevigilance_riskwisebreakup_groupa_pensioncut,#punitivevigilance_riskwisebreakup_js_pensioncut").each(function () {
             // Convert to float and default to 0 if NaN
@@ -528,10 +525,9 @@
         }
         performComTotal();
     });
-    
-    
+
+
     $("#punitivevigilance_riskwisebreakup_groupc_dismissal,#punitivevigilance_riskwisebreakup_groupb_dismissal,#punitivevigilance_riskwisebreakup_groupa_dismissal,#punitivevigilance_riskwisebreakup_js_dismissal").on("keyup", function () {
-        debugger;
         var total = 0;
         $("#punitivevigilance_riskwisebreakup_groupc_dismissal,#punitivevigilance_riskwisebreakup_groupb_dismissal,#punitivevigilance_riskwisebreakup_groupa_dismissal,#punitivevigilance_riskwisebreakup_js_dismissal").each(function () {
             // Convert to float and default to 0 if NaN
@@ -561,6 +557,154 @@
     });
 
 
+    $("#punitivevigilance_riskwisebreakup_groupc_reductionscale,#punitivevigilance_riskwisebreakup_groupb_reductionscale,#punitivevigilance_riskwisebreakup_groupa_reductionscale,#punitivevigilance_riskwisebreakup_js_reductionscale").on("keyup", function () {
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_reductionscale,#punitivevigilance_riskwisebreakup_groupb_reductionscale,#punitivevigilance_riskwisebreakup_groupa_reductionscale,#punitivevigilance_riskwisebreakup_js_reductionscale").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_reduction_scale").val()) + parseFloat($("#punitive_vigilance_minorpenalty_reduction_lowerstage").val());
+        if (totalcut != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalcut,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalcut) {
+            $("#punitivevigilance_riskwisebreakup_groupc_reductionscale,#punitivevigilance_riskwisebreakup_groupb_reductionscale,#punitivevigilance_riskwisebreakup_groupa_reductionscale,#punitivevigilance_riskwisebreakup_js_reductionscale").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+    
+
+    $("#punitivevigilance_riskwisebreakup_groupc_majorpenalties,#punitivevigilance_riskwisebreakup_groupb_majorpenalties,#punitivevigilance_riskwisebreakup_groupa_majorpenalties,#punitivevigilance_riskwisebreakup_js_majorpenalties").on("keyup", function () {
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_majorpenalties,#punitivevigilance_riskwisebreakup_groupb_majorpenalties,#punitivevigilance_riskwisebreakup_groupa_majorpenalties,#punitivevigilance_riskwisebreakup_js_majorpenalties").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_other_majorpenalties").val());
+        if (totalcut != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalcut,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalcut) {
+            $("#punitivevigilance_riskwisebreakup_groupc_majorpenalties,#punitivevigilance_riskwisebreakup_groupb_majorpenalties,#punitivevigilance_riskwisebreakup_groupa_majorpenalties,#punitivevigilance_riskwisebreakup_js_majorpenalties").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+    
+
+    $("#punitivevigilance_riskwisebreakup_groupc_minorpenalties,#punitivevigilance_riskwisebreakup_groupb_minorpenalties,#punitivevigilance_riskwisebreakup_groupa_minorpenalties,#punitivevigilance_riskwisebreakup_js_minorpenalties").on("keyup", function () {
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_minorpenalties,#punitivevigilance_riskwisebreakup_groupb_minorpenalties,#punitivevigilance_riskwisebreakup_groupa_minorpenalties,#punitivevigilance_riskwisebreakup_js_minorpenalties").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_minorpenalties").val()) + parseFloat($("#punitive_vigilance_minorpenalty_postponement").val()) + parseFloat($("#punitive_vigilance_minorpenalty_recovery_pay").val()) + parseFloat($("#punitive_vigilance_minorpenalty_holding_promotion").val());
+        if (totalcut != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalcut,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalcut) {
+            $("#punitivevigilance_riskwisebreakup_groupc_minorpenalties,#punitivevigilance_riskwisebreakup_groupb_minorpenalties,#punitivevigilance_riskwisebreakup_groupa_minorpenalties,#punitivevigilance_riskwisebreakup_js_minorpenalties").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+    
+
+    $("#punitivevigilance_riskwisebreakup_groupc_censure,#punitivevigilance_riskwisebreakup_groupb_censure,#punitivevigilance_riskwisebreakup_groupa_censure,#punitivevigilance_riskwisebreakup_js_censure").on("keyup", function () {
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_censure,#punitivevigilance_riskwisebreakup_groupb_censure,#punitivevigilance_riskwisebreakup_groupa_censure,#punitivevigilance_riskwisebreakup_js_censure").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_censure_warning").val()) + parseFloat($("#punitive_vigilance_minorpenalty_censure").val());
+        if (totalcut != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalcut,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalcut) {
+            $("#punitivevigilance_riskwisebreakup_groupc_censure,#punitivevigilance_riskwisebreakup_groupb_censure,#punitivevigilance_riskwisebreakup_groupa_censure,#punitivevigilance_riskwisebreakup_js_censure").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
+    
+
+    $("#punitivevigilance_riskwisebreakup_groupc_noaction,#punitivevigilance_riskwisebreakup_groupb_noaction,#punitivevigilance_riskwisebreakup_groupa_noaction,#punitivevigilance_riskwisebreakup_js_noaction").on("keyup", function () {
+        var total = 0;
+        $("#punitivevigilance_riskwisebreakup_groupc_noaction,#punitivevigilance_riskwisebreakup_groupb_noaction,#punitivevigilance_riskwisebreakup_groupa_noaction,#punitivevigilance_riskwisebreakup_js_noaction").each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+
+        var totalcut = parseFloat($("#punitive_vigilance_majorpenalty_noaction").val()) + parseFloat($("#punitive_vigilance_minorpenalty_exoneration").val());
+        if (totalcut != total) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + totalcut,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+        }
+
+        if (total > totalcut) {
+            $("#punitivevigilance_riskwisebreakup_groupc_noaction,#punitivevigilance_riskwisebreakup_groupb_noaction,#punitivevigilance_riskwisebreakup_groupa_noaction,#punitivevigilance_riskwisebreakup_js_noaction").each(function () {
+                // Convert to float and default to 0 if NaN
+                $(this).val(0);
+            });
+        }
+        performComTotal();
+    });
 
 </script>
 

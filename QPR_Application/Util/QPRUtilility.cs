@@ -6,16 +6,26 @@ using QPR_Application.Models.ViewModels;
 using QPR_Application.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace QPR_Application.Util
 {
-    public class QPRUtilility
+    public class QPRUtility
     {
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
         private string _connString = string.Empty;
         private readonly IComplaintsRepo _complaintsRepo;
-        public QPRUtilility(IQprRepo qprRepo, IHttpContextAccessor httpContext, IConfiguration config, IComplaintsRepo complaintsRepo)
+
+        public static List<SelectListItem> quarterItems = new List<SelectListItem>
+                    {new SelectListItem { Value = "", Text = "Select" },
+                        new SelectListItem { Value = "1", Text = "January to March" },
+                        new SelectListItem { Value = "2", Text = "April to June" },
+                        new SelectListItem { Value = "3", Text = "July to September" },
+                        new SelectListItem { Value = "4", Text = "October to December" },
+                        new SelectListItem { Value = "5", Text = "All" }
+                    };
+        public QPRUtility(IQprRepo qprRepo, IHttpContextAccessor httpContext, IConfiguration config, IComplaintsRepo complaintsRepo)
         {
             _qprRepo = qprRepo;
             _httpContext = httpContext;

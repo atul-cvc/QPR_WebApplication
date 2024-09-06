@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QPR_Application.Models.DTO.Response;
+using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Repository;
+using QPR_Application.Util;
 
 namespace QPR_Application.Controllers
 {
@@ -13,11 +15,14 @@ namespace QPR_Application.Controllers
         private readonly IRequestsRepo _requestRepo;
         private readonly IQprRepo _qprRepo;
         private readonly IHttpContextAccessor _httpContext;
-        public RequestsController(IHttpContextAccessor httpContext,IRequestsRepo requestRepo,IQprRepo qprRepo)
+        private readonly QPRUtility _QPRUtility;
+        List<SelectListItem> quarterItems = QPRUtility.quarterItems;
+        public RequestsController(IHttpContextAccessor httpContext,IRequestsRepo requestRepo,IQprRepo qprRepo, QPRUtility QPRUtility)
         {
             _requestRepo = requestRepo;
             _qprRepo = qprRepo;
             _httpContext = httpContext;
+            _QPRUtility = QPRUtility;
         }
 
         [Authorize(Roles = "ROLE_CVO")]
@@ -25,13 +30,6 @@ namespace QPR_Application.Controllers
         {
             UserRequestsViewModel userReqVM = new UserRequestsViewModel();
             userReqVM.RequestSubjects = await _requestRepo.GetRequestSubjects();
-            List<SelectListItem> quarterItems = new List<SelectListItem>
-                    {new SelectListItem { Value = "", Text = "Select" },
-                        new SelectListItem { Value = "1", Text = "January to March" },
-                        new SelectListItem { Value = "2", Text = "April to June" },
-                        new SelectListItem { Value = "3", Text = "July to September" },
-                        new SelectListItem { Value = "4", Text = "October to December" }
-                    };
             var quarterList = new SelectList(quarterItems, "Value", "Text");
             ViewBag.Quarters = quarterList;
 
@@ -61,9 +59,10 @@ namespace QPR_Application.Controllers
             return View();
         }
 
-        public IActionResult ViewRequestStatus()
+        public async Task<IActionResult> ViewRequestStatus()
         {
-            return View();
+            List<UserRequests> userRequests = await _requestRepo.GetUserRquestsCVO();
+            return View(userRequests);
         }
     }
 }

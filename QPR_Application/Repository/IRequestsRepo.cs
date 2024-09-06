@@ -6,5 +6,6 @@ namespace QPR_Application.Repository
     {
         public Task<List<QPRRequestSubjects>> GetRequestSubjects();
         public Task SaveUserRequest(UserRequests _userRequest);
+        public Task<List<UserRequests>> GetUserRquestsCVO();
     }
 }

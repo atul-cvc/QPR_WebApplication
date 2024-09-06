@@ -24,7 +24,7 @@ builder.Services.AddTransient<ILoginRepo, LoginRepo>();
 builder.Services.AddTransient<IAdminRepo, AdminRepo>();
 builder.Services.AddTransient<IManageUserRepo, ManageUserRepo>();
 builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
-builder.Services.AddScoped<QPRUtilility>();
+builder.Services.AddScoped<QPRUtility>();
 builder.Services.AddScoped<IQprRepo, QprRepo>();
 builder.Services.AddScoped<IRequestsRepo, RequestsRepo>();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();

@@ -19,17 +19,17 @@ namespace QPR_Application.Controllers
         private readonly IHttpContextAccessor _httpContext;
         private readonly IComplaintsRepo _complaintsRepo;
         private readonly IChangePasswordRepo _changePasswordRepo;
-        private readonly QPRUtilility _qprUtil;
+        private readonly QPRUtility _qprUtil;
         private registration? userObject;
 
-        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, IChangePasswordRepo changePasswordRepo, QPRUtilility qPRUtilility)
+        public QPRController(ILogger<QPRController> logger, IQprRepo qprRepo, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, IChangePasswordRepo changePasswordRepo, QPRUtility QPRUtility)
         {
             _logger = logger;
             _qprRepo = qprRepo;
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
             _changePasswordRepo = changePasswordRepo;
-            _qprUtil = qPRUtilility;
+            _qprUtil = QPRUtility;
         }
         public async Task<IActionResult> Index()
         {
@@ -740,10 +740,13 @@ namespace QPR_Application.Controllers
                         data.PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_end_previous_qtr = dataOld.preventivevigi_bycvo_system_improvements_end_previous_qtr + dataOld.preventivevigi_bycvo_system_improvements_during_qtr;
                         //data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost = dataOld.preventivevigi_management_job_rotation_postnotrotated;
 
-                        data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost = dataOld.preventivevigi_management_job_rotation_sensitivenumberpost;
-                        if (dataOld.preventivevigi_management_job_rotation_postnotrotated != 0)
+                        if (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")) > 1)
                         {
-                            data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postduerotation = dataOld.preventivevigi_management_job_rotation_postnotrotated ;
+                            data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost = dataOld.preventivevigi_management_job_rotation_sensitivenumberpost;
+                            if (dataOld.preventivevigi_management_job_rotation_postnotrotated != 0)
+                            {
+                                data.PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postduerotation = dataOld.preventivevigi_management_job_rotation_postnotrotated;
+                            }
                         }
 
                     }

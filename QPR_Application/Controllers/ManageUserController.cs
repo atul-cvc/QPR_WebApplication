@@ -30,7 +30,7 @@ namespace QPR_Application.Controllers
                 new SelectListItem { Value = "ROLE_CVO", Text = "ROLE_CVO" },
                 new SelectListItem { Value = "ROLE_COORD", Text = "ROLE_COORD" },
                 new SelectListItem { Value = "ROLE_ADMIN", Text = "ROLE_ADMIN" },
-                new SelectListItem { Value = "ROLE_SO", Text = "ROLE_SO" }
+                new SelectListItem { Value = "ROLE_SO", Text = "ROLE_SO" },
             };
             ViewBag.LoginTypes = new SelectList(loginTypes, "Value", "Text", "Select");
 

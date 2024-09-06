@@ -12,10 +12,10 @@ namespace QPR_Application.Controllers
     {
         private readonly IHttpContextAccessor _httpContext;
         private readonly IComplaintsRepo _complaintsRepo;
-        private readonly QPRUtilility _qprUtil;
+        private readonly QPRUtility _qprUtil;
         private readonly IQprRepo _qprRepo;
 
-        public DownloadQPRController(IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, QPRUtilility qprUtil, IQprRepo qprRepo)
+        public DownloadQPRController(IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, QPRUtility qprUtil, IQprRepo qprRepo)
         {
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;

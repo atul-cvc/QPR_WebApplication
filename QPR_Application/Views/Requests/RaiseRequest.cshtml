@@ -52,8 +52,20 @@
                     </div>
                 </div>
 
+                <div class="row mt-3 d-none" id="descriptionContainer">
+                    <div class="col-md-4 align-content-center">
+                        <label>Description : </label>
+                    </div>
+                    <div class="col-md-4">
+                        <textarea rows="5" asp-for="UserRequest.description" class="form-control"></textarea>
+                        <span asp-validation-for="UserRequest.description" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4"><span class="text-black-50" id="descCharCount"></span></div>
+                </div>
+                
+
                 <div class="d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn btn-success" >Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </div>
         </form>
@@ -61,28 +73,16 @@
 </div>
 
 <script>
-    // $('#UserRequest_subject_id').change(function () {
-    //     var selectedValue = $(this).val();
-
-    //     // Hide all content divs
-    //     $('#content1').hide();
-    //     $('#content2').hide();
-
-    //     // Show content based on the selected value
-    //     if (selectedValue === '1') {
-    //         $('#content1').show();
-    //     } else if (selectedValue === '2') {
-    //         $('#content2').show();
-    //     }
-    // });
 
     $('button[type="submit"]').click(function (e) {
-        debugger;
-        if (parseFloat($('#quarterDropdown').val()) > 0)
-            return true;
-        return false;
+        if ((parseFloat($('#quarterDropdown').val() || 0) > 0) && (parseFloat($('#yearDropdown').val() || 0) > 0))
+            return;
     });
 
+    $("#UserRequest_description").on("input", function () {
+        const length = $(this).val().length;
+        $("#descCharCount").text(`Total Characters: ${length}`);
+    });
 
     function quarterSelection() {
         debugger;
@@ -115,7 +115,6 @@
                 options += options1 + options2 + options3;
             }
 
-
             document.getElementById("quarterDropdown").innerHTML = options;
         }
     }
@@ -133,7 +132,12 @@
             $('#quarterDropdownContainer').addClass('d-none');
             $('#quarterDropdown').removeAttr('required');
         }
+
+        $('#descriptionContainer').removeClass('d-none');
+        if ($('#UserRequest_subject_id').val() < 1) {
+            $('#descriptionContainer').addClass('d-none');
+        }
     }
 
-    
+
 </script>
