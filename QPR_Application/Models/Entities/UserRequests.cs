@@ -26,6 +26,7 @@ namespace QPR_Application.Models.Entities
         {
             qtrreport = 0;
             qtryear = 0;
+            Remarks = String.Empty;
         }
     }
 }

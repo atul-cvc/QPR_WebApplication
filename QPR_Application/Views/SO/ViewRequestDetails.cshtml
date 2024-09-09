@@ -1,0 +1,163 @@
+﻿@model QPR_Application.Models.Entities.UserRequests
+
+@{
+    ViewData["Title"] = "ViewRequestDetails";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>ViewRequestDetails</h1>
+
+<div>
+    <h4>UserRequests</h4>
+    <hr />
+    <form asp-action="UpdateRequestDetails" method="post">
+        @Html.AntiForgeryToken()
+
+        <dl class="row">
+            <!-- Editable Fields -->
+
+            <dt class="col-sm-2 mt-3" hidden>
+                @Html.DisplayNameFor(model => model.subject_id)
+            </dt>
+            <dd class="col-sm-10 mt-3" hidden>
+                <input type="text" class="form-control" asp-for="subject_id" />
+                @Html.ValidationMessageFor(model => model.subject_id)
+            </dd>
+
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.subject)
+            </dt>
+            <dd class="col-sm-10 mt-3">
+                <input type="text" class="form-control" asp-for="subject" />
+                @Html.ValidationMessageFor(model => model.subject)
+            </dd>
+
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+            <dd class="col-sm-10 mt-3">
+                @* <textarea class="form-control" asp-for="description"></textarea> *@
+                @* @Html.ValidationMessageFor(model => model.description) *@
+                <span class="form-control">@Model.description</span>
+            </dd>
+
+            <dt class="col-sm-2 mt-3" hidden>
+                @Html.DisplayNameFor(model => model.userid)
+            </dt>
+            <dd class="col-sm-10 mt-3" hidden>
+                <input type="text" class="form-control" asp-for="userid" />
+                @Html.ValidationMessageFor(model => model.userid)
+            </dd>
+
+            @if (Model.qtrreport > 0)
+            {
+                <dt class="col-sm-2 mt-3">
+                    @Html.DisplayNameFor(model => model.qtrreport)
+                </dt>
+                <dd class="col-sm-10 mt-3">
+                    <input type="number" class="form-control" asp-for="qtrreport" />
+                    @Html.ValidationMessageFor(model => model.qtrreport)
+                </dd>
+            }
+
+            @if (Model.qtryear > 0)
+            {
+                <dt class="col-sm-2 mt-3">
+                    @Html.DisplayNameFor(model => model.qtryear)
+                </dt>
+                <dd class="col-sm-10 mt-3">
+                    <input type="number" class="form-control" asp-for="qtryear" />
+                    @Html.ValidationMessageFor(model => model.qtryear)
+                </dd>
+            }
+
+            @if (Model.qtryear > 0)
+            {
+                <dt class="col-sm-2 mt-3">
+                    @Html.DisplayNameFor(model => model.qtrQuarterName)
+                </dt>
+                <dd class="col-sm-10 mt-3">
+                    <input type="text" class="form-control" asp-for="qtrQuarterName" />
+                    @Html.ValidationMessageFor(model => model.qtrQuarterName)
+                </dd>
+            }
+
+            <dt class="col-sm-2 mt-3" hidden>
+                @Html.DisplayNameFor(model => model.ip)
+            </dt>
+            <dd class="col-sm-10 mt-3" hidden>
+                <input type="text" class="form-control" asp-for="ip" />
+                @Html.ValidationMessageFor(model => model.ip)
+            </dd>
+
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.isActive)
+            </dt>
+            <dd class="col-sm-10 mt-3">
+                <input type="checkbox" class="form-check-input" asp-for="isActive" />
+                @Html.ValidationMessageFor(model => model.isActive)
+            </dd>
+
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.isResolved)
+            </dt>
+            <dd class="col-sm-10 mt-3">
+                <input type="checkbox" class="form-check-input" asp-for="isResolved" />
+                @Html.ValidationMessageFor(model => model.isResolved)
+            </dd>
+
+            <!-- Editable fields -->
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.ActionTaken)
+            </dt>
+            <dd class="col-sm-10 mt-3 d-flex">
+                <!-- Checkboxes for string ActionTaken -->
+                <div class="form-check me-3">
+                    <input type="radio" class="form-check-input" id="approve" name="ActionTaken" value="Approved"
+                    @(Model.ActionTaken == "Approved" ? "checked" : "") />
+                    <label class="form-check-label" for="approve">Approve</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="reject" name="ActionTaken" value="Rejected"
+                    @(Model.ActionTaken == "Rejected" ? "checked" : "") />
+                    <label class="form-check-label" for="reject">Reject</label>
+                </div>
+            </dd>
+
+            <dt class="col-sm-2 mt-3">
+                @Html.DisplayNameFor(model => model.Remarks)
+            </dt>
+            <dd class="col-sm-5 mt-3">
+                <textarea rows="3" class="form-control" asp-for="Remarks"></textarea>
+            </dd>
+
+            <!-- Submit button -->
+            <div class="form-group mt-3 d-flex justify-content-between">
+                <a class="btn btn-outline-secondary" asp-action="PendingRequests">Back</a>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </dl>
+    </form>
+</div>
+<div>
+    @* <a asp-action="Edit" asp-route-id="@Model?.request_id">Edit</a> | *@
+</div>
+
+
+<script>
+    function handleApprove(isApproved) {
+        if (isApproved == 1) {
+            $("#btnApprove").removeClass();
+            $("#btnApprove").addClass("btn btn-success w-10 me-5");
+            $("#btnDecline").removeClass();
+            $("#btnDecline").addClass("btn btn-outline-danger w-10");
+        }
+        if (isApproved == 0) {
+            $("#btnDecline").removeClass();
+            $("#btnDecline").addClass("btn btn-danger w-10");
+            $("#btnApprove").removeClass();
+            $("#btnApprove").addClass("btn btn-outline-success w-10 me-5");
+        }
+    }
+</script>

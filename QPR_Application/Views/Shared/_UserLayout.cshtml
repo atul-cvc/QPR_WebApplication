@@ -7,18 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QPR Application</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/QPR_Application.styles.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/JavaScript.js" asp-append-version="false"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" />
-    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" /> *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QPR_Application.styles.css" asp-append-version="true" />
@@ -41,29 +29,29 @@
             position: relative; /* Required for positioning the pseudo-element */
             text-decoration: none; /* Remove default underline */
             color: #333; /* Link color */
-            font-size:16px;
+            font-size: 16px;
         }
 
-        /* Underline effect */
-        .nav-link::after {
-            content: ''; /* Empty content for pseudo-element */
-            position: absolute; /* Absolute positioning */
-            left: 50%; /* Center the pseudo-element horizontally */
-            bottom: -2px; /* Position slightly below text */
-            width: 100%; /* Full width of the link */
-            height: 2px; /* Height of the underline */
-            background-color: #007bff; /* Underline color */
-            transform: scaleX(0); /* Initial state: scale to 0 (invisible) */
-            transform-origin: center; /* Scale from the center */
-            transition: transform 0.3s ease; /* Smooth transition for animation */
-            /* Adjust to move pseudo-element back to align with the text */
-            margin-left: -50%;
-        }
+            /* Underline effect */
+            .nav-link::after {
+                content: ''; /* Empty content for pseudo-element */
+                position: absolute; /* Absolute positioning */
+                left: 50%; /* Center the pseudo-element horizontally */
+                bottom: -2px; /* Position slightly below text */
+                width: 100%; /* Full width of the link */
+                height: 2px; /* Height of the underline */
+                background-color: #007bff; /* Underline color */
+                transform: scaleX(0); /* Initial state: scale to 0 (invisible) */
+                transform-origin: center; /* Scale from the center */
+                transition: transform 0.3s ease; /* Smooth transition for animation */
+                /* Adjust to move pseudo-element back to align with the text */
+                margin-left: -50%;
+            }
 
-        /* Hover effect */
-        .nav-link:hover::after {
-            transform: scaleX(1); /* Scale to full width on hover */
-        }
+            /* Hover effect */
+            .nav-link:hover::after {
+                transform: scaleX(1); /* Scale to full width on hover */
+            }
     </style>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -74,37 +62,58 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark me-1" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-dark me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Requests
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
-                                <li><a class="dropdown-item" asp-controller="Requests" asp-action="RaiseRequest">Raise Request</a></li>
-                                <li><a class="dropdown-item" asp-controller="Requests" asp-action="ViewRequestStatus">View Request Status</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "ROLE_CVO")
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-1" asp-area="" asp-controller="QPR" asp-action="ChangePassword">Change Password</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Requests
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
+                                    <li><a class="dropdown-item" asp-controller="Requests" asp-action="RaiseRequest">Raise Request</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Requests" asp-action="ViewRequestStatus">View Request Status</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "ROLE_SO")
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Requests
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
+                                    <li><a class="dropdown-item" asp-action="PendingRequests">View Pending Requests</a></li>
+                                    <li><a class="dropdown-item" asp-action="ApprovedRequests">View Approved Requests</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-1" asp-area="" asp-controller="ChangePassword" asp-action="ChangePassword">Change Password</a>
+                            </li>
+                        </ul>
+                    }
+
                     <div class="d-sm-flex">
                         <ul class="navbar-nav flex-grow-1" style="text-decoration:none !important">
                             @if (Convert.ToInt32(@HttpContextAccessor.HttpContext.Session.GetString("qtrreport")) > 0)
                             {
-                                <li class="nav-item d-flex me-2" >
-                                    <span class="text-dark align-content-center" >
+                                <li class="nav-item d-flex me-2">
+                                    <span class="text-dark align-content-center">
                                         Quarter : @HttpContextAccessor.HttpContext.Session.GetString("qtrreport")
                                     </span>
                                 </li>
                                 <li class="nav-item d-flex me-3">
-                                    <span class="text-dark align-content-center" >
+                                    <span class="text-dark align-content-center">
                                         Year : @HttpContextAccessor.HttpContext.Session.GetString("qtryear")
                                     </span>
                                 </li>
@@ -115,6 +124,8 @@
                         </ul>
                     </div>
                 </div>
+
+                
             </div>
         </nav>
     </header>
@@ -126,7 +137,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - QPR_Application @* - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+            &copy; 2024 - QPR Application
         </div>
     </footer>
     <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>

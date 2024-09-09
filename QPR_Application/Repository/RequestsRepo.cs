@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
 using QPR_Application.Util;
+using System.Text.Json;
 
 namespace QPR_Application.Repository
 {
@@ -25,24 +25,39 @@ namespace QPR_Application.Repository
             {
                 throw ex;
             }
-            //return new List<QPRRequestSubjects>();
         }
 
         public async Task<List<UserRequests>> GetUserRquestsCVO()
         {
             try
             {
-                List<QPRRequestSubjects> subs = await _dbContext.QPRRequestSubjects.AsNoTracking().ToListAsync();
-                List<UserRequests> userRequests = await _dbContext.UserRequests.AsNoTracking().Where(r => r.userid == _httpContext.HttpContext.Session.GetString("UserName") ).ToListAsync();
-                foreach (UserRequests userRequest in userRequests) {
-                    userRequest.subject = subs.FirstOrDefault(item => item.subject_id == userRequest.subject_id).subject_name;
-                }
-                return userRequests;
+                return await GetUserRequests(_httpContext.HttpContext.Session.GetString("UserName"), "");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public async Task<List<UserRequests>> GetUserRquestsSO(string IsActive)
+        {
+            UserDetails userDetails = new UserDetails();
+
+            var userStr = _httpContext?.HttpContext?.Session.GetString("CurrentUser");
+            if (string.IsNullOrEmpty(userStr))
+                throw new InvalidOperationException("Current user details are not available.");
+            else
+                userDetails.User = JsonSerializer.Deserialize<registration>(userStr);
+
+            List<registration> cvo_users = await _dbContext.registration.AsNoTracking().Where(x => x.organisation == userDetails.User.organisation && x.logintype == "ROLE_CVO").ToListAsync() ?? new List<registration>();
+
+            List<UserRequests> userRequests = new List<UserRequests>();
+            for (int i = 0; i < cvo_users.Count; i++)
+            {
+                List<UserRequests> _userRequests = await GetUserRequests(cvo_users[i].userid, IsActive);
+                userRequests.AddRange(_userRequests);
+            }
+            return userRequests;
         }
 
         public async Task SaveUserRequest(UserRequests _userRequest)
@@ -74,5 +89,35 @@ namespace QPR_Application.Repository
             }
         }
 
+        public async Task<List<UserRequests>> GetUserRequests(string userId, string IsActive)
+        {
+            List<UserRequests> userRequests = new List<UserRequests>();
+
+            if (!string.IsNullOrEmpty(IsActive))
+            {
+                userRequests = await _dbContext.UserRequests.AsNoTracking().Where(r => r.userid == userId && r.isActive == Convert.ToBoolean(IsActive)).ToListAsync();
+            }
+            else
+            {
+                userRequests = await _dbContext.UserRequests.AsNoTracking().Where(r => r.userid == userId).ToListAsync();
+            }
+
+            List<QPRRequestSubjects> subs = await _dbContext.QPRRequestSubjects.AsNoTracking().ToListAsync();
+            if (subs.Count > 0)
+            {
+                foreach (UserRequests userRequest in userRequests)
+                {
+                    userRequest.subject = subs.FirstOrDefault(item => item.subject_id == userRequest.subject_id).subject_name;
+                }
+            }
+            return userRequests;
+        }
+
+
+        public async Task<UserRequests> GetUserRquestById(int request_id)
+        {
+            UserRequests _userReq = await _dbContext.UserRequests.AsNoTracking().FirstOrDefaultAsync(r => r.request_id == request_id) ?? new UserRequests();
+            return _userReq;
+        }
     }
 }

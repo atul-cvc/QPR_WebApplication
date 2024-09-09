@@ -38,6 +38,10 @@ namespace QPR_Application.Controllers
                 {
                     return RedirectToAction("Index", "QPR");
                 }
+                if (claimUser.IsInRole("ROLE_SO"))
+                {
+                    return RedirectToAction("PendingRequests", "So");
+                }
             }
             return View();
         }
@@ -65,6 +69,7 @@ namespace QPR_Application.Controllers
                         {
                             _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
                             _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
+                            _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
                             if (uDetails.OrgDetails != null)
                                 _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
@@ -95,6 +100,10 @@ namespace QPR_Application.Controllers
                         if (uDetails.User.logintype == "ROLE_CVO")
                         {
                             return RedirectToAction("Index", "QPR");
+                        }
+                        if (uDetails.User.logintype  == "ROLE_SO")
+                        {
+                            return RedirectToAction("PendingRequests", "So");
                         }
                     }
                 }

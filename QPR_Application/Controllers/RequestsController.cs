@@ -9,7 +9,7 @@ using QPR_Application.Util;
 
 namespace QPR_Application.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ROLE_CVO")]
     public class RequestsController : Controller
     {
         private readonly IRequestsRepo _requestRepo;
@@ -17,7 +17,7 @@ namespace QPR_Application.Controllers
         private readonly IHttpContextAccessor _httpContext;
         private readonly QPRUtility _QPRUtility;
         List<SelectListItem> quarterItems = QPRUtility.quarterItems;
-        public RequestsController(IHttpContextAccessor httpContext,IRequestsRepo requestRepo,IQprRepo qprRepo, QPRUtility QPRUtility)
+        public RequestsController(IHttpContextAccessor httpContext, IRequestsRepo requestRepo, IQprRepo qprRepo, QPRUtility QPRUtility)
         {
             _requestRepo = requestRepo;
             _qprRepo = qprRepo;
@@ -61,8 +61,15 @@ namespace QPR_Application.Controllers
 
         public async Task<IActionResult> ViewRequestStatus()
         {
-            List<UserRequests> userRequests = await _requestRepo.GetUserRquestsCVO();
-            return View(userRequests);
+            try
+            {
+                List<UserRequests> userRequests = await _requestRepo.GetUserRquestsCVO();
+                return View(userRequests);
+            }
+            catch (Exception ex)
+            {
+            }
+            return View(null);
         }
     }
 }
