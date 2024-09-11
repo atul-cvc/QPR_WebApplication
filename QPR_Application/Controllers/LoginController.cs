@@ -43,6 +43,7 @@ namespace QPR_Application.Controllers
                     return RedirectToAction("PendingRequests", "So");
                 }
             }
+
             return View();
         }
         [HttpPost]
@@ -70,6 +71,7 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
                             _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
+                            _httpContext?.HttpContext?.Session.SetString("OrgCode", uDetails.OrgDetails.orgcod);
                             _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
                             if (uDetails.OrgDetails != null)
                                 _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);

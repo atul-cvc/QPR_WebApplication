@@ -25,7 +25,7 @@ namespace QPR_Application.Controllers
             _QPRUtility = QPRUtility;
         }
 
-        [Authorize(Roles = "ROLE_CVO")]
+        //[Authorize(Roles = "ROLE_CVO")]
         public async Task<IActionResult> RaiseRequest()
         {
             UserRequestsViewModel userReqVM = new UserRequestsViewModel();
@@ -43,7 +43,7 @@ namespace QPR_Application.Controllers
             return View(userReqVM);
         }
 
-        [Authorize(Roles = "ROLE_CVO")]
+        //[Authorize(Roles = "ROLE_CVO")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RaiseRequest(UserRequestsViewModel userReqVM)

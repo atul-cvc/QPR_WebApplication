@@ -8,6 +8,7 @@ using QPR_Application.Models.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Util;
+using Microsoft.AspNetCore.Http;
 
 namespace QPR_Application.Controllers
 {
@@ -63,11 +64,15 @@ namespace QPR_Application.Controllers
                         years.Add(new Years { Year = currentYear.ToString() });
                     }
                     ViewBag.Years = years;
+                    _logger.LogInformation("User visited the QPR Index page.");
+                    _logger.LogDebug("Debugging info for user {0}", _httpContext?.HttpContext?.Session.GetString("UserName"));
+                    //throw new NullReferenceException();
                     return View();
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex,"");
             }
             return RedirectToAction("Index", "Login");
         }
@@ -83,13 +88,14 @@ namespace QPR_Application.Controllers
                 _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
                 var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
+                await _qprRepo.UpdateQPR(qprDetails, refNum);
                 string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
                 if (String.IsNullOrEmpty(refNum))
                 {
                     refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
                 }
                 _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
-
+                _logger.LogInformation("User logged in QPR Application.");
                 return RedirectToAction("Complaints");
             }
             return RedirectToAction("Index");

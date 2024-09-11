@@ -28,8 +28,8 @@ namespace QPR_Application.Repository
                 if (UserDetails.User != null && passwordVerified)
                 {
                     UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
-                    return UserDetails;
                 }
+                return UserDetails;
             }
             catch (Exception ex)
             {

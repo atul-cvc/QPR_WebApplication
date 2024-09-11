@@ -24,7 +24,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                List<UserRequests> pendingUserRequests = await _requestRepo.GetUserRquestsSO("true");
+                List<UserRequests> pendingUserRequests = await _requestRepo.GetUserRquestsSO("false");
                 //List<UserRequests> userRequests = await _requestRepo.GetUserRquestsCVO(); 
                 return View(pendingUserRequests);
             }
@@ -39,7 +39,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                List<UserRequests> approvedUserRequests = await _requestRepo.GetUserRquestsSO("false");
+                List<UserRequests> approvedUserRequests = await _requestRepo.GetUserRquestsSO("true");
                 return View(approvedUserRequests);
             }
             catch (Exception ex)
@@ -49,10 +49,11 @@ namespace QPR_Application.Controllers
         }
 
         [HttpGet("ViewRequestDetails")]
-        public async Task<IActionResult> ViewRequestDetails(string request_id)
+        public async Task<IActionResult> ViewRequestDetails(string request_id, bool isReadonly = false)
         {
             try
             {
+                ViewBag.IsReadonly = isReadonly;
                 UserRequests userRequest = await _requestRepo.GetUserRquestById(Convert.ToInt32(request_id)) ?? new UserRequests();
                 return View(userRequest);
             }
@@ -63,8 +64,16 @@ namespace QPR_Application.Controllers
         }
 
         [HttpPost("UpdateRequestDetails")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateRequestDetails(UserRequests updatedRequest)
         {
+            try
+            {
+                await _requestRepo.UpdateRequestSO(updatedRequest);
+            }
+            catch (Exception ex)
+            {
+            }
             return RedirectToAction("PendingRequests");
         }
     }

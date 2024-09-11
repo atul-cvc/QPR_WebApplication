@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     int index = 0;
 }
+
 <style>
     td {
         align-content: center !important
@@ -14,12 +15,12 @@
 <div>
     <div class="row">
         <div class="col">
-            <h1>Pending Requests</h1>
+            <h1>View Resolved Request</h1>
         </div>
     </div>
 </div>
 
-<div class="table-responsive" style="margin-bottom:30em;">
+<div class="table-responsive mt-3" style="margin-bottom:30em;">
     <table id="example1" class="table table-striped table-bordered pt-1">
         <thead class="table-primary">
             <tr class="text-center">
@@ -39,7 +40,7 @@
                     Qtr Year
                 </th>
                 <th class="text-center">
-                    Quarter Name
+                    Quarter
                 </th>
                 <th class="text-center">
                     Action Taken
@@ -52,7 +53,7 @@
                 </th>
             </tr>
         </thead>
-
+        @* SOController *@
         <tbody style="font-size: 0.9em">
             @foreach (var item in Model)
             {
@@ -73,16 +74,18 @@
                         @Html.DisplayFor(modelItem => item.qtryear)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.qtrQuarterName) (@Html.DisplayFor(modelItem => item.qtrreport))
+                        @Html.DisplayFor(modelItem => item.qtrQuarterName) 
+                        @* (@Html.DisplayFor(modelItem => item.qtrreport)) *@
+                        @(item.qtrreport == 0 ? "N/A" : "")
                     </td>
                     <td class="text-center" style="font-weight:700">
-                        <span class="@(string.IsNullOrEmpty(item.ActionTaken) ? "text-danger" : "text-success")">@(string.IsNullOrEmpty(item.ActionTaken) ? "Action Pending" : item.ActionTaken)</span>
+                        <span class="@(string.IsNullOrEmpty(item.ActionTaken) ? "text-danger" : "") @(item.ActionTaken == "Approved" ? "text-success" : "text-danger")">@(string.IsNullOrEmpty(item.ActionTaken) ? "Action Pending" : item.ActionTaken)</span>
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Remarks)
                     </td>
-                    <td class="text-center" >
-                        <a class="btn btn-sm btn-outline-primary"  href="@Url.Action("ViewRequestDetails" , new {request_id = item.request_id})">View Details</a>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary" href="@Url.Action("ViewRequestDetails" , new {request_id = item.request_id, isReadonly = true})">View Details</a>
                     </td>
                 </tr>
             }

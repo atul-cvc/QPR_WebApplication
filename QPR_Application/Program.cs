@@ -73,6 +73,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.Cookie.SameSite = SameSiteMode.Strict;
     });
 
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole(); // Optional: Add other providers as needed
+
+// Add custom logger provider
+builder.Logging.AddProvider(new DBLoggerProvider(
+    builder.Services.BuildServiceProvider().GetRequiredService<QPRContext>(),
+    builder.Services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>()));
+
+//builder.Services.AddSingleton<ILoggerProvider>(provider =>
+//    new DBLoggerProvider(
+//        provider.GetRequiredService<QPRContext>(),
+//        provider.GetRequiredService<IHttpContextAccessor>()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
