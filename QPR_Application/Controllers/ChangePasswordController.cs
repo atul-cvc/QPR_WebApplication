@@ -5,6 +5,7 @@ using System.Text.Json;
 using QPR_Application.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using QPR_Application.Util;
 
 namespace QPR_Application.Controllers
 {
@@ -14,9 +15,11 @@ namespace QPR_Application.Controllers
         private readonly IHttpContextAccessor _httpContext;
         private readonly IChangePasswordRepo _changePasswordRepo;
         private registration? userObject;
+        private readonly ILogger<ChangePasswordRepo> _logger;
 
-        public ChangePasswordController(IHttpContextAccessor httpContext, IChangePasswordRepo changePasswordRepo)
+        public ChangePasswordController(ILogger<ChangePasswordRepo> logger, IHttpContextAccessor httpContext, IChangePasswordRepo changePasswordRepo)
         {
+            _logger = logger;
             _httpContext = httpContext;
             _changePasswordRepo = changePasswordRepo;
         }
@@ -38,9 +41,11 @@ namespace QPR_Application.Controllers
                         string message = "";
                         switch (code)
                         {
+                            case "npcp": message = "New Password not same as Confirm Password"; break;
                             case "iop": message = "Incorrect Old Password"; break;
                             case "npop": message = "New password cannot be same as old password"; break;
                             case "npsop": message = "New Password cannot be same as last two previous passwords"; break;
+                            case "error": message = "Some error occured. Please try again after some time."; break;
                             default: message = ""; break;
                         }
                         ViewBag.ComplaintsMessage = message;
@@ -59,16 +64,22 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                var ip = _httpContext.HttpContext.Connection.RemoteIpAddress.ToString();
+                var ip = _httpContext.HttpContext.Session.GetString("ipAddress");
                 userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
                 if (userObject != null)
                 {
-                    if (cp.OldPassword != userObject.password)
+                    string oldPasswordHashed = new PasswordHashingUtil().GetHashedDigest(cp.OldPassword, userObject.PasswordSalt);
+                    string newPasswordhashed = new PasswordHashingUtil().GetHashedDigest(cp.NewPassword, userObject.PasswordSalt);
+
+                    if (!cp.NewPassword.Equals(cp.ConfirmPassword))
+                    {
+                        return RedirectToAction("ChangePassword", new { code = "npcp" });
+                    }
+                    if (oldPasswordHashed != userObject.password)
                     {
                         return RedirectToAction("ChangePassword", new { code = "iop" });
                     }
-
-                    if (cp.NewPassword == userObject.password)
+                    if (newPasswordhashed == userObject.password)
                     {
                         return RedirectToAction("ChangePassword", new { code = "npop" });
                     }
@@ -79,14 +90,18 @@ namespace QPR_Application.Controllers
                     }
 
                     // call change password service
-                    var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject.userid, ip);
+                    var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject, ip);
+                    if (changeSuccessful)
+                    {
+                        return RedirectToAction("Index", "Logout");
+                    }
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Change password failed");
             }
-            return View();
-            //return RedirectToAction("Index", "Login");
+            return RedirectToAction("ChangePassword", new { code = "error" });
         }
     }
 }

@@ -18,7 +18,7 @@
                 <h3 style="font-size:200%; ">QUARTERLY PERFORMANCE REPORT</h3><br>
                 <label style="font-size:200%; ">@ViewBag.QtrReport, @ViewBag.QPRYear</label>
                 <br><br>
-                <div align="center"><h5>To print and download <a target="blank" href="@Url.Action("DownloadQPR", "QPRDownload", new { qprId = ViewBag.QprID })">click here</a></h5></div>
+                <div align="center"><h5>To print and download <a target="blank" href="@Url.Action("DownloadQPR", "DownloadQPR", new { qprId = ViewBag.QprID })">click here</a></h5></div>
                 <br>
             </div>
 

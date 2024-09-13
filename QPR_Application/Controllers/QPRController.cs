@@ -89,14 +89,27 @@ namespace QPR_Application.Controllers
                     _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
                     var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
-                    await _qprRepo.UpdateQPR(qprDetails, refNum);
+                    string finalsubmit = await _qprRepo.UpdateQPR(qprDetails, refNum);
                     string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
                     if (String.IsNullOrEmpty(refNum))
                     {
                         refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                        _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
                     }
-                    _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
-                    return RedirectToAction("Complaints");
+
+                    if (finalsubmit.ToLower().Equals("t"))
+                    {
+                        return RedirectToAction("FinalSubmitQPR");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Complaints");
+                    }
+
+                }
+                else
+                {
+                    _logger.LogError("Invalid Details entered at Index page");
                 }
             }
             catch (Exception ex)
@@ -950,10 +963,13 @@ namespace QPR_Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PreventiveVigilanceActivities(vigilanceactivitiescvcqrs activities)
+        public async Task<IActionResult> PreventiveVigilanceActivities(PreventiveVigilanceActivitiesViewModel activities)
         {
             try
             {
+                await SavePreventiveVigilanceActivities(activities);
+                qpr _qpr = await _qprRepo.GetQPRDetails(_httpContext.HttpContext.Session.GetString("referenceNumber"));
+                _qprRepo.UpdateQPRFinalSubmit(_httpContext.HttpContext.Session.GetString("referenceNumber"));
                 return RedirectToAction("FinalSubmitQPR");
             }
             catch (Exception ex)
@@ -995,6 +1011,8 @@ namespace QPR_Application.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        //public Task
 
         public IActionResult Instructions()
         {

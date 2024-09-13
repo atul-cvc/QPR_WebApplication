@@ -3,6 +3,10 @@ using QPR_Application.Models.DTO.Request;
 using System.Data;
 using System.Configuration;
 using QPR_Application.Models.Entities;
+using QPR_Application.Util;
+using QPR_Application.Models.DTO.Utility;
+using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace QPR_Application.Repository
 {
@@ -10,43 +14,36 @@ namespace QPR_Application.Repository
     {
         private readonly QPRContext _dbContext;
         private readonly IConfiguration _config;
-        public ChangePasswordRepo(QPRContext DbContext, IConfiguration config)
+        private readonly ILogger<ChangePasswordRepo> _logger;
+        public ChangePasswordRepo(ILogger<ChangePasswordRepo> logger,QPRContext DbContext, IConfiguration config)
         {
+            _logger = logger;
             _dbContext = DbContext;
             _config = config;
         }
-        public async Task<bool> ChangePassword(ChangePassword cp, string UserId, string ip)
+        public async Task<bool> ChangePassword(ChangePassword cp, registration User, string ip)
         {
             var connString = _config.GetConnectionString("SQLConnection");
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    using (SqlCommand cmd = new SqlCommand("ChangePassword", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        // Add parameters to the stored procedure
-                        cmd.Parameters.AddWithValue("@UserId", UserId);
-                        cmd.Parameters.AddWithValue("@NewPassword", cp.NewPassword);
-                        cmd.Parameters.AddWithValue("@Ip", ip);
+                HashWithSaltResult hs = new PasswordHashingUtil().CreateHashWithSalt(cp.ConfirmPassword, 64, SHA512.Create());
 
-                        await conn.OpenAsync();
-                        await cmd.ExecuteNonQueryAsync();
-                    }
-                }
+                User.passwordtwo = User.passwordone;
+                User.passwordone = User.password;
+                User.password = hs.Digest;
+                User.PasswordSalt = hs.Salt;
+                User.lastmodified = DateTime.Now.ToString();
+
+                _dbContext.registration.Update(User);
+                await _dbContext.SaveChangesAsync();
+
                 return true;
             }
             catch (Exception ex)
             {
-                // Log the exception (e.g., using a logging framework)
-                // _logger.LogError(ex, "An error occurred while changing the password.");
-
-                // Optionally rethrow the exception or handle it as needed
-                // throw;
-
-                return false;
+                throw ex;
             }
         }
     }

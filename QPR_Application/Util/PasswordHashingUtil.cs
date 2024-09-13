@@ -1,4 +1,5 @@
 ﻿using QPR_Application.Models.DTO.Utility;
+using QPR_Application.Models.Entities;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -21,12 +22,21 @@ namespace QPR_Application.Util
         public string GetHashedDigest(string password, string salt)
         {
             byte[] passBytes = Encoding.UTF8.GetBytes(password);
-            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
+            byte[] saltBytes = Convert.FromBase64String(salt);
+            /*byte[] saltBytes = Encoding.UTF8.GetBytes(salt);*/
             List<byte> passwordWithSaltBytes = new List<byte>();
             passwordWithSaltBytes.AddRange(passBytes);
             passwordWithSaltBytes.AddRange(saltBytes);
             byte[] digestBytes = SHA512.Create().ComputeHash(passwordWithSaltBytes.ToArray());
             return Convert.ToBase64String(digestBytes);
+        }
+        public Boolean VerifyUserPassword(Login user, registration userDetails)
+        {
+            //PasswordHashingUtil pwHasher = new PasswordHashingUtil();
+            string hashedPassword = GetHashedDigest(user.Password, userDetails.PasswordSalt);
+            if (hashedPassword == userDetails.password)
+                return true;
+            return false;
         }
     }
     public class RNG

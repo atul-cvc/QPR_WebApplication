@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Response;
-using QPR_Application.Util.VerifyPassword;
+using QPR_Application.Util;
 
 
 namespace QPR_Application.Repository
@@ -25,7 +25,7 @@ namespace QPR_Application.Repository
                 Boolean passwordVerified = false;
                 if (UserDetails.User != null)
                 {
-                    passwordVerified = new VerifyPassword().VerifyUserPassword(user, UserDetails.User);
+                    passwordVerified = new PasswordHashingUtil().VerifyUserPassword(user, UserDetails.User);
                     if (passwordVerified)
                     {
                         UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);

@@ -28,6 +28,10 @@ namespace QPR_Application.Controllers
             {
                 string refNum = (!string.IsNullOrEmpty(qprId)) ? qprId : _httpContext.HttpContext.Session.GetString("referenceNumber");
                 QPRReportViewModel qprVM = await GetQPRDownloadData(refNum) ?? new QPRReportViewModel();
+                ViewBag.OrgName = "";
+                ViewBag.QuarterName = "";
+                ViewBag.SubmissionDate = "";
+
                 return View(qprVM);
             }
             catch (Exception ex)

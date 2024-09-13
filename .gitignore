@@ -2,8 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
 *.vsidx
+/.vs
 /QPR_Application/bin/Debug/net6.0/QPR_Application.dll
 /QPR_Application/bin/Debug/net6.0/QPR_Application.pdb
 /QPR_Application/obj/Debug/net6.0/ref/QPR_Application.dll

@@ -86,7 +86,7 @@ namespace QPR_Application.Repository
                     _userRequest.created_date = DateTime.Now;
                     _userRequest.isActive = true;
                     _userRequest.isResolved = false;
-                    _userRequest.orgCode = _httpContext.HttpContext.Session.GetString("OrgCode");
+                    _userRequest.orgCode = _httpContext.HttpContext.Session.GetString("orgcode");
 
                     await _dbContext.UserRequests.AddAsync(_userRequest);
                     await _dbContext.SaveChangesAsync();

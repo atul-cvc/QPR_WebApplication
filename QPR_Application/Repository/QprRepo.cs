@@ -4,7 +4,6 @@ using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
-using System;
 using System.Data;
 using System.Reflection;
 
@@ -12,15 +11,16 @@ namespace QPR_Application.Repository
 {
     public class QprRepo : IQprRepo
     {
+        public readonly ILogger<QprRepo> _logger;
         private readonly QPRContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IComplaintsRepo _complaintsRepo;
         private string _connString = string.Empty;
 
-        public QprRepo(QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
+        public QprRepo(ILogger<QprRepo> logger,QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo)
         {
+            _logger = logger;
             _dbContext = DbContext;
-            //_config = config;
             _connString = config.GetConnectionString("SQLConnection") ?? String.Empty;
             _httpContext = httpContext;
             _complaintsRepo = complaintsRepo;
@@ -63,6 +63,43 @@ namespace QPR_Application.Repository
             {
             }
             return years;
+        }
+
+        public async Task<qpr> GetQPRDetails(string refNum)
+        {
+            try
+            {
+                return await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task UpdateQPRFinalSubmit(string refNum)
+        {
+            try
+            {
+                qpr _qpr =  await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
+                if(_qpr != null)
+                {
+                    _qpr.finalsubmitdate = DateTime.Now.ToString();
+                    _qpr.finalsubmit = "t";
+
+                    _dbContext.qpr.Update(_qpr);
+                    await _dbContext.SaveChangesAsync();
+                } else
+                {
+                    _logger.LogError("QPR not found. Reference Number: {0}", refNum);
+                    //_logger.LogError(new NullReferenceException("QPR not found"));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "QPR FInalSubmit update failed");
+                throw ex;
+            }
         }
         public string GetReferenceNumber(GetQPR qprDetails, string UserId)
         {
@@ -150,7 +187,7 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return refNum;
         }
-        public async Task UpdateQPR(GetQPR qprLoginDetails, string refNum)
+        public async Task<string> UpdateQPR(GetQPR qprLoginDetails, string refNum)
         {
             try
             {
@@ -162,6 +199,8 @@ namespace QPR_Application.Repository
                 _dbContext.qpr.Update(_qpr);
 
                 await _dbContext.SaveChangesAsync();
+
+                return _qpr.finalsubmit;
             }
             catch (Exception ex)
             {

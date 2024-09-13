@@ -72,7 +72,7 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
                             _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
-                            _httpContext?.HttpContext?.Session.SetString("OrgCode", uDetails.OrgDetails.orgcod);
+                            //_httpContext?.HttpContext?.Session.SetString("OrgCode", uDetails.OrgDetails.orgcod);
                             
                             if (uDetails.OrgDetails != null)
                                 _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
@@ -101,7 +101,7 @@ namespace QPR_Application.Controllers
                             _logger.LogError("User Object not found");
                         }
 
-                        if (uDetails.User.logintype == "ROLE_COORD")
+                        if (uDetails.User.logintype == "ROLE_COORD" || uDetails.User.logintype == "ROLE_ADMIN")
                         {
                             return RedirectToAction("Index", "Admin");
                         }

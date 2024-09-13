@@ -8,127 +8,127 @@
 
 <h4>registration</h4>
 <hr />
-<div class="row">
+<div class="row d-flex justify-content-center">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="usercode" />
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="userid" class="control-label"></label>
                 <input asp-for="userid" class="form-control" />
                 <span asp-validation-for="userid" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="password" class="control-label"></label>
                 <input asp-for="password" class="form-control" />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="name" class="control-label"></label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="email" class="control-label"></label>
                 <input asp-for="email" class="form-control" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="organisation" class="control-label"></label>
                 <input asp-for="organisation" class="form-control" />
                 <span asp-validation-for="organisation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="logintype" class="control-label"></label>
                 @Html.DropDownListFor(model => model.logintype, ViewBag.LoginTypes as SelectList, "Select", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.logintype, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="loginroll" class="control-label"></label>
                 <input asp-for="loginroll" class="form-control" />
                 <span asp-validation-for="loginroll" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="desiganation" class="control-label"></label>
                 <input asp-for="desiganation" class="form-control" />
                 <span asp-validation-for="desiganation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="createdate" class="control-label"></label>
                 <input asp-for="createdate" class="form-control datepicker" />
                 <span asp-validation-for="createdate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="tenure" class="control-label"></label>
                 <input asp-for="tenure" class="form-control" />
                 <span asp-validation-for="tenure" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="bofficercode" class="control-label"></label>
                 <input asp-for="bofficercode" class="form-control" />
                 <span asp-validation-for="bofficercode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="cvocode" class="control-label"></label>
                 <input asp-for="cvocode" class="form-control" />
                 <span asp-validation-for="cvocode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="mobilenumber" class="control-label"></label>
                 <input asp-for="mobilenumber" class="form-control" />
                 <span asp-validation-for="mobilenumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="islocked" class="control-label"></label>
                 <input asp-for="islocked" class="form-control" />
                 <span asp-validation-for="islocked" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="lastmodified" class="control-label"></label>
                 <input asp-for="lastmodified" class="form-control" />
                 <span asp-validation-for="lastmodified" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="passwordone" class="control-label"></label>
                 <input asp-for="passwordone" class="form-control" />
                 <span asp-validation-for="passwordone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="passwordtwo" class="control-label"></label>
                 <input asp-for="passwordtwo" class="form-control" />
                 <span asp-validation-for="passwordtwo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="postid" class="control-label"></label>
                 <input asp-for="postid" class="form-control" />
                 <span asp-validation-for="postid" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="firstlogin" class="control-label"></label>
                 <input asp-for="firstlogin" class="form-control" />
                 <span asp-validation-for="firstlogin" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="status" class="control-label"></label>
                 <input asp-for="status" class="form-control" />
                 <span asp-validation-for="status" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="cvocontactnumberoffice" class="control-label"></label>
                 <input asp-for="cvocontactnumberoffice" class="form-control" />
                 <span asp-validation-for="cvocontactnumberoffice" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="fulltime" class="control-label"></label>
                 <input asp-for="fulltime" class="form-control" />
                 <span asp-validation-for="fulltime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="parttime" class="control-label"></label>
                 <input asp-for="parttime" class="form-control" />
                 <span asp-validation-for="parttime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -136,7 +136,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="AllUsers">Back to List</a>
 </div>
 
 @section Scripts {
