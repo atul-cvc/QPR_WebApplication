@@ -65,14 +65,13 @@ namespace QPR_Application.Controllers
                     }
                     ViewBag.Years = years;
                     _logger.LogInformation("User visited the QPR Index page.");
-                    _logger.LogDebug("Debugging info for user {0}", _httpContext?.HttpContext?.Session.GetString("UserName"));
-                    //throw new NullReferenceException();
+                    //_logger.LogDebug("Debugging info for user ");
                     return View();
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex,"");
+                _logger.LogError(ex, "Could not load QPR Index Page");
             }
             return RedirectToAction("Index", "Login");
         }
@@ -81,22 +80,28 @@ namespace QPR_Application.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(GetQPR qprDetails)
         {
-            string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
-            if (ModelState.IsValid)
+            try
             {
-                _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
-                _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
-
-                var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
-                await _qprRepo.UpdateQPR(qprDetails, refNum);
-                string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
-                if (String.IsNullOrEmpty(refNum))
+                string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
+                if (ModelState.IsValid)
                 {
-                    refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                    _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
+                    _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
+
+                    var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
+                    await _qprRepo.UpdateQPR(qprDetails, refNum);
+                    string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
+                    if (String.IsNullOrEmpty(refNum))
+                    {
+                        refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                    }
+                    _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                    return RedirectToAction("Complaints");
                 }
-                _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
-                _logger.LogInformation("User logged in QPR Application.");
-                return RedirectToAction("Complaints");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "QPR does not exist");
             }
             return RedirectToAction("Index");
         }
@@ -105,11 +110,10 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                //ClearSessionData();
                 _httpContext.HttpContext?.Session.Remove("complaint_id");
                 //display message
                 ViewBag.ComplaintsMessage = message;
-
+                _logger.LogInformation("User navigated to Complaints page");
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")))
                 {
                     string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
@@ -150,11 +154,13 @@ namespace QPR_Application.Controllers
                 }
                 else
                 {
-                    throw new Exception("reference number not found");
+                    _logger.LogError("QPR Reference Number not found");
+                    throw new Exception("QPR Reference number not found (Complaints)");
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Complaints Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -179,6 +185,7 @@ namespace QPR_Application.Controllers
                     complaint.used_ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
                     complaint.update_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
                     await _qprRepo.SaveComplaints(complaint);
+                    _logger.LogInformation("Complaints data updated");
                 }
                 else
                 {
@@ -187,12 +194,14 @@ namespace QPR_Application.Controllers
                     complaint.user_id = _httpContext.HttpContext?.Session.GetString("UserName");
                     complaint.create_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
                     await _qprRepo.CreateComplaints(complaint);
+                    _logger.LogInformation("New Complaints data created");
                 }
                 message = "Saved";
             }
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving Complaints failed");
             }
             return RedirectToAction("Complaints", "QPR", new { message });
         }
@@ -209,7 +218,8 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, "Creating/Saving Complaints data failed");
+                //_logger.LogInformation("Complaints data update failed");
             }
             return View(complaint);
         }
@@ -253,10 +263,16 @@ namespace QPR_Application.Controllers
 
                     return View(vigInv);
                 }
+                else
+                {
+                    _logger.LogError("QPR Reference Number not found");
+                    throw new Exception("QPR Reference number not found (VigilanceInvestigation)");
+                }
 
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "VigilanceInvestigation Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -281,6 +297,7 @@ namespace QPR_Application.Controllers
                     vigInv.ip = _httpContext.HttpContext.Session?.GetString("ipAddress");
                     vigInv.update_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
                     await _qprRepo.SaveVigilanceInvestigation(vigInv);
+                    _logger.LogInformation("VigilanceInvestigation data updated");
                 }
                 else
                 {
@@ -290,12 +307,14 @@ namespace QPR_Application.Controllers
                     vigInv.last_user_id = vigInv.user_id;
                     vigInv.create_date = DateTime.Now.Date.ToString("dd-MM-yyyy");
                     await _qprRepo.CreateVigilanceInvestigation(vigInv);
+                    _logger.LogInformation("New VigilanceInvestigation data created");
                 }
                 message = "Saved";
             }
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving VigilanceInvestigation failed");
             }
             return RedirectToAction("VigilanceInvestigation", "QPR", new { message });
         }
@@ -311,6 +330,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving VigilanceInvestigation data failed");
             }
             return View(vigInv);
         }
@@ -352,9 +372,14 @@ namespace QPR_Application.Controllers
 
                     return View(proSec);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found (ProsecutionSanctions)");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "ProsecutionSanctions Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -382,6 +407,7 @@ namespace QPR_Application.Controllers
                     proSecNewData.qpr_id = proSecOldData.qpr_id;
                     proSecNewData.prosecutionsanctions_id = Convert.ToInt32(_httpContext.HttpContext?.Session?.GetString("prosecutionsanctions_id"));
                     await _qprRepo.SaveProsecutionSanctionsViewModel(prosecViewModel);
+                    _logger.LogInformation("ProsecutionSanctions data updated");
                 }
                 else // for new record
                 {
@@ -391,12 +417,14 @@ namespace QPR_Application.Controllers
                     proSecNewData.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session?.GetString("referenceNumber"));
                     proSecNewData.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
                     await _qprRepo.CreateProsecutionSanctionsViewModel(prosecViewModel);
+                    _logger.LogInformation("New ProsecutionSanctions data created");
                 }
                 message = "Saved";
             }
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving ProsecutionSanctions failed");
             }
             return RedirectToAction("ProsecutionSanctions", new { message });
         }
@@ -412,6 +440,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving VigilanceInvestigation data failed");
             }
             return View();
         }
@@ -419,7 +448,6 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                //ClearSessionData();
                 _httpContext.HttpContext?.Session.Remove("departproceedings_id");
 
                 //display message
@@ -453,9 +481,14 @@ namespace QPR_Application.Controllers
                     }
                     return View(deptViewModel);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "DepartmentalProceedings Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -472,17 +505,20 @@ namespace QPR_Application.Controllers
                 {
                     departmentalproceedingsqrs deptProcOldData = await _complaintsRepo.GetDepartmentalProceedingsData(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
                     await _qprRepo.SaveDepartmentalProceedings(deptVM, deptProcOldData);
+                    _logger.LogInformation("DepartmentalProceedingsdata updated");
                 }
                 else
                 {
                     // for new record
                     await _qprRepo.CreateDepartmentalProceedings(deptVM);
+                    _logger.LogInformation("New DepartmentalProceedings data created");
                 }
                 message = "Saved";
             }
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving DepartmentalProceedings failed");
             }
             return RedirectToAction("DepartmentalProceedings", new { message });
         }
@@ -498,6 +534,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving DepartmentalProceedingsdata failed");
             }
             return View();
         }
@@ -506,7 +543,6 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                //ClearSessionData();
                 _httpContext.HttpContext?.Session.Remove("advice_cvc_id");
 
                 //display message
@@ -542,9 +578,14 @@ namespace QPR_Application.Controllers
                     adviceViewModel.StageTypes = _qprUtil.GetStageTypesAdviceCVC();
                     return View(adviceViewModel);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "AdviceOfCVC Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -560,17 +601,20 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session?.GetString("advice_cvc_id")))
                 {
                     await _qprRepo.SaveAdviceCVC(adviceVM);
+                    _logger.LogInformation("AdviceOfCVC data updated");
                 }
                 else
                 {
                     // for new record
                     await _qprRepo.CreateAdviceCVC(adviceVM);
+                    _logger.LogInformation("New DepartmentalProceedings data created");
                 }
                 message = "Saved";
             }
             catch (Exception ex)
             {
                 message = "Error";
+                _logger.LogError(ex, "Creating/Saving AdviceOfCVC failed");
             }
             return RedirectToAction("AdviceOfCVC", new { message });
         }
@@ -586,6 +630,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving AdviceOfCVC failed");
             }
             return View();
         }
@@ -609,9 +654,14 @@ namespace QPR_Application.Controllers
 
                     return View(statusVM);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "StatusofPendencyFIandCACases Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -627,11 +677,13 @@ namespace QPR_Application.Controllers
                 {
                     //Save
                     await _qprRepo.SaveStatusPendency(statusVM);
+                    _logger.LogInformation(" StatusofPendencyFIandCACases data updated");
                 }
                 else
                 {
                     //Create new
                     await _qprRepo.CreateStatusPendency(statusVM);
+                    _logger.LogInformation("New StatusofPendencyFIandCACases created");
                 }
                 message = "Saved";
 
@@ -639,6 +691,7 @@ namespace QPR_Application.Controllers
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving StatusofPendencyFIandCACases failed");
             }
             return RedirectToAction("StatusofPendencyFIandCACases", new { message });
         }
@@ -654,6 +707,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving StatusofPendencyFIandCACases failed");
             }
             return View();
         }
@@ -673,9 +727,14 @@ namespace QPR_Application.Controllers
                     punitivevigilanceqrs punitiveVigilance = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
                     return View(punitiveVigilance);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "PunitiveVigilance Page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -690,10 +749,12 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("punitive_vigilance_id")))
                 {
                     await _qprRepo.SavePunitiveVigilance(pvig);
+                    _logger.LogInformation(" PunitiveVigilance data updated");
                 }
                 else
                 {
                     await _qprRepo.CreatePunitiveVigilance(pvig);
+                    _logger.LogInformation("New PunitiveVigilancedata created");
                 }
                 message = "Saved";
 
@@ -701,6 +762,7 @@ namespace QPR_Application.Controllers
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving PunitiveVigilancefailed");
             }
             return RedirectToAction("PunitiveVigilance", new { message });
         }
@@ -716,6 +778,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving PunitiveVigilancefailed");
             }
             return View();
         }
@@ -759,9 +822,14 @@ namespace QPR_Application.Controllers
 
                     return View(data);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "PreventiveVigilance could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -785,11 +853,13 @@ namespace QPR_Application.Controllers
                 {
                     //save
                     await _qprRepo.SavePreventiveVigilance(p_vig);
+                    _logger.LogInformation(" PreventiveVigilance data updated");
                 }
                 else
                 {
                     //create
                     await _qprRepo.CreatePreventiveVigilance(p_vig);
+                    _logger.LogInformation("New PreventiveVigilance data created");
                 }
 
                 message = "Saved";
@@ -797,6 +867,7 @@ namespace QPR_Application.Controllers
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving PreventiveVigilance failed");
             }
             return RedirectToAction("PreventiveVigilance", new { message });
         }
@@ -812,6 +883,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving PreventiveVigilance failed");
             }
             return View();
         }
@@ -831,9 +903,14 @@ namespace QPR_Application.Controllers
                     prevVM.VigilanceActivities = await _complaintsRepo.GetPreventiveVigilanceActivitiesData(refNum) ?? new vigilanceactivitiescvcqrs();
                     return View(prevVM);
                 }
+                else
+                {
+                    throw new Exception("QPR Reference number not found");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "PreventiveVigilanceActivities could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -848,14 +925,17 @@ namespace QPR_Application.Controllers
                 if (activities.FormFile != null)
                     activities.VigilanceActivities.vigilance_activites_upload_doc = await UploadFile(activities.FormFile);
 
-                if(!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("vigilance_activites_id")))
+                if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("vigilance_activites_id")))
                 {
                     //save
                     await _qprRepo.SavePreventiveVigilanceActivities(activities.VigilanceActivities);
-                } else
+                    _logger.LogInformation(" PreventiveVigilanceActivities data updated");
+                }
+                else
                 {
                     //create
                     await _qprRepo.CreatePreventiveVigilanceActivities(activities.VigilanceActivities);
+                    _logger.LogInformation("New PreventiveVigilanceActivities data created");
                 }
 
                 message = "Saved";
@@ -863,6 +943,7 @@ namespace QPR_Application.Controllers
             catch (Exception ex)
             {
                 message = "Error occured while saving. Please try again";
+                _logger.LogError(ex, "Creating/Saving PreventiveVigilanceActivities failed");
             }
             return RedirectToAction("PreventiveVigilanceActivities", new { message });
         }
@@ -877,6 +958,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Creating/Saving PreventiveVigilanceActivities failed");
             }
             return View();
         }
@@ -901,10 +983,15 @@ namespace QPR_Application.Controllers
                     }
                     return View();
                 }
-                    
+                else
+                {
+                    throw new Exception("QPR Reference number not found during final submit");
+                }
+
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, " QPR Final submit page could not be loaded");
             }
             return RedirectToAction("Index");
         }
@@ -914,114 +1001,178 @@ namespace QPR_Application.Controllers
             return View();
         }
 
-        public IActionResult ChangePassword(string code = "")
-        {
-            try
-            {
-                if (_httpContext.HttpContext.Session.GetString("CurrentUser") != null)
-                {
-                    userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
-                    ViewBag.User = userObject;
+        //public IActionResult ChangePassword(string code = "")
+        //{
+        //    try
+        //    {
+        //        if (_httpContext.HttpContext.Session.GetString("CurrentUser") != null)
+        //        {
+        //            userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+        //            ViewBag.User = userObject;
 
-                    if (!string.IsNullOrEmpty(code))
-                    {
-                        string message = "";
-                        switch (code)
-                        {
-                            case "iop": message = "Incorrect Old Password"; break;
-                            case "npop": message = "New password cannot be same as old password"; break;
-                            case "npsop": message = "New Password cannot be same as last two previous passwords"; break;
-                            default: message = ""; break;
-                        }
-                        ViewBag.ComplaintsMessage = message;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            return View();
-        }
+        //            if (!string.IsNullOrEmpty(code))
+        //            {
+        //                string message = "";
+        //                switch (code)
+        //                {
+        //                    case "iop": message = "Incorrect Old Password"; break;
+        //                    case "npop": message = "New password cannot be same as old password"; break;
+        //                    case "npsop": message = "New Password cannot be same as last two previous passwords"; break;
+        //                    default: message = ""; break;
+        //                }
+        //                ViewBag.ComplaintsMessage = message;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePassword cp)
-        {
-            try
-            {
-                var ip = _httpContext.HttpContext.Connection.RemoteIpAddress.ToString();
-                userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
-                if (userObject != null)
-                {
-                    if (cp.OldPassword != userObject.password)
-                    {
-                        return RedirectToAction("ChangePassword", new { code = "iop" });
-                    }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangePassword(ChangePassword cp)
+        //{
+        //    try
+        //    {
+        //        var ip = _httpContext.HttpContext.Connection.RemoteIpAddress.ToString();
+        //        userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+        //        if (userObject != null)
+        //        {
+        //            if (cp.OldPassword != userObject.password)
+        //            {
+        //                return RedirectToAction("ChangePassword", new { code = "iop" });
+        //            }
 
-                    if (cp.NewPassword == userObject.password)
-                    {
-                        return RedirectToAction("ChangePassword", new { code = "npop" });
-                    }
+        //            if (cp.NewPassword == userObject.password)
+        //            {
+        //                return RedirectToAction("ChangePassword", new { code = "npop" });
+        //            }
 
-                    if (cp.NewPassword == userObject.passwordone || cp.NewPassword == userObject.passwordtwo)
-                    {
-                        return RedirectToAction("ChangePassword", new { code = "npsop" });
-                    }
+        //            if (cp.NewPassword == userObject.passwordone || cp.NewPassword == userObject.passwordtwo)
+        //            {
+        //                return RedirectToAction("ChangePassword", new { code = "npsop" });
+        //            }
 
-                    // call change password service
-                    var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject.userid, ip);
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            return View();
-            //return RedirectToAction("Index", "Login");
-        }
+        //            // call change password service
+        //            var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject.userid, ip);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    return View();
+        //    //return RedirectToAction("Index", "Login");
+        //}
 
         public string GetPreviousReferenceNumber()
         {
-            return _qprRepo.GetPreviousReferenceNumber(
+            try
+            {
+                return _qprRepo.GetPreviousReferenceNumber(
                         _httpContext.HttpContext.Session.GetString("UserName"),
                         _httpContext.HttpContext.Session.GetString("qtryear"),
                         _httpContext.HttpContext.Session.GetString("qtrreport")
                         );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetPreviousReferenceNumber failed");
+                throw new Exception("GetPreviousReferenceNumber failed");
+            }
         }
 
         public async Task<IActionResult> DeleteAgeWisePendency(int pend_id)
         {
-            await _qprRepo.DeleteAgeWisePendency(pend_id);
-            return RedirectToAction("ProsecutionSanctions", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteAgeWisePendency(pend_id);
+                return RedirectToAction("ProsecutionSanctions", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteAgeWisePendency ");
+            }
+            return RedirectToAction("ProsecutionSanctions", new { message = "Error" });
         }
         public async Task<IActionResult> DeleteAgainstChargedOfficers(int pend_id)
         {
-            await _qprRepo.DeleteAgainstChargedOfficers(pend_id);
-            return RedirectToAction("DepartmentalProceedings", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteAgainstChargedOfficers(pend_id);
+                return RedirectToAction("DepartmentalProceedings", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteAgainstChargedOfficers ");
+            }
+            return RedirectToAction("DepartmentalProceedings", new { message = "Error" });
         }
         public async Task<IActionResult> DeleteCvcAdvice(int pend_id)
         {
-            await _qprRepo.DeleteCvcAdvice(pend_id);
-            return RedirectToAction("AdviceOfCVC", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteCvcAdvice(pend_id);
+                return RedirectToAction("AdviceOfCVC", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteCvcAdvice ");
+            }
+            return RedirectToAction("AdviceOfCVC", new { message = "Error" });
         }
         public async Task<IActionResult> DeleteAppeleateAuthority(int pend_id)
         {
-            await _qprRepo.DeleteAppeleateAuthority(pend_id);
-            return RedirectToAction("AdviceOfCVC", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteAppeleateAuthority(pend_id);
+                return RedirectToAction("AdviceOfCVC", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteAppeleateAuthority ");
+            }
+            return RedirectToAction("AdviceOfCVC", new { message = "Error" });
         }
         public async Task<IActionResult> DeleteFiCaseRow(int id)
         {
-            await _qprRepo.DeleteFiCaseRow(id);
-            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteFiCaseRow(id);
+                return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteFiCaseRow ");
+            }
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Error" });
         }
         public async Task<IActionResult> DeleteCaCaseRow(int id)
         {
-            await _qprRepo.DeleteCaCaseRow(id);
-            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeleteCaCaseRow(id);
+                return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteCaCaseRow ");
+            }
+            return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Error" });
         }
         public async Task<IActionResult> DeletePrevVigi(int id, string tableName)
         {
-            await _qprRepo.DeletePrevVigi(id, tableName);
-            return RedirectToAction("PreventiveVigilance", new { message = "Deleted successfully" });
+            try
+            {
+                await _qprRepo.DeletePrevVigi(id, tableName);
+                return RedirectToAction("PreventiveVigilance", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeletePrevVigi ");
+            }
+            return RedirectToAction("PreventiveVigilance", new { message = "Error" });
         }
         public IActionResult GetNatureListByStageType(string stageName)
         {
@@ -1053,7 +1204,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError(ex, "File Upload failed");
             }
             return "";
         }

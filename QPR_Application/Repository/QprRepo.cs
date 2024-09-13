@@ -152,13 +152,21 @@ namespace QPR_Application.Repository
         }
         public async Task UpdateQPR(GetQPR qprLoginDetails, string refNum)
         {
-            qpr _qpr = await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt32(refNum));
-            _qpr.fulltime = qprLoginDetails.CVOFulltime ? "t":"f";
-            _qpr.parttime = qprLoginDetails.CVOParttime ? "t":"f";
-            _qpr.contactnumberoffice = qprLoginDetails.CVCContactNo;
+            try
+            {
+                qpr _qpr = await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt32(refNum));
+                _qpr.fulltime = qprLoginDetails.CVOFulltime ? "t" : "f";
+                _qpr.parttime = qprLoginDetails.CVOParttime ? "t" : "f";
+                _qpr.contactnumberoffice = qprLoginDetails.CVCContactNo;
 
-            _dbContext.qpr.Update(_qpr);
-            await _dbContext.SaveChangesAsync();
+                _dbContext.qpr.Update(_qpr);
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public async Task CreateComplaints(complaintsqrs complaint)
         {
@@ -309,6 +317,7 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
         public async Task CreateAdviceCVC(AdviceOfCvcViewModel adviceVM)

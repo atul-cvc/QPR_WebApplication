@@ -9,9 +9,11 @@ namespace QPR_Application.Repository
     public class LoginRepo : ILoginRepo
     {
         private readonly QPRContext _dbContext;
-        public LoginRepo(QPRContext DbContext)
+        private readonly ILogger<LoginRepo> _logger;
+        public LoginRepo(ILogger<LoginRepo> logger, QPRContext DbContext)
         {
             _dbContext = DbContext;
+            _logger = logger;
         }
         public async Task<UserDetails> Login(Login user)
         {
@@ -24,12 +26,21 @@ namespace QPR_Application.Repository
                 if (UserDetails.User != null)
                 {
                     passwordVerified = new VerifyPassword().VerifyUserPassword(user, UserDetails.User);
+                    if (passwordVerified)
+                    {
+                        UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                        return UserDetails;
+                    }
+                    else
+                    {
+                        _logger.LogError("Incorrect Username or Password.");
+                    }
                 }
-                if (UserDetails.User != null && passwordVerified)
+                else
                 {
-                    UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                    _logger.LogError("Incorrect Username or Password.");
+
                 }
-                return UserDetails;
             }
             catch (Exception ex)
             {

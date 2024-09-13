@@ -10,5 +10,6 @@
         public DateTime CreatedDate { get; set; }
         public string RequestPath { get; set; }
         public string ip { get; set; }
+        public long qpr_id { get; set; }
     }
 }

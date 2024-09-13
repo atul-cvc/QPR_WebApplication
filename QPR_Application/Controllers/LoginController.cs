@@ -23,10 +23,17 @@ namespace QPR_Application.Controllers
             _logger = logger;
             _loginRepo = loginRepo;
             _httpContext = httpContext;
-
         }
         public IActionResult Index()
         {
+            string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
+            if (ipAdd == "::1")
+            {
+                // Filter and return the first IPv4 address found
+                ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
+            }
+            _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
+
             ClaimsPrincipal claimUser = _httpContext.HttpContext.User;
             if (claimUser.Identity.IsAuthenticated)
             {
@@ -51,13 +58,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
-
-                if (ipAdd == "::1")
-                {
-                    // Filter and return the first IPv4 address found
-                    ipAdd = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
-                }
+                
                 if (ModelState.IsValid)
                 {
                     UserDetails uDetails = await _loginRepo.Login(login);
@@ -72,7 +73,7 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("UserName", uDetails.User.userid);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("OrgCode", uDetails.OrgDetails.orgcod);
-                            _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
+                            
                             if (uDetails.OrgDetails != null)
                                 _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.orgcod);
 
@@ -93,6 +94,11 @@ namespace QPR_Application.Controllers
                                 CookieAuthenticationDefaults.AuthenticationScheme,
                                 new ClaimsPrincipal(claimsIdentity),
                                 properties);
+                            _logger.LogInformation("User logged in successfully.");
+                        }
+                        else
+                        {
+                            _logger.LogError("User Object not found");
                         }
 
                         if (uDetails.User.logintype == "ROLE_COORD")
@@ -103,15 +109,17 @@ namespace QPR_Application.Controllers
                         {
                             return RedirectToAction("Index", "QPR");
                         }
-                        if (uDetails.User.logintype  == "ROLE_SO")
+                        if (uDetails.User.logintype == "ROLE_SO")
                         {
-                            return RedirectToAction("PendingRequests", "So");
+                            return RedirectToAction("PendingRequests", "SO");
                         }
                     }
+
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex,"User login failed");
 
             }
             return RedirectToAction("Index");
