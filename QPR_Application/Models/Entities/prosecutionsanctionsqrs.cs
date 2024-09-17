@@ -64,19 +64,19 @@ namespace QPR_Application.Models.Entities
         public int prosevigitotal { get; set; }
         public int prosevigisuspensionqtr { get; set; }
         public int prosevigisuspensionendqtr { get; set; }
-        public string create_date { get; set; }
+        public string? create_date { get; set; }
         public string user_id { get; set; }
         public string update_date { get; set; }
         public string last_user_id { get; set; }
         public long qpr_id { get; set; }
         public string ip { get; set; }
-        public string prosependingnameauthority { get; set; }
-        public string prosependingnamedesig { get; set; }
-        public string prosependingstatusrequest { get; set; }
-        public string prosependingdaterecommend { get; set; }
-        public string prosependingdatereceipt { get; set; }
-        public string prosependingcbifirno { get; set; }
-        public string prosependingsanctionpc { get; set; }
+        public string? prosependingnameauthority { get; set; }
+        public string? prosependingnamedesig { get; set; }
+        public string? prosependingstatusrequest { get; set; }
+        public string? prosependingdaterecommend { get; set; }
+        public string? prosependingdatereceipt { get; set; }
+        public string? prosependingcbifirno { get; set; }
+        public string? prosependingsanctionpc { get; set; }
 
         public prosecutionsanctionsqrs()
         {
@@ -139,13 +139,13 @@ namespace QPR_Application.Models.Entities
             last_user_id = string.Empty;
             qpr_id = 0;
             ip = string.Empty;
-            prosependingnameauthority = string.Empty;
-            prosependingnamedesig = string.Empty;
-            prosependingstatusrequest = string.Empty;
-            prosependingdaterecommend = string.Empty;
-            prosependingdatereceipt = string.Empty;
-            prosependingcbifirno = string.Empty;
-            prosependingsanctionpc = string.Empty;
+            //prosependingnameauthority = string.Empty;
+            //prosependingnamedesig = string.Empty;
+            //prosependingstatusrequest = string.Empty;
+            //prosependingdaterecommend = string.Empty;
+            //prosependingdatereceipt = string.Empty;
+            //prosependingcbifirno = string.Empty;
+            //prosependingsanctionpc = string.Empty;
         }
     }
 }

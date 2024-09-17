@@ -14,13 +14,13 @@ namespace QPR_Application.Models.Entities
         public int pend_id { get; set; }
         public long? qpr_id { get; set; }
         public string prosependingnamedesig { get; set; }
-        public DateOnly prosependingdaterecommend { get; set; }
+        public DateOnly? prosependingdaterecommend { get; set; }
         public DateOnly prosependingdatereceipt { get; set; }
         public string prosependingstatusrequest { get; set; }
-        public string prosependingnameauthority { get; set; }
+        public string? prosependingnameauthority { get; set; }
         public string used_ip { get; set; }
-        public string prosependingcbifirno { get; set; }
-        public string prosependingsanctionpc { get; set; }
+        public string? prosependingcbifirno { get; set; }
+        public string? prosependingsanctionpc { get; set; }
 
         //public agewisependency()
         //{

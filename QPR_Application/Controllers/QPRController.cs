@@ -94,7 +94,13 @@ namespace QPR_Application.Controllers
                     if (String.IsNullOrEmpty(refNum))
                     {
                         refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                    }
+                    if(!string.IsNullOrEmpty(refNum))
+                    {
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                    } else
+                    {
+                        throw new Exception("QPR not found");
                     }
 
                     if (finalsubmit.ToLower().Equals("t"))
