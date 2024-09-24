@@ -20,9 +20,10 @@ namespace QPR_Application.Repository
             try
             {
                 UserDetails UserDetails = new UserDetails();
+                Boolean passwordVerified = false;
                 //UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && user.Password == i.password && i.status == "t" && i.islocked == "0");
                 UserDetails.User = await _dbContext.registration.FirstOrDefaultAsync(i => i.userid == user.Username && i.status == "t" && i.islocked == "0");
-                Boolean passwordVerified = false;
+            
                 if (UserDetails.User != null)
                 {
                     passwordVerified = new PasswordHashingUtil().VerifyUserPassword(user, UserDetails.User);

@@ -38,6 +38,7 @@ namespace QPR_Application.Controllers
             {
                 if (_httpContext.HttpContext?.Session.GetString("CurrentUser") != null)
                 {
+                    _logger.LogInformation("User visited the QPR After Login.");
                     if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
                     {
                         _httpContext.HttpContext.Session.Remove("referenceNumber");
@@ -68,12 +69,17 @@ namespace QPR_Application.Controllers
                     //_logger.LogDebug("Debugging info for user ");
                     return View();
                 }
+                else
+                {
+                    _logger.LogError("User data not found in session");
+                    return RedirectToAction("Index", "Login");
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Could not load QPR Index Page");
+                return RedirectToAction("Index", "Login");
             }
-            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -95,10 +101,11 @@ namespace QPR_Application.Controllers
                     {
                         refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
                     }
-                    if(!string.IsNullOrEmpty(refNum))
+                    if (!string.IsNullOrEmpty(refNum))
                     {
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
-                    } else
+                    }
+                    else
                     {
                         throw new Exception("QPR not found");
                     }

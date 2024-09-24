@@ -18,6 +18,10 @@ builder.Services.AddDbContext<QPRContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection")));
 
 builder.Services.AddHttpContextAccessor();
+//builder.Services.AddControllersWithViews(options =>
+//{
+//    options.Filters.Add<CustomExceptionFilter>(); // Register the exception filter globally
+//});
 
 // Register repositories or services
 builder.Services.AddTransient<ILoginRepo, LoginRepo>();
@@ -59,8 +63,8 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(time); // Session timeout period
     options.Cookie.HttpOnly = true; // Cookie settings
     options.Cookie.IsEssential = true; // Make the session cookie essential
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.SameSite = SameSiteMode.Strict;
+    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    //options.Cookie.SameSite = SameSiteMode.Strict;
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -69,8 +73,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.LoginPath = "/Login/Index";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(time);
         option.Cookie.HttpOnly = true;
-        option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        option.Cookie.SameSite = SameSiteMode.Strict;
+        //option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        //option.Cookie.SameSite = SameSiteMode.Strict;
     });
 
 // Configure logging
@@ -97,6 +101,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseDeveloperExceptionPage();
 app.UseForwardedHeaders();
 app.UseHttpsRedirection();
 app.UseStaticFiles();

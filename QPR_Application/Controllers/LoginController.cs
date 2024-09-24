@@ -53,6 +53,7 @@ namespace QPR_Application.Controllers
 
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Index(Login login)
         {
@@ -94,6 +95,7 @@ namespace QPR_Application.Controllers
                                 CookieAuthenticationDefaults.AuthenticationScheme,
                                 new ClaimsPrincipal(claimsIdentity),
                                 properties);
+                           
                             _logger.LogInformation("User logged in successfully.");
                         }
                         else
