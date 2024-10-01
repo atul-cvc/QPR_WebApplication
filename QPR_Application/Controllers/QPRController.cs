@@ -89,14 +89,18 @@ namespace QPR_Application.Controllers
             try
             {
                 string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
+                string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
                 if (ModelState.IsValid)
                 {
                     _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
                     _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
                     var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
-                    string finalsubmit = await _qprRepo.UpdateQPR(qprDetails, refNum);
-                    string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
+                    string finalsubmit = string.Empty;
+                    if (!string.IsNullOrEmpty(refNum))
+                    {
+                        finalsubmit = await _qprRepo.UpdateQPR(qprDetails, refNum);
+                    }
                     if (String.IsNullOrEmpty(refNum))
                     {
                         refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
