@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QPR_Application.Models.DTO.Utility;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
 using QPR_Application.Util;
+using SMS_EMAIL_Models;
 
 var time = 30; //Minutes
 var builder = WebApplication.CreateBuilder(args);
@@ -31,12 +33,17 @@ builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
 builder.Services.AddScoped<QPRUtility>();
 builder.Services.AddScoped<IQprRepo, QprRepo>();
 builder.Services.AddScoped<IRequestsRepo, RequestsRepo>();
+builder.Services.AddScoped<SMS_Mail_OTP>();
+builder.Services.AddScoped<OTP_Util> ();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddTransient<IComplaintsRepo, ComplaintsRepo>();
 builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
 
 
 // Add services required for sessions
+
+// Bind the SMTP settings
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {

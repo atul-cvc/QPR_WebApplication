@@ -32,4 +32,11 @@
     <Folder Include="wwwroot\QPRUploads\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ASPSnippets.Captcha">
+      <HintPath>ASPSnippets.Captcha.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
 </Project>

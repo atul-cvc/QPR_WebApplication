@@ -1,6 +1,6 @@
 ﻿@model QPR_Application.Models.Entities.Login;
 @{
-    Layout = null;
+    Layout = null;    
 }
 
 <!DOCTYPE html>
@@ -17,33 +17,65 @@
     <script src="~/js/site.js"></script>
 </head>
 <body>
-</body>
-</html>
 
+    <h1>Quarterly Performance Report</h1>
 
-<h1>Quarterly Performance Report</h1>
+    <h4>Login</h4>
+    <hr />
+    <div class="m-auto mt-5" style="width:20%">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex justify-content-between ">
+               <div class="">
+                    <label asp-for="Username" class="control-label"></label>
+               </div>
+               <div>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+               </div>
+            </div>
+            <div class="form-group d-flex justify-content-between mt-3">
+                <div>
+                    <label asp-for="Password" class="control-label"></label>
+                </div>
+                <div>
+                    <input type="password" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
 
-<h4>Login</h4>
-<hr />
-<div class=" m-auto mt-5" style="width:15%">
-    <form asp-action="Index">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Username" class="control-label"></label>
-            <input asp-for="Username" class="form-control" />
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Password" class="control-label"></label>
-            <input type="password" asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <div class="form-group mt-4 text-center">
-            <input type="submit" value="Login" class="btn btn-primary" />
-        </div>
-    </form>
-    <div class="row m-auto ">
-        <div class="col-md-4">
+            <div class="form-group mt-3 offset-5 text-center">
+                <img src="@Model.ImageData" alt="Captcha" />
+            </div>
+
+            <div class="form-group d-flex justify-content-between mt-3">
+                <div>
+                    <label asp-for="CaptchaAnswer" class="control-label"></label>
+                </div>
+                <div>
+                    <input asp-for="CaptchaAnswer" class="form-control" oninput="HandleCaptchaInput()" />
+                    <span asp-validation-for="CaptchaAnswer" class="text-danger"></span>                    
+                </div>
+            </div>
+
+            <div id="CaptchaErrorContainer" class="form-group mt-1 text-center">
+                <span class="text-danger">@ViewBag.Error</span>
+            </div>
+            
+
+            <div class="form-group mt-4 text-center">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+        <div class="row m-auto ">
+            <div class="col-md-4">
+            </div>
         </div>
     </div>
-</div>
+    <script>
+        function HandleCaptchaInput(){
+            $('#CaptchaErrorContainer').addClass('d-none');
+        }
+    </script>
+</body>
+</html>

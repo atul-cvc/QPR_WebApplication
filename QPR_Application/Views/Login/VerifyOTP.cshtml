@@ -1,0 +1,46 @@
+﻿@model QPR_Application.Models.ViewModels.VerifyOTPViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="false" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <h1>Quarterly Performance Report</h1>
+
+    <h4>Verify OTP</h4>
+    <hr />
+    <div class=" m-auto mt-5" style="width:15%">
+        <form asp-action="VerifyOTP">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Otp" class="control-label"></label>
+                <input asp-for="Otp" class="form-control" />
+                <span asp-validation-for="Otp" class="text-danger"></span>
+                <div class="text-center mt-2">
+                    <span class="text-danger">@ViewBag.OTPErrorMsg</span>
+                </div>
+
+            </div>
+            <div class="form-group mt-4 text-center">
+                <input type="submit" value="Verify" class="btn btn-primary" />
+            </div>
+        </form>
+        <div class="row m-auto ">
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

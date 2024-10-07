@@ -15,7 +15,14 @@ namespace QPR_Application.Models.Entities
 
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+
         [StringLength(50)]
         public string Role { get; set; }
+
+        [Required(ErrorMessage = "Captcha is required.")]
+        [Display(Name ="Captcha")]
+        public string CaptchaAnswer { get; set; }
+
+        public string ImageData { get; set; }
     }
 }

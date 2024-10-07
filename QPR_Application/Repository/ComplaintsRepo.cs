@@ -211,7 +211,7 @@ namespace QPR_Application.Repository
                     _httpContext.HttpContext?.Session.SetString("vigilance_activites_id", Convert.ToString(data.vigilance_activites_id));
                 }
 
-                return data;
+                return data ?? new vigilanceactivitiescvcqrs();
             }
             catch (Exception ex) { }
             return null;
