@@ -43,14 +43,14 @@
                         <label>CVO CONTACT NO. :</label>
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="CVCContactNo" asp-for="CVCContactNo" id="CVCContactNo" maxlength="10" />
+                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="CVCContactNo" asp-for="CVCContactNo" id="CVCContactNo" maxlength="15" />
                         <span asp-validation-for="CVCContactNo" class="text-danger"></span>
                     </div>
                     <div class="col-md-2 align-content-center">
                         <label>MOBILE NO. :</label>
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="MobileNo" asp-for="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" />
+                        <input class="form-control text-center w-50" type="tel" onkeypress="return isNumberKey(event);" name="MobileNo" asp-for="MobileNo" id="MobileNo" value="@ViewBag.User.mobilenumber" readonly />
                         <span asp-validation-for="MobileNo" class="text-danger"></span>
                     </div>
                 </div>

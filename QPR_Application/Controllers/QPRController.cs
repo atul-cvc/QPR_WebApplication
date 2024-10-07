@@ -96,25 +96,44 @@ namespace QPR_Application.Controllers
                     _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
                     var refNum = _qprRepo.GetReferenceNumber(qprDetails, UserId);
-                    string finalsubmit = string.Empty;
-                    if (!string.IsNullOrEmpty(refNum))
-                    {
-                        finalsubmit = await _qprRepo.UpdateQPR(qprDetails, refNum);
-                    }
-                    if (String.IsNullOrEmpty(refNum))
-                    {
-                        refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
-                    }
+                    qpr _qpr = await _qprRepo.GetQPRDetails(refNum);
+
                     if (!string.IsNullOrEmpty(refNum))
                     {
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                        _qpr = await _qprRepo.GetQPRDetails(refNum);
+                        _httpContext.HttpContext.Session.SetString("QPRYear", _qpr.qtryear);
+                        _httpContext.HttpContext.Session.SetString("QPRSubmissionDate", _qpr.finalsubmitdate ?? "");
+
                     }
                     else
                     {
-                        throw new Exception("QPR not found");
+                        _logger.LogInformation("QPR not found");
+
+                        refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+
+                        _logger.LogInformation("New QPR number generated");
                     }
 
-                    if (finalsubmit.ToLower().Equals("t"))
+
+                    //if (!string.IsNullOrEmpty(refNum))
+                    //{
+                    //    finalsubmit = await _qprRepo.UpdateQPR(qprDetails, refNum);
+                    //}
+                    //if (String.IsNullOrEmpty(refNum))
+                    //{
+                    //    refNum = _qprRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                    //}
+                    //if (!string.IsNullOrEmpty(refNum))
+                    //{
+                    //    _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                    //}
+                    //else
+                    //{
+                    //    throw new Exception("QPR not found");
+                    //}
+
+                    if (_qpr.finalsubmit.ToLower().Equals("t"))
                     {
                         return RedirectToAction("FinalSubmitQPR");
                     }

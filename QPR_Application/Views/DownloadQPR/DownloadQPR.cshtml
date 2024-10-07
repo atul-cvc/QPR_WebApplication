@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "DownloadQPR";
     Layout = null; //"~/Views/Shared/_UserLayout.cshtml";  // This disables the layout for this view
+    string QtrAndYearInfo = "";
+    if(ViewBag.IsAnnualReport)
+        QtrAndYearInfo = "Year : "+ ViewBag.ReportYear;
+    else 
+        QtrAndYearInfo = ViewBag.QtrReport + ", " + ViewBag.ReportYear;
 }
 
 <!DOCTYPE html>
@@ -31,25 +36,29 @@
             background-color: white;
             opacity: 1;
         }
-        /* .form-control{
-                                                                                                                                   border: none !important;
-                                                                                                                                } */
     </style>
 
     <div class="d-flex">
         <div class="justify-content-end ms-auto">
-            <button class="btn-xs btn-outline-primary no-print" onclick="window.print(); return false;">Print</button>
+            <button class="btn btn-primary no-print" onclick="window.print(); return false;">Print</button>
         </div>
     </div>
 
     <center>
         <label>
             <h3 style="font-size:150%; ">
-                QUARTERLY PERFORMANCE REPORT - STATE BANK OF INDIA : @@MODELPLACEHOLDER
+                QUARTERLY PERFORMANCE REPORT - @ViewBag.OrgName
                 <br>
-                October to December, 2023 : @@MODELPLACEHOLDER
+                @if(!string.IsNullOrEmpty(QtrAndYearInfo)){
+                       <span>@QtrAndYearInfo</span>                 
+                }
                 <br>
-                Date of Submission: @@MODELPLACEHOLDER
+                @if (!string.IsNullOrEmpty(@ViewBag.SubmissionDate) && !(ViewBag.IsAnnualReport))
+                {
+                    <span>
+                        Date of Submission: @ViewBag.SubmissionDate
+                    </span>
+                }
             </h3>
         </label>
     </center>

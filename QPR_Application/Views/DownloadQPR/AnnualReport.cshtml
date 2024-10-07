@@ -6,13 +6,19 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<div class="text-center">
+    <h3>
+        Download Annual Report
+    </h3>
+</div>
+<hr />
 <div class="mt-5">
-    <form method="post" asp-action="DownloadAnnualReport">
+    <form method="post" asp-action="DownloadAnnualReport" target="_blank">
         <!-- Adjust the action attribute as needed -->
         <div class="w-50 m-auto">
             <div class="d-flex justify-content-center align-items-center mt-5">
-                <label for="yearSelected">Year:</label>
-                <select id="yearSelected" name="yearSelected" class="form-control w-25 text-center" required>
+                <label for="yearSelected">Year : </label>
+                <select id="yearSelected" name="yearSelected" class="form-control w-25 text-center ms-2" required>
                     <option disabled selected value="">---- Select a year ----</option>
                     @foreach (var year in Model)
                     {

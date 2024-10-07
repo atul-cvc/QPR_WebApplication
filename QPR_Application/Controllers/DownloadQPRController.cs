@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.DTO.Response;
+using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Repository;
 using QPR_Application.Util;
@@ -28,9 +30,27 @@ namespace QPR_Application.Controllers
             {
                 string refNum = (!string.IsNullOrEmpty(qprId)) ? qprId : _httpContext.HttpContext.Session.GetString("referenceNumber");
                 QPRReportViewModel qprVM = await GetQPRDownloadData(refNum) ?? new QPRReportViewModel();
-                ViewBag.OrgName = "";
-                ViewBag.QuarterName = "";
-                ViewBag.SubmissionDate = "";
+                ViewBag.OrgName = _httpContext?.HttpContext?.Session.GetString("OrgName");
+                ViewBag.ReportYear = _httpContext.HttpContext.Session.GetString("QPRYear");
+                switch (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")))
+                {
+                    case 1: ViewBag.QtrReport = "January to March"; break;
+                    case 2: ViewBag.QtrReport = "April to June"; break;
+                    case 3: ViewBag.QtrReport = "July to September"; break;
+                    case 4: ViewBag.QtrReport = "October to December"; break;
+                }
+
+                if (DateTime.TryParse(_httpContext.HttpContext.Session.GetString("QPRSubmissionDate"), out DateTime submissionDate))
+                {
+                    // Set ViewBag to just the date part
+                    ViewBag.SubmissionDate = submissionDate.Date.ToShortDateString(); // This will give you just the date part
+                }
+                else
+                {
+                    // Handle the case where the date is not valid
+                    ViewBag.SubmissionDate = "N/A"; // or some default value
+                }
+                ViewBag.IsAnnualReport = false;
 
                 return View(qprVM);
             }
@@ -92,6 +112,18 @@ namespace QPR_Application.Controllers
                     {
                         qprAnnualData.preventivevigilanceqrsList.Add(qprQuarterDataList[i].preventiveViewModel.PreventiveVigilanceQRS);
                     }
+
+                    ViewBag.OrgName = _httpContext?.HttpContext?.Session.GetString("OrgName");
+                    ViewBag.ReportYear = yearSelected ?? _httpContext.HttpContext.Session.GetString("QPRYear");
+                    switch (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")))
+                    {
+                        case 1: ViewBag.QtrReport = "January to March"; break;
+                        case 2: ViewBag.QtrReport = "April to June"; break;
+                        case 3: ViewBag.QtrReport = "July to September"; break;
+                        case 4: ViewBag.QtrReport = "October to December"; break;
+                    }
+
+                    ViewBag.IsAnnualReport = true;
 
                     return View("DownloadQPR", qprAnnualData);
                 }
