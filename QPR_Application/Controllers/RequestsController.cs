@@ -13,14 +13,14 @@ namespace QPR_Application.Controllers
     public class RequestsController : Controller
     {
         private readonly IRequestsRepo _requestRepo;
-        private readonly IQprRepo _qprRepo;
+        private readonly IQprCRUDRepo _qprCRUDRepo;
         private readonly IHttpContextAccessor _httpContext;
         private readonly QPRUtility _QPRUtility;
         List<SelectListItem> quarterItems = QPRUtility.quarterItems;
-        public RequestsController(IHttpContextAccessor httpContext, IRequestsRepo requestRepo, IQprRepo qprRepo, QPRUtility QPRUtility)
+        public RequestsController(IHttpContextAccessor httpContext, IRequestsRepo requestRepo, IQprCRUDRepo qprCRUDRepo, QPRUtility QPRUtility)
         {
             _requestRepo = requestRepo;
-            _qprRepo = qprRepo;
+            _qprCRUDRepo = qprCRUDRepo;
             _httpContext = httpContext;
             _QPRUtility = QPRUtility;
         }
@@ -33,7 +33,7 @@ namespace QPR_Application.Controllers
             var quarterList = new SelectList(quarterItems, "Value", "Text");
             ViewBag.Quarters = quarterList;
 
-            List<Years> years = await _qprRepo.GetQPRRequestYear();
+            List<Years> years = await _qprCRUDRepo.GetQPRRequestYear();
             int currentYear = DateTime.Now.Year;
             if (years.Count == 0 || years.Last().Year != currentYear.ToString())
             {

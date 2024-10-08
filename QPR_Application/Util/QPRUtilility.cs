@@ -12,10 +12,10 @@ namespace QPR_Application.Util
 {
     public class QPRUtility
     {
-        private readonly IQprRepo _qprRepo;
+        private readonly IQprCRUDRepo _qprCRUDRepo;
         private readonly IHttpContextAccessor _httpContext;
         private string _connString = string.Empty;
-        private readonly IComplaintsRepo _complaintsRepo;
+        private readonly IQPRRepo _qprRepo;
 
         public static List<SelectListItem> quarterItems = new List<SelectListItem>
                     {new SelectListItem { Value = "", Text = "Select" },
@@ -25,16 +25,16 @@ namespace QPR_Application.Util
                         new SelectListItem { Value = "4", Text = "October to December" },
                         new SelectListItem { Value = "5", Text = "All" }
                     };
-        public QPRUtility(IQprRepo qprRepo, IHttpContextAccessor httpContext, IConfiguration config, IComplaintsRepo complaintsRepo)
+        public QPRUtility(IQprCRUDRepo qprCRUDRepo, IHttpContextAccessor httpContext, IConfiguration config, IQPRRepo qprRepo)
         {
-            _qprRepo = qprRepo;
+            _qprCRUDRepo = qprCRUDRepo;
             _httpContext = httpContext;
             _connString = config.GetConnectionString("SQLConnection") ?? String.Empty;
-            _complaintsRepo = complaintsRepo;
+            _qprRepo = qprRepo;
         }
         public string GetPreviousReferenceNumber()
         {
-            return _qprRepo.GetPreviousReferenceNumber(
+            return _qprCRUDRepo.GetPreviousReferenceNumber(
                         _httpContext.HttpContext.Session.GetString("UserName"),
                         _httpContext.HttpContext.Session.GetString("qtryear"),
                         _httpContext.HttpContext.Session.GetString("qtrreport")

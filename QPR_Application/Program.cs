@@ -31,12 +31,12 @@ builder.Services.AddTransient<IAdminRepo, AdminRepo>();
 builder.Services.AddTransient<IManageUserRepo, ManageUserRepo>();
 builder.Services.AddTransient<IManageQprRepo, ManageQprRepo>();
 builder.Services.AddScoped<QPRUtility>();
-builder.Services.AddScoped<IQprRepo, QprRepo>();
+builder.Services.AddScoped<IQprCRUDRepo, QprCRUDRepo>();
 builder.Services.AddScoped<IRequestsRepo, RequestsRepo>();
 builder.Services.AddScoped<SMS_Mail_OTP>();
 builder.Services.AddScoped<OTP_Util> ();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
-builder.Services.AddTransient<IComplaintsRepo, ComplaintsRepo>();
+builder.Services.AddTransient<IQPRRepo, QPRRepo>();
 builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
 
 

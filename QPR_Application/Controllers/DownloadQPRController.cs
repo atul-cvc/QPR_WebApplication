@@ -13,16 +13,16 @@ namespace QPR_Application.Controllers
     public class DownloadQPRController : Controller
     {
         private readonly IHttpContextAccessor _httpContext;
-        private readonly IComplaintsRepo _complaintsRepo;
+        private readonly IQPRRepo _qprRepo;
         private readonly QPRUtility _qprUtil;
-        private readonly IQprRepo _qprRepo;
+        private readonly IQprCRUDRepo _qprCRUDRepo;
 
-        public DownloadQPRController(IHttpContextAccessor httpContext, IComplaintsRepo complaintsRepo, QPRUtility qprUtil, IQprRepo qprRepo)
+        public DownloadQPRController(IHttpContextAccessor httpContext, IQPRRepo qprRepo, QPRUtility qprUtil, IQprCRUDRepo qprCRUDRepo)
         {
             _httpContext = httpContext;
-            _complaintsRepo = complaintsRepo;
-            _qprUtil = qprUtil;
             _qprRepo = qprRepo;
+            _qprUtil = qprUtil;
+            _qprCRUDRepo = qprCRUDRepo;
         }
         public async Task<IActionResult> DownloadQPR(string qprId)
         {
@@ -65,15 +65,15 @@ namespace QPR_Application.Controllers
             if (!string.IsNullOrEmpty(refNum))
             {
                 QPRReportViewModel qprVM = new QPRReportViewModel();
-                qprVM.complaints = await _complaintsRepo.GetComplaintsData(refNum);
-                qprVM.vigInvestigation = await _complaintsRepo.GetVigilanceInvestigationData(refNum);
-                qprVM.prosecVM = await _complaintsRepo.GetProsecutionSanctionsViewData(refNum);
-                qprVM.deptVM = await _complaintsRepo.GetDepartmentalProceedingsViewModel(refNum);
-                qprVM.adviceViewModel = await _complaintsRepo.GetAdviceOfCVCViewModel(refNum);
-                qprVM.statusVM = await _complaintsRepo.GetStatusPendencyViewModel(refNum);
-                qprVM.punitiveVig = await _complaintsRepo.GetPunitiveVigilanceData(refNum);
-                qprVM.preventiveViewModel = await _complaintsRepo.GetPreventiveVigilanceViewModel(refNum);
-                qprVM.preventiveActivitiesVM = await _complaintsRepo.GetPreventiveVigilanceActivitiesData(refNum);
+                qprVM.complaints = await _qprRepo.GetComplaintsData(refNum);
+                qprVM.vigInvestigation = await _qprRepo.GetVigilanceInvestigationData(refNum);
+                qprVM.prosecVM = await _qprRepo.GetProsecutionSanctionsViewData(refNum);
+                qprVM.deptVM = await _qprRepo.GetDepartmentalProceedingsViewModel(refNum);
+                qprVM.adviceViewModel = await _qprRepo.GetAdviceOfCVCViewModel(refNum);
+                qprVM.statusVM = await _qprRepo.GetStatusPendencyViewModel(refNum);
+                qprVM.punitiveVig = await _qprRepo.GetPunitiveVigilanceData(refNum);
+                qprVM.preventiveViewModel = await _qprRepo.GetPreventiveVigilanceViewModel(refNum);
+                qprVM.preventiveActivitiesVM = await _qprRepo.GetPreventiveVigilanceActivitiesData(refNum);
                 qprVM.preventivevigilanceqrsList.Add(qprVM.preventiveViewModel.PreventiveVigilanceQRS);
                 return qprVM;
             }
@@ -85,7 +85,7 @@ namespace QPR_Application.Controllers
         public async Task<IActionResult> AnnualReport()
         {
             string userId = _httpContext.HttpContext.Session.GetString("UserName");
-            List<Years> years = await _qprRepo.GetYearsFinalSubmit(userId);
+            List<Years> years = await _qprCRUDRepo.GetYearsFinalSubmit(userId);
             return View(years);
         }
 
@@ -97,7 +97,7 @@ namespace QPR_Application.Controllers
             {
                 if (!string.IsNullOrEmpty(yearSelected))
                 {
-                    List<string> qprIds = await _complaintsRepo.GetAllQPRIds(yearSelected);
+                    List<string> qprIds = await _qprRepo.GetAllQPRIds(yearSelected);
                     List<QPRReportViewModel> qprQuarterDataList = new List<QPRReportViewModel>();
                     if (qprIds.Count > 0)
                     {
