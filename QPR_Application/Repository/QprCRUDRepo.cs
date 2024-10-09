@@ -17,7 +17,7 @@ namespace QPR_Application.Repository
         private readonly IQPRRepo _qprRepo;
         private string _connString = string.Empty;
 
-        public QprCRUDRepo(ILogger<QprCRUDRepo> logger,QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext, IQPRRepo qprRepo)
+        public QprCRUDRepo(ILogger<QprCRUDRepo> logger, QPRContext DbContext, IConfiguration config, IHttpContextAccessor httpContext, IQPRRepo qprRepo)
         {
             _logger = logger;
             _dbContext = DbContext;
@@ -81,15 +81,16 @@ namespace QPR_Application.Repository
         {
             try
             {
-                qpr _qpr =  await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
-                if(_qpr != null)
+                qpr _qpr = await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
+                if (_qpr != null)
                 {
                     _qpr.finalsubmitdate = DateTime.Now.ToString();
                     _qpr.finalsubmit = "t";
 
                     _dbContext.qpr.Update(_qpr);
                     await _dbContext.SaveChangesAsync();
-                } else
+                }
+                else
                 {
                     _logger.LogError("QPR not found. Reference Number: {0}", refNum);
                     //_logger.LogError(new NullReferenceException("QPR not found"));
@@ -692,6 +693,28 @@ namespace QPR_Application.Repository
 
                 _dbContext.vigilanceactivitiescvcqrs.Update(vigilanceactivities);
                 await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SaveCVO_Training(Training_CVO training)
+        {
+            try
+            {
+                training.create_date = DateTime.Now;
+                training.qpr_id = Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                training.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
+                training.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
+
+                if (AreAllPropertiesSet(training, ["Record_Id", "update_date", "update_user_id", "Training_Id"]))
+                {
+                    training.Training_Id = _dbContext.MasterTraining.AsNoTracking().Where(t => t.Training_Name == training.Training_Name).FirstOrDefault().Id;
+                    await _dbContext.Training_CVO.AddAsync(training);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {

@@ -37,6 +37,7 @@ namespace QPR_Application.Repository
         public Task AddNewPrevVigB(preventivevigi_b_qpr prevVigB, int preventive_vigilance_id);
         public Task CreatePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
         public Task SavePreventiveVigilanceActivities(vigilanceactivitiescvcqrs vigilanceactivities);
+        public Task SaveCVO_Training(Training_CVO training);
         public Task DeleteAgeWisePendency(int pend_id);
         public Task DeleteAgainstChargedOfficers(int pend_id);
         public Task DeleteCvcAdvice(int pend_id);

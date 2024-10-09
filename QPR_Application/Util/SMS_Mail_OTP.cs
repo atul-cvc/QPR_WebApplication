@@ -92,6 +92,7 @@ namespace SMS_EMAIL_Models
                 //HttpContext.Current.Session["OTP"] = OTP;
                 //Generate procedure to save this OTP generation operation after this
                 returnCode = "success" + "|" + OTP;
+                _logger.LogInformation("SMS OTP sent successfully.");
             }
             catch (Exception ex)
             {
@@ -124,6 +125,7 @@ namespace SMS_EMAIL_Models
 
                 client.Send(mailMessage);
                 returnCode = "success" + "|" + OTP;
+                _logger.LogInformation("EMAIL OTP sent successfully.");
 
 
                 //SmtpSection smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");

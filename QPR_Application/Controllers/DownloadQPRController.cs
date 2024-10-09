@@ -75,11 +75,12 @@ namespace QPR_Application.Controllers
                 qprVM.preventiveViewModel = await _qprRepo.GetPreventiveVigilanceViewModel(refNum);
                 qprVM.preventiveActivitiesVM = await _qprRepo.GetPreventiveVigilanceActivitiesData(refNum);
                 qprVM.preventivevigilanceqrsList.Add(qprVM.preventiveViewModel.PreventiveVigilanceQRS);
+                qprVM.CVO_Training = await _qprRepo.GetCVOTrainingViewModel(refNum);
                 return qprVM;
             }
             else
             {
-                throw new Exception("QPR ID not found");
+                throw new Exception("QPR ID not found or Error fetching QPR Details");
             }
         }
         public async Task<IActionResult> AnnualReport()

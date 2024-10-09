@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
@@ -224,6 +225,45 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex) { }
             return null;
+        }
+
+        public async Task<CVO_TrainingViewModel> GetCVOTrainingViewModel(string refNum)
+        {
+            CVO_TrainingViewModel vm = new CVO_TrainingViewModel();
+            vm.Training_CVO_List = await GetCVOTrainings(refNum);
+            List<MasterTraining> mtList = await GetTrainingsNameList();
+            vm.MasterTrainingList.Add(new SelectListItem
+            {
+                Value = "",  // Use an appropriate property for Value
+                Text = "Select Training",
+                Selected = true // Use an appropriate property for Text
+            });
+            for (int i = 0; i < mtList.Count; i++)
+            {
+                vm.MasterTrainingList.Add(new SelectListItem
+                {
+                    Value = mtList[i].Training_Name,  // Use an appropriate property for Value
+                    Text = mtList[i].Training_Name              // Use an appropriate property for Text
+                });
+            }
+
+            if (vm.Training_CVO_List.Count > 0)
+            {
+                for (int i = 0; i < vm.Training_CVO_List.Count; i++)
+                {
+                    vm.Total_Employees_Trained += vm.Training_CVO_List[i].No_of_Emp_Trained;
+                    vm.Total_Training_Programs_Conducted += vm.Training_CVO_List[i].No_of_Trg_Conducted;
+                }
+            }
+            return vm;
+        }
+        public async Task<List<Training_CVO>> GetCVOTrainings(string refNum)
+        {
+            return await _dbContext.Training_CVO.AsNoTracking().Where(i => i.qpr_id == Convert.ToInt32(refNum)).ToListAsync();
+        }
+        public async Task<List<MasterTraining>> GetTrainingsNameList()
+        {
+            return await _dbContext.MasterTraining.AsNoTracking().ToListAsync();
         }
         public async Task<List<string>> GetAllQPRIds(string qprYear)
         {

@@ -946,7 +946,7 @@ namespace QPR_Application.Util
                 _prevVig.preventivevigi_bycvo_system_improvements_end_previous_qtr = dataList[0].preventiveViewModel.PreventiveVigilanceQRS.preventivevigi_bycvo_system_improvements_end_previous_qtr;
 
                 for (int i = 0; i < dataList.Count; i++)
-                {                    
+                {
                     _prevVig.preventivevig_bycvo_periodic_during_qtr += dataList[i].preventiveViewModel.PreventiveVigilanceQRS.preventivevig_bycvo_periodic_during_qtr;
                     _prevVig.preventivevig_bycvo_periodic_system_improvement += dataList[i].preventiveViewModel.PreventiveVigilanceQRS.preventivevig_bycvo_periodic_system_improvement;
                     _prevVig.preventivevig_bycvo_periodic_recovery_effected += dataList[i].preventiveViewModel.PreventiveVigilanceQRS.preventivevig_bycvo_periodic_recovery_effected;
@@ -1007,7 +1007,7 @@ namespace QPR_Application.Util
                 #endregion
                 //Preventive Vigilance ends
 
-                //Preventive Vigilance Activities ends
+                //Preventive Vigilance Activities starts
                 #region Preventive Vigilance Activities
                 vigilanceactivitiescvcqrs _vigActivities = new vigilanceactivitiescvcqrs();
 
@@ -1020,8 +1020,50 @@ namespace QPR_Application.Util
 
                 #endregion
                 //Preventive Vigilance Activities ends
+
+                //CVO Trainings ends
+                #region CVO Trainings
+
+                //vigilanceactivitiescvcqrs _vigActivities = new vigilanceactivitiescvcqrs();
+
+                //_vigActivities.vigilance_activites_upload_doc = dataList[3].preventiveActivitiesVM.vigilance_activites_upload_doc;
+                //_vigActivities.vigilance_activites_any_remark = dataList[3].preventiveActivitiesVM.vigilance_activites_any_remark;
+                //_vigActivities.vigilance_activites_place = dataList[3].preventiveActivitiesVM.vigilance_activites_place;
+                //_vigActivities.vigilance_activites_date = dataList[3].preventiveActivitiesVM.vigilance_activites_date;
+
+                //annualData.preventiveActivitiesVM = _vigActivities;
+
+                #endregion
+                //CVO Trainings ends
             }
             return annualData;
+        }
+
+        public CVO_TrainingViewModel GetAnnualCVO_Trainings(List<Training_CVO> trainingsList)
+        {
+            CVO_TrainingViewModel vm = new CVO_TrainingViewModel();
+            // Initialize an empty dictionary to count occurrences
+            var eventCount = new Dictionary<string, int>();
+            // Use a HashSet to store unique training names
+            var trainingNames = new HashSet<string>();
+
+            // Iterate through the trainings list
+            foreach (var training in trainingsList)
+            {
+                var trainingName = training.Training_Name; // Assume this is the name property
+
+                // Add the training name to the HashSet
+                trainingNames.Add(trainingName);
+            }
+
+            // Print the results
+            //foreach (var kvp in eventCount)
+            //{
+            //    //Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            //    vm.Training_CVO_List.Add
+            //}
+
+            return vm;
         }
     }
 }

@@ -83,6 +83,8 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<UserRequests> UserRequests { get; set; }
         public virtual DbSet<QPRRequestSubjects> QPRRequestSubjects { get; set; }
         public virtual DbSet<QPRApplicationLogs> QPRApplicationLogs { get; set; }
+        public virtual DbSet<MasterTraining> MasterTraining { get; set; }
+        public virtual DbSet<Training_CVO> Training_CVO { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -134,6 +136,10 @@ namespace QPR_Application.Models.Entities
             modelBuilder.Entity<QPRRequestSubjects>().HasKey(s => s.subject_id);
 
             modelBuilder.Entity<UserRequests>().HasKey(u => u.request_id);
+
+            modelBuilder.Entity<MasterTraining>().HasKey( mt => mt.Id);
+
+            modelBuilder.Entity<Training_CVO>().HasKey( t => t.Record_Id);
 
             modelBuilder.Entity<cmptable>(entity =>
             {

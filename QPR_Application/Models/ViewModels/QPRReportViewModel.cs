@@ -14,6 +14,7 @@ namespace QPR_Application.Models.ViewModels
         public PreventiveVigilanceViewModel preventiveViewModel { get; set; }
         public List<preventivevigilanceqrs> preventivevigilanceqrsList { get; set; }
         public vigilanceactivitiescvcqrs preventiveActivitiesVM { get; set; }
+        public CVO_TrainingViewModel CVO_Training {  get; set; }
 
         public QPRReportViewModel()
         {
@@ -27,6 +28,7 @@ namespace QPR_Application.Models.ViewModels
             preventiveViewModel = new PreventiveVigilanceViewModel();
             preventiveActivitiesVM = new vigilanceactivitiescvcqrs();
             preventivevigilanceqrsList = new List<preventivevigilanceqrs>();
+            CVO_Training = new CVO_TrainingViewModel();
         }
     }
 }

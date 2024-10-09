@@ -79,6 +79,7 @@ namespace QPR_Application.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(Login login)
         {
             try
@@ -109,7 +110,6 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserMobileNumber", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
-                            //_httpContext?.HttpContext?.Session.SetString("OrgCode", uDetails.OrgDetails.orgcod);
 
                             if (uDetails.OrgDetails != null)
                             {
@@ -117,50 +117,23 @@ namespace QPR_Application.Controllers
                                 _httpContext?.HttpContext?.Session.SetString("OrgName", uDetails.OrgDetails.orgnam1);
                             }
 
-                            //if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
-                            //{
-                            //    return RedirectToAction("VerifyOTP");
-                            //}
-                            //else
-                            //{
-                            //    return View(login);
-                            //}
+                            // Trigger OTP Verification 
+                            if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
+                            {
+                                return RedirectToAction("VerifyOTP");
+                            }
+                            else
+                            {
+                                return View(login);
+                            }
+
+                            // Bypass OTP Verification
                             return AuthenticateUser(uDetails.User);
-
-
-
-                            //List<Claim> claims = new List<Claim>()
-                            //{
-                            //    new Claim(ClaimTypes.NameIdentifier, uDetails.User.userid),
-                            //    new Claim(ClaimTypes.Name, uDetails.User.userid),
-                            //    new Claim(ClaimTypes.Role, uDetails.User.logintype)
-                            //};
-                            //ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                            //AuthenticationProperties properties = new AuthenticationProperties()
-                            //{
-                            //    AllowRefresh = true,
-                            //    IsPersistent = false
-                            //};
-
-                            //await _httpContext.HttpContext.SignInAsync(
-                            //    CookieAuthenticationDefaults.AuthenticationScheme,
-                            //    new ClaimsPrincipal(claimsIdentity),
-                            //    properties);
-
-                            //AddAuth(uDetails);
-                            //SendOTP
-
-                            //_logger.LogInformation("User logged in successfully.");
-
-                            //return RouteUserProfile(uDetails.User.logintype);
                         }
                         else
                         {
                             _logger.LogError("User Object not found");
                         }
-
-
-                        // RouteUserProfile()
                     }
 
                 }
@@ -187,6 +160,7 @@ namespace QPR_Application.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult VerifyOTP(VerifyOTPViewModel verifyVM)
         {
             try
@@ -195,7 +169,8 @@ namespace QPR_Application.Controllers
                 var sessionOtp = _httpContext?.HttpContext?.Session.GetString("SESSION_OTP");
                 if (IsOtpValid(sessionOtp, verifyVM.Otp) && !string.IsNullOrEmpty(userObj))
                 {
-                    registration user = DeserializeUserDetails(userObj);
+                    //registration user = DeserializeUserDetails(userObj);
+                    registration user = DeserializeJson<registration>(userObj);
                     return AuthenticateUser(user);
                 }
                 else
@@ -222,13 +197,18 @@ namespace QPR_Application.Controllers
             return JsonSerializer.Deserialize<registration>(userObj) ?? new registration();
         }
 
+        private T DeserializeJson<T>(string jsonString)
+        {
+            return JsonSerializer.Deserialize<T>(jsonString) ?? Activator.CreateInstance<T>();
+        }
+
         public bool SendOTP(string mobile, string email)
         {
             try
             {
                 string _session_OTP = _otp_Util.SendOTP(mobile, email);
                 _httpContext?.HttpContext?.Session.SetString("SESSION_OTP", _session_OTP);
-                _logger.LogInformation("OTP sent successfully.");
+                //_logger.LogInformation("OTP sent successfully.");
                 return true;
             }
             catch (Exception ex)

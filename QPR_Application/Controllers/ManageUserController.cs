@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QPR_Application.Models.Entities;
+using QPR_Application.Models.ViewModels;
 using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
@@ -19,7 +20,7 @@ namespace QPR_Application.Controllers
 
         public async Task<ActionResult> AllUsers()
         {
-            IEnumerable<registration> allUsers = await _manageUserRepo.GetAllUsers();
+            IEnumerable<AllUsersViewModel> allUsers = await _manageUserRepo.GetAllUsers();
             return View(allUsers);
         }
 
@@ -56,13 +57,13 @@ namespace QPR_Application.Controllers
         // GET: UserController/Details/5
         public async Task<IActionResult> Details(string Id)
         {
-            var User = await _manageUserRepo.GetUserDetails(Id);
+            AllUsersViewModel User = await _manageUserRepo.GetUserDetails(Id);
             return View(User);
         }
 
         public async Task<IActionResult> Edit(string Id)
         {
-            var User = await _manageUserRepo.GetUserDetails(Id);
+            registration User = await _manageUserRepo.GetEditUserDetails(Id);
 
             //Populate the dropdown options
             var loginTypes = new List<SelectListItem>{

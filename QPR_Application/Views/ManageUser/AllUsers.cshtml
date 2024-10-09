@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QPR_Application.Models.Entities.registration>
+﻿@model IEnumerable<QPR_Application.Models.ViewModels.AllUsersViewModel>
 
 @{
     ViewData["Title"] = "AllUsers";
@@ -20,31 +20,34 @@
         <thead class="table-primary">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.userid)
+                    @Html.DisplayNameFor(model => model.UserId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.name)
+                    @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.email)
+                    @Html.DisplayNameFor(model => model.Email)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.organisation)
+                    @Html.DisplayNameFor(model => model.Organisation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.logintype)
+                    @Html.DisplayNameFor(model => model.Logintype)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.desiganation)
+                    @Html.DisplayNameFor(model => model.Designation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.mobilenumber)
+                    @Html.DisplayNameFor(model => model.CvoContactNumberOffice)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.lastmodified)
+                    @Html.DisplayNameFor(model => model.LastModified)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.status)
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeType)
                 </th>
                 <th>Actions</th>
             </tr>
@@ -54,41 +57,44 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.userid)
+                        @Html.DisplayFor(modelItem => item.UserId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.name)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.email)
+                        @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.organisation)
+                        @Html.DisplayFor(modelItem => item.Organisation)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.logintype)
+                        @Html.DisplayFor(modelItem => item.Logintype)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.desiganation)
+                        @Html.DisplayFor(modelItem => item.Designation)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.mobilenumber)
+                        @Html.DisplayFor(modelItem => item.CvoContactNumberOffice)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.lastmodified)
-                    </td>
+                        @Html.DisplayFor(modelItem => item.LastModified)
+                    </td>                    
                     <td class="align-content-center align-items-center">
-                        @if (item.status == "t")
+                        @if (item.Status == "t")
                         {
                             <div class="btn btn-primary disabled w-100">Active</div>
                         }
-                        else if (item.status == "f")
+                        else if (item.Status == "f")
                         {
                             <div class="btn btn-secondary disabled w-100 ">Inactive</div>
                         }
                     </td>
                     <td>
-                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.usercode">Details</a>
+                        @Html.DisplayFor(modelItem => item.EmployeeType)
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.UserCode">Details</a>
                     </td>
                 </tr>
             }

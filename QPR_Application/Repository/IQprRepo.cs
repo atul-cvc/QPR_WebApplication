@@ -20,6 +20,9 @@ namespace QPR_Application.Repository
         public Task<preventivevigilanceqrs?> GetPreventiveVigilanceData(string refNum);
         //public Task<PreventiveVigilanceActivitiesViewModel?> GetPreventiveVigilanceActivitiesViewModel(string refNum);
         public Task<vigilanceactivitiescvcqrs?> GetPreventiveVigilanceActivitiesData(string refNum);
+        public Task<CVO_TrainingViewModel> GetCVOTrainingViewModel(string refNum);
+        public Task<List<Training_CVO>> GetCVOTrainings(string refNum);
+        public Task<List<MasterTraining>> GetTrainingsNameList();
         public Task<List<string>> GetAllQPRIds(string qprYear);
         public List<ficasesqpr> GetFurtherClarification(string OrgCode);
         public List<cacasesqpr> GetCommentsAwaited(string OrgCode);
