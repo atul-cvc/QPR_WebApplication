@@ -1024,14 +1024,18 @@ namespace QPR_Application.Util
                 //CVO Trainings ends
                 #region CVO Trainings
 
-                //vigilanceactivitiescvcqrs _vigActivities = new vigilanceactivitiescvcqrs();
+                CVO_TrainingViewModel CVO_Training_ViewModel = new CVO_TrainingViewModel();
 
-                //_vigActivities.vigilance_activites_upload_doc = dataList[3].preventiveActivitiesVM.vigilance_activites_upload_doc;
-                //_vigActivities.vigilance_activites_any_remark = dataList[3].preventiveActivitiesVM.vigilance_activites_any_remark;
-                //_vigActivities.vigilance_activites_place = dataList[3].preventiveActivitiesVM.vigilance_activites_place;
-                //_vigActivities.vigilance_activites_date = dataList[3].preventiveActivitiesVM.vigilance_activites_date;
+                List<Training_CVO> trainingsList = new List<Training_CVO>();
+                foreach (QPRReportViewModel qprRepVM in dataList)
+                {
+                    foreach (Training_CVO tr_CVO in qprRepVM.CVO_Training.Training_CVO_List)
+                    {
+                        trainingsList.Add(tr_CVO);
+                    }
+                }
 
-                //annualData.preventiveActivitiesVM = _vigActivities;
+                CVO_Training_ViewModel = GetAnnualCVO_Trainings(trainingsList);
 
                 #endregion
                 //CVO Trainings ends
@@ -1042,28 +1046,67 @@ namespace QPR_Application.Util
         public CVO_TrainingViewModel GetAnnualCVO_Trainings(List<Training_CVO> trainingsList)
         {
             CVO_TrainingViewModel vm = new CVO_TrainingViewModel();
-            // Initialize an empty dictionary to count occurrences
-            var eventCount = new Dictionary<string, int>();
-            // Use a HashSet to store unique training names
-            var trainingNames = new HashSet<string>();
+            //// Initialize an empty dictionary to count occurrences
+            //var eventCount = new Dictionary<string, int>();
+            //// Use a HashSet to store unique training names
+            //var trainingNames = new HashSet<string>();
 
-            // Iterate through the trainings list
-            foreach (var training in trainingsList)
-            {
-                var trainingName = training.Training_Name; // Assume this is the name property
 
-                // Add the training name to the HashSet
-                trainingNames.Add(trainingName);
-            }
 
-            // Print the results
-            //foreach (var kvp in eventCount)
+            //// Iterate through the trainings list
+            //foreach (var training in trainingsList)
             //{
-            //    //Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-            //    vm.Training_CVO_List.Add
+            //    var trainingName = training.Training_Name; // Assume this is the name property
+
+            //    // Add the training name to the HashSet
+            //    trainingNames.Add(trainingName);
             //}
 
+            //// Print the results
+            ////foreach (var kvp in eventCount)
+            ////{
+            ////    //Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            ////    vm.Training_CVO_List.Add
+            ////}
+            ///
+            var grouped_Trainings = new Dictionary<string, CVO_TRAINING_DATA>();
+            foreach (Training_CVO tr in trainingsList)
+            {
+                if (grouped_Trainings.ContainsKey(tr.Training_Name))
+                {
+                    //If training already exists
+                    grouped_Trainings[tr.Training_Name].No_of_Emp_Trained += tr.No_of_Emp_Trained;
+                    grouped_Trainings[tr.Training_Name].No_of_Trg_Conducted += tr.No_of_Trg_Conducted;
+                }
+                else
+                {
+                    //create new training
+                    grouped_Trainings[tr.Training_Name] = new CVO_TRAINING_DATA
+                    {
+                        Name = tr.Training_Name,
+                        No_of_Emp_Trained = tr.No_of_Emp_Trained,
+                        No_of_Trg_Conducted = tr.No_of_Trg_Conducted
+                    };
+                }
+            }
+
+            foreach( var g_Training in grouped_Trainings.Values)
+            {
+                vm.Training_CVO_List.Add(new Training_CVO
+                {
+                    Training_Name = g_Training.Name,
+                    No_of_Emp_Trained = g_Training.No_of_Emp_Trained,
+                    No_of_Trg_Conducted = g_Training.No_of_Trg_Conducted
+                });
+            }
             return vm;
         }
+    }
+
+    public class CVO_TRAINING_DATA
+    {
+        public string Name { get; set; }
+        public int No_of_Emp_Trained { get; set; }
+        public int No_of_Trg_Conducted { get; set; }
     }
 }

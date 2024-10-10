@@ -479,7 +479,7 @@ namespace QPR_Application.Repository
 
                     _dbContext.statusofpendencyqrs.Update(newData);
 
-                    if (statusVM.FiCasesQPRs != null)
+                    if (statusVM.FiCasesQPRs != null && statusVM.FiCasesQPRs.Count > 0)
                     {
                         for (int i = 0; i < statusVM.FiCasesQPRs.Count; i++)
                         {
@@ -496,7 +496,7 @@ namespace QPR_Application.Repository
                         }
                     }
 
-                    if (statusVM.CaCasesQPRs != null)
+                    if (statusVM.CaCasesQPRs != null && statusVM.CaCasesQPRs.Count > 0)
                     {
                         for (int i = 0; i < statusVM.CaCasesQPRs.Count; i++)
                         {
@@ -709,7 +709,7 @@ namespace QPR_Application.Repository
                 training.user_id = _httpContext.HttpContext?.Session?.GetString("UserName");
                 training.ip = _httpContext.HttpContext?.Session?.GetString("ipAddress");
 
-                if (AreAllPropertiesSet(training, ["Record_Id", "update_date", "update_user_id", "Training_Id"]))
+                if (AreAllPropertiesSet(training, ["Record_Id", "update_date", "update_user_id", "Training_Id", "No_of_Trg_Conducted", "No_of_Emp_Trained"]))
                 {
                     training.Training_Id = _dbContext.MasterTraining.AsNoTracking().Where(t => t.Training_Name == training.Training_Name).FirstOrDefault().Id;
                     await _dbContext.Training_CVO.AddAsync(training);
@@ -955,6 +955,7 @@ namespace QPR_Application.Repository
                 object value = property.GetValue(obj);
 
                 // For value types, check if it's the default value
+                //if (value == null)
                 if (value == null || (property.PropertyType.IsValueType && Activator.CreateInstance(property.PropertyType).Equals(value)))
                 {
                     return false; // Found a property with no value

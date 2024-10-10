@@ -118,14 +118,14 @@ namespace QPR_Application.Controllers
                             }
 
                             // Trigger OTP Verification 
-                            if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
-                            {
-                                return RedirectToAction("VerifyOTP");
-                            }
-                            else
-                            {
-                                return View(login);
-                            }
+                            //if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
+                            //{
+                            //    return RedirectToAction("VerifyOTP");
+                            //}
+                            //else
+                            //{
+                            //    return View(login);
+                            //}
 
                             // Bypass OTP Verification
                             return AuthenticateUser(uDetails.User);

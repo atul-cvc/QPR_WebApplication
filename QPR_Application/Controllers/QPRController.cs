@@ -95,10 +95,9 @@ namespace QPR_Application.Controllers
                     _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
 
                     var refNum = _qprCRUDRepo.GetReferenceNumber(qprDetails, UserId);
-                    qpr _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
-
+                    qpr _qpr = new qpr();
                     if (!string.IsNullOrEmpty(refNum))
-                    {
+                    {                        
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
                         _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
                         _httpContext.HttpContext.Session.SetString("QPRYear", _qpr.qtryear);
@@ -107,9 +106,8 @@ namespace QPR_Application.Controllers
                     else
                     {
                         _logger.LogInformation("QPR not found");
-
                         refNum = _qprCRUDRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
-
+                        _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
                         _logger.LogInformation("New QPR number generated");
                     }
 
@@ -980,8 +978,8 @@ namespace QPR_Application.Controllers
             try
             {
                 await SavePreventiveVigilanceActivities(activities);
-                
-                
+
+
                 return RedirectToAction("CVO_Training");
             }
             catch (Exception ex)
@@ -1005,7 +1003,7 @@ namespace QPR_Application.Controllers
                     CVO_TrainingViewModel vm = await _qprRepo.GetCVOTrainingViewModel(refNum);
                     //vm.Training_CVO_List = await _qprRepo.GetCVOTrainings(refNum);
                     //List<MasterTraining> mtList = await _qprRepo.GetTrainingsNameList();
-                    
+
                     return View(vm);
                 }
                 else
@@ -1032,7 +1030,8 @@ namespace QPR_Application.Controllers
                     await _qprCRUDRepo.SaveCVO_Training(vm.New_Training_CVO);
                     return RedirectToAction("CVO_Training", new { message = "Saved" });
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occured while saving CVO trainings");
             }
@@ -1048,11 +1047,12 @@ namespace QPR_Application.Controllers
                 await _qprCRUDRepo.UpdateQPRFinalSubmit(_httpContext.HttpContext.Session.GetString("referenceNumber"));
                 return RedirectToAction("FinalSubmitQPR");
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
-            return RedirectToAction("CVO_Training", new { message = "Action Failed"});
+            return RedirectToAction("CVO_Training", new { message = "Action Failed" });
         }
 
         public async Task<IActionResult> FinalSubmitQPR()

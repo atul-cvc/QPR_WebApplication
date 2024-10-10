@@ -3989,46 +3989,7 @@
             </b>
         </div>
 
-        <div class="w-75 m-auto">
-            <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
-                <tbody>
-                    <tr class="text-center">
-                        <td><b>Eg:</b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <b>&nbsp;&nbsp;(a) Simplification and standardization of rules inter-alia including in Procurement processes, recruitment and  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transfer policies, Standard Operating Procedures (SOP), Manuals etc</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(b) Leveraging Technology and Automation inter-alia including in procurement,recruitment,service delivery,sales and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disposal etc</b></td>
-                    </tr>
-                    <tr class="d-flex-inline">
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(c) Business Process Re-engineering</b></td>
-
-                        <td class="text-center">
-                            <div id="fileUploadResult2" class="text-center"></div>
-                            <label id="NoUpload2">Document Not Uploaded</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(d) Transparency Initiatives</b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(e) Accountability Initiatives </b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(f) Control &amp; Supervision </b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(g) Training &amp; Awareness including awareness among client /vendors,public &nbsp;&nbsp;employees etc. </b></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><b>&nbsp;&nbsp;(h) Internal Whistle Blower Mechanism and its effectiveness in measurable terms </b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        
 
         <div class="w-75 m-auto">
             <table class="table  table-bordered w-100 text-align-middle table-blue table-padding">
@@ -4077,6 +4038,9 @@
                             <b>Particulars of Training</b>
                         </th>
                         <th style="width:20%">
+                            <b>Description (If Other)</b>
+                        </th>
+                        <th style="width:20%">
                             <b>No. of Training Programmes Conducted</b>
                         </th>
                         <th style="width:20%">
@@ -4089,13 +4053,14 @@
                         <td><b>(2)</b></td>
                         <td><b>(3)</b></td>
                         <td><b>(4)</b></td>
+                        <td><b>(5)</b></td>
                     </tr>
 
 
                     @if (Model.CVO_Training.Training_CVO_List.Count == 0)
                     {
                         <tr>
-                            <td colspan="4" class="text-center">NIL</td>
+                            <td colspan="5" class="text-center">NIL</td>
                         </tr>
                     }
                     else
@@ -4104,24 +4069,15 @@
                         {
                             <tr class="text-center">
                                 <td style="width:5%">@(i + 1)</td>
-                                <td>
-                                    @if (Model.CVO_Training.Training_CVO_List[i].Training_Name == "Other")
-                                    {
-                                        <div>@Model.CVO_Training.Training_CVO_List[i].Training_Name</div>
-                                        <br />
-                                        <div>@Model.CVO_Training.Training_CVO_List[i].Other_Description</div>
-                                    }
-                                    else
-                                    {
-                                        <div>@Model.CVO_Training.Training_CVO_List[i].Training_Name</div>
-                                    }
-                                </td>
+                                <td>@Model.CVO_Training.Training_CVO_List[i].Training_Name</td>
+                                <td>@Model.CVO_Training.Training_CVO_List[i].Other_Description</td>
                                 <td>@Model.CVO_Training.Training_CVO_List[i].No_of_Trg_Conducted</td>
                                 <td>@Model.CVO_Training.Training_CVO_List[i].No_of_Emp_Trained</td>
                             </tr>
                         }
                         <tr class="text-center">
                             <td>Total</td>
+                            <td></td>
                             <td></td>
                             <td>@Model.CVO_Training.Total_Training_Programs_Conducted</td>
                             <td>@Model.CVO_Training.Total_Employees_Trained</td>

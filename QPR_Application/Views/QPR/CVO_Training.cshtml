@@ -32,6 +32,9 @@
                     <b>Particulars of Training</b>
                 </th>
                 <th style="width:20%">
+                    <b>Description (If Other)</b>
+                </th>
+                <th style="width:20%">
                     <b>No. of Training Programmes Conducted</b>
                 </th>
                 <th style="width:20%">
@@ -44,6 +47,7 @@
                 <td><b>(2)</b></td>
                 <td><b>(3)</b></td>
                 <td><b>(4)</b></td>
+                <td><b>(5)</b></td>
             </tr>
 
 
@@ -59,8 +63,8 @@
                 {
                     <tr class="text-center">
                         <td style="width:5%">@(i + 1)</td>
-                        <td>
-                            @if (Model.Training_CVO_List[i].Training_Name == "Other")
+                        <td>    @Model.Training_CVO_List[i].Training_Name
+                            @* @if (Model.Training_CVO_List[i].Training_Name == "Other")
                             {
                                 <div>@Model.Training_CVO_List[i].Training_Name</div>
                                 <br />
@@ -69,14 +73,16 @@
                             else
                             {
                                 <div>@Model.Training_CVO_List[i].Training_Name</div>
-                            }
+                            } *@
                         </td>
+                        <td>@Model.Training_CVO_List[i].Other_Description</td>
                         <td>@Model.Training_CVO_List[i].No_of_Trg_Conducted</td>
                         <td>@Model.Training_CVO_List[i].No_of_Emp_Trained</td>
                     </tr>
                 }
                 <tr class="text-center">
                     <td>Total</td>
+                    <td></td>
                     <td></td>
                     <td>@Model.Total_Training_Programs_Conducted</td>
                     <td>@Model.Total_Employees_Trained</td>
