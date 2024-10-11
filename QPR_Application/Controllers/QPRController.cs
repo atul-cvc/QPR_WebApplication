@@ -109,6 +109,7 @@ namespace QPR_Application.Controllers
                         refNum = _qprCRUDRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
                         _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
                         _logger.LogInformation("New QPR number generated");
+                        _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
                     }
 
                     if (_qpr.finalsubmit.ToLower().Equals("t"))
