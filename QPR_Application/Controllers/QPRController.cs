@@ -97,7 +97,7 @@ namespace QPR_Application.Controllers
                     var refNum = _qprCRUDRepo.GetReferenceNumber(qprDetails, UserId);
                     qpr _qpr = new qpr();
                     if (!string.IsNullOrEmpty(refNum))
-                    {                        
+                    {
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
                         _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
                         _httpContext.HttpContext.Session.SetString("QPRYear", _qpr.qtryear);
@@ -111,6 +111,8 @@ namespace QPR_Application.Controllers
                         _logger.LogInformation("New QPR number generated");
                         _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
                     }
+
+                    _qpr = await _qprCRUDRepo.UpdateQPRContactInformation(qprDetails.CVCContactNo, qprDetails.CVOEmail, refNum);
 
                     if (_qpr.finalsubmit.ToLower().Equals("t"))
                     {
@@ -172,12 +174,12 @@ namespace QPR_Application.Controllers
                         complaint.cvopidpiinvestadvicecvc = complaintPrevious.cvopidpiinvestotaladvicereceive - complaintPrevious.cvopidpiinvesactionduringquarter;
                         complaint.totalpidpiinvestadvicecvc = complaintPrevious.totalpidpiinvestotaladvicereceive - complaintPrevious.totalpidpiinvesactionduringquarter;
                         complaint.napidpibroughtforward = complaintPrevious.napidpipendingqtr;
-                        //complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation;
-                        //complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent;
-                        //complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal;
-                        //complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory;
-                        //complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers;
-                        //complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal;
+                        //complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation ?? 0;
+                        //complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent ?? 0;
+                        //complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal ?? 0;
+                        //complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory ?? 0;
+                        //complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers ?? 0;
+                        //complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal ?? 0;
                     }
 
                     return View(complaint);
@@ -290,6 +292,8 @@ namespace QPR_Application.Controllers
                         vigInv.viginvestbcvoreportbfqtr = vigInvPrev.viginvestbcvobalancepending;
                         vigInv.viginvestatotalreportqtr = vigInvPrev.viginvestatotalbalancepending;
                     }
+                    vigInv.viginvescvotakeninvesqtr = _qprRepo.GetCVOTakenUpForInvestigationQtr(refNum);
+                    vigInv.viginvestreportbycvoqtr = vigInv.viginvestbcvosentdaaction;
 
                     return View(vigInv);
                 }
@@ -671,8 +675,11 @@ namespace QPR_Application.Controllers
                     StatusOfPendencyViewModel statusVM = await _qprRepo.GetStatusPendencyViewModel(refNum);
                     statusofpendencyqrs statusPrev = await _qprRepo.GetStatusPendencyData(GetPreviousReferenceNumber());
 
-                    statusVM.StatusOfPendency.pendency_status_fi_previousqtr = statusPrev.pendency_status_fi_reply_pending;
-                    statusVM.StatusOfPendency.pendency_status_ca_previousqtr = statusPrev.pendency_status_ca_comments_pending;
+                    if (statusPrev != null)
+                    {
+                        statusVM.StatusOfPendency.pendency_status_fi_previousqtr = statusPrev.pendency_status_fi_reply_pending;
+                        statusVM.StatusOfPendency.pendency_status_ca_previousqtr = statusPrev.pendency_status_ca_comments_pending;
+                    }
 
                     return View(statusVM);
                 }

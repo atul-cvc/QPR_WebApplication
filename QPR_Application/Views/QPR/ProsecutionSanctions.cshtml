@@ -319,8 +319,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="VigilanceInvestigation">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" onclick="return validateFields()" />
-        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('ProsecutionSanctionsQPRForm')" />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveProsecutionSanctions" onclick="return VERIFY_SAVE_PROSANC()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="return VERIFY_NEXT_PROSANC()" />
     </div>
 
 
@@ -328,231 +328,370 @@
 
 
 
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
 
-<script>
-    document.getElementById('add-row-prosec').addEventListener('click', function () {
-        // debugger;
-        $('#NewAgewisependency_prosependingcbifirno').attr('required', true);
-        $('#NewAgewisependency_prosependingnamedesig').attr('required', true);
-        $('#NewAgewisependency_prosependingsanctionpc').attr('required', true);
-        $('#NewAgewisependency_prosependingstatusrequest').attr('required', true);
-        $('#NewAgewisependency_prosependingnameauthority').attr('required', true);
-        $('#newAgeWiseRow').removeClass('d-none');
-        $('#add-row-prosec').removeClass('btn-outline-primary');
-        $('#add-row-prosec').addClass('btn-outline-secondary');
-        $('#add-row-prosec').addClass('disabled');
+    <script>
+        document.getElementById('add-row-prosec').addEventListener('click', function () {
+            // debugger;
+            $('#NewAgewisependency_prosependingcbifirno').attr('required', true);
+            $('#NewAgewisependency_prosependingnamedesig').attr('required', true);
+            $('#NewAgewisependency_prosependingsanctionpc').attr('required', true);
+            $('#NewAgewisependency_prosependingstatusrequest').attr('required', true);
+            $('#NewAgewisependency_prosependingnameauthority').attr('required', true);
+            $('#newAgeWiseRow').removeClass('d-none');
+            $('#add-row-prosec').removeClass('btn-outline-primary');
+            $('#add-row-prosec').addClass('btn-outline-secondary');
+            $('#add-row-prosec').addClass('disabled');
 
-    });
+        });
 
-    function hideRow() {
-        event.preventDefault();
-        $('#NewAgewisependency_prosependingcbifirno').removeAttr('required');
-        $('#NewAgewisependency_prosependingnamedesig').removeAttr('required');
-        $('#NewAgewisependency_prosependingsanctionpc').removeAttr('required');
-        $('#NewAgewisependency_prosependingstatusrequest').removeAttr('required');
-        $('#NewAgewisependency_prosependingnameauthority').removeAttr('required');
-        $('#newAgeWiseRow').addClass('d-none');
-        $('#add-row-prosec').addClass('btn-outline-primary');
-        $('#add-row-prosec').removeClass('btn-outline-secondary');
-        $('#add-row-prosec').removeClass('disabled');
+        function hideRow() {
+            event.preventDefault();
+            $('#NewAgewisependency_prosependingcbifirno').removeAttr('required');
+            $('#NewAgewisependency_prosependingnamedesig').removeAttr('required');
+            $('#NewAgewisependency_prosependingsanctionpc').removeAttr('required');
+            $('#NewAgewisependency_prosependingstatusrequest').removeAttr('required');
+            $('#NewAgewisependency_prosependingnameauthority').removeAttr('required');
+            $('#newAgeWiseRow').addClass('d-none');
+            $('#add-row-prosec').addClass('btn-outline-primary');
+            $('#add-row-prosec').removeClass('btn-outline-secondary');
+            $('#add-row-prosec').removeClass('disabled');
 
-    };
+        };
 
-</script>
+    </script>
 
-<script>
+    <script>
 
-    $(function () {
-        var complaintsMessage = '@ViewBag.ComplaintsMessage';
-        if (complaintsMessage) {
-            var notificationIcon;
+        $(function () {
+            var complaintsMessage = '@ViewBag.ComplaintsMessage';
+            if (complaintsMessage) {
+                var notificationIcon;
 
-            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
-                notificationIcon = 'success'
-            }
-
-            if (complaintsMessage.includes('Error')) {
-                notificationIcon = 'error'
-            }
-
-            Swal.fire({
-                // title: complaintsMessage,
-                text: complaintsMessage,
-                icon: notificationIcon,
-                confirmButtonText: 'Okay'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    pageReloadWithoutQueryString();
-                } else {
-                    // Optional: Handle cancel action
+                if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                    notificationIcon = 'success'
                 }
-            });
-        }
-        performComTotal();
-    });
 
-    $('#Prosecutionsanctionsqrs_prosevigisuspensionqtr, #Prosecutionsanctionsqrs_prosevigisuspensionordered, #Prosecutionsanctionsqrs_Prosecutionsanctionsqrs_prosesanctjslesssix,#Prosecutionsanctionsqrs_prosesanctgroupalesssix,#Prosecutionsanctionsqrs_prosesanctgroupblesssix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix, #Prosecutionsanctionsqrs_prosesanctjsthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupathreetosix,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree, #Prosecutionsanctionsqrs_prosesanctgroupagreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending, #Prosecutionsanctionsqrs_prosesanctgroupcbalancepending,#Prosecutionsanctionsqrs_prosesanctjsbalancepending,#Prosecutionsanctionsqrs_prosesanctgroupabalancepending,#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused,#Prosecutionsanctionsqrs_prosesanctjssanctionrefused, #Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted,#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctjsreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').on('input', performComTotal);
+                if (complaintsMessage.includes('Error')) {
+                    notificationIcon = 'error'
+                }
 
-
-    function performComTotal() {
-
-        $('#Prosecutionsanctionsqrs_prosesancttotalopeningbalance ').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupaopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcopeningbalance').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesancttotalreciveqtr').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').val()) || 0));
-
-        $('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcopeningbalance').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbopeningbalance').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupaopeningbalance').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesanctjstotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsopeningbalance').val()) || 0));
-
-        $('#Prosecutionsanctionsqrs_prosesancttotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjstotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val()) || 0));
-
-
-        $('#Prosecutionsanctionsqrs_prosesancttotalsanctiongranted').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesancttotalsanctionrefused').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused').val()) || 0));
-
-        $('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused').val()) || 0)));
-        $('#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused').val()) || 0)));
-        $('#Prosecutionsanctionsqrs_prosesanctgroupabalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused').val()) || 0)));
-        $('#Prosecutionsanctionsqrs_prosesanctjsbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjstotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctionrefused').val()) || 0)));
-
-
-        $('#Prosecutionsanctionsqrs_prosesancttotalbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsbalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupabalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesancttotalgreaterthree').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsgreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupagreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesancttotalthreetosix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupathreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix').val()) || 0));
-        $('#Prosecutionsanctionsqrs_prosesancttotallesssix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjslesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupalesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupblesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupclesssix').val()) || 0));
-
-        $('#Prosecutionsanctionsqrs_prosevigitotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionordered').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosevigiofficersuspension').val()) || 0));
-
-        $('#Prosecutionsanctionsqrs_prosevigisuspensionendqtr').val((parseFloat($('#Prosecutionsanctionsqrs_prosevigitotal').val()) || 0) - (parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionqtr').val()) || 0));
-    }
-
-
-</script>
-
-<script>
-    $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").on("keyup", function () {
-        var total = 0;
-        $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: complaintsMessage,
+                    icon: notificationIcon,
+                    confirmButtonText: 'Okay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        pageReloadWithoutQueryString();
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
+
+        $('#Prosecutionsanctionsqrs_prosevigisuspensionqtr, #Prosecutionsanctionsqrs_prosevigisuspensionordered, #Prosecutionsanctionsqrs_Prosecutionsanctionsqrs_prosesanctjslesssix,#Prosecutionsanctionsqrs_prosesanctgroupalesssix,#Prosecutionsanctionsqrs_prosesanctgroupblesssix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix, #Prosecutionsanctionsqrs_prosesanctjsthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupathreetosix,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree, #Prosecutionsanctionsqrs_prosesanctgroupagreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctjsgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending, #Prosecutionsanctionsqrs_prosesanctgroupcbalancepending,#Prosecutionsanctionsqrs_prosesanctjsbalancepending,#Prosecutionsanctionsqrs_prosesanctgroupabalancepending,#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused,#Prosecutionsanctionsqrs_prosesanctjssanctionrefused, #Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted,#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctjsreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr ,#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').on('input', performComTotal);
+
+
+        function performComTotal() {
+
+            $('#Prosecutionsanctionsqrs_prosesancttotalopeningbalance ').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupaopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbopeningbalance').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcopeningbalance').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesancttotalreciveqtr').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').val()) || 0));
+
+            $('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcopeningbalance').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbopeningbalance').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupareciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupaopeningbalance').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesanctjstotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsreciveqtr').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsopeningbalance').val()) || 0));
+
+            $('#Prosecutionsanctionsqrs_prosesancttotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjstotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val()) || 0));
+
+
+            $('#Prosecutionsanctionsqrs_prosesancttotalsanctiongranted').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesancttotalsanctionrefused').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused').val()) || 0));
+
+            $('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupctotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused').val()) || 0)));
+            $('#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbtotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused').val()) || 0)));
+            $('#Prosecutionsanctionsqrs_prosesanctgroupabalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupatotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused').val()) || 0)));
+            $('#Prosecutionsanctionsqrs_prosesanctjsbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjstotal').val()) || 0) - ((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctiongranted').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctjssanctionrefused').val()) || 0)));
+
+
+            $('#Prosecutionsanctionsqrs_prosesancttotalbalancepending').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsbalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupabalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesancttotalgreaterthree').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsgreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupagreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesancttotalthreetosix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupathreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbthreetosix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix').val()) || 0));
+            $('#Prosecutionsanctionsqrs_prosesancttotallesssix').val((parseFloat($('#Prosecutionsanctionsqrs_prosesanctjslesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupalesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupblesssix').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupclesssix').val()) || 0));
+
+            $('#Prosecutionsanctionsqrs_prosevigitotal').val((parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionordered').val()) || 0) + (parseFloat($('#Prosecutionsanctionsqrs_prosevigiofficersuspension').val()) || 0));
+
+            $('#Prosecutionsanctionsqrs_prosevigisuspensionendqtr').val((parseFloat($('#Prosecutionsanctionsqrs_prosevigitotal').val()) || 0) - (parseFloat($('#Prosecutionsanctionsqrs_prosevigisuspensionqtr').val()) || 0));
         }
-        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
-            $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
+
+
+    </script>
+
+    <script>
+        $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").on("keyup", function () {
+            var total = 0;
+            $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    })
-    $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").on("keyup", function () {
-        var total = 0;
-        $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
+            if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total can not be greater than : ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupctotal").val())) {
+                $("#Prosecutionsanctionsqrs_prosesanctgroupcsanctiongranted, #Prosecutionsanctionsqrs_prosesanctgroupcsanctionrefused").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
+        })
+        $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").on("keyup", function () {
+            var total = 0;
             $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").on("keyup", function () {
-        var total = 0;
-        $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupbtotal").val())) {
+                $("#Prosecutionsanctionsqrs_prosesanctgroupbsanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupbsanctiongranted").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
+
+        $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").on("keyup", function () {
+            var total = 0;
             $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").on("keyup", function () {
-        var total = 0;
-        $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctgroupatotal").val())) {
+                $("#Prosecutionsanctionsqrs_prosesanctgroupasanctionrefused, #Prosecutionsanctionsqrs_prosesanctgroupasanctiongranted").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
+
+        $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").on("keyup", function () {
+            var total = 0;
             $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
+            if (total != parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Prosecutionsanctionsqrs_prosesanctjstotal").val())) {
+                $("#Prosecutionsanctionsqrs_prosesanctjssanctiongranted, #Prosecutionsanctionsqrs_prosesanctjssanctionrefused").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
+        });
 
-    $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").on("keyup", function () {
-        if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
+        $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").on("keyup", function () {
+            if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
+                $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val($("#Prosecutionsanctionsqrs_prosevigitotal").val());
+            }
+            performComTotal();
+        });
+
+        $('#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix').on('blur', function () {
+            debugger;
+            var total = 0;
+            $(
+                "#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        if (parseFloat($("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val()) > parseFloat($("#Prosecutionsanctionsqrs_prosevigitotal").val())) {
-            $("#Prosecutionsanctionsqrs_prosevigisuspensionqtr").val($("#Prosecutionsanctionsqrs_prosevigitotal").val());
-        }
-        performComTotal();
-    });
-</script>
+            var val = parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val());
+            if (val > total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: `Total must be equal to: ${val}`,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (val < total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: `Total must be equal to: ${val}`,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $(
+                    "#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix"
+                ).each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0)
+                });
+            }
 
+        })
+
+        function blocksave() {
+            var tot = parseFloat($('#Prosecutionsanctionsqrs_prosesancttotalthreetosix').val()) || 0
+            tot += parseFloat($('#Prosecutionsanctionsqrs_prosesancttotallesssix').val()) || 0;
+            var AgewisependencyCount = parseFloat('@Model.Agewisependency.Count') || 0;
+            if (AgewisependencyCount != tot) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total 3.1(B) Age Wise Pendency Details Records must be equal to : ' + tot,
+                    showConfirmButton: false,
+                    timer: 5000, // Duration in milliseconds
+                });
+                SAVE_FLAG = false;
+                return false;
+            } 
+            // else {
+            //     return true;
+            // }
+        }
+
+        var SAVE_FLAG = true;
+
+        function SAVE_CHECK() {
+            debugger;
+            SAVE_FLAG = true;
+            blocksave();
+            CHECK_PROS_SANC_GROUP_C();
+            return SAVE_FLAG;
+        }
+
+        function VERIFY_SAVE_PROSANC() {
+            if (SAVE_CHECK()) {
+                return validateFields();
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+        function VERIFY_NEXT_PROSANC() {
+            if (SAVE_CHECK()) {
+                return confirmFormSubmission('ProsecutionSanctionsQPRForm');
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+        // function SAVE_CHECK() {
+        //     if (blocksave) {
+        //         return validateFields();
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        // function blockNext() {
+        //     if (blocksave()) {
+        //         return confirmFormSubmission('ProsecutionSanctionsQPRForm')
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+
+        function CHECK_PROS_SANC_GROUP_C() {
+            var total = 0;
+            $(
+                "#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupcthreetosix,#Prosecutionsanctionsqrs_prosesanctgroupclesssix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+                return false;
+            }
+        }
+    </script>
+
+}

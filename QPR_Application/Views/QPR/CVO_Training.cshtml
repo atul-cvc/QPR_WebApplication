@@ -12,10 +12,10 @@
     <table class="table table-striped table-bordered w-100 text-align-middle table-blue table-padding">
         <tbody>
             <tr style="margin-top:10px;">
-                <td width="15%" align="left" valign="middle">
+                <td colspan="1" width="15%" align="left" valign="middle">
                     Training Conducted During The Quarter
                 </td>
-                <td colspan="3" width="35%" align="left">
+                <td colspan="4" width="35%" align="left">
                     <span class="d-flex">
                         <input type="button" id="add-new-training" class="btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
                     </span>
@@ -54,7 +54,7 @@
             @if (Model.Training_CVO_List.Count == 0)
             {
                 <tr>
-                    <td colspan="4" class="text-center">NIL</td>
+                    <td colspan="5" class="text-center">NIL</td>
                 </tr>
             }
             else
@@ -152,7 +152,7 @@
     <div class="d-flex justify-content-between w-80 m-auto" style="margin-top: 30em!important">
         <a class="btn btn-secondary" asp-action="PreventiveVigilanceActivities">Back</a>
         <input type="submit" value="Save" class="btn btn-success" asp-action="SaveCVO_Training" onclick="return validateFields()" />
-        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('CVO_TrainingQPRForm')" />
+        <input type="submit" value="Submit" class="btn btn-primary " onclick="confirmFormSubmission('CVO_TrainingQPRForm')" />
     </div>
 </form>
 

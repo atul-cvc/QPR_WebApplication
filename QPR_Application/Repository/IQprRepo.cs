@@ -28,5 +28,6 @@ namespace QPR_Application.Repository
         public List<cacasesqpr> GetCommentsAwaited(string OrgCode);
         public Task<List<ficasesqpr>> GetFICases(string refNum);
         public Task<List<cacasesqpr>> GetCACases(string refNum);
+        public int GetCVOTakenUpForInvestigationQtr(string refnum);
     }
 }

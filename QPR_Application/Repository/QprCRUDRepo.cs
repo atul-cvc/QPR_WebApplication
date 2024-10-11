@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using QPR_Application.Models.DTO.Request;
 using QPR_Application.Models.DTO.Response;
 using QPR_Application.Models.Entities;
@@ -69,7 +70,7 @@ namespace QPR_Application.Repository
         {
             try
             {
-                return await _dbContext.qpr.FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
+                return await _dbContext.qpr.AsNoTracking().FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt64(refNum));
             }
             catch (Exception ex)
             {
@@ -196,12 +197,32 @@ namespace QPR_Application.Repository
                 _qpr.fulltime = qprLoginDetails.CVOFulltime ? "t" : "f";
                 _qpr.parttime = qprLoginDetails.CVOParttime ? "t" : "f";
                 _qpr.contactnumberoffice = qprLoginDetails.CVCContactNo;
+                _qpr.emailid = qprLoginDetails.CVOEmail;
 
                 _dbContext.qpr.Update(_qpr);
 
                 await _dbContext.SaveChangesAsync();
 
                 return _qpr.finalsubmit;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<qpr> UpdateQPRContactInformation(string CVO_Contact_Num, string CVO_Email, string refNum)
+        {
+            try
+            {
+                qpr _qpr = await _dbContext.qpr.AsNoTracking().FirstOrDefaultAsync(qpr => qpr.referencenumber == Convert.ToInt32(refNum));
+                _qpr.contactnumberoffice = CVO_Contact_Num;
+                _qpr.emailid = CVO_Email;
+
+                _dbContext.qpr.Update(_qpr);
+
+                await _dbContext.SaveChangesAsync();
+
+                return _qpr;
             }
             catch (Exception ex)
             {
@@ -407,6 +428,7 @@ namespace QPR_Application.Repository
                 await AddCvcAdvice(adviceVM.NewCvcAdvice);
 
                 await AddAppelleate(adviceVM.NewAppeleateAuthority);
+
 
                 await _dbContext.SaveChangesAsync();
             }
@@ -736,7 +758,7 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError(ex, "Adding New CVC Advice row failed.");
             }
         }
         public async Task AddAppelleate(appellateauthoritytable appellateAuth)
@@ -754,7 +776,7 @@ namespace QPR_Application.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError(ex, "Adding New Appellate Authority row failed.");
             }
         }
         public async Task DeleteAgeWisePendency(int pend_id)

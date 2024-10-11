@@ -397,5 +397,30 @@ namespace QPR_Application.Repository
             }
             return null;
         }
+
+        public int GetCVOTakenUpForInvestigationQtr(string refnum)
+        {
+            int val = 0;
+            using (SqlConnection conn = new SqlConnection(_connString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetCVOTotalTakenUpForInvestigationQtr", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameters to the stored procedure
+                    cmd.Parameters.AddWithValue("@qpr_id", refnum);
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            val = Convert.ToInt32(reader["complaints_cvoinvestigation"]);
+                        }
+                    }
+                    cmd.Dispose();
+                }
+            }
+            return val;
+        }
     }
 }

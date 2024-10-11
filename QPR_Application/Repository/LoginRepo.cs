@@ -29,7 +29,7 @@ namespace QPR_Application.Repository
                     passwordVerified = new PasswordHashingUtil().VerifyUserPassword(user, UserDetails.User);
                     if (passwordVerified)
                     {
-                        UserDetails.OrgDetails = await _dbContext.orgadd.FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
+                        UserDetails.OrgDetails = await _dbContext.tbl_MasterMinistryNew.FirstOrDefaultAsync(i => i.OrgName == UserDetails.User.organisation);
                         return UserDetails;
                     }
                     else

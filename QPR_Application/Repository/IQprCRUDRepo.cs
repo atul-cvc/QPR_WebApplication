@@ -17,6 +17,7 @@ namespace QPR_Application.Repository
         public string GenerateReferenceNumber(GetQPR qprDetails, string UserId, string ip);
         public string GetPreviousReferenceNumber(string UserId, string qtrYear, string qtrReport);
         public Task<string> UpdateQPR(GetQPR qprLoginDetails, string refNum);
+        public Task<qpr> UpdateQPRContactInformation(string CVO_Contact_Num, string CVO_Email, string refNum);
         public Task CreateComplaints(complaintsqrs complaint);
         public Task SaveComplaints(complaintsqrs complaint);
         public Task CreateVigilanceInvestigation(viginvestigationqrs vigInv);

@@ -85,6 +85,7 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<QPRApplicationLogs> QPRApplicationLogs { get; set; }
         public virtual DbSet<MasterTraining> MasterTraining { get; set; }
         public virtual DbSet<Training_CVO> Training_CVO { get; set; }
+        public virtual DbSet<tbl_MasterMinistryNew> tbl_MasterMinistryNew { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -140,6 +141,8 @@ namespace QPR_Application.Models.Entities
             modelBuilder.Entity<MasterTraining>().HasKey( mt => mt.Id);
 
             modelBuilder.Entity<Training_CVO>().HasKey( t => t.Record_Id);
+
+            modelBuilder.Entity<tbl_MasterMinistryNew>().HasKey( t => t.Id);
 
             modelBuilder.Entity<cmptable>(entity =>
             {
