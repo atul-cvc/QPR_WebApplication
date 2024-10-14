@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td align="left">&nbsp;&nbsp;<b>Periodic Inspection</b></td>
-                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control" readonly ></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_end_previous_qtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_during_qtr" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_system_improvement" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevig_bycvo_periodic_recovery_effected" onkeypress="return isNumberKey(event);" class="form-control"></b></td>
@@ -148,7 +148,7 @@
                     <td>&nbsp;<b>(5)</b></td>
                 </tr>
                 <tr>
-                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost" title="Please mention total no. of posts." onkeypress="return isNumberKey(event);" class="form-control SenseJob" onfocus="changeTotalSensitivePost();"></b></td>
+                    <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_sensitivenumberpost" title="Please mention total no. of posts." onkeypress="return isNumberKey(event);" class="form-control SenseJob"></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postduerotation" onkeypress="return isNumberKey(event);" class="form-control SenseJob" onfocus="changeYearSensitivePost();"></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_post_qtrrotation" onkeypress="return isNumberKey(event);" class="form-control SenseJob"></b></td>
                     <td><b><input asp-for="PreventiveVigilanceQRS.preventivevigi_management_job_rotation_postnotrotated" onkeypress="return isNumberKey(event);" class="form-control SenseJob"></b></td>
@@ -629,192 +629,223 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-<script>
-    $('#add-row-preventiveA').on('click', function () {
-        // debugger;
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').attr('required', true);
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').attr('required', true);
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').attr('required', true);
-        $('#newPrevARow').removeClass('d-none');
-        $('#add-row-preventiveA').removeClass('btn-outline-primary');
-        $('#add-row-preventiveA').addClass('btn-outline-secondary');
-        $('#add-row-preventiveA').addClass('disabled');
 
-    });
+    <script>
+        $('#add-row-preventiveA').on('click', function () {
+            // debugger;
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').attr('required', true);
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').attr('required', true);
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').attr('required', true);
+            $('#newPrevARow').removeClass('d-none');
+            $('#add-row-preventiveA').removeClass('btn-outline-primary');
+            $('#add-row-preventiveA').addClass('btn-outline-secondary');
+            $('#add-row-preventiveA').addClass('disabled');
 
-    function hideRowNewPrevA() {
-        event.preventDefault();
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').removeAttr('required');
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').removeAttr('required');
-        $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').removeAttr('required');
-        $('#newPrevARow').addClass('d-none');
-        $('#add-row-preventiveA').addClass('btn-outline-primary');
-        $('#add-row-preventiveA').removeClass('btn-outline-secondary');
-        $('#add-row-preventiveA').removeClass('disabled');
+        });
 
-    };
+        function hideRowNewPrevA() {
+            event.preventDefault();
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').removeAttr('required');
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').removeAttr('required');
+            $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').removeAttr('required');
+            $('#newPrevARow').addClass('d-none');
+            $('#add-row-preventiveA').addClass('btn-outline-primary');
+            $('#add-row-preventiveA').removeClass('btn-outline-secondary');
+            $('#add-row-preventiveA').removeClass('disabled');
 
-    $('#add-row-preventiveB').on('click', function () {
-        // debugger;
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').attr('required', true);
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').attr('required', true);
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').attr('required', true);
-        $('#newPrevBRow').removeClass('d-none');
-        $('#add-row-preventiveB').removeClass('btn-outline-primary');
-        $('#add-row-preventiveB').addClass('btn-outline-secondary');
-        $('#add-row-preventiveB').addClass('disabled');
+        };
 
-    });
+        $('#add-row-preventiveB').on('click', function () {
+            // debugger;
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').attr('required', true);
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').attr('required', true);
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').attr('required', true);
+            $('#newPrevBRow').removeClass('d-none');
+            $('#add-row-preventiveB').removeClass('btn-outline-primary');
+            $('#add-row-preventiveB').addClass('btn-outline-secondary');
+            $('#add-row-preventiveB').addClass('disabled');
 
-    function hideRowNewPrevB() {
-        event.preventDefault();
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').removeAttr('required');
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').removeAttr('required');
-        $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').removeAttr('required');
-        $('#newPrevBRow').addClass('d-none');
-        $('#add-row-preventiveB').addClass('btn-outline-primary');
-        $('#add-row-preventiveB').removeClass('btn-outline-secondary');
-        $('#add-row-preventiveB').removeClass('disabled');
+        });
 
-    };
+        function hideRowNewPrevB() {
+            event.preventDefault();
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').removeAttr('required');
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').removeAttr('required');
+            $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').removeAttr('required');
+            $('#newPrevBRow').addClass('d-none');
+            $('#add-row-preventiveB').addClass('btn-outline-primary');
+            $('#add-row-preventiveB').removeClass('btn-outline-secondary');
+            $('#add-row-preventiveB').removeClass('disabled');
 
-</script>
+        };
 
-<script>
-    $(document).on("keyup", ".SenseJob", function () {
-        var rotation_postduerotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val());
-        var rotation_post_qtrrotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val());
-        var total = 0;
-        if (rotation_postduerotation < rotation_post_qtrrotation) {
-            $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val(0);
-            $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val(0);
-        }
-        else {
-            total = rotation_postduerotation - rotation_post_qtrrotation;
-        }
+    </script>
 
-        $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postnotrotated').val(total);
-    });
-</script>
-
-<script>
-    $(function () {
-        var complaintsMessage = '@ViewBag.ComplaintsMessage';
-        debugger;
-        var filePath = '@Model.PreventiveVigilanceQRS.file1';
-        if (filePath != null && filePath != '') {
-            $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
-            $('#NoUpload').addClass('d-none');
-        }
-
-        if (complaintsMessage) {
-            var notificationIcon;
-
-            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
-                notificationIcon = 'success'
+    <script>
+        var change_Sensitive_Posts = false;
+        $(document).on("keyup", ".SenseJob", function () {
+            var rotation_postduerotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val());
+            var rotation_post_qtrrotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val());
+            var total = 0;
+            if (rotation_postduerotation < rotation_post_qtrrotation) {
+                $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val(0);
+                $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val(0);
+            }
+            else {
+                total = rotation_postduerotation - rotation_post_qtrrotation;
             }
 
-            if (complaintsMessage.includes('Error')) {
-                notificationIcon = 'error'
+            $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postnotrotated').val(total);
+        });
+
+        $('#PreventiveVigilanceQPRForm').on("click", function () {
+            change_Sensitive_Posts = false;
+        })
+
+        $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_sensitivenumberpost').on("focus", function () {
+            debugger;
+            if (!change_Sensitive_Posts) {
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: 'Do you really wish to change \'No.of Sensitive Post Identified\' in 8.B (1)',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        change_Sensitive_Posts = true;
+                        $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_sensitivenumberpost,#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation,#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation,#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postnotrotated').val(0);
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(function () {
+            var complaintsMessage = '@ViewBag.ComplaintsMessage';
+            debugger;
+            var filePath = '@Model.PreventiveVigilanceQRS.file1';
+            if (filePath != null && filePath != '') {
+                $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');
+                $('#NoUpload').addClass('d-none');
             }
 
-            Swal.fire({
-                // title: complaintsMessage,
-                text: complaintsMessage,
-                icon: notificationIcon,
-                confirmButtonText: 'Okay'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    pageReloadWithoutQueryString();
-                } else {
-                    // Optional: Handle cancel action
+            if (complaintsMessage) {
+                var notificationIcon;
+
+                if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                    notificationIcon = 'success'
                 }
-            });
-        }
-        performComTotal();
-        agreedList(0);
-        preventivevigi(0);
-        otherActivitesB(0);
-        otherActivitesC(0);
-        otherActivitesD(0);
-        preventivevigiE(0);
-        verifyCheckboxes();
-    });
 
-    //$('').on('input', performComTotal);
+                if (complaintsMessage.includes('Error')) {
+                    notificationIcon = 'error'
+                }
+
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: complaintsMessage,
+                    icon: notificationIcon,
+                    confirmButtonText: 'Okay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        pageReloadWithoutQueryString();
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
+            }
+            performComTotal();
+            agreedList(0);
+            preventivevigi(0);
+            otherActivitesB(0);
+            otherActivitesC(0);
+            otherActivitesD(0);
+            preventivevigiE(0);
+            verifyCheckboxes();
+        });
+
+        //$('').on('input', performComTotal);
 
 
-    function performComTotal() {
-        //$('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
-    }
-
-
-</script>
-
-<script>
-    function agreedList(isShow) {
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').addClass('d-none');
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeAttr('required');
-    }
-    function preventivevigi(isShow) {
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').addClass('d-none');
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeAttr('required');
-    }
-    function preventivevigiE(isShow) {
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').addClass('d-none');
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeAttr('required');
-    }
-    function otherActivitesB(isShow) {
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').addClass('d-none');
-        isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeAttr('required');
-    }
-    function otherActivitesC(isShow) {
-        if (isShow == 1) {
-
-            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeClass('d-none');
-            $('#fileToUpload').removeClass('d-none');
-            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').attr('required', true);
-        } else {
-            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeAttr('required');
-            $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').addClass('d-none');
-            $('#fileToUpload').addClass('d-none');
-
+        function performComTotal() {
+            //$('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
         }
 
-    }
-    function otherActivitesD(isShow) {
-        if (isShow == 1) {
-            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeClass('d-none');
-            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').attr('required', true)
-        } else {
-            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').addClass('d-none');
-            $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeAttr('required');
-        }
-    }
 
-    function verifyCheckboxes() {
-        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list" == "Yes") {
-            agreedList(1);
-        }
-        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list" == "Yes") {
-            preventivevigi(1);
-        }
-        if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating" == "Yes") {
-            preventivevigiE(1);
-        }
-        if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" == "Yes") {
-            otherActivitesB(1);
-        }
-        if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi" == "Yes") {
-            otherActivitesC(1);
+    </script>
 
-        } if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" == "Yes") {
-            otherActivitesD(1);
+    <script>
+        function agreedList(isShow) {
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').addClass('d-none');
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_agreed_list_date').removeAttr('required');
         }
-    }
-</script>
-@* 
+        function preventivevigi(isShow) {
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').addClass('d-none');
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_officer_list_date').removeAttr('required');
+        }
+        function preventivevigiE(isShow) {
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').addClass('d-none');
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_whether_data_relating_date').removeAttr('required');
+        }
+        function otherActivitesB(isShow) {
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeClass('d-none') : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').addClass('d-none');
+            isShow == 1 ? $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').attr('required', true) : $('#PreventiveVigilanceQRS_preventivevigi_other_qpr_cte_date').removeAttr('required');
+        }
+        function otherActivitesC(isShow) {
+            if (isShow == 1) {
+
+                $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeClass('d-none');
+                $('#fileToUpload').removeClass('d-none');
+                $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').attr('required', true);
+            } else {
+                $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').removeAttr('required');
+                $('#PreventiveVigilanceQRS_preventivevigi_other_review_vigi_date').addClass('d-none');
+                $('#fileToUpload').addClass('d-none');
+
+            }
+
+        }
+        function otherActivitesD(isShow) {
+            if (isShow == 1) {
+                $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeClass('d-none');
+                $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').attr('required', true)
+            } else {
+                $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').addClass('d-none');
+                $('#PreventiveVigilanceQRS_preventivevigi_other_structured_meeting_date').removeAttr('required');
+            }
+        }
+
+        function verifyCheckboxes() {
+            if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_agreed_list" == "Yes") {
+                agreedList(1);
+            }
+            if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_officer_list" == "Yes") {
+                preventivevigi(1);
+            }
+            if ("@Model.PreventiveVigilanceQRS.preventivevigi_whether_data_relating" == "Yes") {
+                preventivevigiE(1);
+            }
+            if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_qpr_cte" == "Yes") {
+                otherActivitesB(1);
+            }
+            if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_review_vigi" == "Yes") {
+                otherActivitesC(1);
+
+            } if ("@Model.PreventiveVigilanceQRS.preventivevigi_other_structured_meeting" == "Yes") {
+                otherActivitesD(1);
+            }
+        }
+
+
+    </script>
+}
+@*
 <script>
     function uploadFilePreventiveVigilance() {
         if (validateFields()) {
@@ -846,5 +877,5 @@
         }
     }
 
-    
+
 </script> *@

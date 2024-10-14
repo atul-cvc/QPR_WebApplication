@@ -1777,6 +1777,7 @@
         CHECK_DisposedTotal();
         // isSave =
         CHECK_CVC_COMPLAINTS();
+        CHECK_OTH_COMPLAINTS();
         CHECK_PIDPI_CVC_TOTAL();
         CHECK_PIDPI_OTHER_TOTAL();
         CHECK_ADVICE_PIDPI_CVC_TOTAL();
@@ -1826,9 +1827,8 @@
     }
     function CHECK_OTH_COMPLAINTS() {
         var total = 0;
-        $(
-            "#comotherage_less_one,#comotherage_pendency_betweenone_three,#comotherage_pendency_betweenthree_six"
-        ).each(function () {
+        debugger;
+        $("#comotherage_less_one,#comotherage_pendency_betweenone_three,#comotherage_pendency_betweenthree_six").each(function () {
             // Convert to float and default to 0 if NaN
             var value = parseFloat($(this).val()) || 0;
             total += value;
@@ -1919,6 +1919,14 @@
             });
         }
         if (total > parseFloat($("#comotherbalance_pending").val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total must be equal to: ' + parseFloat($("#comotherbalance_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
             $(
                 "#comotherage_less_one,#comotherage_pendency_betweenone_three,#comotherage_pendency_betweenthree_six"
             ).each(function () {

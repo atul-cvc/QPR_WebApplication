@@ -310,8 +310,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="ProsecutionSanctions">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" onclick="return validateFields()" />
-        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('DepartmentalProceedingsQPRForm')" />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveDepartmentalProceedings" onclick="return VERIFY_SAVE_DEPT_PROC()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="return VERIFY_NEXT_DEPT_PROC()" />
     </div>
 
 </form>
@@ -320,248 +320,388 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-
-<script>
-    document.getElementById('add-row-dept-proc').addEventListener('click', function () {
-        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').attr('required', true);
-        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').attr('required', true);
-        $('#newRow').removeClass('d-none');
-        $('#add-row-dept-proc').removeClass('btn-outline-primary');
-        $('#add-row-dept-proc').addClass('btn-outline-secondary');
-        $('#add-row-dept-proc').addClass('disabled');
-    });
-
-    function hideRow() {
-        event.preventDefault();
-        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').removeAttr('required');
-        $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').removeAttr('required');
-        $('#newRow').addClass('d-none');
-        $('#add-row-dept-proc').addClass('btn-outline-primary');
-        $('#add-row-dept-proc').removeClass('btn-outline-secondary');
-        $('#add-row-dept-proc').removeClass('disabled');
-    }
-</script>
-
-<script>
-    $(function () {
-        var complaintsMessage = '@ViewBag.ComplaintsMessage';
-        if (complaintsMessage) {
-            Swal.fire({
-                // title: complaintsMessage,
-                text: complaintsMessage,
-                icon: 'success',
-                confirmButtonText: 'Okay'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    pageReloadWithoutQueryString();
-                } else {
-                    // Optional: Handle cancel action
-                }
-            });
-        }
-        performComTotal();
-    });
-
-    $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio, #Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio,#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries, #Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries,#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix, #departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries ').on('input', performComTotal);
-
-    function performComTotal() {
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen').val()) || 0));
-
-        $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen').val()) || 0));
-        $('#Departmentalproceedingsqrs_departproceedings_minor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen').val()) || 0));
-
-    }
-</script>
-
-<script>
-    $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").on("keyup", function () {
-        if (parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-            $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").val($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val());
-        }
-        performComTotal();
-    })
-
-    $("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").on("keyup", function () {
-        if (parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-            $("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").val($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val());
-        }
-        performComTotal();
-    })
-
-    $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").on("keyup", function () {
-        if (parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-            $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").val($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val());
-        }
-        performComTotal();
-    })
 
 
-    $("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").on("keyup", function () {
-        if (parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-            $("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").val($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val());
-        }
-        performComTotal();
-    })
-
-    $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").on("keyup", function () {
-        var total = 0;
-        $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+    <script>
+        document.getElementById('add-row-dept-proc').addEventListener('click', function () {
+            $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').attr('required', true);
+            $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').attr('required', true);
+            $('#newRow').removeClass('d-none');
+            $('#add-row-dept-proc').removeClass('btn-outline-primary');
+            $('#add-row-dept-proc').addClass('btn-outline-secondary');
+            $('#add-row-dept-proc').addClass('disabled');
         });
-        if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
+
+        function hideRow() {
+            event.preventDefault();
+            $('#NewAgainstChargedTable_departproceedings_detailsinquiry_chargedofficer').removeAttr('required');
+            $('#NewAgainstChargedTable_departproceedings_detailsinquiry_remarks').removeAttr('required');
+            $('#newRow').addClass('d-none');
+            $('#add-row-dept-proc').addClass('btn-outline-primary');
+            $('#add-row-dept-proc').removeClass('btn-outline-secondary');
+            $('#add-row-dept-proc').removeClass('disabled');
         }
-        if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val())) {
+    </script>
+
+    <script>
+        var SAVE_FLAG = true;
+
+        $(function () {
+            var complaintsMessage = '@ViewBag.ComplaintsMessage';
+            if (complaintsMessage) {
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: complaintsMessage,
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        pageReloadWithoutQueryString();
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
+            }
+            performComTotal();
+        });
+
+        $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen,#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve,#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix,#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio, #Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio,#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries, #Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries,#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix, #departproceedingsmajor_other_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio, #Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries ').on('input', performComTotal);
+
+        function performComTotal() {
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_inquiries').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_total_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedingsmajor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen').val()) || 0));
+
+            $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lastqtr').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_inquiries').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_inquiries').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_lastqtr').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_enquiries').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total').val()) || 0) - (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_total_reportsio').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_greatersix').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_sixtotwelve').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_twelvetoeighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen').val()) || 0));
+            $('#Departmentalproceedingsqrs_departproceedings_minor_total_lesseighteen').val((parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen').val()) || 0) + (parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen').val()) || 0));
+
+        }
+    </script>
+
+    <script>
+        $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").on("keyup", function () {
+            if (parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_reportsio").val($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_total").val());
+            }
+            performComTotal();
+        })
+
+        $("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").on("keyup", function () {
+            if (parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_other_reportsio").val($("#Departmentalproceedingsqrs_departproceedingsmajor_other_total").val());
+            }
+            performComTotal();
+        })
+
+        $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").on("keyup", function () {
+            if (parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_reportsio").val($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_total").val());
+            }
+            performComTotal();
+        })
+
+
+        $("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").on("keyup", function () {
+            if (parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").val()) > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Suspension revoked during the quarter cannot be greater than Total: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#Departmentalproceedingsqrs_departproceedings_minor_other_reportsio").val($("#Departmentalproceedingsqrs_departproceedings_minor_other_total").val());
+            }
+            performComTotal();
+        })
+
+        $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").on("focus", function () {
+            var total = 0;
             $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").on("keyup", function () {
-        var total = 0;
-        $("#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val())) {
+
+        $("#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").on("focus", function () {
+            var total = 0;
             $("#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").on("keyup", function () {
-        var total = 0;
-        $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries").val())) {
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val())) {
+
+        $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").on("keyup", function () {
+            var total = 0;
             $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-
-    $("#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").on("keyup", function () {
-        var total = 0;
-        $("#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val())) {
+                $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val())) {
+
+
+        $("#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").on("keyup", function () {
+            var total = 0;
             $("#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
+            if (total != parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val())) {
+                $("#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
+        });
 
-</script>
+        function CHECK_MAJOR_CASES_UNDER_CVC() {
+            var total = 0;
+            $(
+                "#Departmentalproceedingsqrs_departproceedingsmajor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_MAJOR_CASES_UNDER_OTHER() {
+            var total = 0;
+            $(
+                "#Departmentalproceedingsqrs_departproceedingsmajor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedingsmajor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $(
+                    "#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries"
+                ).val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_MINOR_CASES_UNDER_CVC() {
+            var total = 0;
+            $(
+                "#Departmentalproceedingsqrs_departproceedings_minor_cvc_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_cvc_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_MINOR_CASES_UNDER_OTHER() {
+            var total = 0;
+            $(
+                "#Departmentalproceedingsqrs_departproceedings_minor_other_lesseighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_twelvetoeighteen, #Departmentalproceedingsqrs_departproceedings_minor_other_sixtotwelve, #Departmentalproceedingsqrs_departproceedings_minor_other_greatersix"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_DETAILS_ROWS() {
+            var total = 0;
+            $(
+                "Departmentalproceedingsqrs_departproceedings_minor_total_greatersix.Departmentalproceedingsqrs_departproceedings_minor_total_sixtotwelve,Departmentalproceedingsqrs_departproceedings_minor_total_twelvetoeighteen,Departmentalproceedingsqrs_departproceedings_minor_total_lesseighteen"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat('@Model.AgainstChargedTables.Count') || 0;
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+
+        function SAVE_CHECK() {
+            debugger;
+            SAVE_FLAG = true;
+            CHECK_MAJOR_CASES_UNDER_CVC();
+            CHECK_MAJOR_CASES_UNDER_OTHER();
+            CHECK_MINOR_CASES_UNDER_CVC();
+            CHECK_MINOR_CASES_UNDER_OTHER();
+            return SAVE_FLAG;
+        }
+
+        function VERIFY_SAVE_DEPT_PROC() {
+            if (SAVE_CHECK()) {
+                return validateFields();
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+        function VERIFY_NEXT_DEPT_PROC() {
+            if (SAVE_CHECK()) {
+                return confirmFormSubmission('DepartmentalProceedingsQPRForm');
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+
+    </script>
+}

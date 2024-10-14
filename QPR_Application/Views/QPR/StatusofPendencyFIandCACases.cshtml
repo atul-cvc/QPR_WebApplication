@@ -359,17 +359,17 @@
 
     @* <div class="w-25 m-auto text-center">
 
-        @if (ViewBag.ComplaintsMessage != null)
-        {
-            @ViewBag.ComplaintsMessage
-        }
+    @if (ViewBag.ComplaintsMessage != null)
+    {
+    @ViewBag.ComplaintsMessage
+    }
 
     </div> *@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="AdviceOfCVC">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" onclick="return validateFields()" />
-        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('StatusOfPendencyQPRForm')" />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveStatusofPendencyFIandCACases" onclick="return VERIFY_SAVE_STATUS_FI_CA()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="return VERIFY_NEXT_STATUS_FI_CA()" />
     </div>
 
 
@@ -379,178 +379,255 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-
-<script>
-
-    document.getElementById('add-row-ficase').addEventListener('click', function () {
-        // debugger;
-        $('#NewFICase_cvc_case_reg_no').attr('required', true);
-        $('#NewFICase_cvc_file_no').attr('required', true);
-        $('#NewFICase_date_since_pend').attr('required', true);
-        $('#NewFICase_name_officer').attr('required', true);
-        $('#NewFICase_dept_ref_no').attr('required', true);
-        $('#NewFICase_present_status').attr('required', true);
-        $('#NewFICase_submission_date').attr('required', true);
-        $('#NewFICase_remark').attr('required', true);
-        $('#newFICaseRow').removeClass('d-none');
-        $('#add-row-ficase').removeClass('btn-outline-primary');
-        $('#add-row-ficase').addClass('btn-outline-secondary');
-        $('#add-row-ficase').addClass('disabled');
-
-    });
-
-    function hideRowFICase() {
-        event.preventDefault();
-        $('#NewFICase_cvc_case_reg_no').removeAttr('required');            
-        $('#NewFICase_cvc_file_no').removeAttr('required');            
-        $('#NewFICase_date_since_pend').removeAttr('required');            
-        $('#NewFICase_name_officer').removeAttr('required');            
-        $('#NewFICase_dept_ref_no').removeAttr('required');            
-        $('#NewFICase_present_status').removeAttr('required');            
-        $('#NewFICase_submission_date').removeAttr('required');            
-        $('#NewFICase_remark').removeAttr('required');
-        $('#newFICaseRow').addClass('d-none');
-        $('#add-row-ficase').addClass('btn-outline-primary');
-        $('#add-row-ficase').removeClass('btn-outline-secondary');
-        $('#add-row-ficase').removeClass('disabled');
-
-    };
-
-    document.getElementById('add-row-cacase').addEventListener('click', function () {
-        // debugger;
-        $('#NewCACase_cvc_case_reg_no').attr('required', true);
-        $('#NewCACase_cvc_file_no').attr('required', true);
-        $('#NewCACase_date_since_pend').attr('required', true);
-        $('#NewCACase_name_officer').attr('required', true);
-        $('#NewCACase_dept_ref_no').attr('required', true);
-        $('#NewCACase_present_status').attr('required', true);
-        $('#NewCACase_submission_date').attr('required', true);
-        $('#NewCACase_remark').attr('required', true);
-        $('#newCACase').removeClass('d-none');
-        $('#add-row-cacase').removeClass('btn-outline-primary');
-        $('#add-row-cacase').addClass('btn-outline-secondary');
-        $('#add-row-cacase').addClass('disabled');
-
-    });
-
-    function hideRowCACase() {
-        event.preventDefault();
-        $('#NewCACase_cvc_case_reg_no').removeAttr('required');
-        $('#NewCACase_cvc_file_no').removeAttr('required');
-        $('#NewCACase_date_since_pend').removeAttr('required');
-        $('#NewCACase_name_officer').removeAttr('required');
-        $('#NewCACase_dept_ref_no').removeAttr('required');
-        $('#NewCACase_present_status').removeAttr('required');
-        $('#NewCACase_submission_date').removeAttr('required');
-        $('#NewCACase_remark').removeAttr('required');
-        $('#newCACase').addClass('d-none');
-        $('#add-row-cacase').addClass('btn-outline-primary');
-        $('#add-row-cacase').removeClass('btn-outline-secondary');
-        $('#add-row-cacase').removeClass('disabled');
-
-    };
-
-</script>
 
 
-<script>
-    $(function () {
-        var complaintsMessage = '@ViewBag.ComplaintsMessage';
-        if (complaintsMessage) {
-            var notificationIcon;
+    <script>
 
-            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
-                notificationIcon = 'success'
-            }
+        document.getElementById('add-row-ficase').addEventListener('click', function () {
+            // debugger;
+            $('#NewFICase_cvc_case_reg_no').attr('required', true);
+            $('#NewFICase_cvc_file_no').attr('required', true);
+            $('#NewFICase_date_since_pend').attr('required', true);
+            $('#NewFICase_name_officer').attr('required', true);
+            $('#NewFICase_dept_ref_no').attr('required', true);
+            $('#NewFICase_present_status').attr('required', true);
+            $('#NewFICase_submission_date').attr('required', true);
+            $('#NewFICase_remark').attr('required', true);
+            $('#newFICaseRow').removeClass('d-none');
+            $('#add-row-ficase').removeClass('btn-outline-primary');
+            $('#add-row-ficase').addClass('btn-outline-secondary');
+            $('#add-row-ficase').addClass('disabled');
 
-            if (complaintsMessage.includes('Error')) {
-                notificationIcon = 'error'
-            }
-
-            Swal.fire({
-                // title: complaintsMessage,
-                text: complaintsMessage,
-                icon: notificationIcon,
-                confirmButtonText: 'Okay'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    pageReloadWithoutQueryString();
-                } else {
-                    // Optional: Handle cancel action
-                }
-            });
-        }
-        performComTotal();
-    });
-
-    $('#StatusOfPendency_pendency_status_fi_addduringqtr, #StatusOfPendency_pendency_status_fi_reply_commission, #StatusOfPendency_pendency_status_ca_addduringqtr, #StatusOfPendency_pendency_status_ca_comments_commission').on('input', performComTotal);
-
-
-    function performComTotal() {
-
-        $('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
-        $('#StatusOfPendency_pendency_status_fi_reply_pending').val((parseFloat($('#StatusOfPendency_pendency_status_fi_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_fi_reply_commission').val()) || 0));
-
-        $('#StatusOfPendency_pendency_status_ca_total').val((parseFloat($('#StatusOfPendency_pendency_status_ca_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_ca_previousqtr').val()) || 0));
-        $('#StatusOfPendency_pendency_status_ca_comments_pending').val((parseFloat($('#StatusOfPendency_pendency_status_ca_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_ca_comments_commission').val()) || 0));
-
-    }
-
-</script>
-<script>
-
-    $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").on("keyup", function () {
-        @* debugger; *@
-        var total = 0;
-        $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
         });
-        if (parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
+
+        function hideRowFICase() {
+            event.preventDefault();
+            $('#NewFICase_cvc_case_reg_no').removeAttr('required');
+            $('#NewFICase_cvc_file_no').removeAttr('required');
+            $('#NewFICase_date_since_pend').removeAttr('required');
+            $('#NewFICase_name_officer').removeAttr('required');
+            $('#NewFICase_dept_ref_no').removeAttr('required');
+            $('#NewFICase_present_status').removeAttr('required');
+            $('#NewFICase_submission_date').removeAttr('required');
+            $('#NewFICase_remark').removeAttr('required');
+            $('#newFICaseRow').addClass('d-none');
+            $('#add-row-ficase').addClass('btn-outline-primary');
+            $('#add-row-ficase').removeClass('btn-outline-secondary');
+            $('#add-row-ficase').removeClass('disabled');
+
+        };
+
+        document.getElementById('add-row-cacase').addEventListener('click', function () {
+            // debugger;
+            $('#NewCACase_cvc_case_reg_no').attr('required', true);
+            $('#NewCACase_cvc_file_no').attr('required', true);
+            $('#NewCACase_date_since_pend').attr('required', true);
+            $('#NewCACase_name_officer').attr('required', true);
+            $('#NewCACase_dept_ref_no').attr('required', true);
+            $('#NewCACase_present_status').attr('required', true);
+            $('#NewCACase_submission_date').attr('required', true);
+            $('#NewCACase_remark').attr('required', true);
+            $('#newCACase').removeClass('d-none');
+            $('#add-row-cacase').removeClass('btn-outline-primary');
+            $('#add-row-cacase').addClass('btn-outline-secondary');
+            $('#add-row-cacase').addClass('disabled');
+
+        });
+
+        function hideRowCACase() {
+            event.preventDefault();
+            $('#NewCACase_cvc_case_reg_no').removeAttr('required');
+            $('#NewCACase_cvc_file_no').removeAttr('required');
+            $('#NewCACase_date_since_pend').removeAttr('required');
+            $('#NewCACase_name_officer').removeAttr('required');
+            $('#NewCACase_dept_ref_no').removeAttr('required');
+            $('#NewCACase_present_status').removeAttr('required');
+            $('#NewCACase_submission_date').removeAttr('required');
+            $('#NewCACase_remark').removeAttr('required');
+            $('#newCACase').addClass('d-none');
+            $('#add-row-cacase').addClass('btn-outline-primary');
+            $('#add-row-cacase').removeClass('btn-outline-secondary');
+            $('#add-row-cacase').removeClass('disabled');
+
+        };
+
+    </script>
+
+
+    <script>
+        $(function () {
+            var complaintsMessage = '@ViewBag.ComplaintsMessage';
+            if (complaintsMessage) {
+                var notificationIcon;
+
+                if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                    notificationIcon = 'success'
+                }
+
+                if (complaintsMessage.includes('Error')) {
+                    notificationIcon = 'error'
+                }
+
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: complaintsMessage,
+                    icon: notificationIcon,
+                    confirmButtonText: 'Okay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        pageReloadWithoutQueryString();
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
+            }
+            performComTotal();
+        });
+
+        $('#StatusOfPendency_pendency_status_fi_addduringqtr, #StatusOfPendency_pendency_status_fi_reply_commission, #StatusOfPendency_pendency_status_ca_addduringqtr, #StatusOfPendency_pendency_status_ca_comments_commission').on('input', performComTotal);
+
+
+        function performComTotal() {
+
+            $('#StatusOfPendency_pendency_status_fi_total').val((parseFloat($('#StatusOfPendency_pendency_status_fi_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_fi_previousqtr').val()) || 0));
+            $('#StatusOfPendency_pendency_status_fi_reply_pending').val((parseFloat($('#StatusOfPendency_pendency_status_fi_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_fi_reply_commission').val()) || 0));
+
+            $('#StatusOfPendency_pendency_status_ca_total').val((parseFloat($('#StatusOfPendency_pendency_status_ca_addduringqtr').val()) || 0) + (parseFloat($('#StatusOfPendency_pendency_status_ca_previousqtr').val()) || 0));
+            $('#StatusOfPendency_pendency_status_ca_comments_pending').val((parseFloat($('#StatusOfPendency_pendency_status_ca_total').val()) || 0) - (parseFloat($('#StatusOfPendency_pendency_status_ca_comments_commission').val()) || 0));
+
         }
-        if (total > parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val())) {
+
+    </script>
+    <script>
+
+        $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").on("blur", function () {
+        @* debugger; *@
+                var total = 0;
             $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").on("keyup", function () {
-        @* debugger; *@
-        var total = 0;
-        $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#StatusOfPendency_pendency_status_fi_reply_pending").val())) {
+                $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val())) {
+
+        $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").on("keyup", function () {
+        @* debugger; *@
+                var total = 0;
             $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
+            if (parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#StatusOfPendency_pendency_status_ca_comments_pending").val())) {
+                $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
+        });
+        function CHECK_FI_CASES() {
+            var total = 0;
+            $(
+                "#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#StatusOfPendency_pendency_status_fi_reply_pending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
         }
-        performComTotal();
-    });
-</script>
+
+        function CHECK_CA_CASES() {
+            var total = 0;
+            $(
+                "StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#StatusOfPendency_pendency_status_ca_comments_pending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function SAVE_CHECK() {
+            debugger;
+            SAVE_FLAG = true;
+            CHECK_FI_CASES();
+            CHECK_CA_CASES();
+            return SAVE_FLAG;
+        }
+
+        function VERIFY_SAVE_STATUS_FI_CA() {
+            if (SAVE_CHECK()) {
+                return validateFields();
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+
+        function VERIFY_NEXT_STATUS_FI_CA() {
+            debugger;
+            if (SAVE_CHECK()) {
+                return confirmFormSubmission('StatusOfPendencyQPRForm');
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+    </script>
+}

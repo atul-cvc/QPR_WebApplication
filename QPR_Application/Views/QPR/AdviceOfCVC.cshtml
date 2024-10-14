@@ -451,8 +451,8 @@
 
     <div class="d-flex justify-content-between w-80 m-auto mt-5">
         <a class="btn btn-secondary" asp-action="DepartmentalProceedings">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" onclick="return validateFields()" />
-        <input type="submit" value="Next" class="btn btn-primary " onclick="confirmFormSubmission('AdviceOfCvcQPRForm')" />
+        <input type="submit" value="Save" class="btn btn-success" asp-action="SaveAdviceOfCVC" onclick="return VERIFY_SAVE_ADVICE_CVC()" />
+        <input type="submit" value="Next" class="btn btn-primary " onclick="return VERIFY_NEXT_ADVICE_CVC()" />
     </div>
 
 </form>
@@ -462,371 +462,566 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
 
-<script>
-    document.getElementById('add-row-advice_cvc').addEventListener('click', function () {
-        $('#NewCvcAdvice_stagetype').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').attr('required', true);
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').attr('required', true);
-        $('#newRow_CvcAdvice').removeClass('d-none');
-        $('#add-row-advice_cvc').removeClass('btn-outline-primary');
-        $('#add-row-advice_cvc').addClass('btn-outline-secondary');
-        $('#add-row-advice_cvc').addClass('disabled');
-    });
 
-    function hideRowCVCAdvice() {
-        event.preventDefault();
-        $('#NewCvcAdvice_stagetype').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').removeAttr('required');
-        $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').removeAttr('required');
-        $('#newRow_CvcAdvice').addClass('d-none');
-        $('#add-row-advice_cvc').addClass('btn-outline-primary');
-        $('#add-row-advice_cvc').removeClass('btn-outline-secondary');
-        $('#add-row-advice_cvc').removeClass('disabled');
-    }
+    <script>
+        document.getElementById('add-row-advice_cvc').addEventListener('click', function () {
+            $('#NewCvcAdvice_stagetype').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').attr('required', true);
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').attr('required', true);
+            $('#newRow_CvcAdvice').removeClass('d-none');
+            $('#add-row-advice_cvc').removeClass('btn-outline-primary');
+            $('#add-row-advice_cvc').addClass('btn-outline-secondary');
+            $('#add-row-advice_cvc').addClass('disabled');
+        });
 
-    document.getElementById('addauthority').addEventListener('click', function () {
-        $('#NewAppeleateAuthority_stagetype').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').attr('required', true);
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').attr('required', true);
-        $('#newRow_AppellateAuthority').removeClass('d-none');
-        $('#addauthority').removeClass('btn-outline-primary');
-        $('#addauthority').addClass('btn-outline-secondary');
-        $('#addauthority').addClass('disabled');
-    });
+        function hideRowCVCAdvice() {
+            event.preventDefault();
+            $('#NewCvcAdvice_stagetype').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_cvcfilenumber').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_dept_ref_number').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_name_designation').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_da').removeAttr('required');
+            $('#NewCvcAdvice_deviation_cvc_advice_firststage_actiontaken_aa').removeAttr('required');
+            $('#newRow_CvcAdvice').addClass('d-none');
+            $('#add-row-advice_cvc').addClass('btn-outline-primary');
+            $('#add-row-advice_cvc').removeClass('btn-outline-secondary');
+            $('#add-row-advice_cvc').removeClass('disabled');
+        }
 
-    function hideRowAppelleate() {
-        event.preventDefault();
-        $('#NewAppeleateAuthority_stagetype').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').removeAttr('required');
-        $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').removeAttr('required');
-        $('#newRow_AppellateAuthority').addClass('d-none');
-        $('#addauthority').addClass('btn-outline-primary');
-        $('#addauthority').removeClass('btn-outline-secondary');
-        $('#addauthority').removeClass('disabled');
-    }
-</script>
-<script>
-    $(function () {
-        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+        document.getElementById('addauthority').addEventListener('click', function () {
+            $('#NewAppeleateAuthority_stagetype').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').attr('required', true);
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').attr('required', true);
+            $('#newRow_AppellateAuthority').removeClass('d-none');
+            $('#addauthority').removeClass('btn-outline-primary');
+            $('#addauthority').addClass('btn-outline-secondary');
+            $('#addauthority').addClass('disabled');
+        });
 
-        if (complaintsMessage) {
+        function hideRowAppelleate() {
+            event.preventDefault();
+            $('#NewAppeleateAuthority_stagetype').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_cvcfilenumber').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_dept_ref_number').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_name_designation').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_da').removeAttr('required');
+            $('#NewAppeleateAuthority_appellate_deviation_firststage_actiontaken_aa').removeAttr('required');
+            $('#newRow_AppellateAuthority').addClass('d-none');
+            $('#addauthority').addClass('btn-outline-primary');
+            $('#addauthority').removeClass('btn-outline-secondary');
+            $('#addauthority').removeClass('disabled');
+        }
+    </script>
+    <script>
+        $(function () {
+            var complaintsMessage = '@ViewBag.ComplaintsMessage';
 
-            var notificationIcon;
+            if (complaintsMessage) {
 
-            if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
-                notificationIcon = 'success'
+                var notificationIcon;
+
+                if (complaintsMessage == 'Saved' || complaintsMessage == 'Deleted successfully') {
+                    notificationIcon = 'success'
+                }
+
+                if (complaintsMessage.includes('Error')) {
+                    notificationIcon = 'error'
+                }
+
+                Swal.fire({
+                    // title: complaintsMessage,
+                    text: complaintsMessage,
+                    icon: notificationIcon,
+                    confirmButtonText: 'Okay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        pageReloadWithoutQueryString();
+                    } else {
+                        // Optional: Handle cancel action
+                    }
+                });
             }
+            performComTotal();
+        });
 
-            if (complaintsMessage.includes('Error')) {
-                notificationIcon = 'error'
+        $('#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone,#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone,#AdviceOfCvc_action_cvc_secondmajor_disposed,#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_secondmajor_greaterone,#AdviceOfCvc_action_cvc_firstminor_greaterone,#AdviceOfCvc_action_cvc_secondminor_disposed,#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstmajor_openingbalance,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_disposed,#AdviceOfCvc_advice_cvc_second_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_casesduringqtr,#AdviceOfCvc_advice_cvc_total_casespreviousqtr,#AdviceOfCvc_advice_cvc_second_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').on('input', performComTotal);
+
+        function performComTotal() {
+            $('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
+
+            $('#AdviceOfCvc_advice_cvc_first_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_second_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_firstreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_secondreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
+            $('#AdviceOfCvc_advice_cvc_total_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val()) || 0));
+
+            $('#AdviceOfCvc_action_cvc_total_openingbalance').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0));
+
+            $('#AdviceOfCvc_action_cvc_firstmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_firstminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_secondmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_secondminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_disposed').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_total_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_total_disposed').val()) || 0));
+
+
+            $('#AdviceOfCvc_action_cvc_total_greaterone').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_greaterone').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_onetothree').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_onetothree').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_threetosix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_threetosix').val()) || 0));
+            $('#AdviceOfCvc_action_cvc_total_lesssix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_lesssix').val()) || 0));
+
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#NewCvcAdvice_stagetype').change(function () {
+                var stageName = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("GetNatureListByStageType")',
+                    type: 'GET',
+                    data: { stageName: stageName },
+                    success: function (data) {
+                        var itemDropdown = $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice');
+                        itemDropdown.empty();
+                        itemDropdown.append('<option value="">-- Select --</option>');
+                        $.each(data, function (index, item) {
+                            itemDropdown.append('<option value="' + item + '">' + item + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('#NewAppeleateAuthority_stagetype').change(function () {
+                var stageName = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("GetNatureListByStageType")',
+                    type: 'GET',
+                    data: { stageName: stageName },
+                    success: function (data) {
+                        var itemDropdown = $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice');
+                        itemDropdown.empty();
+                        itemDropdown.append('<option value="">-- Select --</option>');
+                        $.each(data, function (index, item) {
+                            itemDropdown.append('<option value="' + item + '">' + item + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").on("keyup", function () {
+            debugger;
+            var total = 0;
+            $("#AdviceOfCvc_advice_cvc_first_casesduringqtr, #AdviceOfCvc_advice_cvc_first_casespreviousqtr").each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            if (parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total can not be more than: ' + total,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
             }
-
-            Swal.fire({
-                // title: complaintsMessage,
-                text: complaintsMessage,
-                icon: notificationIcon,
-                confirmButtonText: 'Okay'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    pageReloadWithoutQueryString();
-                } else {
-                    // Optional: Handle cancel action
-                }
-            });
-        }
-        performComTotal();
-    });
-
-    $('#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone,#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone,#AdviceOfCvc_action_cvc_secondmajor_disposed,#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_secondmajor_greaterone,#AdviceOfCvc_action_cvc_firstminor_greaterone,#AdviceOfCvc_action_cvc_secondminor_disposed,#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstminor_disposed,#AdviceOfCvc_action_cvc_firstmajor_openingbalance,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr,#AdviceOfCvc_action_cvc_firstmajor_disposed,#AdviceOfCvc_advice_cvc_second_adviceduringqtr,#AdviceOfCvc_advice_cvc_first_casesduringqtr,#AdviceOfCvc_advice_cvc_total_casespreviousqtr,#AdviceOfCvc_advice_cvc_second_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr,#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr,#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').on('input', performComTotal);
-
-    function performComTotal() {
-        $('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
-
-        $('#AdviceOfCvc_advice_cvc_first_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_first_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_first_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_first_adviceduringqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_second_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_second_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_second_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_second_adviceduringqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_firstreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_secondreconsider_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr').val()) || 0));
-        $('#AdviceOfCvc_advice_cvc_total_adviceawaitedcvc').val((parseFloat($('#AdviceOfCvc_advice_cvc_total_casespreviousqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_advice_cvc_total_casesduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_advice_cvc_total_adviceduringqtr').val()) || 0));
-
-        $('#AdviceOfCvc_action_cvc_total_openingbalance').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0));
-
-        $('#AdviceOfCvc_action_cvc_firstmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_firstminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_firstminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_secondmajor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_secondminor_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val((parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_adviceduringqtr').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondminor_adviceduringqtr').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_disposed').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_disposed').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_disposed').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_balancepending').val((parseFloat($('#AdviceOfCvc_action_cvc_total_openingbalance').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_total_adviceduringqtr').val()) || 0) - (parseFloat($('#AdviceOfCvc_action_cvc_total_disposed').val()) || 0));
-
-
-        $('#AdviceOfCvc_action_cvc_total_greaterone').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_greaterone').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_greaterone').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_onetothree').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_onetothree').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_onetothree').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_threetosix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_threetosix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_threetosix').val()) || 0));
-        $('#AdviceOfCvc_action_cvc_total_lesssix').val((parseFloat($('#AdviceOfCvc_action_cvc_secondminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstminor_lesssix').val()) || 0) + (parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_lesssix').val()) || 0));
-
-    }
-</script>
-<script>
-    $(document).ready(function () {
-        $('#NewCvcAdvice_stagetype').change(function () {
-            var stageName = $(this).val();
-            $.ajax({
-                url: '@Url.Action("GetNatureListByStageType")',
-                type: 'GET',
-                data: { stageName: stageName },
-                success: function (data) {
-                    var itemDropdown = $('#NewCvcAdvice_deviation_cvc_advice_firststage_typecvcadvice');
-                    itemDropdown.empty();
-                    itemDropdown.append('<option value="">-- Select --</option>');
-                    $.each(data, function (index, item) {
-                        itemDropdown.append('<option value="' + item + '">' + item + '</option>');
-                    });
-                }
-            });
+            if (total < parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val())) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total can not be more than: ' + total,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val(0);
+            }
+            performComTotal();
         });
-    });
 
-    $(document).ready(function () {
-        $('#NewAppeleateAuthority_stagetype').change(function () {
-            var stageName = $(this).val();
-            $.ajax({
-                url: '@Url.Action("GetNatureListByStageType")',
-                type: 'GET',
-                data: { stageName: stageName },
-                success: function (data) {
-                    var itemDropdown = $('#NewAppeleateAuthority_appellate_deviation_firststage_typecvcadvice');
-                    itemDropdown.empty();
-                    itemDropdown.append('<option value="">-- Select --</option>');
-                    $.each(data, function (index, item) {
-                        itemDropdown.append('<option value="' + item + '">' + item + '</option>');
-                    });
-                }
+        $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").on("keyup", function () {
+            debugger;
+            var total = 0;
+            $("#AdviceOfCvc_advice_cvc_second_casesduringqtr, #AdviceOfCvc_advice_cvc_second_casespreviousqtr").each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
+            if (parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + total,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total < parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val())) {
+                $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val(0);
+            }
+            performComTotal();
         });
-    });
-</script>
-<script>
-    $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_advice_cvc_first_casesduringqtr, #AdviceOfCvc_advice_cvc_first_casespreviousqtr").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + total,
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val())) {
-            $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val(0);
-        }
-        performComTotal();
-    });
 
-    $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_advice_cvc_second_casesduringqtr, #AdviceOfCvc_advice_cvc_second_casespreviousqtr").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + total,
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
+        $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").on("keyup", function () {
+            debugger;
+            var total = 0;
+            $("#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr").each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val())) {
-            $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val(0);
-        }
-        performComTotal();
-    });
+            if (parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + total,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total < parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val())) {
+                $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val(0);
+            }
+            performComTotal();
+        });
 
-    $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + total,
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
+        $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").on("keyup", function () {
+            debugger;
+            var total = 0;
+            $("#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr").each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val())) {
-            $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val(0);
-        }
-        performComTotal();
-    });
+            if (parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + total,
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total < parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val())) {
+                $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val(0);
+            }
+            performComTotal();
+        });
 
-    $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + total,
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total < parseFloat($("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val())) {
-            $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val(0);
-        }
-        performComTotal();
-    });
-
-    $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val())) {
+        $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").on("blur", function () {
+            debugger;
+            var total = 0;
             $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val())) {
+                $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val())) {
+
+        $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").on("blur", function () {
+            debugger;
+            var total = 0;
             $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#AdviceOfCvc_action_cvc_firstminor_balancepending").val())) {
+                $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val())) {
+
+        $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").on("blur", function () {
+            debugger;
+            var total = 0;
             $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
-        }
-        performComTotal();
-    });
-
-    $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").on("keyup", function () {
-        debugger;
-        var total = 0;
-        $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
+            if (parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val())) {
+                $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
         });
-        if (parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()) != total) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
-        if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val())) {
+
+        $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").on("blur", function () {
+            debugger;
+            var total = 0;
             $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
-                $(this).val(0);
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
             });
+            if (parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()) != total) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Total must be equal to: ' + parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()),
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+            }
+            if (total > parseFloat($("#AdviceOfCvc_action_cvc_secondminor_balancepending").val())) {
+                $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
+                    // Convert to float and default to 0 if NaN
+                    $(this).val(0);
+                });
+            }
+            performComTotal();
+        });
+
+        function CHECK_ADVICE_CVC_FIRST() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_advice_cvc_first_casesduringqtr, #AdviceOfCvc_advice_cvc_first_casespreviousqtr"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").val()
+            );
+            if (total > val) {
+                SAVE_FLAG = false;
+            }
         }
-        performComTotal();
-    });
-</script>
+
+        function CHECK_ADVICE_CVC_SECOND() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_advice_cvc_second_casespreviousqtr, #AdviceOfCvc_advice_cvc_second_casesduringqtr"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").val()
+            );
+            if (total > val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ADVICE_CVC_FIRST_RECONSIDERATION() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr, #AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").val()
+            );
+            if (total > val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ADVICE_CVC_SECOND_RECONSIDERATION() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr, #AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").val()
+            );
+            if (total > val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ACTION_ON_CVC_ADVICE_FIRST_MAJOR_PP() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_action_cvc_firstmajor_balancepending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ACTION_ON_CVC_ADVICE_FIRST_MINOR_PP() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_action_cvc_firstminor_balancepending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ACTION_ON_CVC_ADVICE_SECOND_MAJOR_PENALTY() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_action_cvc_secondmajor_balancepending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function CHECK_ACTION_ON_CVC_ADVICE_SECOND_MINOR_PENALTY() {
+            var total = 0;
+            $(
+                "#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone"
+            ).each(function () {
+                // Convert to float and default to 0 if NaN
+                var value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+            var val = parseFloat(
+                $("#AdviceOfCvc_action_cvc_secondminor_balancepending").val()
+            );
+            if (total != val) {
+                SAVE_FLAG = false;
+            }
+        }
+
+        function SAVE_CHECK() {
+            debugger;
+            SAVE_FLAG = true;
+            CHECK_ADVICE_CVC_FIRST();
+            CHECK_ADVICE_CVC_SECOND();
+            CHECK_ADVICE_CVC_FIRST_RECONSIDERATION();
+            CHECK_ADVICE_CVC_SECOND_RECONSIDERATION();
+
+            CHECK_ACTION_ON_CVC_ADVICE_FIRST_MAJOR_PP();
+            CHECK_ACTION_ON_CVC_ADVICE_FIRST_MINOR_PP();
+            CHECK_ACTION_ON_CVC_ADVICE_SECOND_MAJOR_PENALTY();
+            CHECK_ACTION_ON_CVC_ADVICE_SECOND_MINOR_PENALTY();
+
+            return SAVE_FLAG;
+        }
+
+        function VERIFY_SAVE_ADVICE_CVC() {
+            if (SAVE_CHECK()) {
+                return validateFields();
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+        function VERIFY_NEXT_ADVICE_CVC() {
+            debugger;
+            if (SAVE_CHECK()) {
+                return confirmFormSubmission('AdviceOfCvcQPRForm');
+            }
+            else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'Please verify the data. Something is wrong.',
+                    showConfirmButton: false,
+                    timer: 3000, // Duration in milliseconds
+                });
+                return false;
+            }
+        }
+    </script>
+}
