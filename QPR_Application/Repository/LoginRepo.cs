@@ -30,6 +30,7 @@ namespace QPR_Application.Repository
                     if (passwordVerified)
                     {
                         UserDetails.OrgDetails = await _dbContext.tbl_MasterMinistryNew.FirstOrDefaultAsync(i => i.OrgName == UserDetails.User.organisation);
+                        UserDetails.OrgDetails_ADD = await _dbContext.orgadd.AsNoTracking().FirstOrDefaultAsync(i => i.orgnam1 == UserDetails.User.organisation);
                         return UserDetails;
                     }
                     else

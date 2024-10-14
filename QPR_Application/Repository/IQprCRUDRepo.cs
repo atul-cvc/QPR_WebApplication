@@ -45,6 +45,7 @@ namespace QPR_Application.Repository
         public Task DeleteAppeleateAuthority(int pend_id);
         public Task DeleteFiCaseRow(int id);
         public Task DeleteCaCaseRow(int id);
+        public Task DeleteCVOTraining(int id);
         public Task DeletePrevVigi(int id, string tableName);
     }
 }

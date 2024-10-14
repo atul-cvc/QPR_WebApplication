@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QPR_Application.Models.DTO.Request;
@@ -144,6 +145,7 @@ namespace QPR_Application.Repository
                     cmd.Parameters.AddWithValue("@ContactNumber", qprDetails.CVCContactNo);
                     cmd.Parameters.AddWithValue("@Fulltime", qprDetails.CVOFulltime);
                     cmd.Parameters.AddWithValue("@Parttime", qprDetails.CVOParttime);
+                    cmd.Parameters.AddWithValue("@orgcode", _httpContext?.HttpContext?.Session.GetString("orgcode"));
                     cmd.Parameters.AddWithValue("@ipAddress", ip);
 
                     conn.Open();
@@ -928,6 +930,19 @@ namespace QPR_Application.Repository
             {
                 cacasesqpr caCase = await _dbContext.cacasesqpr.FirstOrDefaultAsync(i => i.cacasesqpr_id == id);
                 _dbContext.cacasesqpr.Remove(caCase);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task DeleteCVOTraining(int id)
+        {
+            try
+            {
+                Training_CVO training = await _dbContext.Training_CVO.FirstOrDefaultAsync(i => i.Record_Id == id);
+                _dbContext.Training_CVO.Remove(training);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)

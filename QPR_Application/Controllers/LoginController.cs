@@ -113,8 +113,18 @@ namespace QPR_Application.Controllers
 
                             if (uDetails.OrgDetails != null)
                             {
-                                _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.OrgCode);
+                                if (!String.IsNullOrEmpty(uDetails.OrgDetails.OrgCode))
+                                {
+                                    _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails.OrgCode);
+
+                                }
+
                                 _httpContext?.HttpContext?.Session.SetString("OrgName", uDetails.OrgDetails.OrgName);
+                            }
+                            else
+                            {
+                                _httpContext?.HttpContext?.Session.SetString("orgcode", uDetails.OrgDetails_ADD.orgcod);
+                                _httpContext?.HttpContext?.Session.SetString("OrgName", uDetails.OrgDetails_ADD.orgnam1);
                             }
 
                             // Trigger OTP Verification 

@@ -1262,6 +1262,19 @@ namespace QPR_Application.Controllers
                 _logger.LogError(ex, "Error while executing DeleteCaCaseRow ");
             }
             return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Error" });
+        }        
+        public async Task<IActionResult> DeleteCVOTraining(int id)
+        {
+            try
+            {
+                await _qprCRUDRepo.DeleteCVOTraining(id);
+                return RedirectToAction("CVO_Training", new { message = "Deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while executing DeleteCaCaseRow ");
+            }
+            return RedirectToAction("CVO_Training", new { message = "Error" });
         }
         public async Task<IActionResult> DeletePrevVigi(int id, string tableName)
         {

@@ -15,7 +15,7 @@
                 <td colspan="1" width="15%" align="left" valign="middle">
                     Training Conducted During The Quarter
                 </td>
-                <td colspan="4" width="35%" align="left">
+                <td colspan="5" width="35%" align="left">
                     <span class="d-flex">
                         <input type="button" id="add-new-training" class="btn btn-outline-primary ms-1" value="Add Row" style="width: 10%">
                     </span>
@@ -34,11 +34,14 @@
                 <th style="width:20%">
                     <b>Description (If Other)</b>
                 </th>
-                <th style="width:20%">
+                <th style="width:15%">
                     <b>No. of Training Programmes Conducted</b>
                 </th>
-                <th style="width:20%">
+                <th style="width:15%">
                     <b>No. of Employees Imparted Training</b>
+                </th>
+                <th style="width:10%">
+                    <b>Action</b>
                 </th>
 
             </tr>
@@ -48,13 +51,14 @@
                 <td><b>(3)</b></td>
                 <td><b>(4)</b></td>
                 <td><b>(5)</b></td>
+                <td><b>(6)</b></td>
             </tr>
 
 
             @if (Model.Training_CVO_List.Count == 0)
             {
                 <tr>
-                    <td colspan="5" class="text-center">NIL</td>
+                    <td colspan="6" class="text-center">NIL</td>
                 </tr>
             }
             else
@@ -63,22 +67,35 @@
                 {
                     <tr class="text-center">
                         <td style="width:5%">@(i + 1)</td>
-                        <td>    @Model.Training_CVO_List[i].Training_Name
-                            @* @if (Model.Training_CVO_List[i].Training_Name == "Other")
-                            {
-                                <div>@Model.Training_CVO_List[i].Training_Name</div>
-                                <br />
-                                <div>@Model.Training_CVO_List[i].Other_Description</div>
-                            }
-                            else
-                            {
-                                <div>@Model.Training_CVO_List[i].Training_Name</div>
-                            } *@
-                        </td>
+                        <td>    @Model.Training_CVO_List[i].Training_Name</td>
                         <td>@Model.Training_CVO_List[i].Other_Description</td>
                         <td>@Model.Training_CVO_List[i].No_of_Trg_Conducted</td>
                         <td>@Model.Training_CVO_List[i].No_of_Emp_Trained</td>
+                        <td>
+                            @* onclick="confirmDel('@Url.Action("DeleteCVOTraining", new { id = @Model.CaCasesQPRs[@i].cacasesqpr_id })'); return false;" *@
+                            <a href="@Url.Action("DeleteCVOTraining", new { id = @Model.Training_CVO_List[i].Record_Id})" class="btn btn-sm btn-outline-danger" onclick="confirmDel('@Url.Action("DeleteCVOTraining", new { id = @Model.Training_CVO_List[@i].Record_Id})'); return false;">Delete</a>
+                        </td>
                     </tr>
+                    @* <tr class="text-center">
+            <td>@(i + 1)</td>
+            <td>
+            @Html.DropDownListFor(
+            m => Model.Training_CVO_List[i].Training_Name, // Adjust this to your model's property
+            new SelectList(Model.MasterTrainingList, "Value", "Text"), // Adjust Options to your list
+            "Select an option", // Optional placeholder
+            new { @class = "form-control text-center" } // Optional HTML attributes
+            )
+            </td>
+            <td>
+            <input asp-for="@Model.Training_CVO_List[i].Other_Description" class="form-control" />
+            </td>
+            <td>
+            <input asp-for="@Model.Training_CVO_List[i].No_of_Trg_Conducted" class="form-control" />
+            </td>
+            <td>
+            <input asp-for="@Model.Training_CVO_List[i].No_of_Emp_Trained" class="form-control" />
+            </td>
+            </tr> *@
                 }
                 <tr class="text-center">
                     <td>Total</td>
