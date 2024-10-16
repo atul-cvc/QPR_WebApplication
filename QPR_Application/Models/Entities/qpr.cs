@@ -10,33 +10,62 @@ namespace QPR_Application.Models.Entities
 {
     public partial class qpr
     {
+        [Display(Name = "User ID")]
         [StringLength(500)]
         public string userid { get; set; }
+
+        [Display(Name = "Organization Name")]
         [StringLength(500)]
         public string orgname { get; set; }
+
+        [Display(Name = "Organization Code")]
         [StringLength(50)]
         public string orgcode { get; set; }
+
+        [Display(Name = "Quarterly Report")]
         [StringLength(50)]
         public string qtrreport { get; set; }
+
+        [Display(Name = "Quarter Year")]
         [StringLength(50)]
         public string qtryear { get; set; }
+
+        [Display(Name = "Office Contact Number")]
         [StringLength(500)]
         public string contactnumberoffice { get; set; }
+
+        [Display(Name = "Mobile Number")]
         [StringLength(500)]
         public string mobilenumber { get; set; }
+
+        [Display(Name = "Email ID")]
         [StringLength(500)]
         public string emailid { get; set; }
+
+        [Display(Name = "Full-time Status")]
         [StringLength(50)]
         public string fulltime { get; set; }
+
+        [Display(Name = "Part-time Status")]
         [StringLength(50)]
         public string parttime { get; set; }
+
+        [Display(Name = "Creation Date")]
         public string createdate { get; set; }
+
         [Key]
+        [Display(Name = "Reference Number")]
         public long referencenumber { get; set; }
+
+        [Display(Name = "IP Address")]
         [StringLength(50)]
         public string ip { get; set; }
+
+        [Display(Name = "Final Submission")]
         [StringLength(500)]
         public string finalsubmit { get; set; }
+
+        [Display(Name = "Final Submission Date")]
         [StringLength(50)]
         public string finalsubmitdate { get; set; }
     }

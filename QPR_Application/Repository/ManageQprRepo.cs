@@ -18,7 +18,7 @@ namespace QPR_Application.Repository
             try
             {
                 //myQrlist = await _dbContext.qpr.Take(1000).ToListAsync();
-                myQprlist = await _dbContext.Set<qpr>().FromSqlRaw("Exec GetLatestQprList").ToListAsync();
+                myQprlist = await _dbContext.qpr.AsNoTracking().ToListAsync();
                 return myQprlist;
             }
             catch (Exception ex)

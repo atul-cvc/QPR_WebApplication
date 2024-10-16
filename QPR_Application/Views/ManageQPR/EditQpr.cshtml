@@ -1,93 +1,92 @@
-﻿@model QPR_Application.Models.Entities.qpr
+﻿@model QPR_Application.Models.ViewModels.EditQPRViewModel
 
 @{
-    ViewData["Title"] = "EditQpr";
+    ViewData["Title"] = "Edit Qpr";
 }
 
-<h1>EditQpr</h1>
+<h1>Edit Qpr</h1>
 
-<h4>qpr</h4>
 <hr />
-<div class="row">
+<div class="row d-flex justify-content-center">
     <div class="col-md-4">
         <form asp-action="EditQpr">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="userid" class="control-label"></label>
-                <input asp-for="userid" class="form-control" />
-                <span asp-validation-for="userid" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.userid" class="control-label"></label>
+                <input asp-for="qpr.userid" class="form-control" readonly />
+                <span asp-validation-for="qpr.userid" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="orgname" class="control-label"></label>
-                <input asp-for="orgname" class="form-control" />
-                <span asp-validation-for="orgname" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.orgname" class="control-label"></label>
+                <input asp-for="qpr.orgname" class="form-control" readonly />
+                <span asp-validation-for="qpr.orgname" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="orgcode" class="control-label"></label>
-                <input asp-for="orgcode" class="form-control" />
-                <span asp-validation-for="orgcode" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.orgcode" class="control-label"></label>
+                <input asp-for="qpr.orgcode" class="form-control" readonly />
+                <span asp-validation-for="qpr.orgcode" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="qtrreport" class="control-label"></label>
-                <input asp-for="qtrreport" class="form-control" />
-                <span asp-validation-for="qtrreport" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.qtrreport" class="control-label"></label>
+                <input asp-for="qpr.qtrreport" class="form-control" readonly/>
+                <span asp-validation-for="qpr.qtrreport" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="qtryear" class="control-label"></label>
-                <input asp-for="qtryear" class="form-control" />
-                <span asp-validation-for="qtryear" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.qtryear" class="control-label"></label>
+                <input asp-for="qpr.qtryear" class="form-control" readonly />
+                <span asp-validation-for="qpr.qtryear" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="contactnumberoffice" class="control-label"></label>
-                <input asp-for="contactnumberoffice" class="form-control" />
-                <span asp-validation-for="contactnumberoffice" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.contactnumberoffice" class="control-label"></label>
+                <input asp-for="qpr.contactnumberoffice" class="form-control" />
+                <span asp-validation-for="qpr.contactnumberoffice" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="mobilenumber" class="control-label"></label>
-                <input asp-for="mobilenumber" class="form-control" />
-                <span asp-validation-for="mobilenumber" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.mobilenumber" class="control-label"></label>
+                <input asp-for="qpr.mobilenumber" class="form-control" />
+                <span asp-validation-for="qpr.mobilenumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="emailid" class="control-label"></label>
-                <input asp-for="emailid" class="form-control" />
-                <span asp-validation-for="emailid" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.emailid" class="control-label"></label>
+                <input asp-for="qpr.emailid" class="form-control" />
+                <span asp-validation-for="qpr.emailid" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="fulltime" class="control-label"></label>
-                <input asp-for="fulltime" class="form-control" />
-                <span asp-validation-for="fulltime" class="text-danger"></span>
+           @*  <div class="form-group mt-3">
+                <label asp-for="qpr.fulltime" class="control-label"></label>
+                <input asp-for="qpr.fulltime" class="form-control" />
+                <span asp-validation-for="qpr.fulltime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="parttime" class="control-label"></label>
-                <input asp-for="parttime" class="form-control" />
-                <span asp-validation-for="parttime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="createdate" class="control-label"></label>
-                <input asp-for="createdate" class="form-control" />
-                <span asp-validation-for="createdate" class="text-danger"></span>
-            </div>
-            @Html.HiddenFor(m => m.referencenumber)
-            @Html.HiddenFor(m => m.ip)
-            @* <input type="hidden" asp-for="referencenumber" /> *@
-            @* <div class="form-group">
-                <label asp-for="ip" class="control-label"></label>
-                <input asp-for="ip" class="form-control" />
-                <span asp-validation-for="ip" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.parttime" class="control-label"></label>
+                <input asp-for="qpr.parttime" class="form-control" />
+                <span asp-validation-for="qpr.parttime" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
-                <label asp-for="finalsubmit" class="control-label"></label>
-                <input asp-for="finalsubmit" class="form-control" />
-                <span asp-validation-for="finalsubmit" class="text-danger"></span>
+            <div class="form-group mt-3">
+                <label asp-for="EmploymentType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.EmploymentType, ViewBag.EmploymentTypeOptions as SelectList, "Select", new { @class = "form-control" })
+                <span asp-validation-for="EmploymentType" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="finalsubmitdate" class="control-label"></label>
-                <input asp-for="finalsubmitdate" class="form-control datepicker" />
-                <span asp-validation-for="finalsubmitdate" class="text-danger"></span>
+
+            <div class="form-group mt-3">
+                <label asp-for="qpr.createdate" class="control-label"></label>
+                <input asp-for="qpr.createdate" class="form-control datepicker" onkeydown="return false;" />
+                <span asp-validation-for="qpr.createdate" class="text-danger"></span>
             </div>
-            <div class="form-group d-flex mt-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a class="btn btn-secondary ms-auto" asp-action="Index">Back to List</a>
+            @Html.HiddenFor(m => m.qpr.referencenumber)
+            @Html.HiddenFor(m => m.qpr.ip)
+            <div class="form-group mt-3">
+                <label asp-for="qpr.finalsubmit" class="control-label"></label>
+                @Html.DropDownListFor(model => model.qpr.finalsubmit, ViewBag.FinalSubmitOptions as SelectList, "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.qpr.finalsubmit, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="qpr.finalsubmitdate" class="control-label"></label>
+                <input asp-for="qpr.finalsubmitdate" class="form-control datepicker" onkeydown="return false;" />
+                <span asp-validation-for="qpr.finalsubmitdate" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-5 d-flex mt-2">
+                <a class="btn btn-secondary " asp-action="Details" asp-route-id="@Model.qpr.referencenumber">Back</a>
+                <input type="submit" value="Save" class="btn btn-primary ms-auto" />
             </div>
         </form>
     </div>

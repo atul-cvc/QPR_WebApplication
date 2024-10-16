@@ -9,38 +9,40 @@ namespace QPR_Application.Controllers
     [Authorize(Roles = "ROLE_ADMIN,ROLE_COORD")]
     public class ManageOrgController : Controller
     {
+        private readonly ILogger<ManageOrgController> _logger;
         private readonly IOrgRepo orgRepo;
-        public ManageOrgController(IOrgRepo _org)
+        public ManageOrgController(ILogger<ManageOrgController> logger,IOrgRepo _org)
         {
+            _logger = logger;
             orgRepo = _org;
         }
         public async Task<IActionResult> Index()
         {
             IEnumerable<orgadd> orgadd;
-            //try
-            //{
+            try
+            {
                 orgadd = await orgRepo.Getallorg();
-            //}
-            //catch (Exception ex)
-            //{
-            //}
-            return View(orgadd.OrderByDescending(n=>n.Id));
+                return View(orgadd.OrderByDescending(n => n.Id));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+        }
+        public IActionResult CreateOrganisation()
+        {
+            return View();
         }
         public async Task<IActionResult> Details(string id)
         {
             var details = await orgRepo.GetOrgDetails(id);
             return View(details);
         }
-        public IActionResult Save()
-        {
-            return View();
-        }
         public async Task<IActionResult> Edit(string id)
         {
             var details=await orgRepo.GetOrgDetails(id);
             return View(details);
         }
-
         public IActionResult Edit1(orgadd orgadd)
         {
             var details =  orgRepo.EditSave(orgadd);
@@ -51,7 +53,6 @@ namespace QPR_Application.Controllers
             await orgRepo.Delete(id);
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> Save1(orgadd org)
         {
             await orgRepo.SaveOrg(org);
