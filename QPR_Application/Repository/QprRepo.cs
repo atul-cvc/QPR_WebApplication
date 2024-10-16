@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Versioning;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
+using System;
 using System.Data;
 
 namespace QPR_Application.Repository
@@ -226,10 +228,42 @@ namespace QPR_Application.Repository
             catch (Exception ex) { }
             return null;
         }
+        public async Task<QPRReportViewModel> GetQPRDownloadData(string refNum)
+        {
+            if (!string.IsNullOrEmpty(refNum))
+            {
+                QPRReportViewModel qprVM = new QPRReportViewModel();
+                qprVM.complaints = await GetComplaintsData(refNum) ?? new complaintsqrs();
+                qprVM.vigInvestigation = await GetVigilanceInvestigationData(refNum) ?? new viginvestigationqrs();
+                qprVM.prosecVM = await GetProsecutionSanctionsViewData(refNum) ?? new ProsecutionSanctionsViewModel();
+                qprVM.deptVM = await GetDepartmentalProceedingsViewModel(refNum) ?? new DepartmentalProceedingsViewModel();
+                qprVM.adviceViewModel = await GetAdviceOfCVCViewModel(refNum) ?? new AdviceOfCvcViewModel();
+                qprVM.statusVM = await GetStatusPendencyViewModel(refNum) ?? new StatusOfPendencyViewModel();
+                qprVM.punitiveVig = await GetPunitiveVigilanceData(refNum) ?? new punitivevigilanceqrs();
+                qprVM.preventiveViewModel = await GetPreventiveVigilanceViewModel(refNum) ?? new PreventiveVigilanceViewModel();
+                qprVM.preventiveActivitiesVM = await GetPreventiveVigilanceActivitiesData(refNum) ?? new vigilanceactivitiescvcqrs();
+                if (qprVM.preventiveViewModel.PreventiveVigilanceQRS != null)
+                {
+                    qprVM.preventivevigilanceqrsList.Add(qprVM.preventiveViewModel.PreventiveVigilanceQRS);
+                }
+                else
+                {
+                    qprVM.preventivevigilanceqrsList.Add(new preventivevigilanceqrs());
+                }
+                qprVM.CVO_Training = await GetCVOTrainingViewModel(refNum);
 
+                return qprVM;
+
+            }
+            else
+            {
+                throw new Exception("QPR ID not found or Error fetching QPR Details");
+            }
+        }
         public async Task<CVO_TrainingViewModel> GetCVOTrainingViewModel(string refNum)
         {
             CVO_TrainingViewModel vm = new CVO_TrainingViewModel();
+            vm.refNum = refNum;
             vm.Training_CVO_List = await GetCVOTrainings(refNum);
             List<MasterTraining> mtList = await GetTrainingsNameList();
             vm.MasterTrainingList.Add(new SelectListItem
@@ -397,7 +431,6 @@ namespace QPR_Application.Repository
             }
             return null;
         }
-
         public int GetCVOTakenUpForInvestigationQtr(string refnum)
         {
             int val = 0;

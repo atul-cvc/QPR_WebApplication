@@ -8,8 +8,9 @@ namespace QPR_Application.Repository
     {
         public Task<IEnumerable<AllUsersViewModel>> GetAllUsers();
         public Task<AllUsersViewModel> GetUserDetails(string Id);
-        public Task<registration> GetEditUserDetails(string Id);
-        public Boolean CreateUser(registration registration);
-        public void EditUser(registration registration);
+        //public Task<registration> GetEditUserDetails(string Id);
+        public Task<EditUserViewModel> GetEditUserDetails(string Id);
+        public Task<Boolean> CreateUser(CreateUserViewModel createUserVM);
+        public Task EditUser(EditUserViewModel User);
     }
 }

@@ -95,6 +95,12 @@ input[type=number] {
     /*font-size: 18px;*/
 }
 
+.table-white th {
+    background-color: white !important;
+    color: black;
+    font-weight: 500;
+}
+
 .table-padding td {
     padding: 0.25em !important;
     vertical-align: middle !important;

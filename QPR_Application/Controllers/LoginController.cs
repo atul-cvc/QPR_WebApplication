@@ -245,6 +245,7 @@ namespace QPR_Application.Controllers
             };
 
             await _httpContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
+            
             _logger.LogInformation("User logged in successfully.");
         }
 

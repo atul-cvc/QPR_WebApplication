@@ -10,9 +10,14 @@ namespace QPR_Application.Controllers
     public class SOController : Controller
     {
         private readonly IRequestsRepo _requestRepo;
-        public SOController(IRequestsRepo requestRepo)
+        private readonly IHttpContextAccessor _httpContext;
+        public SOController(IHttpContextAccessor httpContext, IRequestsRepo requestRepo)
         {
             _requestRepo = requestRepo;
+            _httpContext = httpContext;
+            _httpContext.HttpContext.Session.Remove("qtryear");
+            _httpContext.HttpContext.Session.Remove("qtrreport");
+            _httpContext.HttpContext.Session.Remove("qtrMonths");
         }
         public IActionResult Index()
         {

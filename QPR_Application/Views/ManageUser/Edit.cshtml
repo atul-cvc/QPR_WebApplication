@@ -1,144 +1,134 @@
-﻿@model QPR_Application.Models.Entities.registration
+﻿@model QPR_Application.Models.ViewModels.EditUserViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h3>Edit @Model.Name</h3>
 
-<h4>registration</h4>
 <hr />
 <div class="row d-flex justify-content-center">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="usercode" />
+            <input type="hidden" asp-for="UserCode" />
             <div class="form-group mt-2">
-                <label asp-for="userid" class="control-label"></label>
-                <input asp-for="userid" class="form-control" />
-                <span asp-validation-for="userid" class="text-danger"></span>
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" />
-                <span asp-validation-for="password" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="OrgCode" class="control-label"></label>
+                @Html.DropDownListFor(
+                         model => model.OrgCode,
+                         ViewBag.OrganisationsList as SelectList,
+                         "Select an Organisation", // Placeholder text
+                         new { @class = "form-control" }
+                         )
+                @Html.ValidationMessageFor(model => model.OrgCode, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="LoginType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.LoginType, ViewBag.LoginTypes as SelectList, "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LoginType, "", new { @class = "text-danger" })
             </div>
             <div class="form-group mt-2">
-                <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
+                <label asp-for="LoginRoll" class="control-label"></label>
+                <input asp-for="LoginRoll" class="form-control" />
+                <span asp-validation-for="LoginRoll" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="organisation" class="control-label"></label>
-                <input asp-for="organisation" class="form-control" />
-                <span asp-validation-for="organisation" class="text-danger"></span>
+                <label asp-for="Designation" class="control-label"></label>
+                <input asp-for="Designation" class="form-control" />
+                <span asp-validation-for="Designation" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="logintype" class="control-label"></label>
-                @Html.DropDownListFor(model => model.logintype, ViewBag.LoginTypes as SelectList, "Select", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.logintype, "", new { @class = "text-danger" })
+                <label asp-for="Tenure" class="control-label"></label>
+                <input asp-for="Tenure" class="form-control" />
+                <span asp-validation-for="Tenure" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="loginroll" class="control-label"></label>
-                <input asp-for="loginroll" class="form-control" />
-                <span asp-validation-for="loginroll" class="text-danger"></span>
+                <label asp-for="BoOfficerCode" class="control-label"></label>
+                <input asp-for="BoOfficerCode" class="form-control" />
+                <span asp-validation-for="BoOfficerCode" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="desiganation" class="control-label"></label>
-                <input asp-for="desiganation" class="form-control" />
-                <span asp-validation-for="desiganation" class="text-danger"></span>
+                <label asp-for="Cvocode" class="control-label"></label>
+                <input asp-for="Cvocode" class="form-control" />
+                <span asp-validation-for="Cvocode" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="createdate" class="control-label"></label>
-                <input asp-for="createdate" class="form-control datepicker" />
-                <span asp-validation-for="createdate" class="text-danger"></span>
+                <label asp-for="MobileNumber" class="control-label"></label>
+                <input asp-for="MobileNumber" class="form-control" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="@Model.IsLocked" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IsLocked, ViewBag.EmpLock as SelectList, "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IsLocked, "", new { @class = "text-danger" })
             </div>
             <div class="form-group mt-2">
-                <label asp-for="tenure" class="control-label"></label>
-                <input asp-for="tenure" class="form-control" />
-                <span asp-validation-for="tenure" class="text-danger"></span>
+                <label asp-for="PostId" class="control-label"></label>
+                <input asp-for="PostId" class="form-control" />
+                <span asp-validation-for="PostId" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="bofficercode" class="control-label"></label>
-                <input asp-for="bofficercode" class="form-control" />
-                <span asp-validation-for="bofficercode" class="text-danger"></span>
+                <label asp-for="@Model.Status" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Status, ViewBag.StatusList as SelectList, "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
             <div class="form-group mt-2">
-                <label asp-for="cvocode" class="control-label"></label>
-                <input asp-for="cvocode" class="form-control" />
-                <span asp-validation-for="cvocode" class="text-danger"></span>
+                <label asp-for="CvocontactNumberOffice" class="control-label"></label>
+                <input asp-for="CvocontactNumberOffice" class="form-control" />
+                <span asp-validation-for="CvocontactNumberOffice" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <label asp-for="mobilenumber" class="control-label"></label>
-                <input asp-for="mobilenumber" class="form-control" />
-                <span asp-validation-for="mobilenumber" class="text-danger"></span>
+                <label asp-for="EmploymentType" class="control-label"></label>
+                <div class="form-control">
+                    <div class="d-flex justify-content-between" style="width:50%">
+                        <div class="form-check">
+                            <input type="radio" asp-for="EmploymentType" value="Full time" id="fulltime" />
+                            <label for="fulltime">Full Time</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" asp-for="EmploymentType" value="Part time" id="parttime" />
+                            <label for="parttime">Part Time</label>
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="EmploymentType" class="text-danger"></span>
             </div>
-            <div class="form-group mt-2">
-                <label asp-for="islocked" class="control-label"></label>
-                <input asp-for="islocked" class="form-control" />
-                <span asp-validation-for="islocked" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="lastmodified" class="control-label"></label>
-                <input asp-for="lastmodified" class="form-control" />
-                <span asp-validation-for="lastmodified" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="passwordone" class="control-label"></label>
-                <input asp-for="passwordone" class="form-control" />
-                <span asp-validation-for="passwordone" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="passwordtwo" class="control-label"></label>
-                <input asp-for="passwordtwo" class="form-control" />
-                <span asp-validation-for="passwordtwo" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="postid" class="control-label"></label>
-                <input asp-for="postid" class="form-control" />
-                <span asp-validation-for="postid" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="firstlogin" class="control-label"></label>
-                <input asp-for="firstlogin" class="form-control" />
-                <span asp-validation-for="firstlogin" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="status" class="control-label"></label>
-                <input asp-for="status" class="form-control" />
-                <span asp-validation-for="status" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="cvocontactnumberoffice" class="control-label"></label>
-                <input asp-for="cvocontactnumberoffice" class="form-control" />
-                <span asp-validation-for="cvocontactnumberoffice" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="fulltime" class="control-label"></label>
-                <input asp-for="fulltime" class="form-control" />
-                <span asp-validation-for="fulltime" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <label asp-for="parttime" class="control-label"></label>
-                <input asp-for="parttime" class="form-control" />
-                <span asp-validation-for="parttime" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="form-group mt-5 d-flex justify-content-between">
+                <div>
+                    @* <a asp-action="AllUsers" class="btn btn-secondary">Back</a> *@
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@Model.UserCode">Back</a>
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="AllUsers">Back to List</a>
-</div>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

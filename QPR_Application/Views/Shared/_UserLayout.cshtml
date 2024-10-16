@@ -121,9 +121,10 @@
                             {
                                 <li class="nav-item d-flex me-2">
                                     <span class="text-dark align-content-center" style="font-size:0.9rem">
-                                        Quarter : @HttpContextAccessor.HttpContext.Session.GetString("qtrreport")
+                                        Quarter : @HttpContextAccessor.HttpContext.Session.GetString("qtrMonths")
                                     </span>
                                 </li>
+                                <li class="nav-item d-flex me-2 d-sm-none"><span class="text-dark align-content-center" style="font-size:0.9rem">|</span> </li>
                                 <li class="nav-item d-flex me-3">
                                     <span class="text-dark align-content-center" style="font-size:0.9rem">
                                         Year : @HttpContextAccessor.HttpContext.Session.GetString("qtryear")

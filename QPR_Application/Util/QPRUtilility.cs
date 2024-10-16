@@ -5,8 +5,9 @@ using System.Data;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace QPR_Application.Util
 {
@@ -1100,6 +1101,91 @@ namespace QPR_Application.Util
                 });
             }
             return vm;
+        }
+
+        public string GetSubmissionDate()
+        {
+            var submissionDateString = _httpContext?.HttpContext?.Session.GetString("QPRSubmissionDate");
+
+            if (DateTime.TryParse(submissionDateString, out DateTime submissionDate))
+            {
+                return submissionDate.Date.ToShortDateString();
+            }
+
+            return "N/A"; // or some default value
+        }
+        public string GetQuarterReport()
+        {
+            var quarter = _httpContext?.HttpContext?.Session.GetString("qtrreport");
+            return quarter switch
+            {
+                "1" => "January to March",
+                "2" => "April to June",
+                "3" => "July to September",
+                "4" => "October to December",
+                _ => ""
+            };
+        }
+
+        public List<SelectListItem> GetOrganisationsList()
+        {
+            List<SelectListItem> orgList = new List<SelectListItem>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connString))
+                {
+                    SqlCommand cmd = new SqlCommand("GetAllOrganisations", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            orgList.Add(new SelectListItem
+                            {                                
+                                Value = reader["orgcod"].ToString(),
+                                Text = reader["orgnam1"].ToString(),                                
+                            });
+                        }
+                    }
+                    cmd.Dispose();
+                }
+                return orgList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public string GetOrganisationCode(string orgName)
+        {
+            string OrgName = string.Empty;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connString))
+                {
+                    SqlCommand cmd = new SqlCommand("GetOrgCode", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@orgName", orgName);
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            OrgName = reader["orgcod"].ToString();
+                        }
+                    }
+                    cmd.Dispose();
+                }
+                return OrgName;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //return await _dbCon
         }
     }
 

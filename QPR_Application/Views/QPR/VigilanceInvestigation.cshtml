@@ -1006,7 +1006,7 @@
                     <td><b>(5)</b></td>
                 </tr>
                 <tr>
-                    <td> <b><input asp-for="viginvestreportbycvoqtr" name="viginvestreportbycvoqtr" onkeypress="return isNumberKey(event);" class="form-control" readonly></b> </td>
+                    <td> <b><input asp-for="viginvestreportbycvoqtr" name="viginvestreportbycvoqtr" onkeypress="return isNumberKey(event);" class="form-control" ></b> </td>
                     <td> <b><input asp-for="viginvestmajorpp" name="viginvestmajorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestminorpp" name="viginvestminorpp" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
                     <td> <b><input asp-for="viginvestotheradmnaction" name="viginvestotheradmnaction" onkeypress="return isNumberKey(event);" class="form-control"></b> </td>
@@ -1259,67 +1259,67 @@
         }
     })
 
-    $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").on("blur", function () {
-        var total = 0;
-        $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        Swal.fire({
-            toast: true,
-            position: 'top-end', // Position of the toast
-            icon: 'info', // Type of icon (success, error, warning, info)
-            title: 'Total must be equal to: ' + parseFloat($("#viginvestacvodisposedqtr").val()),
-            showConfirmButton: false,
-            timer: 3000, // Duration in milliseconds
-        });
+    // $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").on("blur", function () {
+    //     var total = 0;
+    //     $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").each(function () {
+    //         // Convert to float and default to 0 if NaN
+    //         var value = parseFloat($(this).val()) || 0;
+    //         total += value;
+    //     });
+    //     Swal.fire({
+    //         toast: true,
+    //         position: 'top-end', // Position of the toast
+    //         icon: 'info', // Type of icon (success, error, warning, info)
+    //         title: 'Total must be equal to: ' + parseFloat($("#viginvestacvodisposedqtr").val()),
+    //         showConfirmButton: false,
+    //         timer: 3000, // Duration in milliseconds
+    //     });
 
-        if (total > parseFloat($("#viginvestacvodisposedqtr").val())) {
-            $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").each(function () {
-                // Convert to float and default to 0 if NaN
-                $(this).val(0);
-            });
-        }
-    });
+    //     if (total > parseFloat($("#viginvestacvodisposedqtr").val())) {
+    //         $("#viginvestardamajorpenalty,#viginvestardaminorpenalty,#viginvestadecisionadminaction,#viginvestadecisionclosurecase").each(function () {
+    //             // Convert to float and default to 0 if NaN
+    //             $(this).val(0);
+    //         });
+    //     }
+    // });
 
-    $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").on("blur", function () {
-        var total = 0;
-        $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").each(function () {
-            // Convert to float and default to 0 if NaN
-            var value = parseFloat($(this).val()) || 0;
-            total += value;
-        });
-        if (total < parseFloat($("#viginvestbcvodisposedqtr").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#viginvestbcvodisposedqtr").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-        }
+    // $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").on("blur", function () {
+    //     var total = 0;
+    //     $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").each(function () {
+    //         // Convert to float and default to 0 if NaN
+    //         var value = parseFloat($(this).val()) || 0;
+    //         total += value;
+    //     });
+    //     if (total < parseFloat($("#viginvestbcvodisposedqtr").val())) {
+    //         Swal.fire({
+    //             toast: true,
+    //             position: 'top-end', // Position of the toast
+    //             icon: 'info', // Type of icon (success, error, warning, info)
+    //             title: 'Total must be equal to: ' + parseFloat($("#viginvestbcvodisposedqtr").val()),
+    //             showConfirmButton: false,
+    //             timer: 3000, // Duration in milliseconds
+    //         });
+    //     }
 
-        if (total > parseFloat($("#viginvestbcvodisposedqtr").val())) {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Total must be equal to: ' + parseFloat($("#viginvestbcvodisposedqtr").val()),
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
-            $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").each(function () {
-                // Convert to float and default to 0 if NaN
-                $(this).val(0);
-            });
-        }
-    });
+    //     if (total > parseFloat($("#viginvestbcvodisposedqtr").val())) {
+    //         Swal.fire({
+    //             toast: true,
+    //             position: 'top-end', // Position of the toast
+    //             icon: 'info', // Type of icon (success, error, warning, info)
+    //             title: 'Total must be equal to: ' + parseFloat($("#viginvestbcvodisposedqtr").val()),
+    //             showConfirmButton: false,
+    //             timer: 3000, // Duration in milliseconds
+    //         });
+    //         $("#viginvestbrdamajorpenalty,#viginvestbrdaminorpenalty,#viginvestbdecisionadminaction,#viginvestbdecisionclosurecase").each(function () {
+    //             // Convert to float and default to 0 if NaN
+    //             $(this).val(0);
+    //         });
+    //     }
+    // });
 
-    $("#viginvestbcvosentdaaction").on("input", function () {
-        $("#viginvestreportbycvoqtr").val(parseFloat($("#viginvestbcvosentdaaction").val()) || 0);
-    });
+    // $("#viginvestbcvosentdaaction").on("input", function () {
+    //     $("#viginvestreportbycvoqtr").val(parseFloat($("#viginvestbcvosentdaaction").val()) || 0);
+    // });
 
     $("#viginvescvclesstwelve,#viginvescvcsixtotwelve,#viginvescvcthreetosix,#viginvescvcgreaterthree").on("blur", function () {
         var total = 0;
@@ -1694,10 +1694,10 @@
         CHECK_VIGINV_INV_PEND();
         CHECK_VIGINV_CATEGORY_A_CBI();
         CHECK_VIGINV_CATEGORY_A_CVO();
-        CHECK_VIGINV_CATEGORY_A_CVO_BREAKUP();
+        //CHECK_VIGINV_CATEGORY_A_CVO_BREAKUP();
         CHECK_VIGINV_CATEGORY_B_CBI();
         CHECK_VIGINV_CATEGORY_B_CVO();
-        CHECK_VIGINV_CATEGORY_B_CVO_BREAKUP();
+        //CHECK_VIGINV_CATEGORY_B_CVO_BREAKUP();
         CHECK_VIGINV_MAJORPP_BREAKUP();
         CHECK_VIGINV_MINORPP_BREAKUP();
         CHECK_VIGINV_OTHER_ACTION_BREAKUP();

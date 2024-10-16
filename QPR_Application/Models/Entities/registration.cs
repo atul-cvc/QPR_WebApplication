@@ -13,29 +13,77 @@ namespace QPR_Application.Models.Entities
     {
         [Key]
         public long usercode { get; set; }
+
+        [Display(Name = "User ID")]
         public string userid { get; set; }
+
+        [Display(Name = "Password")]
         public string password { get; set; }
+
+        [Display(Name = "Name")]
         public string name { get; set; }
+
+        [Display(Name = "Email")]
         public string email { get; set; }
+
+        [Display(Name = "Organisation")]
         public string organisation { get; set; }
+
+        [Display(Name = "Login Type")]
         public string logintype { get; set; }
+
+        [Display(Name = "Login Role")]
         public string loginroll { get; set; }
+
+        [Display(Name = "Designation")]
         public string desiganation { get; set; }
+
+        [Display(Name = "Creation Date")]
         public string createdate { get; set; }
+
+        [Display(Name = "Tenure")]
         public string tenure { get; set; }
+
+        [Display(Name = "BO Officer Code")]
         public string bofficercode { get; set; }
+
+        [Display(Name = "CVO Code")]
         public string cvocode { get; set; }
+
+        [Display(Name = "Mobile Number")]
         public string mobilenumber { get; set; }
+
+        [Display(Name = "Is Locked")]
         public string islocked { get; set; }
+
+        [Display(Name = "Last Modified")]
         public string lastmodified { get; set; }
+
+        [Display(Name = "Password One")]
         public string passwordone { get; set; }
+
+        [Display(Name = "Password Two")]
         public string passwordtwo { get; set; }
+
+        [Display(Name = "Post ID")]
         public string postid { get; set; }
+
+        [Display(Name = "First Login")]
         public string firstlogin { get; set; }
+
+        [Display(Name = "Status")]
         public string status { get; set; }
+
+        [Display(Name = "CVO Contact Number (Office)")]
         public string cvocontactnumberoffice { get; set; }
+
+        [Display(Name = "Full Time")]
         public string fulltime { get; set; }
+
+        [Display(Name = "Part Time")]
         public string parttime { get; set; }
+
+        [Display(Name = "Password Salt")]
         public string PasswordSalt { get; set; }
     }
 }

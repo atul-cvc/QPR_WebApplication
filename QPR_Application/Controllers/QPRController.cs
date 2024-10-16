@@ -93,6 +93,7 @@ namespace QPR_Application.Controllers
                 {
                     _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
                     _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
+                    _httpContext.HttpContext.Session.SetString("qtrMonths", _qprUtil.GetQuarterReport());
 
                     var refNum = _qprCRUDRepo.GetReferenceNumber(qprDetails, UserId);
                     qpr _qpr = new qpr();
@@ -395,13 +396,13 @@ namespace QPR_Application.Controllers
                     }
                     //proSec.NewAgewisependency = new agewisependency();
 
-                    if (proSecPrev != null)
+                    if (proSecPrev.Prosecutionsanctionsqrs != null)
                     {
-                        proSec.Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupcbalancepending;
-                        proSec.Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupbbalancepending;
-                        proSec.Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupabalancepending;
-                        proSec.Prosecutionsanctionsqrs.prosesanctjsopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctjsbalancepending;
-                        proSec.Prosecutionsanctionsqrs.prosevigiofficersuspension = proSecPrev.Prosecutionsanctionsqrs.prosevigisuspensionendqtr;
+                        proSec.Prosecutionsanctionsqrs.prosesanctgroupcopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupcbalancepending > 0 ? proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupcbalancepending : 0;
+                        proSec.Prosecutionsanctionsqrs.prosesanctgroupbopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupbbalancepending > 0 ? proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupbbalancepending : 0;
+                        proSec.Prosecutionsanctionsqrs.prosesanctgroupaopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupabalancepending > 0 ? proSecPrev.Prosecutionsanctionsqrs.prosesanctgroupabalancepending : 0;
+                        proSec.Prosecutionsanctionsqrs.prosesanctjsopeningbalance = proSecPrev.Prosecutionsanctionsqrs.prosesanctjsbalancepending > 0 ? proSecPrev.Prosecutionsanctionsqrs.prosesanctjsbalancepending : 0;
+                        proSec.Prosecutionsanctionsqrs.prosevigiofficersuspension = proSecPrev.Prosecutionsanctionsqrs.prosevigisuspensionendqtr > 0 ? proSecPrev.Prosecutionsanctionsqrs.prosevigisuspensionendqtr : 0;
                     }
 
                     return View(proSec);
@@ -503,7 +504,7 @@ namespace QPR_Application.Controllers
                         _httpContext.HttpContext?.Session.SetString("departproceedings_id", Convert.ToString(deptViewModel.Departmentalproceedingsqrs.departproceedings_id));
                     }
 
-                    if (deptViewModelPrev != null)
+                    if (deptViewModelPrev.Departmentalproceedingsqrs != null)
                     {
                         deptViewModel.Departmentalproceedingsqrs.departproceedingsmajor_cvc_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedingsmajor_cvc_enquiries;
                         deptViewModel.Departmentalproceedingsqrs.departproceedingsmajor_other_lastqtr = deptViewModelPrev.Departmentalproceedingsqrs.departproceedingsmajor_other_enquiries;
@@ -828,7 +829,7 @@ namespace QPR_Application.Controllers
                 {
                     PreventiveVigilanceViewModel data = await _qprRepo.GetPreventiveVigilanceViewModel(refNum);
                     preventivevigilanceqrs dataOld = await _qprRepo.GetPreventiveVigilanceData(GetPreviousReferenceNumber());
-                    if (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")) > 1)
+                    if (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")) > 1 && dataOld != null)
                     {
                         data.PreventiveVigilanceQRS.preventivevig_bycvo_periodic_end_previous_qtr = dataOld.preventivevig_bycvo_periodic_end_previous_qtr + dataOld.preventivevig_bycvo_periodic_during_qtr;
                         data.PreventiveVigilanceQRS.preventivevig_bycvo_surprise_end_previous_qtr = dataOld.preventivevig_bycvo_surprise_end_previous_qtr + dataOld.preventivevig_bycvo_surprise_during_qtr;
@@ -1262,7 +1263,7 @@ namespace QPR_Application.Controllers
                 _logger.LogError(ex, "Error while executing DeleteCaCaseRow ");
             }
             return RedirectToAction("StatusofPendencyFIandCACases", new { message = "Error" });
-        }        
+        }
         public async Task<IActionResult> DeleteCVOTraining(int id)
         {
             try

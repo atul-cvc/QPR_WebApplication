@@ -5,6 +5,7 @@ namespace QPR_Application.Models.ViewModels
 {
     public class CVO_TrainingViewModel
     {
+        public string refNum { get; set; }
         public List<SelectListItem> MasterTrainingList { get; set; }
         public List<Training_CVO> Training_CVO_List { get; set; }
         public Training_CVO New_Training_CVO { get; set; }
