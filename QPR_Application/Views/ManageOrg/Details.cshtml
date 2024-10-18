@@ -5,12 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Oragnisation Details</h1>
 
-<div>
-    <h4>orgadd</h4>
     <hr />
-    <dl class="row">
+<div>
+    <dl class="row w-75" style="margin: 5em auto 5em auto !important; font-size: 15px">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.section)
         </dt>
@@ -157,7 +156,36 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="d-flex">
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+    <a asp-action="Edit" class="btn btn-primary ms-auto" asp-route-id="@Model?.Id">Edit</a>
 </div>
+<script>
+    $(function () {
+        var complaintsMessage = '@ViewBag.ComplaintsMessage';
+        if (complaintsMessage) {
+            var notificationIcon;
+
+            if (complaintsMessage == 'Saved') {
+                notificationIcon = 'success'
+            }
+
+            if (complaintsMessage.includes('Error')) {
+                notificationIcon = 'Error'
+            }
+
+            Swal.fire({
+                // title: complaintsMessage,
+                text: complaintsMessage,
+                icon: notificationIcon,
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pageReloadWithoutQueryString();
+                } else {
+                    // Optional: Handle cancel action
+                }
+            });
+        }
+    });
+</script>

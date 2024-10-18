@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
-using System.Linq;
+//using System.Web.Mvc;
 
 namespace QPR_Application.Controllers
 {
@@ -33,8 +33,17 @@ namespace QPR_Application.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Details(string id)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateOrganisation(orgadd org)
         {
+            await orgRepo.SaveOrg(org);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Details(string id, string message = "")
+        {
+            ViewBag.ComplaintsMessage = message;
             var details = await orgRepo.GetOrgDetails(id);
             return View(details);
         }
@@ -43,19 +52,24 @@ namespace QPR_Application.Controllers
             var details=await orgRepo.GetOrgDetails(id);
             return View(details);
         }
-        public IActionResult Edit1(orgadd orgadd)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(orgadd orgadd)
         {
-            var details =  orgRepo.EditSave(orgadd);
-            return RedirectToAction("Index");
+            try
+            {
+                var details = orgRepo.EditSave(orgadd);
+                return RedirectToAction("Details", new { id = orgadd.Id, message = "Saved" });
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "");
+                return RedirectToAction("Details", new { id = orgadd.Id, message = "Error" });
+            }
         }
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(int id)
         {
             await orgRepo.Delete(id);
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> Save1(orgadd org)
-        {
-            await orgRepo.SaveOrg(org);
             return RedirectToAction("Index");
         }
     }

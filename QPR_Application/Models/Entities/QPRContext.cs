@@ -194,6 +194,7 @@ namespace QPR_Application.Models.Entities
 
 
             modelBuilder.Entity<orgadd>().HasKey(e=>e.Id);
+
             OnModelCreatingPartial(modelBuilder);
         }
 

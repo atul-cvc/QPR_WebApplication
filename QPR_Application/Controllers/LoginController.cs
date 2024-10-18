@@ -3,17 +3,19 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.DTO.Response;
-using QPR_Application.Models.DTO.Utility;
 using QPR_Application.Repository;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Net;
 using QPR_Application.Util;
-using System.Security.Cryptography;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using QPR_Application.Models.ViewModels;
-using Microsoft.AspNetCore.Http;
 using ASPSnippets.Captcha;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.Extensions.Options;
+using QPR_Application.Models.Util;
+//using Newtonsoft.Json;
 
 namespace QPR_Application.Controllers
 {
@@ -23,16 +25,19 @@ namespace QPR_Application.Controllers
         private readonly ILoginRepo _loginRepo;
         private readonly IHttpContextAccessor _httpContext;
         private readonly OTP_Util _otp_Util;
+        private readonly JwtSettings _jwtSettings;
 
         //public static Captcha staticCaptcha = null;
         private static Captcha Captcha = null;
 
-        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util)
+        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util, IOptions<JwtSettings> jwtSettings)
         {
             _logger = logger;
             _loginRepo = loginRepo;
             _httpContext = httpContext;
             _otp_Util = otp_Util;
+            _jwtSettings = jwtSettings.Value;
+            //var jwt_secretkey = config.GetValue("JwtSettings:secret_key") ?? String.Empty;
         }
         public IActionResult Index()
         {
@@ -47,28 +52,8 @@ namespace QPR_Application.Controllers
                 }
                 _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
 
-                //ClaimsPrincipal claimUser = _httpContext.HttpContext.User;
-                //if (claimUser.Identity.IsAuthenticated)
-                //{
-                //    if (claimUser.IsInRole("ROLE_COORD"))
-                //    {
-                //        return RedirectToAction("Index", "Admin");
-                //    }
-                //    if (claimUser.IsInRole("ROLE_CVO"))
-                //    {
-                //        return RedirectToAction("Index", "QPR");
-                //    }
-                //    if (claimUser.IsInRole("ROLE_SO"))
-                //    {
-                //        return RedirectToAction("PendingRequests", "So");
-                //    }
-                //}
-
                 login.ImageData = GenerateNewCaptcha();
 
-
-                //staticCaptcha = this.Captcha;
-                //_httpContext?.HttpContext?.Session.SetString("captchaExpression", this.Captcha.Expression.toString());
             }
             catch (Exception ex)
             {
@@ -102,7 +87,7 @@ namespace QPR_Application.Controllers
                     if (uDetails.User != null)
                     {
 
-                        string userObj = JsonSerializer.Serialize(uDetails.User);
+                        string userObj = System.Text.Json.JsonSerializer.Serialize(uDetails.User);
                         if (!String.IsNullOrEmpty(userObj))
                         {
                             _httpContext?.HttpContext?.Session.SetString("CurrentUser", userObj);
@@ -110,7 +95,23 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserMobileNumber", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
-
+                            string _key = CryptoEngine.GenerateRandomKey();
+                            var model = new
+                            {
+                                Userid = uDetails.User.email,
+                                LoginType = uDetails.User.logintype,
+                                Pass = login.Password,
+                                CvoOrgCode = uDetails.OrgDetails.OrgCode,
+                                OrgName = uDetails.OrgDetails.OrgName
+                            };
+                            //var modelStr = JsonSerializer.Serialize(model);
+                            var m = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+                            var passStr = CryptoEngine.Encrypt(m, _key);
+                            //var s = CryptoEngine.Decrypt(passStr, _key);
+                            var s = System.Net.WebUtility.UrlEncode(passStr);
+                            _key = System.Net.WebUtility.UrlEncode(_key);
+                            _httpContext?.HttpContext?.Session.SetString("loginToken", s);
+                            _httpContext?.HttpContext?.Session.SetString("loginkey", _key);
                             if (uDetails.OrgDetails != null)
                             {
                                 if (!String.IsNullOrEmpty(uDetails.OrgDetails.OrgCode))
@@ -204,12 +205,12 @@ namespace QPR_Application.Controllers
 
         private registration DeserializeUserDetails(string userObj)
         {
-            return JsonSerializer.Deserialize<registration>(userObj) ?? new registration();
+            return System.Text.Json.JsonSerializer.Deserialize<registration>(userObj) ?? new registration();
         }
 
         private T DeserializeJson<T>(string jsonString)
         {
-            return JsonSerializer.Deserialize<T>(jsonString) ?? Activator.CreateInstance<T>();
+            return System.Text.Json.JsonSerializer.Deserialize<T>(jsonString) ?? Activator.CreateInstance<T>();
         }
 
         public bool SendOTP(string mobile, string email)
@@ -237,15 +238,26 @@ namespace QPR_Application.Controllers
                 new Claim(ClaimTypes.Role, user.logintype)
             };
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //AuthenticationProperties properties = new AuthenticationProperties()
+            //{
+            //    AllowRefresh = true,
+            //    IsPersistent = false
+            //};
+
+            //await _httpContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuthentication");
+
             AuthenticationProperties properties = new AuthenticationProperties()
             {
                 AllowRefresh = true,
                 IsPersistent = false
             };
+            //var tokenString = GenerateJwtToken(claims);
 
-            await _httpContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
-            
+            await _httpContext.HttpContext.SignInAsync("MyCookieAuthentication", new ClaimsPrincipal(claimsIdentity), properties);
+
             _logger.LogInformation("User logged in successfully.");
         }
 
@@ -276,6 +288,22 @@ namespace QPR_Application.Controllers
         {
             AddAuth(user);
             return RouteUserProfile(user.logintype);
+        }
+
+        private string GenerateJwtToken(List<Claim> claims)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("yourSecretKey"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expiry = DateTime.UtcNow.AddHours(1);
+
+            var token = new JwtSecurityToken(
+                issuer: "yourIssuer",
+                audience: "yourAudience",
+                claims: claims,
+                expires: expiry,
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Index";
+    var redirectLink = "https://localhost:44381/Account/LoginByQPR?token=" + ViewBag.LoginToken + "&key=" + ViewBag.LoginKey;
 }
 
 <style>
@@ -24,6 +25,9 @@
 
     <a class="ms-3 btn btn-primary" asp-controller="ManageOrg" asp-action="Index">
         Manage Organisations
+    </a>
+    <a class="ms-3 btn btn-primary" href="@redirectLink" target="_blank">
+        VAW
     </a>
 
 </div>

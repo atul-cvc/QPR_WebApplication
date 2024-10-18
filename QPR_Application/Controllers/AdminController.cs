@@ -28,6 +28,8 @@ namespace QPR_Application.Controllers
         public IActionResult Index()
         {
             ViewBag.UserName = "User";
+            ViewBag.LoginToken = _httpContext?.HttpContext?.Session.GetString("loginToken");
+            ViewBag.LoginKey = _httpContext?.HttpContext?.Session.GetString("loginkey");
             if (_httpContext.HttpContext != null)
             {
                 if (_httpContext.HttpContext.Session.GetString("UserName") != null)
