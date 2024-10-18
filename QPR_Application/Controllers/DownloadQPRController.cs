@@ -44,7 +44,7 @@ namespace QPR_Application.Controllers
         public async Task<IActionResult> AnnualReport()
         {
             string userId = _httpContext?.HttpContext?.Session.GetString("UserName");
-            List<Years> years = await _qprCRUDRepo.GetYearsFinalSubmit(userId);
+            List<QPRYears> years = await _qprCRUDRepo.GetYearsFinalSubmit(userId);
             return View(years);
         }
 

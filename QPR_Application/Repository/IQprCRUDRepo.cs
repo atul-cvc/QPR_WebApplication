@@ -8,9 +8,9 @@ namespace QPR_Application.Repository
 {
     public interface IQprCRUDRepo
     {
-        public Task<List<Years>> GetYears();
-        public Task<List<Years>> GetYearsFinalSubmit(string userId);
-        public Task<List<Years>> GetQPRRequestYear();
+        public Task<List<QPRYears>> GetYears();
+        public Task<List<QPRYears>> GetYearsFinalSubmit(string userId);
+        public Task<List<QPRYears>> GetQPRRequestYear();
         public Task<qpr> GetQPRDetails(string refNum);
         public Task UpdateQPRFinalSubmit(string refNum);
         public string GetReferenceNumber(GetQPR qprDetails, string UserId);

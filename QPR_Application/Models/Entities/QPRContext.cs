@@ -78,7 +78,7 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<vijclearancedetail> vijclearancedetail { get; set; }
         public virtual DbSet<vijclearanceofficerdetail> vijclearanceofficerdetail { get; set; }
         public virtual DbSet<workex> workex { get; set; }
-        public virtual DbSet<Years> Years { get; set; }
+        public virtual DbSet<QPRYears> Years { get; set; }
         public virtual DbSet<LoginUser> LoginUser { get; set; }
         public virtual DbSet<UserRequests> UserRequests { get; set; }
         public virtual DbSet<QPRRequestSubjects> QPRRequestSubjects { get; set; }
@@ -86,6 +86,25 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<MasterTraining> MasterTraining { get; set; }
         public virtual DbSet<Training_CVO> Training_CVO { get; set; }
         public virtual DbSet<tbl_MasterMinistryNew> tbl_MasterMinistryNew { get; set; }
+        public virtual DbSet<tbl_years> tbl_years { get; set; }
+        public virtual DbSet<tbl_tran_1a_integritypledge> tbl_tran_1a_integritypledge { get; set; }
+        public virtual DbSet<tbl_tran_2a_orgactivities_conductofcompetitions> tbl_tran_2a_orgactivities_conductofcompetitions { get; set; }
+        public virtual DbSet<tbl_tran_2b_orgactivities_otheractivities> tbl_tran_2b_orgactivities_otheractivities { get; set; }
+        public virtual DbSet<tbl_tran_3a_outreach_involvingschoolstudents> tbl_tran_3a_outreach_involvingschoolstudents { get; set; }
+        public virtual DbSet<tbl_tran_3b_outreach_involvingcollegestudents> tbl_tran_3b_outreach_involvingcollegestudents { get; set; }
+        public virtual DbSet<tbl_tran_3c_outreach_awarenessgramsabhas> tbl_tran_3c_outreach_awarenessgramsabhas { get; set; }
+        public virtual DbSet<tbl_tran_3d_outreach_seminarsworkshops> tbl_tran_3d_outreach_seminarsworkshops { get; set; }
+        public virtual DbSet<tbl_tran_4_otheractivities> tbl_tran_4_otheractivities { get; set; }
+        public virtual DbSet<tbl_tran_5_detailsofphotos> tbl_tran_5_detailsofphotos { get; set; }
+        public virtual DbSet<tbl_tran_6_otherinformation> tbl_tran_6_otherinformation { get; set; }
+        public virtual DbSet<tbl_tran_a_1b_capacitybulidingprogram> tbl_tran_a_1b_capacitybulidingprogram { get; set; }
+        public virtual DbSet<tbl_tran_a_2b_sysimp> tbl_tran_a_2b_sysimp { get; set; }
+        public virtual DbSet<tbl_tran_a_3b_updation_circular_guidelines_manuals> tbl_tran_a_3b_updation_circular_guidelines_manuals { get; set; }
+        public virtual DbSet<tbl_tran_a_4b_disposalofcomplaints> tbl_tran_a_4b_disposalofcomplaints { get; set; }
+        public virtual DbSet<tbl_tran_a_5b_dynamicdigitalpresence> tbl_tran_a_5b_dynamicdigitalpresence { get; set; }
+
+
+        //public virtual DbSet<tbl_state> tbl_state { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -100,9 +119,28 @@ namespace QPR_Application.Models.Entities
         {
             modelBuilder.Entity<Login>().HasNoKey();
 
-            modelBuilder.Entity<Years>().HasNoKey();
+            modelBuilder.Entity<QPRYears>().HasNoKey();
             
             modelBuilder.Entity<LoginUser>().HasNoKey();
+
+            modelBuilder.Entity<tbl_years>().HasKey(m => m.ID);
+            modelBuilder.Entity<tbl_tran_1a_integritypledge>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_2a_orgactivities_conductofcompetitions>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_2b_orgactivities_otheractivities>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_3a_outreach_involvingschoolstudents>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_3b_outreach_involvingcollegestudents>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_3c_outreach_awarenessgramsabhas>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_3d_outreach_seminarsworkshops>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_4_otheractivities>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_5_detailsofphotos>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_6_otherinformation>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_a_1b_capacitybulidingprogram>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_a_2b_sysimp>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_a_3b_updation_circular_guidelines_manuals>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_a_4b_disposalofcomplaints>().HasKey(m => m.Record_ID);
+            modelBuilder.Entity<tbl_tran_a_5b_dynamicdigitalpresence>().HasKey(m => m.Record_ID);
+
+            modelBuilder.Entity<tbl_state>().HasKey(m => m.SID);
 
             modelBuilder.Entity<qpr>().HasKey(q => q.referencenumber);
 

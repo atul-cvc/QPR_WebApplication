@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
-    IEnumerable<Years> years = (IEnumerable<Years>)ViewBag.Years;
+    List<QPRYears> years = (List<QPRYears>)ViewBag.QPRYears;
     var Quarters = (IEnumerable<SelectListItem>)ViewBag.Quarters;
 }
 

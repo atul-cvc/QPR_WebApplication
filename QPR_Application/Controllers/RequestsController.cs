@@ -33,11 +33,11 @@ namespace QPR_Application.Controllers
             var quarterList = new SelectList(quarterItems, "Value", "Text");
             ViewBag.Quarters = quarterList;
 
-            List<Years> years = await _qprCRUDRepo.GetQPRRequestYear();
+            List<QPRYears> years = await _qprCRUDRepo.GetQPRRequestYear();
             int currentYear = DateTime.Now.Year;
             if (years.Count == 0 || years.Last().Year != currentYear.ToString())
             {
-                years.Add(new Years { Year = currentYear.ToString() });
+                years.Add(new QPRYears { Year = currentYear.ToString() });
             }
             ViewBag.Years = years;
             return View(userReqVM);

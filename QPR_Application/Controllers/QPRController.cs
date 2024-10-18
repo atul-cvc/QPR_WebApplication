@@ -57,14 +57,20 @@ namespace QPR_Application.Controllers
                     };
                     var quarterList = new SelectList(quarterItems, "Value", "Text");
                     ViewBag.Quarters = quarterList;
-
-                    List<Years> years = await _qprCRUDRepo.GetYears();
+                   // List<SelectListItem> QprYears = new List<SelectListItem>();
+                    List<QPRYears> QPRYears = await _qprCRUDRepo.GetYears();
+                    ViewBag.QPRYears = QPRYears;
+                    //foreach (var item in QPRYears)
+                    //{
+                    //    QprYears.Add(new SelectListItem() { Text = item.Year, Value = item.Year });
+                    //}                  
+                    
                     int currentYear = DateTime.Now.Year;
-                    if (years.Count == 0 || years.Last().Year != currentYear.ToString())
+                    if (QPRYears.Count == 0 || QPRYears.Last().Year != currentYear.ToString())
                     {
-                        years.Add(new Years { Year = currentYear.ToString() });
+                        QPRYears.Add(new QPRYears { Year = currentYear.ToString() });
                     }
-                    ViewBag.Years = years;
+                    //ViewBag.QPRYears = QprYears;
                     _logger.LogInformation("User visited the QPR Index page.");
                     return View();
                 }
@@ -178,7 +184,7 @@ namespace QPR_Application.Controllers
                         //complaint.scrutinyreportbfpreviousyear = complaintPrevious.scrutinyreportpendinginvestigation ?? 0;
                         //complaint.scrutinyreportbfpreviousyearconcurrent = complaintPrevious.scrutinyreportpendinginvestigationconcurrent ?? 0;
                         //complaint.scrutinyreportbfpreviousyearinternal = complaintPrevious.scrutinyreportpendinginvestigationinternal ?? 0;
-                        //complaint.scrutinyreportbfpreviousyearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory ?? 0;
+                        //complaint.scrutinyreportbfpreviousQPRYearstatutory = complaintPrevious.scrutinyreportpendinginvestigationstatutory ?? 0;
                         //complaint.scrutinyreportbfpreviousyearothers = complaintPrevious.scrutinyreportbfpreviousyearothers ?? 0;
                         //complaint.scrutinyreportbfpreviousyeartotal = complaintPrevious.scrutinyreportpendinginvestigationtotal ?? 0;
                     }

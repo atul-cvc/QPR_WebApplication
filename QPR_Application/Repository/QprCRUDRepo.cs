@@ -27,12 +27,12 @@ namespace QPR_Application.Repository
             _httpContext = httpContext;
             _qprRepo = qprRepo;
         }
-        public async Task<List<Years>> GetYears()
+        public async Task<List<QPRYears>> GetYears()
         {
-            List<Years> years = new List<Years>();
+            List<QPRYears> years = new List<QPRYears>();
             try
             {
-                years = await _dbContext.Set<Years>().FromSqlRaw("EXEC GetYearsFromQPR").ToListAsync();
+                years = await _dbContext.Set<QPRYears>().FromSqlRaw("EXEC GetYearsFromQPR").ToListAsync();
                 return years;
             }
             catch (Exception ex)
@@ -40,12 +40,12 @@ namespace QPR_Application.Repository
             }
             return years;
         }
-        public async Task<List<Years>> GetYearsFinalSubmit(string userId)
+        public async Task<List<QPRYears>> GetYearsFinalSubmit(string userId)
         {
-            List<Years> years = new List<Years>();
+            List<QPRYears> years = new List<QPRYears>();
             try
             {
-                years = await _dbContext.Set<Years>().FromSqlRaw("EXECUTE dbo.GetYearsFromQPRFinallySubmitted @UserID", new SqlParameter("@UserID", userId)).ToListAsync();
+                years = await _dbContext.Set<QPRYears>().FromSqlRaw("EXECUTE dbo.GetYearsFromQPRFinallySubmitted @UserID", new SqlParameter("@UserID", userId)).ToListAsync();
                 return years;
             }
             catch (Exception ex)
@@ -53,12 +53,12 @@ namespace QPR_Application.Repository
             }
             return years;
         }
-        public async Task<List<Years>> GetQPRRequestYear()
+        public async Task<List<QPRYears>> GetQPRRequestYear()
         {
-            List<Years> years = new List<Years>();
+            List<QPRYears> years = new List<QPRYears>();
             try
             {
-                years = await _dbContext.Set<Years>().FromSqlRaw("EXECUTE dbo.GetQPRRequestYear @UserID", new SqlParameter("@UserID", _httpContext.HttpContext?.Session?.GetString("UserName"))).ToListAsync();
+                years = await _dbContext.Set<QPRYears>().FromSqlRaw("EXECUTE dbo.GetQPRRequestYear @UserID", new SqlParameter("@UserID", _httpContext.HttpContext?.Session?.GetString("UserName"))).ToListAsync();
                 return years;
             }
             catch (Exception ex)
