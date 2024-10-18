@@ -50,7 +50,7 @@
             </div>
             <div class="form-group mt-3">
                 <label asp-for="@Model.tenure" class="control-label"></label>
-                <input asp-for="@Model.tenure" class="form-control datepicker" autocomplete="off" />
+                <input asp-for="@Model.tenure" class="form-control datepicker" autocomplete="off" onkeydown="return false;" />
                 <span asp-validation-for="@Model.tenure" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">

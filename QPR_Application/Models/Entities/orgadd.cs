@@ -11,32 +11,108 @@ namespace QPR_Application.Models.Entities
     public partial class orgadd
     {
         [Key]
-        public long Id { get; set; }
-        [StringLength(50)]
+        [Display(Name = "Id")]
+        public int Id { get; set; }
+
+        [Display(Name = "Section")]
         public string section { get; set; }
+
+        [Display(Name = "Organisation Code")]
         public string orgcod { get; set; }
+
+        [Display(Name = "Department Code")]
         public string depcod { get; set; }
+
+        [Display(Name = "Ministry Code")]
         public string mincod { get; set; }
+
+        [Display(Name = "Organisation Name")]
         public string orgnam1 { get; set; }
-        public string orgnam2 { get; set; }
+
+        [Display(Name = "Organisation Name (2)")]
+        public string? orgnam2 { get; set; }
+
+        [Display(Name = "Organisation Address (1)")]
         public string addr1 { get; set; }
-        public string addr2 { get; set; }
-        public string addr3 { get; set; }
-        public string addr4 { get; set; }
-        public string addr5 { get; set; }
-        public string ph_no_1 { get; set; }
-        public string ph_no_2 { get; set; }
-        public string fax { get; set; }
-        public string telex { get; set; }
-        public string grams { get; set; }
-        public string ph_del_res { get; set; }
-        public string psucod { get; set; }
-        public string selectd { get; set; }
-        public string schlvl { get; set; }
-        public string jobcod { get; set; }
+
+        [Display(Name = "Organisation Address (2)")]
+        public string? addr2 { get; set; }
+
+        [Display(Name = "Organisation Address (3)")]
+        public string? addr3 { get; set; }
+
+        [Display(Name = "Organisation Address (4)")]
+        public string? addr4 { get; set; }
+
+        [Display(Name = "Organisation Address (5)")]
+        public string? addr5 { get; set; }
+
+        [Display(Name = "Phone Number (1)")]
+        public string? ph_no_1 { get; set; }
+
+        [Display(Name = "Phone Number (2)")]
+        public string? ph_no_2 { get; set; }
+
+        [Display(Name = "Fax Number")]
+        public string? fax { get; set; }
+
+        [Display(Name = "Telephone Number")]
+        public string? telex { get; set; }
+
+        [Display(Name = "Grams")]
+        public string? grams { get; set; }
+
+        [Display(Name = "Phone_Del_Res")]
+        public string? ph_del_res { get; set; }
+
+        [Display(Name = "PSU Code")]
+        public string? psucod { get; set; }
+
+        [Display(Name = "Selected")]
+        public string? selectd { get; set; }
+
+        [Display(Name = "Sch_Level")]
+        public string? schlvl { get; set; }
+
+        [Display(Name = "Job Code")]
+        public string? jobcod { get; set; }
+
         [Column("checked")]
-        public string _checked { get; set; }
-        public string region { get; set; }
-        public string email { get; set; }
+        [Display(Name = "Checked")]
+        public string? _checked { get; set; }
+
+        [Display(Name = "Region")]
+        public string? region { get; set; }
+
+        [Display(Name = "Email")]
+        public string? email { get; set; }
+        //[Key]
+        //public long Id { get; set; }
+        //[StringLength(50)]
+        //public string section { get; set; }
+        //public string orgcod { get; set; }
+        //public string depcod { get; set; }
+        //public string mincod { get; set; }
+        //public string orgnam1 { get; set; }
+        //public string orgnam2 { get; set; }
+        //public string addr1 { get; set; }
+        //public string addr2 { get; set; }
+        //public string addr3 { get; set; }
+        //public string addr4 { get; set; }
+        //public string addr5 { get; set; }
+        //public string ph_no_1 { get; set; }
+        //public string ph_no_2 { get; set; }
+        //public string fax { get; set; }
+        //public string telex { get; set; }
+        //public string grams { get; set; }
+        //public string ph_del_res { get; set; }
+        //public string psucod { get; set; }
+        //public string selectd { get; set; }
+        //public string schlvl { get; set; }
+        //public string jobcod { get; set; }
+        //[Column("checked")]
+        //public string _checked { get; set; }
+        //public string region { get; set; }
+        //public string email { get; set; }
     }
 }

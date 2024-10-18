@@ -55,8 +55,8 @@ namespace QPR_Application.Controllers
                 //vm.EmploymentType = 
                 if (!string.IsNullOrEmpty(vm.qpr.fulltime) && !string.IsNullOrEmpty(vm.qpr.parttime))
                 {
-                    if (vm.qpr.fulltime == "t") vm.EmploymentType = "Full Time";
-                    if (vm.qpr.parttime == "t") vm.EmploymentType = "Part Time";
+                    if (vm.qpr.fulltime == "t"||vm.qpr.fulltime == "1") vm.EmploymentType = "Full Time";
+                    if (vm.qpr.parttime == "t"||vm.qpr.parttime == "1") vm.EmploymentType = "Part Time";
                 }
                 else
                 {
@@ -91,12 +91,12 @@ namespace QPR_Application.Controllers
                 switch (vm.EmploymentType)
                 {
                     case "Full Time":
-                        vm.qpr.fulltime = "t";
-                        vm.qpr.parttime = "f";
+                        vm.qpr.fulltime = "1";
+                        vm.qpr.parttime = "0";
                         break;
                     case "Part Time":
-                        vm.qpr.fulltime = "f";
-                        vm.qpr.parttime = "t";
+                        vm.qpr.fulltime = "0";
+                        vm.qpr.parttime = "1";
                         break;
                 }
 
@@ -120,11 +120,11 @@ namespace QPR_Application.Controllers
             if (!string.IsNullOrEmpty(qpr.fulltime) && !string.IsNullOrEmpty(qpr.parttime))
             {
                 //ViewBag.EmployementType = (qpr.fulltime == "t") ? "Full Time" : "";
-                if (qpr.fulltime == "t")
+                if (qpr.fulltime == "1" || qpr.fulltime == "t")
                 {
                     ViewBag.EmployementType = "Full Time";
                 }
-                if (qpr.parttime == "t")
+                if (qpr.parttime == "1"|| qpr.parttime == "t")
                 {
                     ViewBag.EmployementType = "Part Time";
                 }
