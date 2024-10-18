@@ -54,7 +54,7 @@
                 bottom: -2px; /* Position slightly below text */
                 width: 100%; /* Full width of the link */
                 height: 2px; /* Height of the underline */
-                background-color: #007bff; /* Underline color */
+                background-color: white; /* Underline color */
                 transform: scaleX(0); /* Initial state: scale to 0 (invisible) */
                 transform-origin: center; /* Scale from the center */
                 transition: transform 0.3s ease; /* Smooth transition for animation */
@@ -70,7 +70,10 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">QPR Application</a>
+                <div>
+                    @Html.Partial("_CvcLogo")
+                </div>
+                <a class="navbar-brand text-white" href="@Url.Action("Index","Dashboard")">QPR Application</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -80,16 +83,16 @@
                     {
                         <ul class="navbar-nav flex-grow-1 align-content-end" id="cvo_list">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="DownloadQPR" asp-action="AnnualReport">Annual Report</a>
                             </li>
                             @* <li class="nav-item">
-                        <a class="nav-link text-dark me-1" asp-area="" asp-controller="ChangePassword" asp-action="ChangePassword">Change Password</a>
+                        <a class="nav-link text-white me-1" asp-area="" asp-controller="ChangePassword" asp-action="ChangePassword">Change Password</a>
                         </li> *@
                             <li class="nav-item dropdown">
-                                <a class="nav-link text-dark me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link text-white me-1 " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Requests
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
@@ -103,7 +106,7 @@
                     {
                         <ul class="navbar-nav flex-grow-1 align-content-end" id="so_list">
                             <li class="nav-item dropdown">
-                                <a class="nav-link text-dark align-content-end" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link text-white align-content-end" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Requests
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="font-size:14px">
@@ -120,18 +123,18 @@
                             @if (Convert.ToInt32(@HttpContextAccessor.HttpContext.Session.GetString("qtrreport")) > 0)
                             {
                                 <li class="nav-item d-flex me-2">
-                                    <span class="text-dark align-content-center" style="font-size:0.9rem">
+                                    <span class="text-white align-content-center" style="font-size:0.9rem">
                                         Quarter : @HttpContextAccessor.HttpContext.Session.GetString("qtrMonths")
                                     </span>
                                 </li>
-                                <li class="nav-item d-flex me-2 d-sm-none"><span class="text-dark align-content-center" style="font-size:0.9rem">|</span> </li>
+                                <li class="nav-item d-flex me-2 d-sm-none"><span class="text-white align-content-center" style="font-size:0.9rem">|</span> </li>
                                 <li class="nav-item d-flex me-3">
-                                    <span class="text-dark align-content-center" style="font-size:0.9rem">
+                                    <span class="text-white align-content-center" style="font-size:0.9rem">
                                         Year : @HttpContextAccessor.HttpContext.Session.GetString("qtryear")
                                     </span>
                                 </li>
                             }
-                            <li class="dropdown">
+                            <li class="dropdown ms-4">
                                 <a class="btn btn-secondary dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Account
                                 </a>

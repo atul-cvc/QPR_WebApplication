@@ -3,14 +3,22 @@
 @model QPR_Application.Models.DTO.Request.GetQPR;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "QPR";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     IEnumerable<Years> years = (IEnumerable<Years>)ViewBag.Years;
     var Quarters = (IEnumerable<SelectListItem>)ViewBag.Quarters;
+    var redirectLink = ViewBag.VAW_URL;
 }
 
 <div class="mt-5 mb-5" style="margin-bottom: 26em !important">
-    <h3 style="font-weight:400">Welcome @ViewBag.User.name</h3>
+    <div class="d-flex">
+        <div>
+            <h3 style="font-weight:400">Welcome @ViewBag.User.userid</h3>
+        </div>
+        <div class="ms-auto">
+            <a class="ms-3 btn btn-primary" href="@Url.Action("Index","Dashboard")" >Back</a>
+        </div>
+    </div>
     @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
     <div class="w-75 m-auto mt-5">
         <form asp-action="Index">

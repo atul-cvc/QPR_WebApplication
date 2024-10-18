@@ -65,6 +65,7 @@ namespace QPR_Application.Controllers
                         years.Add(new Years { Year = currentYear.ToString() });
                     }
                     ViewBag.Years = years;
+                    ViewBag.VAW_URL = "";
                     _logger.LogInformation("User visited the QPR Index page.");
                     return View();
                 }

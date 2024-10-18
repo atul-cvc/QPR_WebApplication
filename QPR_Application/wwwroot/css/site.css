@@ -128,3 +128,12 @@ textarea:focus, input:focus {
 .swal2-html-container {
     font-size: 15px !important; /* Adjust the font size as needed */
 }
+
+.navbar {
+    background-color: #0b5ed7 !important;
+    color: white !important;
+}
+
+/*.navbar a{
+    color: white !important;
+}*/

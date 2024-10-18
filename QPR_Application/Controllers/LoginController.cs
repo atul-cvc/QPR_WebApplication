@@ -13,9 +13,7 @@ using ASPSnippets.Captcha;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using Microsoft.Extensions.Options;
-using QPR_Application.Models.Util;
-//using Newtonsoft.Json;
+using QPR_Application.Models.DTO.Utility;
 
 namespace QPR_Application.Controllers
 {
@@ -25,19 +23,16 @@ namespace QPR_Application.Controllers
         private readonly ILoginRepo _loginRepo;
         private readonly IHttpContextAccessor _httpContext;
         private readonly OTP_Util _otp_Util;
-        private readonly JwtSettings _jwtSettings;
 
         //public static Captcha staticCaptcha = null;
         private static Captcha Captcha = null;
 
-        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util, IOptions<JwtSettings> jwtSettings)
+        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util)
         {
             _logger = logger;
             _loginRepo = loginRepo;
             _httpContext = httpContext;
             _otp_Util = otp_Util;
-            _jwtSettings = jwtSettings.Value;
-            //var jwt_secretkey = config.GetValue("JwtSettings:secret_key") ?? String.Empty;
         }
         public IActionResult Index()
         {
@@ -96,22 +91,32 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("UserMobileNumber", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             string _key = CryptoEngine.GenerateRandomKey();
-                            var model = new
+                            var _orgCode = String.Empty;
+                            var _orgName = String.Empty;
+                            if(uDetails.OrgDetails != null)
                             {
-                                Userid = uDetails.User.email,
+                                _orgCode = uDetails.OrgDetails.OrgCode;
+                                _orgName = uDetails.OrgDetails.OrgName;
+                            } else
+                            {
+                                _orgCode = uDetails.OrgDetails_ADD.orgcod;
+                                _orgName = uDetails.OrgDetails_ADD.orgnam1;
+                            }
+                            var model = new TokenModel()
+                            {
+                                Email = uDetails.User.email,
                                 LoginType = uDetails.User.logintype,
                                 Pass = login.Password,
-                                CvoOrgCode = uDetails.OrgDetails.OrgCode,
-                                OrgName = uDetails.OrgDetails.OrgName
+                                OrgCode = _orgCode,
+                                OrgName = _orgName
                             };
-                            //var modelStr = JsonSerializer.Serialize(model);
-                            var m = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-                            var passStr = CryptoEngine.Encrypt(m, _key);
-                            //var s = CryptoEngine.Decrypt(passStr, _key);
-                            var s = System.Net.WebUtility.UrlEncode(passStr);
-                            _key = System.Net.WebUtility.UrlEncode(_key);
-                            _httpContext?.HttpContext?.Session.SetString("loginToken", s);
-                            _httpContext?.HttpContext?.Session.SetString("loginkey", _key);
+                            //var m = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+                            //var passStr = CryptoEngine.Encrypt(m, _key);
+                            ////var s = CryptoEngine.Decrypt(passStr, _key);
+                            //var s = System.Net.WebUtility.UrlEncode(passStr);
+                            //_key = System.Net.WebUtility.UrlEncode(_key);
+                            var VAW_URL = new CryptoEngine().GenerateVAWToken(model);
+                            _httpContext?.HttpContext?.Session.SetString("VAW_URL", VAW_URL);
                             if (uDetails.OrgDetails != null)
                             {
                                 if (!String.IsNullOrEmpty(uDetails.OrgDetails.OrgCode))
@@ -238,25 +243,25 @@ namespace QPR_Application.Controllers
                 new Claim(ClaimTypes.Role, user.logintype)
             };
 
-            //ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            //AuthenticationProperties properties = new AuthenticationProperties()
-            //{
-            //    AllowRefresh = true,
-            //    IsPersistent = false
-            //};
-
-            //await _httpContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
-
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuthentication");
-
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             AuthenticationProperties properties = new AuthenticationProperties()
             {
                 AllowRefresh = true,
                 IsPersistent = false
             };
-            //var tokenString = GenerateJwtToken(claims);
 
-            await _httpContext.HttpContext.SignInAsync("MyCookieAuthentication", new ClaimsPrincipal(claimsIdentity), properties);
+            await _httpContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
+
+            //ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuthentication");
+
+            //AuthenticationProperties properties = new AuthenticationProperties()
+            //{
+            //    AllowRefresh = true,
+            //    IsPersistent = false
+            //};
+            ////var tokenString = GenerateJwtToken(claims);
+
+            //await _httpContext.HttpContext.SignInAsync("MyCookieAuthentication", new ClaimsPrincipal(claimsIdentity), properties);
 
             _logger.LogInformation("User logged in successfully.");
         }
@@ -269,7 +274,8 @@ namespace QPR_Application.Controllers
             }
             if (logintype == "ROLE_CVO")
             {
-                return RedirectToAction("Index", "QPR");
+                //return RedirectToAction("Index", "QPR");IHttpContextAccessor _httpContext
+                return RedirectToAction("Index", "Dashboard");
             }
             if (logintype == "ROLE_SO")
             {

@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var redirectLink = ViewBag.VAW_URL;
+}
+
+<style>
+    .boxContainer {
+        min-height: 20vh;
+        min-width: 50vh;
+        background-color: #0d6efd;
+        color: white;
+        margin: 50px;
+        align-content: center;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    a .boxContainer {
+        font-size: 35px!important;
+    }
+</style>
+
+
+<div style="min-height:45em">
+    <div class="w-75  m-auto" style="">
+
+        <div class="d-flex justify-content-center w-100  m-auto" style="margin-top:20vh!important">
+
+            <a class="text-decoration-none" href="@Url.Action("Index","QPR")">
+                <div class="boxContainer text-center">
+                    QPR
+                </div>
+            </a>
+            <a class="text-decoration-none" href="@redirectLink" target="_blank">
+                <div class="boxContainer text-center">
+                    VAW
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

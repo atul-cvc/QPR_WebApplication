@@ -18,11 +18,17 @@
 </head>
 <body>
 
-    <h1>Quarterly Performance Report</h1>
+    <div class="text-center m-5">
+        <h1>Quarterly Performance Report</h1>
+    </div>
 
-    <h4>Login</h4>
+    @* <h4>Login</h4> *@
     <hr />
-    <div class="m-auto mt-5" style="width:20%; border-radius:5px; box-shadow:0px 0px 5px #e1e6e2 ;">
+    <div class="m-auto mt-5" style="margin-top:5vh !important;width:20%; border-radius:5px; box-shadow:0px 0px 5px #e1e6e2 ;">
+        <div class="text-center" >
+            <h3 style="padding-top:20px;">Login</h3>
+            <hr />
+        </div>
         <div class="p-5">
             <form asp-action="Index">
                 @Html.AntiForgeryToken()
