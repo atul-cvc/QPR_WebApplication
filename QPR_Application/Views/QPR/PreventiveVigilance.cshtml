@@ -133,7 +133,7 @@
                 <tr></tr>
                 <tr class="text-center">
                     <th rowspan="2"><b>No. of Sensitive Post Identified</b></th>
-                    <th rowspan="2"><b>No. of Posts due for rotation during the <b style="font-size:18px;">Year</b></b></th>
+                    <th rowspan="2"><b>No. of Posts due for rotation during the Quarter</b></th>
                     <th rowspan="2"><b>No. of Posts rotated during the Quarter</b></th>
                     <th rowspan="2"><b>No. of Post due for rotation and not rotated during Quarter</b></th>
                     <th rowspan="2"><b>Reasons for not effecting rotating the sensitive posts</b></th>
@@ -632,7 +632,7 @@
 
     <script>
         $('#add-row-preventiveA').on('click', function () {
-            // debugger;
+            // //debugger;
             $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_nameofsub').attr('required', true);
             $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_staff_appointed').attr('required', true);
             $('#NewPreventivVigi_A_preventivevigi_a_detailsvigi_subsidiaries_methodofcontrol').attr('required', true);
@@ -656,7 +656,7 @@
         };
 
         $('#add-row-preventiveB').on('click', function () {
-            // debugger;
+            // //debugger;
             $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_nameofsub').attr('required', true);
             $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_contral_method').attr('required', true);
             $('#NewPreventivVigi_B_preventivevigi_management_detailsvig_b_likely_time').attr('required', true);
@@ -688,7 +688,7 @@
             var rotation_post_qtrrotation = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val());
             var total = 0;
             if (rotation_postduerotation < rotation_post_qtrrotation) {
-                $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val(0);
+                // $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val(0);
                 $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val(0);
             }
             else {
@@ -703,7 +703,7 @@
         })
 
         $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_sensitivenumberpost').on("focus", function () {
-            debugger;
+            //debugger;
             if (!change_Sensitive_Posts) {
                 Swal.fire({
                     // title: complaintsMessage,
@@ -724,12 +724,26 @@
                 });
             }
         });
+        $('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').on('keyup', function () {
+            var val1 = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_post_qtrrotation').val()) || 0;
+            var val2 = parseInt($('#PreventiveVigilanceQRS_preventivevigi_management_job_rotation_postduerotation').val()) || 0;
+            if(val1 > val2){
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: 'No. of Posts rotated during the Quarter cannot be more than = ' + val2,
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+            }
+        });
     </script>
 
     <script>
         $(function () {
             var complaintsMessage = '@ViewBag.ComplaintsMessage';
-            debugger;
+            //debugger;
             var filePath = '@Model.PreventiveVigilanceQRS.file1';
             if (filePath != null && filePath != '') {
                 $('#fileUploadResult').html('<a href="' + filePath + '" target="_blank">View Uploaded File</a>');

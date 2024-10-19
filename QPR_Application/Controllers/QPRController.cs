@@ -295,7 +295,7 @@ namespace QPR_Application.Controllers
                         vigInv.viginvestatotalreportqtr = vigInvPrev.viginvestatotalbalancepending;
                     }
                     vigInv.viginvescvotakeninvesqtr = _qprRepo.GetCVOTakenUpForInvestigationQtr(refNum);
-                    vigInv.viginvestreportbycvoqtr = vigInv.viginvestbcvosentdaaction;
+                    //vigInv.viginvestreportbycvoqtr = vigInv.viginvestbcvosentdaaction;
 
                     return View(vigInv);
                 }
@@ -1072,18 +1072,25 @@ namespace QPR_Application.Controllers
                 if (!String.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")))
                 {
                     string refNum = _httpContext.HttpContext.Session.GetString("referenceNumber");
-                    var userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
-                    ViewBag.UserName = userObject.userid;
-                    ViewBag.QprID = refNum;
-                    ViewBag.QPRYear = _httpContext.HttpContext.Session.GetString("qtryear");
-                    switch (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")))
+                    qpr _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
+                    if (_qpr.finalsubmit == "t")
                     {
-                        case 1: ViewBag.QtrReport = "January to March"; break;
-                        case 2: ViewBag.QtrReport = "April to June"; break;
-                        case 3: ViewBag.QtrReport = "July to September"; break;
-                        case 4: ViewBag.QtrReport = "October to December"; break;
+                        var userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+                        ViewBag.UserName = userObject.userid;
+                        ViewBag.QprID = refNum;
+                        ViewBag.QPRYear = _httpContext.HttpContext.Session.GetString("qtryear");
+                        switch (Convert.ToInt32(_httpContext.HttpContext.Session.GetString("qtrreport")))
+                        {
+                            case 1: ViewBag.QtrReport = "January to March"; break;
+                            case 2: ViewBag.QtrReport = "April to June"; break;
+                            case 3: ViewBag.QtrReport = "July to September"; break;
+                            case 4: ViewBag.QtrReport = "October to December"; break;
+                        }
+                        return View();
+                    } else
+                    {
+                        return RedirectToAction("Index", "QPR");
                     }
-                    return View();
                 }
                 else
                 {

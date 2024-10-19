@@ -1142,7 +1142,7 @@
     $('#scrutinyreportbfpreviousyearothers,#scrutinyreportbfpreviousyearstatutory,#scrutinyreportbfpreviousyearinternal,#scrutinyreportbfpreviousyearconcurrent,#scrutinyreportbfpreviousyear,#scrutinyreportcompleteinvestigationtotal,#scrutinyreportcompleteinvestigationothers ,#scrutinyreportcompleteinvestigationstatutory ,#scrutinyreportcompleteinvestigationinternal ,#scrutinyreportcompleteinvestigationconcurrent ,#scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers, #scrutinyreportexaminedqtrothers, #scrutinyreportexaminedqtrstatutory, #scrutinyreportexaminedqtrinternal, #scrutinyreportexaminedqtrconcurrent, #scrutinyreportexaminedqtr, #scrutinyreportcompleteinvestigationtotal, #scrutinyreportidentifiedexamitotal, #scrutinyreportcompleteinvestigationothers, #scrutinyreportidentifiedexamiothers, #scrutinyreportidentifiedexamistatutory, #scrutinyreportcompleteinvestigationstatutory, #scrutinyreportcompleteinvestigationinternal, #scrutinyreportidentifiedexamiinternal, #scrutinyreportcompleteinvestigationconcurrent, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportcompleteinvestigation, #scrutinyreportidentifiedexami, #napidpiclosedwithoutaction, #napidpiadminaction, #napidpiimpositionpenalty, #napidpireceiveqtr, #cvopidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancelesstwelve, #cvcpidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweensixtotwelve, #cvopidpiinvesbalancebetweenthreetosix, #cvcpidpiinvesbalancebetweenthreetosix, #cvopidpiinvesbalancegreterthreemonth, #cvcpidpiinvesbalancegreterthreemonth, #cvcpidpiinvesactionduringquarter, #cvopidpiinvesactionduringquarter, #cvopidpiinvesquarterreportbycvo, #cvcpidpiinvesquarterreportbycvo, #totalpidpiinvesquarteradvicereceive, #cvopidpiinvesquarteradvicereceive, #cvopidpiinvestadvicecvc, #cvcpidpiinvesquarteradvicereceive, #cvcpidpiinvestadvicecvc, #otherpidpi_less_six, #cvcpidpi_less_six, #cvcpidpi_three_to_six, #otherpidpi_three_to_six, #cvcpidpi_three_month, #otherpidpi_three_month, #otherpidpi_report_quarter, #cvcpidpi_report_quarter, #otherpidpi_receivequarter, #cvcpidpi_receivequarter, #comotherage_pendency_betweenthree_six, #comcvcage_pendency_betweenthree_six, #comotherage_pendency_betweenone_three, #comcvcage_pendency_betweenone_three, #comotherreceived_during_quarter, #comcvcreceived_during_quarter, #comcvcdisposal_during_quarter, #comotherdisposal_during_quarter, #comotherbalance_pending, #comcvcbalance_pending, #comcvcage_less_one, #comotherage_less_one').on('input', performComTotal);
 
     function performComTotal() {
-        console.log('SAVE_FLAG : ' + SAVE_FLAG)
+        // console.log('SAVE_FLAG : ' + SAVE_FLAG)
         $("#cvcpidpiinvesquarterreportbycvo").val($("#cvcpidpi_report_quarter").val());
         $("#cvopidpiinvesquarterreportbycvo").val($("#otherpidpi_report_quarter").val());
         // Set the result to the total field
@@ -1270,7 +1270,7 @@
     function verifySumQTY1() {
         var pend = 0;
         pend = parseFloat($("#comcvctotal").val()) - parseFloat($("#comcvcdisposal_during_quarter").val());
-        // debugger;
+        // ////debugger;
         if (pend < 0) {
             $("#comcvcdisposal_during_quarter").val(0);
             $("#comcvcage_less_one").val(0);
@@ -1357,7 +1357,7 @@
     }
 
     function DisposedTotal() {
-        debugger;
+        // ////debugger;
         var tot = parseFloat($("#complaints_cbi_action").val()) || 0;
         tot += parseFloat($("#complaints_cvoinvestigation").val()) || 0;
         tot += parseFloat($("#complaints_signed_filed").val()) || 0;
@@ -1739,14 +1739,14 @@
             return validateFields();
         }
         else {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Please verify the data. Something is wrong.',
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
+            // Swal.fire({
+            //     toast: true,
+            //     position: 'top-end', // Position of the toast
+            //     icon: 'info', // Type of icon (success, error, warning, info)
+            //     title: 'Please verify the data. Something is wrong.',
+            //     showConfirmButton: false,
+            //     timer: 3000, // Duration in milliseconds
+            // });
             return false;
         }
     }
@@ -1755,34 +1755,97 @@
             return confirmFormSubmission('ComplaintsQPRForm');
         }
         else {
-            Swal.fire({
-                toast: true,
-                position: 'top-end', // Position of the toast
-                icon: 'info', // Type of icon (success, error, warning, info)
-                title: 'Please verify the data. Something is wrong.',
-                showConfirmButton: false,
-                timer: 3000, // Duration in milliseconds
-            });
+            // Swal.fire({
+            //     toast: true,
+            //     position: 'top-end', // Position of the toast
+            //     icon: 'info', // Type of icon (success, error, warning, info)
+            //     title: 'Please verify the data. Something is wrong.',
+            //     showConfirmButton: false,
+            //     timer: 3000, // Duration in milliseconds
+            // });
             return false;
         }
     }
 
     function SAVE_CHECK() {
-        debugger;
         SAVE_FLAG = true;
-        // var isSave = true;
-        // isSave =
-        CHECK_totRecv_QTR_Others();
-        // isSave =
-        CHECK_DisposedTotal();
-        // isSave =
-        CHECK_CVC_COMPLAINTS();
-        CHECK_OTH_COMPLAINTS();
-        CHECK_PIDPI_CVC_TOTAL();
-        CHECK_PIDPI_OTHER_TOTAL();
-        CHECK_ADVICE_PIDPI_CVC_TOTAL();
-        CHECK_ADVICE_PIDPI_OTHER_TOTAL();
+        // Check conditions and break execution if any return false
+        if (!CHECK_CVC_COMPLAINTS()) {
+            return false;
+        }
+        if (!CHECK_OTH_COMPLAINTS()) {
+            return false;
+        }
+        if (!CHECK_totRecv_QTR_Others()) {
+            return false;
+        }
+        if (!CHECK_DisposedTotal()) {
+            return false;
+        }
+        if (!CHECK_PIDPI_CVC_TOTAL()) {
+            return false;
+        }
+        if (!CHECK_PIDPI_OTHER_TOTAL()) {
+            return false;
+        }
+        if (!CHECK_ADVICE_PIDPI_CVC_TOTAL()) {
+            return false;
+        }
+        if (!CHECK_ADVICE_PIDPI_OTHER_TOTAL()) {
+            return false;
+        }
+        if (!CHECK_SCRUTINY_TOTAL()) {
+            return false;
+        }
+        // //debugger;
+        // if (!CHECK_INVESTIGATION_COMPLETED_TOTAL()) {
+        //     return false;
+        // }
         return SAVE_FLAG;
+    }
+
+    // function CHECK_INVESTIGATION_COMPLETED_TOTAL(){
+    //     // var total = 0;
+    //     // $('#scrutinyreportcompleteinvestigation,#scrutinyreportcompleteinvestigationconcurrent,#scrutinyreportcompleteinvestigationinternal').each(function () {
+    //     //     // Convert to float and default to 0 if NaN
+    //     //     var value = parseFloat($(this).val()) || 0;
+    //     //     total += value;
+    //     // });
+    //     if (parseFloat($('#scrutinyreportcompleteinvestigationtotal').val()) != parseFloat($('#complaints_audit').val())) {
+    //         Swal.fire({
+    //             toast: true,
+    //             position: 'top-end', // Position of the toast
+    //             icon: 'info', // Type of icon (success, error, warning, info)
+    //             title: 'Total of 1.6 column 4 should match with figures at para 1.1 (e) = ' + parseFloat($('#complaints_audit').val()),
+    //             showConfirmButton: false,
+    //             timer: 3000, // Duration in milliseconds
+    //         });
+    //         $("#scrutinyreportidentifiedexami").focus();
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    function CHECK_SCRUTINY_TOTAL(){
+        var total = 0;
+        $('#scrutinyreportidentifiedexami, #scrutinyreportidentifiedexamiconcurrent, #scrutinyreportidentifiedexamiinternal, #scrutinyreportidentifiedexamistatutory, #scrutinyreportidentifiedexamiothers').each(function () {
+            // Convert to float and default to 0 if NaN
+            var value = parseFloat($(this).val()) || 0;
+            total += value;
+        });
+        if (parseFloat($('#scrutinyreportidentifiedexamitotal').val()) != parseFloat($('#complaints_audit').val())) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total of 1.6 column 4 should match with figures at para 1.1 (e) = ' + parseFloat($('#complaints_audit').val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#scrutinyreportidentifiedexami").focus();
+            return false;
+        }
+        return true;
     }
 
     function CHECK_totRecv_QTR_Others() {
@@ -1796,8 +1859,18 @@
 
         if (parseFloat($("#comotherreceived_during_quarter").val()) != tot) {
             SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Break up of complaints received under source \'Others\' during the quarter must be equal to :' + parseFloat($("#comotherreceived_during_quarter").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#complaints_signed_complaints").focus();
             return false;
         }
+        return true;
     }
     function CHECK_DisposedTotal() {
         var tot = parseFloat($("#complaints_cbi_action").val()) || 0;
@@ -1808,8 +1881,18 @@
         var disposedTotal = $("#comtotaldisposal_during_quarter").val();
         if (disposedTotal != tot) {
             SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Break up of disposal of complaints during the quarter must be equal to :' + disposedTotal,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#complaints_cvoinvestigation").focus();
             return false;
         }
+        return true;
     }
     function CHECK_CVC_COMPLAINTS() {
         var total = 0;
@@ -1821,22 +1904,42 @@
             total += value;
         });
         if (total != parseFloat($("#comcvcbalance_pending").val())) {
-            SAVE_FLAG = false
+            SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (CVC) Age Wise Pending must be equal to :' + parseFloat($("#comcvcbalance_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#comcvcbalance_pending").focus();
             return false;
         }
+        return true;
     }
     function CHECK_OTH_COMPLAINTS() {
         var total = 0;
-        debugger;
+        ////debugger;
         $("#comotherage_less_one,#comotherage_pendency_betweenone_three,#comotherage_pendency_betweenthree_six").each(function () {
             // Convert to float and default to 0 if NaN
             var value = parseFloat($(this).val()) || 0;
             total += value;
         });
         if (total != parseFloat($("#comotherbalance_pending").val())) {
-            SAVE_FLAG = false
+            SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (Others) Age Wise Pending must be equal to :' + parseFloat($("#comotherbalance_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#comotherbalance_pending").focus();
             return false;
         }
+        return true;
     }
     function CHECK_PIDPI_CVC_TOTAL() {
         var total = 0;
@@ -1848,9 +1951,19 @@
             total += value;
         });
         if (total != parseFloat($("#cvcpidpi_balance_pending").val())) {
-            SAVE_FLAG = false
+            SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (CVC) Age Wise Pending for Investigation must be equal to :' + parseFloat($("#cvcpidpi_balance_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#cvcpidpi_three_month").focus();
             return false;
         }
+        return true;
     }
     function CHECK_PIDPI_OTHER_TOTAL() {
         var total = 0;
@@ -1863,8 +1976,18 @@
         });
         if (total != parseFloat($("#otherpidpi_balance_pending").val())) {
             SAVE_FLAG = false
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (Others) Age Wise Pending for Investigation must be equal to :' + parseFloat($("#otherpidpi_balance_pending").val()),
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#otherpidpi_three_month").focus();
             return false;
         }
+        return true;
     }
     function CHECK_ADVICE_PIDPI_CVC_TOTAL() {
         var total = 0;
@@ -1878,8 +2001,18 @@
         var val = (parseFloat($("#cvcpidpiinvestotaladvicereceive").val()) || 0) - (parseFloat($("#cvcpidpiinvesactionduringquarter").val()) || 0)
         if (total != val) {
             SAVE_FLAG = false
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (CVC) Balance Pending for Action must be equal to : ' + val,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#cvcpidpiinvesbalancegreterthreemonth").focus();
             return false;
         }
+        return true;
     }
     function CHECK_ADVICE_PIDPI_OTHER_TOTAL() {
         var total = 0;
@@ -1895,8 +2028,18 @@
             (parseFloat($("#cvopidpiinvesactionduringquarter").val()) || 0);
         if (total != val) {
             SAVE_FLAG = false;
+            Swal.fire({
+                toast: true,
+                position: 'top-end', // Position of the toast
+                icon: 'info', // Type of icon (success, error, warning, info)
+                title: 'Total (CVO,Admin.Ministry) Balance Pending for Action must be equal to : ' + val,
+                showConfirmButton: false,
+                timer: 3000, // Duration in milliseconds
+            });
+            $("#cvopidpiinvesbalancegreterthreemonth").focus();
             return false;
         }
+        return true;
     }
 
     $("#comotherage_less_one,#comotherage_pendency_betweenone_three").on("blur", function () {
@@ -1932,7 +2075,7 @@
             ).each(function () {
                 // Convert to float and default to 0 if NaN
                 $(this).val(0);
-                
+
             });
         }
         performComTotal();

@@ -23,16 +23,18 @@ namespace QPR_Application.Controllers
         private readonly ILoginRepo _loginRepo;
         private readonly IHttpContextAccessor _httpContext;
         private readonly OTP_Util _otp_Util;
+        private readonly IAdminRepo _adminRepo;
 
         //public static Captcha staticCaptcha = null;
         private static Captcha Captcha = null;
 
-        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util)
+        public LoginController(ILogger<LoginController> logger, ILoginRepo loginRepo, IHttpContextAccessor httpContext, OTP_Util otp_Util, IAdminRepo adminRepo)
         {
             _logger = logger;
             _loginRepo = loginRepo;
             _httpContext = httpContext;
             _otp_Util = otp_Util;
+            _adminRepo = adminRepo;
         }
         public IActionResult Index()
         {
@@ -78,6 +80,10 @@ namespace QPR_Application.Controllers
                 if (ModelState.IsValid)
                 {
                     UserDetails uDetails = await _loginRepo.Login(login);
+                    AdminSettings adminSetting = await _adminRepo.GetAdminSettingsAsync();
+                    var isOTPVerificationEnabled = adminSetting.Enable_Multi_Auth ? adminSetting.Enable_Multi_Auth : false;
+                    var VAW_URL_ADMIN = adminSetting.VAW_URL ?? "";
+                    var SECRET_KEY = adminSetting.SecretKey ?? "";
 
                     if (uDetails.User != null)
                     {
@@ -90,14 +96,15 @@ namespace QPR_Application.Controllers
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserMobileNumber", uDetails.User.logintype);
                             _httpContext?.HttpContext?.Session.SetString("UserRole", uDetails.User.logintype);
-                            string _key = CryptoEngine.GenerateRandomKey();
+                            //string _key = CryptoEngine.GenerateRandomKey();
                             var _orgCode = String.Empty;
                             var _orgName = String.Empty;
-                            if(uDetails.OrgDetails != null)
+                            if (uDetails.OrgDetails != null)
                             {
                                 _orgCode = uDetails.OrgDetails.OrgCode;
                                 _orgName = uDetails.OrgDetails.OrgName;
-                            } else
+                            }
+                            else
                             {
                                 _orgCode = uDetails.OrgDetails_ADD.orgcod;
                                 _orgName = uDetails.OrgDetails_ADD.orgnam1;
@@ -110,13 +117,10 @@ namespace QPR_Application.Controllers
                                 OrgCode = _orgCode,
                                 OrgName = _orgName
                             };
-                            //var m = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-                            //var passStr = CryptoEngine.Encrypt(m, _key);
-                            ////var s = CryptoEngine.Decrypt(passStr, _key);
-                            //var s = System.Net.WebUtility.UrlEncode(passStr);
-                            //_key = System.Net.WebUtility.UrlEncode(_key);
-                            var VAW_URL = new CryptoEngine().GenerateVAWToken(model);
-                            _httpContext?.HttpContext?.Session.SetString("VAW_URL", VAW_URL);
+
+                            var _VAW_URL = new CryptoEngine().GenerateVAWToken(model, VAW_URL_ADMIN, SECRET_KEY);
+                            _httpContext?.HttpContext?.Session.SetString("VAW_URL", _VAW_URL);
+
                             if (uDetails.OrgDetails != null)
                             {
                                 if (!String.IsNullOrEmpty(uDetails.OrgDetails.OrgCode))
@@ -133,18 +137,23 @@ namespace QPR_Application.Controllers
                                 _httpContext?.HttpContext?.Session.SetString("OrgName", uDetails.OrgDetails_ADD.orgnam1);
                             }
 
-                            // Trigger OTP Verification 
-                            //if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
-                            //{
-                            //    return RedirectToAction("VerifyOTP");
-                            //}
-                            //else
-                            //{
-                            //    return View(login);
-                            //}
-
-                            // Bypass OTP Verification
-                            return AuthenticateUser(uDetails.User);
+                            if (isOTPVerificationEnabled)
+                            {
+                                // Trigger OTP Verification 
+                                if (SendOTP(uDetails.User.mobilenumber, uDetails.User.email))
+                                {
+                                    return RedirectToAction("VerifyOTP");
+                                }
+                                else
+                                {
+                                    return View(login);
+                                }
+                            }
+                            else
+                            {
+                                // Bypass OTP Verification
+                                return AuthenticateUser(uDetails.User);
+                            }
                         }
                         else
                         {

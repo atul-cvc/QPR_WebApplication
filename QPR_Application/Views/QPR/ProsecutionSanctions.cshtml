@@ -97,7 +97,7 @@
                     <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctgroupalesssix" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                 </tr>
                 <tr>
-                    <td align="left"><b>Js and above</b></td>
+                    <td align="left"><b>Js and Above</b></td>
                     <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsopeningbalance" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
                     <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjsreciveqtr" onkeypress="return isnumberkey(event);" class="form-control"></b></td>
                     <td><b><input asp-for="Prosecutionsanctionsqrs.prosesanctjstotal" onkeypress="return isnumberkey(event);" class="form-control" readonly></b></td>
@@ -650,8 +650,18 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '3.1 (Group B) Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupbbalancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Prosecutionsanctionsqrs_prosesanctgroupbgreaterthree").focus();
                 return false;
             }
+                return true;
         }
 
         $('#Prosecutionsanctionsqrs_prosesanctgroupagreaterthree,#Prosecutionsanctionsqrs_prosesanctgroupathreetosix,#Prosecutionsanctionsqrs_prosesanctgroupalesssix').on('blur', function () {
@@ -709,8 +719,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '3.1 (Group A) Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupabalancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Prosecutionsanctionsqrs_prosesanctgroupagreaterthree").focus();
                 return false;
-            }
+            } return true;
         }
 
         $('#Prosecutionsanctionsqrs_prosesanctjsgreaterthree,#Prosecutionsanctionsqrs_prosesanctjsthreetosix,#Prosecutionsanctionsqrs_prosesanctjslesssix').on('blur', function () {
@@ -767,8 +786,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '3.1 (JS and ABOVE) Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Prosecutionsanctionsqrs_prosesanctjsbalancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Prosecutionsanctionsqrs_prosesanctjsgreaterthree").focus();
                 return false;
-            }
+            } return true;
         }
 
         function blocksave() {
@@ -795,13 +823,23 @@
         var SAVE_FLAG = true;
 
         function SAVE_CHECK() {
-            debugger;
+            //debugger;
             SAVE_FLAG = true;
             // blocksave();
-            CHECK_PROS_SANC_GROUP_C();
-            CHECK_PROS_SANC_GROUP_B();
-            CHECK_PROS_SANC_GROUP_A();
-            CHECK_PROS_SANC_JS_ABOVE();
+
+            // Check conditions and break execution if any return false
+            if (!CHECK_PROS_SANC_GROUP_C()) {
+                return false;
+            }
+            if (!CHECK_PROS_SANC_GROUP_B()) {
+                return false;
+            }
+            if (!CHECK_PROS_SANC_GROUP_A()) {
+                return false;
+            }
+            if (!CHECK_PROS_SANC_JS_ABOVE()) {
+                return false;
+            }
             return SAVE_FLAG;
         }
 
@@ -810,14 +848,14 @@
                 return validateFields();
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }
@@ -826,14 +864,14 @@
                 return confirmFormSubmission('ProsecutionSanctionsQPRForm');
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }
@@ -868,8 +906,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '3.1 (Group C) Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Prosecutionsanctionsqrs_prosesanctgroupcbalancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Prosecutionsanctionsqrs_prosesanctgroupcgreaterthree").focus();
                 return false;
-            }
+            } return true;
         }
     </script>
 

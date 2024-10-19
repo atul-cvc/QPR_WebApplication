@@ -384,7 +384,7 @@
     <script>
 
         document.getElementById('add-row-ficase').addEventListener('click', function () {
-            // debugger;
+            // ////debugger;
             $('#NewFICase_cvc_case_reg_no').attr('required', true);
             $('#NewFICase_cvc_file_no').attr('required', true);
             $('#NewFICase_date_since_pend').attr('required', true);
@@ -418,7 +418,7 @@
         };
 
         document.getElementById('add-row-cacase').addEventListener('click', function () {
-            // debugger;
+            // ////debugger;
             $('#NewCACase_cvc_case_reg_no').attr('required', true);
             $('#NewCACase_cvc_file_no').attr('required', true);
             $('#NewCACase_date_since_pend').attr('required', true);
@@ -501,8 +501,8 @@
     <script>
 
         $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").on("blur", function () {
-        @* debugger; *@
-                var total = 0;
+        @* ////debugger; *@
+                        var total = 0;
             $("#StatusOfPendency_pendency_status_fi_lessone,#StatusOfPendency_pendency_status_fi_sixtotwelve,#StatusOfPendency_pendency_status_fi_threetosix,#StatusOfPendency_pendency_status_fi_greaterthree").each(function () {
                 // Convert to float and default to 0 if NaN
                 var value = parseFloat($(this).val()) || 0;
@@ -528,8 +528,8 @@
         });
 
         $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").on("keyup", function () {
-        @* debugger; *@
-                var total = 0;
+        @* ////debugger; *@
+                        var total = 0;
             $("#StatusOfPendency_pendency_status_ca_lessthree,#StatusOfPendency_pendency_status_ca_twotothree,#StatusOfPendency_pendency_status_ca_onetotwo,#StatusOfPendency_pendency_status_ca_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
                 var value = parseFloat($(this).val()) || 0;
@@ -567,7 +567,18 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '6.(A) FI Cases Age wise Pendency(Months) must be equal to = ' + parseFloat($('#StatusOfPendency_pendency_status_fi_reply_pending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#StatusOfPendency_pendency_status_fi_greaterthree").focus();
+                return false;
             }
+            return true;
         }
 
         function CHECK_CA_CASES() {
@@ -584,14 +595,32 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '6.(B) CA Cases Age wise Pendency(Months) must be equal to = ' + parseFloat($('#StatusOfPendency_pendency_status_ca_comments_pending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#StatusOfPendency_pendency_status_ca_greaterone").focus();
+                return false;
             }
+            return true;
         }
 
         function SAVE_CHECK() {
-            debugger;
+            ////debugger;
             SAVE_FLAG = true;
-            CHECK_FI_CASES();
-            CHECK_CA_CASES();
+
+            // Check conditions and break execution if any return false
+            if (!CHECK_FI_CASES()) {
+                return false;
+            }
+            if (!CHECK_CA_CASES()) {
+                return false;
+            }
+
             return SAVE_FLAG;
         }
 
@@ -600,32 +629,32 @@
                 return validateFields();
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }
 
         function VERIFY_NEXT_STATUS_FI_CA() {
-            debugger;
+            ////debugger;
             if (SAVE_CHECK()) {
                 return confirmFormSubmission('StatusOfPendencyQPRForm');
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }

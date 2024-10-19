@@ -627,7 +627,7 @@
     </script>
     <script>
         $("#AdviceOfCvc_advice_cvc_first_adviceduringqtr").on("keyup", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_advice_cvc_first_casesduringqtr, #AdviceOfCvc_advice_cvc_first_casespreviousqtr").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -659,7 +659,7 @@
         });
 
         $("#AdviceOfCvc_advice_cvc_second_adviceduringqtr").on("keyup", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_advice_cvc_second_casesduringqtr, #AdviceOfCvc_advice_cvc_second_casespreviousqtr").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -683,7 +683,7 @@
         });
 
         $("#AdviceOfCvc_advice_cvc_firstreconsider_adviceduringqtr").on("keyup", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_advice_cvc_firstreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_firstreconsider_casespreviousqtr").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -707,7 +707,7 @@
         });
 
         $("#AdviceOfCvc_advice_cvc_secondreconsider_adviceduringqtr").on("keyup", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_advice_cvc_secondreconsider_casesduringqtr, #AdviceOfCvc_advice_cvc_secondreconsider_casespreviousqtr").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -731,7 +731,7 @@
         });
 
         $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").on("blur", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_action_cvc_firstmajor_lesssix,#AdviceOfCvc_action_cvc_firstmajor_threetosix,#AdviceOfCvc_action_cvc_firstmajor_onetothree,#AdviceOfCvc_action_cvc_firstmajor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -758,7 +758,7 @@
         });
 
         $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").on("blur", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_action_cvc_firstminor_lesssix,#AdviceOfCvc_action_cvc_firstminor_threetosix,#AdviceOfCvc_action_cvc_firstminor_onetothree,#AdviceOfCvc_action_cvc_firstminor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -785,7 +785,7 @@
         });
 
         $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").on("blur", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_action_cvc_secondmajor_lesssix,#AdviceOfCvc_action_cvc_secondmajor_threetosix,#AdviceOfCvc_action_cvc_secondmajor_onetothree,#AdviceOfCvc_action_cvc_secondmajor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -812,7 +812,7 @@
         });
 
         $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").on("blur", function () {
-            debugger;
+            ////debugger;
             var total = 0;
             $("#AdviceOfCvc_action_cvc_secondminor_lesssix,#AdviceOfCvc_action_cvc_secondminor_threetosix,#AdviceOfCvc_action_cvc_secondminor_onetothree,#AdviceOfCvc_action_cvc_secondminor_greaterone").each(function () {
                 // Convert to float and default to 0 if NaN
@@ -920,7 +920,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '5(B) Action on CVC Advice 1st Major PP : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#AdviceOfCvc_action_cvc_firstmajor_balancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#AdviceOfCvc_action_cvc_firstmajor_greaterone").focus();
+                return false;
+            } return true;
         }
 
         function CHECK_ACTION_ON_CVC_ADVICE_FIRST_MINOR_PP() {
@@ -937,7 +947,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '5(B) Action on CVC Advice 1st Minor PP : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#AdviceOfCvc_action_cvc_firstminor_balancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#AdviceOfCvc_action_cvc_firstminor_greaterone").focus();
+                return false;
+            } return true;
         }
 
         function CHECK_ACTION_ON_CVC_ADVICE_SECOND_MAJOR_PENALTY() {
@@ -954,7 +974,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '5(B) Action on CVC Advice 2nd Major Penalty : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#AdviceOfCvc_action_cvc_secondmajor_balancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#AdviceOfCvc_action_cvc_secondmajor_greaterone").focus();
+                return false;
+            } return true;
         }
 
         function CHECK_ACTION_ON_CVC_ADVICE_SECOND_MINOR_PENALTY() {
@@ -971,21 +1001,50 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '5(B) Action on CVC Advice 2nd Major Penalty : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#AdviceOfCvc_action_cvc_secondminor_balancepending').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#AdviceOfCvc_action_cvc_secondminor_greaterone").focus();
+                return false;
+            } return true;
         }
 
         function SAVE_CHECK() {
-            debugger;
+            //debugger;
             SAVE_FLAG = true;
-            // CHECK_ADVICE_CVC_FIRST();
-            // CHECK_ADVICE_CVC_SECOND();
-            // CHECK_ADVICE_CVC_FIRST_RECONSIDERATION();
-            // CHECK_ADVICE_CVC_SECOND_RECONSIDERATION();
 
-            CHECK_ACTION_ON_CVC_ADVICE_FIRST_MAJOR_PP();
-            CHECK_ACTION_ON_CVC_ADVICE_FIRST_MINOR_PP();
-            CHECK_ACTION_ON_CVC_ADVICE_SECOND_MAJOR_PENALTY();
-            CHECK_ACTION_ON_CVC_ADVICE_SECOND_MINOR_PENALTY();
+            // Check conditions and break execution if any return false
+            // if (!CHECK_ADVICE_CVC_FIRST()) {
+            //     return false;
+            // }
+            // if (!CHECK_ADVICE_CVC_SECOND()) {
+            //     return false;
+            // }
+            // if (!CHECK_ADVICE_CVC_FIRST_RECONSIDERATION()) {
+            //     return false;
+            // }
+            // if (!CHECK_ADVICE_CVC_SECOND_RECONSIDERATION()) {
+            //     return false;
+            // }
+
+            // Proceed with the other checks
+            if (!CHECK_ACTION_ON_CVC_ADVICE_FIRST_MAJOR_PP()) {
+                return false;
+            }
+            if (!CHECK_ACTION_ON_CVC_ADVICE_FIRST_MINOR_PP()) {
+                return false;
+            }
+            if (!CHECK_ACTION_ON_CVC_ADVICE_SECOND_MAJOR_PENALTY()) {
+                return false;
+            }
+            if (!CHECK_ACTION_ON_CVC_ADVICE_SECOND_MINOR_PENALTY()) {
+                return false;
+            }
 
             return SAVE_FLAG;
         }
@@ -995,31 +1054,31 @@
                 return validateFields();
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }
         function VERIFY_NEXT_ADVICE_CVC() {
-            debugger;
+            ////debugger;
             if (SAVE_CHECK()) {
                 return confirmFormSubmission('AdviceOfCvcQPRForm');
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }

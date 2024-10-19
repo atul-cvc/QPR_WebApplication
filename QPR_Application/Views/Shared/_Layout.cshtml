@@ -23,6 +23,7 @@
 
     <style>
         /* Add hover effect for dropdown */
+
         .navbar .dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -85,7 +86,8 @@
                 <div>
                     @Html.Partial("_CvcLogo")
                 </div>
-                <a class="navbar-brand text-white">QPR_Application</a>
+                <a class="navbar-brand text-white" onclick="return false;" style="font-size:30px; padding-bottom:10px">QPR </a>
+                <div style="margin: 0 10px ;border-left: 2px solid white; height : 30px"></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

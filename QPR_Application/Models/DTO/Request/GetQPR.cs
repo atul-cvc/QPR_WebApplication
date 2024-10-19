@@ -11,7 +11,7 @@ namespace QPR_Application.Models.DTO.Request
         public int SelectedYear { get; set; }
 
         [Required(ErrorMessage = "Please enter contact no.")]
-        [MinLength(10, ErrorMessage = "Please enter a valid number.")]
+        [MinLength(5, ErrorMessage = "Please enter a valid number.")]
         public string CVCContactNo { get; set; }
 
         [Required(ErrorMessage = "Please enter mobile no.")]

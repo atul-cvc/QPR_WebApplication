@@ -86,6 +86,7 @@ namespace QPR_Application.Models.Entities
         public virtual DbSet<MasterTraining> MasterTraining { get; set; }
         public virtual DbSet<Training_CVO> Training_CVO { get; set; }
         public virtual DbSet<tbl_MasterMinistryNew> tbl_MasterMinistryNew { get; set; }
+        public virtual DbSet<AdminSettings> AdminSettings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -103,6 +104,8 @@ namespace QPR_Application.Models.Entities
             modelBuilder.Entity<Years>().HasNoKey();
             
             modelBuilder.Entity<LoginUser>().HasNoKey();
+
+            modelBuilder.Entity<AdminSettings>().HasKey(a => a.Id);
 
             modelBuilder.Entity<qpr>().HasKey(q => q.referencenumber);
 

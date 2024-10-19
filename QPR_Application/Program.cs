@@ -37,6 +37,7 @@ builder.Services.AddScoped<SMS_Mail_OTP>();
 builder.Services.AddScoped<OTP_Util> ();
 builder.Services.AddTransient<IOrgRepo, OrgRepo>();
 builder.Services.AddTransient<IQPRRepo, QPRRepo>();
+builder.Services.AddTransient<IAdminRepo, AdminRepo>();
 builder.Services.AddTransient<IChangePasswordRepo, ChangePasswordRepo>();
 
 

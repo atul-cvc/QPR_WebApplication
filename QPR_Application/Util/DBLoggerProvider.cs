@@ -74,21 +74,38 @@ namespace QPR_Application.Util
 
         private async Task SaveLogToDatabase(LogLevel logLevel, string message, Exception exception)
         {
-            long _qprId = string.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")) ?  0 : Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
-            var logEntry = new QPRApplicationLogs
+            try
             {
-                LogLevel = logLevel.ToString(),
-                Message = message,
-                Exception = exception?.ToString(),
-                CreatedDate = DateTime.Now,
-                UserId = _httpContext?.HttpContext?.Session.GetString("UserName"),
-                ip = _httpContext.HttpContext?.Session?.GetString("ipAddress"),
-                qpr_id = _qprId,
-                RequestPath = _httpContext.HttpContext?.Request.Path
-            };
+                long _qprId = string.IsNullOrEmpty(_httpContext.HttpContext?.Session.GetString("referenceNumber")) ? 0 : Convert.ToInt64(_httpContext.HttpContext?.Session.GetString("referenceNumber"));
+                var logEntry = new QPRApplicationLogs
+                {
+                    LogLevel = logLevel.ToString(),
+                    Message = message,
+                    Exception = exception?.ToString(),
+                    CreatedDate = DateTime.Now,
+                    UserId = _httpContext?.HttpContext?.Session.GetString("UserName"),
+                    ip = _httpContext.HttpContext?.Session?.GetString("ipAddress"),
+                    qpr_id = _qprId,
+                    RequestPath = _httpContext.HttpContext?.Request.Path
+                };
 
-            _dbContext.QPRApplicationLogs.Add(logEntry);
-            await _dbContext.SaveChangesAsync();
+                _dbContext.QPRApplicationLogs.Add(logEntry);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex) {
+                var logEntry = new QPRApplicationLogs {
+                    LogLevel = logLevel.ToString(),
+                    Message = ex.Message.ToString(),
+                    Exception = ex?.ToString(),
+                    CreatedDate = DateTime.Now,
+                    UserId = _httpContext?.HttpContext?.Session.GetString("UserName"),
+                    ip = _httpContext.HttpContext?.Session?.GetString("ipAddress"),
+                    qpr_id = 0,
+                    RequestPath = _httpContext.HttpContext?.Request.Path
+                };
+                _dbContext.QPRApplicationLogs.Add(logEntry);
+                await _dbContext.SaveChangesAsync();
+            }
         }
     }
 }

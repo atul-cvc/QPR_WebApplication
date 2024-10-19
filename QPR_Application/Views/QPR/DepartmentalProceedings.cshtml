@@ -588,7 +588,18 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '4(A) Cases under CVC Jurisdiction : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_cvc_enquiries').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_cvc_greatersix").focus();
+                return false;
             }
+                return true;
         }
 
         function CHECK_MAJOR_CASES_UNDER_OTHER() {
@@ -607,7 +618,18 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '4(A) Cases under CVC Jurisdiction : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Departmentalproceedingsqrs_departproceedingsmajor_other_enquiries').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Departmentalproceedingsqrs_departproceedingsmajor_other_greatersix").focus();
+                return false;
             }
+            return true;
         }
 
         function CHECK_MINOR_CASES_UNDER_CVC() {
@@ -624,7 +646,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '4(A) Cases under CVC Jurisdiction : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_cvc_enquiries').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Departmentalproceedingsqrs_departproceedings_minor_cvc_greatersix").focus();
+                return false;
+            } return true;
         }
 
         function CHECK_MINOR_CASES_UNDER_OTHER() {
@@ -641,7 +673,17 @@
             );
             if (total != val) {
                 SAVE_FLAG = false;
-            }
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end', // Position of the toast
+                    icon: 'info', // Type of icon (success, error, warning, info)
+                    title: '4(A) Cases under CVC Jurisdiction : Age wise Pendency(Months) must be equal to = ' + parseFloat($('#Departmentalproceedingsqrs_departproceedings_minor_other_enquiries').val()),
+                    showConfirmButton: false,
+                    timer: 5000, //timerProgressBar: true
+                });
+                $("#Departmentalproceedingsqrs_departproceedings_minor_other_greatersix").focus();
+                return false;
+            } return true;
         }
 
         function CHECK_DETAILS_ROWS() {
@@ -661,12 +703,22 @@
 
 
         function SAVE_CHECK() {
-            debugger;
+            /* //debugger */;
             SAVE_FLAG = true;
-            CHECK_MAJOR_CASES_UNDER_CVC();
-            CHECK_MAJOR_CASES_UNDER_OTHER();
-            CHECK_MINOR_CASES_UNDER_CVC();
-            CHECK_MINOR_CASES_UNDER_OTHER();
+            
+            // Check conditions and break execution if any return false
+            if (!CHECK_MAJOR_CASES_UNDER_CVC()) {
+                return false;
+            }
+            if (!CHECK_MAJOR_CASES_UNDER_OTHER()) {
+                return false;
+            }
+            if (!CHECK_MINOR_CASES_UNDER_CVC()) {
+                return false;
+            }
+            if (!CHECK_MINOR_CASES_UNDER_OTHER()) {
+                return false;
+            }
             return SAVE_FLAG;
         }
 
@@ -675,14 +727,14 @@
                 return validateFields();
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }
@@ -691,14 +743,14 @@
                 return confirmFormSubmission('DepartmentalProceedingsQPRForm');
             }
             else {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end', // Position of the toast
-                    icon: 'info', // Type of icon (success, error, warning, info)
-                    title: 'Please verify the data. Something is wrong.',
-                    showConfirmButton: false,
-                    timer: 3000, // Duration in milliseconds
-                });
+                // Swal.fire({
+                //     toast: true,
+                //     position: 'top-end', // Position of the toast
+                //     icon: 'info', // Type of icon (success, error, warning, info)
+                //     title: 'Please verify the data. Something is wrong.',
+                //     showConfirmButton: false,
+                //     timer: 3000, // Duration in milliseconds
+                // });
                 return false;
             }
         }

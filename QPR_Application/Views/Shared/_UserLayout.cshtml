@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QPR Application</title>
+    <title>@ViewData["Title"] - QPR </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @* <link rel="stylesheet" href="~/QPR_Application.styles.css" asp-append-version="true" /> *@
@@ -73,15 +73,19 @@
                 <div>
                     @Html.Partial("_CvcLogo")
                 </div>
-                <a class="navbar-brand text-white" href="@Url.Action("Index","Dashboard")">QPR Application</a>
+                <a class="navbar-brand text-white" onclick="return false;" style="font-size:30px; padding-bottom:10px">QPR </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="font-size: .5em !important ">
+                <div  style="margin: 0 10px ;border-left: 2px solid white; height : 30px"></div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="font-size: .5em !important ; ">
                     @if (@HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "ROLE_CVO")
                     {
                         <ul class="navbar-nav flex-grow-1 align-content-end" id="cvo_list">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="QPR" asp-action="Index">QPR</a>
                             </li>

@@ -1,7 +1,6 @@
 ﻿using QPR_Application.Models.DTO.Utility;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Net.WebRequestMethods;
 
 namespace QPR_Application.Util
 {
@@ -36,18 +35,16 @@ namespace QPR_Application.Util
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
 
-        public string GenerateVAWToken(TokenModel tokenModel)
+        public string GenerateVAWToken(TokenModel tokenModel, string VAW_URL = "", string _key = "")
         {
-            string token = "https://localhost:44381/Account/LoginByQPR?";
-            string _key = GenerateRandomKey();
+            //string token = "https://localhost:44381/Account/LoginByQPR?";
+            //string _key = GenerateRandomKey();
             var m = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
             var enctyptedString = CryptoEngine.Encrypt(m, _key);
-            //var s = CryptoEngine.Decrypt(passStr, _key);
             var tokenString = System.Net.WebUtility.UrlEncode(enctyptedString);
             _key = System.Net.WebUtility.UrlEncode(_key);
-            token += "token=" + tokenString;
-            token += "&key=" + _key;
-            return token;
+            VAW_URL += "?token=" + tokenString;
+            return VAW_URL;
         }
 
         public static string GenerateRandomKey(int length = 16)
