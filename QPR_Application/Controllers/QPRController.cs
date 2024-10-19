@@ -36,44 +36,53 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                if (_httpContext.HttpContext?.Session.GetString("CurrentUser") != null)
+                var isQPREnabled = Convert.ToBoolean(_httpContext?.HttpContext?.Session.GetString("IsQPREnabled") ?? "false");
+                if (isQPREnabled)
                 {
-                    _logger.LogInformation("User visited the QPR After Login.");
-                    if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
+                    if (_httpContext.HttpContext?.Session.GetString("CurrentUser") != null)
                     {
-                        _httpContext.HttpContext.Session.Remove("referenceNumber");
-                    }
-                    _httpContext.HttpContext.Session.Remove("qtryear");
-                    _httpContext.HttpContext.Session.Remove("qtrreport");
+                        _logger.LogInformation("User visited the QPR After Login.");
+                        if (_httpContext.HttpContext?.Session.GetString("referenceNumber") != null)
+                        {
+                            _httpContext.HttpContext.Session.Remove("referenceNumber");
+                        }
+                        _httpContext.HttpContext.Session.Remove("qtryear");
+                        _httpContext.HttpContext.Session.Remove("qtrreport");
 
-                    userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
-                    ViewBag.User = userObject;
-                    List<SelectListItem> quarterItems = new List<SelectListItem>
+                        userObject = JsonSerializer.Deserialize<registration>(_httpContext.HttpContext.Session.GetString("CurrentUser"));
+                        ViewBag.User = userObject;
+                        List<SelectListItem> quarterItems = new List<SelectListItem>
                     {
                         new SelectListItem { Value = "1", Text = "January to March" },
                         new SelectListItem { Value = "2", Text = "April to June" },
                         new SelectListItem { Value = "3", Text = "July to September" },
                         new SelectListItem { Value = "4", Text = "October to December" }
                     };
-                    var quarterList = new SelectList(quarterItems, "Value", "Text");
-                    ViewBag.Quarters = quarterList;
+                        var quarterList = new SelectList(quarterItems, "Value", "Text");
+                        ViewBag.Quarters = quarterList;
 
-                    List<Years> years = await _qprCRUDRepo.GetYears();
-                    int currentYear = DateTime.Now.Year;
-                    if (years.Count == 0 || years.Last().Year != currentYear.ToString())
-                    {
-                        years.Add(new Years { Year = currentYear.ToString() });
+                        List<Years> years = await _qprCRUDRepo.GetYears();
+                        int currentYear = DateTime.Now.Year;
+                        if (years.Count == 0 || years.Last().Year != currentYear.ToString())
+                        {
+                            years.Add(new Years { Year = currentYear.ToString() });
+                        }
+                        ViewBag.Years = years;
+                        ViewBag.VAW_URL = "";
+                        _logger.LogInformation("User visited the QPR Index page.");
+                        return View();
                     }
-                    ViewBag.Years = years;
-                    ViewBag.VAW_URL = "";
-                    _logger.LogInformation("User visited the QPR Index page.");
-                    return View();
+                    else
+                    {
+                        _logger.LogError("User data not found in session");
+                        return RedirectToAction("Index", "Login");
+                    }
                 }
                 else
                 {
-                    _logger.LogError("User data not found in session");
-                    return RedirectToAction("Index", "Login");
+                    return RedirectToAction("Index", "Dashboard");
                 }
+                    
             }
             catch (Exception ex)
             {
@@ -88,48 +97,53 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
-                string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
-                if (ModelState.IsValid)
+                var isQPREnabled = Convert.ToBoolean(_httpContext?.HttpContext?.Session.GetString("IsQPREnabled") ?? "false");
+                if(isQPREnabled)
                 {
-                    _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
-                    _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
-                    _httpContext.HttpContext.Session.SetString("qtrMonths", _qprUtil.GetQuarterReport());
-
-                    var refNum = _qprCRUDRepo.GetReferenceNumber(qprDetails, UserId);
-                    qpr _qpr = new qpr();
-                    if (!string.IsNullOrEmpty(refNum))
+                    string UserId = _httpContext.HttpContext.Session.GetString("UserName").ToString();
+                    string ip = _httpContext.HttpContext.Session.GetString("ipAddress").ToString();
+                    if (ModelState.IsValid)
                     {
-                        _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
-                        _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
-                        _httpContext.HttpContext.Session.SetString("QPRYear", _qpr.qtryear);
-                        _httpContext.HttpContext.Session.SetString("QPRSubmissionDate", _qpr.finalsubmitdate ?? "");
+                        _httpContext.HttpContext.Session.SetString("qtryear", qprDetails.SelectedYear.ToString());
+                        _httpContext.HttpContext.Session.SetString("qtrreport", qprDetails.SelectedQuarter);
+                        _httpContext.HttpContext.Session.SetString("qtrMonths", _qprUtil.GetQuarterReport());
+
+                        var refNum = _qprCRUDRepo.GetReferenceNumber(qprDetails, UserId);
+                        qpr _qpr = new qpr();
+                        if (!string.IsNullOrEmpty(refNum))
+                        {
+                            _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                            _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
+                            _httpContext.HttpContext.Session.SetString("QPRYear", _qpr.qtryear);
+                            _httpContext.HttpContext.Session.SetString("QPRSubmissionDate", _qpr.finalsubmitdate ?? "");
+                        }
+                        else
+                        {
+                            _logger.LogInformation("QPR not found");
+                            refNum = _qprCRUDRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
+                            _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
+                            _logger.LogInformation("New QPR number generated");
+                            _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                        }
+
+                        _qpr = await _qprCRUDRepo.UpdateQPRContactInformation(qprDetails.CVCContactNo, qprDetails.CVOEmail, refNum);
+
+                        if (_qpr.finalsubmit.ToLower().Equals("t"))
+                        {
+                            return RedirectToAction("FinalSubmitQPR");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Complaints");
+                        }
+
                     }
                     else
                     {
-                        _logger.LogInformation("QPR not found");
-                        refNum = _qprCRUDRepo.GenerateReferenceNumber(qprDetails, UserId, ip);
-                        _qpr = await _qprCRUDRepo.GetQPRDetails(refNum);
-                        _logger.LogInformation("New QPR number generated");
-                        _httpContext.HttpContext.Session.SetString("referenceNumber", refNum);
+                        _logger.LogError("Invalid Details entered at Index page");
                     }
-
-                    _qpr = await _qprCRUDRepo.UpdateQPRContactInformation(qprDetails.CVCContactNo, qprDetails.CVOEmail, refNum);
-
-                    if (_qpr.finalsubmit.ToLower().Equals("t"))
-                    {
-                        return RedirectToAction("FinalSubmitQPR");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Complaints");
-                    }
-
                 }
-                else
-                {
-                    _logger.LogError("Invalid Details entered at Index page");
-                }
+                
             }
             catch (Exception ex)
             {

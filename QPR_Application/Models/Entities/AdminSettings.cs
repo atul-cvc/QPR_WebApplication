@@ -21,6 +21,9 @@ namespace QPR_Application.Models.Entities
         [Display(Name ="IsActive")]
         public bool IsActive { get; set; } // BIT
 
+        public DateTime? QPR_Active_From { get; set; }
+        public DateTime? QPR_Active_To { get; set; }
+
         public string SecretKey { get; set; }
     }
 }

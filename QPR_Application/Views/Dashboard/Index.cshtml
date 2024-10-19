@@ -5,6 +5,7 @@
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
     var redirectLink = ViewBag.VAW_URL;
+    var isQPREnabled = ViewBag.ISQPREnabled;
 }
 
 <style>
@@ -31,11 +32,21 @@
 
         <div class="d-flex justify-content-center w-100  m-auto" style="margin-top:20vh!important">
 
-            <a class="text-decoration-none" href="@Url.Action("Index","QPR")">
-                <div class="boxContainer text-center">
-                    QPR
+            
+            @if (isQPREnabled)
+            {
+                <a class="text-decoration-none" href="@Url.Action("Index", "QPR")">
+                    <div class="boxContainer text-center">
+                        QPR
+                    </div>
+                </a>
+            }
+            else
+            {
+                <div class="boxContainer text-center" style="cursor: not-allowed; opacity: 0.5;">
+                    QPR (Disabled)
                 </div>
-            </a>
+            }
             <a class="text-decoration-none" href="@redirectLink" target="_blank">
                 <div class="boxContainer text-center">
                     VAW

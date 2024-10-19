@@ -84,6 +84,16 @@ namespace QPR_Application.Controllers
                     var isOTPVerificationEnabled = adminSetting.Enable_Multi_Auth ? adminSetting.Enable_Multi_Auth : false;
                     var VAW_URL_ADMIN = adminSetting.VAW_URL ?? "";
                     var SECRET_KEY = adminSetting.SecretKey ?? "";
+                    
+                    var currDate = DateTime.Now;
+                    if (currDate > adminSetting.QPR_Active_From && currDate < adminSetting.QPR_Active_To)
+                    {
+                        _httpContext?.HttpContext?.Session.SetString("IsQPREnabled", "true");
+                    }
+                    else
+                    {
+                        _httpContext?.HttpContext?.Session.SetString("IsQPREnabled", "false");
+                    }
 
                     if (uDetails.User != null)
                     {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QPR_Application.Models.Entities;
+using QPR_Application.Repository;
 
 namespace QPR_Application.Controllers
 {
@@ -9,9 +11,10 @@ namespace QPR_Application.Controllers
         {
             _httpContext = httpContext;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.VAW_URL = _httpContext?.HttpContext?.Session.GetString("VAW_URL") ?? "";
+            ViewBag.VAW_URL = _httpContext?.HttpContext?.Session.GetString("VAW_URL") ?? "";            
+            ViewBag.IsQPREnabled = Convert.ToBoolean(_httpContext?.HttpContext?.Session.GetString("IsQPREnabled"));
             return View();
         }
     }
