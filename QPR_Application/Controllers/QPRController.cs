@@ -8,7 +8,6 @@ using QPR_Application.Models.DTO.Request;
 using Microsoft.AspNetCore.Authorization;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Util;
-using Microsoft.AspNetCore.Http;
 
 namespace QPR_Application.Controllers
 {

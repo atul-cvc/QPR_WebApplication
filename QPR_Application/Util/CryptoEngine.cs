@@ -35,13 +35,13 @@ namespace QPR_Application.Util
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
 
-        public string GenerateVAWToken(TokenModel tokenModel, string VAW_URL = "", string _key = "")
+        public string GenerateVAWSSOToken(TokenModel tokenModel, string VAW_URL = "", string _key = "")
         {
             //string token = "https://localhost:44381/Account/LoginByQPR?";
             //string _key = GenerateRandomKey();
-            var m = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
-            var enctyptedString = CryptoEngine.Encrypt(m, _key);
-            var tokenString = System.Net.WebUtility.UrlEncode(enctyptedString);
+            var modelStr = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
+            var encryptedString = CryptoEngine.Encrypt(modelStr, _key);
+            var tokenString = System.Net.WebUtility.UrlEncode(encryptedString);
             _key = System.Net.WebUtility.UrlEncode(_key);
             VAW_URL += "?token=" + tokenString;
             return VAW_URL;

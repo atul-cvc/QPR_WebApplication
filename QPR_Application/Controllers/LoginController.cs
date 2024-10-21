@@ -50,6 +50,12 @@ namespace QPR_Application.Controllers
                 _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
 
                 login.ImageData = GenerateNewCaptcha();
+                var _userRole = "";
+                if (User.Identity.IsAuthenticated)
+                {
+                    _userRole = _httpContext.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
+                    return RouteUserProfile(_userRole);
+                }
 
             }
             catch (Exception ex)
@@ -82,6 +88,7 @@ namespace QPR_Application.Controllers
                     UserDetails uDetails = await _loginRepo.Login(login);
                     AdminSettings adminSetting = await _adminRepo.GetAdminSettingsAsync();
                     var isOTPVerificationEnabled = adminSetting.Enable_Multi_Auth ? adminSetting.Enable_Multi_Auth : false;
+                    //var VAW_URL_ADMIN = "https://localhost:44381/Account/LoginByQPR"; //adminSetting.VAW_URL ?? "";
                     var VAW_URL_ADMIN = adminSetting.VAW_URL ?? "";
                     var SECRET_KEY = adminSetting.SecretKey ?? "";
                     
@@ -128,7 +135,7 @@ namespace QPR_Application.Controllers
                                 OrgName = _orgName
                             };
 
-                            var _VAW_URL = new CryptoEngine().GenerateVAWToken(model, VAW_URL_ADMIN, SECRET_KEY);
+                            var _VAW_URL = new CryptoEngine().GenerateVAWSSOToken(model, VAW_URL_ADMIN, SECRET_KEY);
                             _httpContext?.HttpContext?.Session.SetString("VAW_URL", _VAW_URL);
 
                             if (uDetails.OrgDetails != null)
@@ -167,6 +174,7 @@ namespace QPR_Application.Controllers
                         }
                         else
                         {
+                            ViewBag.Error = "Invalid credentials.";
                             _logger.LogError("User Object not found");
                         }
                     }
@@ -176,7 +184,7 @@ namespace QPR_Application.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "User login failed");
-
+                ViewBag.Error = "Invalid credentials.";
             }
             return RedirectToAction("Index");
         }

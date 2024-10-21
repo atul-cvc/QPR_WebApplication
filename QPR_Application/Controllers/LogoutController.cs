@@ -6,7 +6,8 @@ using QPR_Application.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 
 namespace QPR_Application.Controllers
-{   
+{
+    [Authorize]
     public class LogoutController : Controller
     {
         private readonly ILogger<LogoutController> _logger;
@@ -19,7 +20,6 @@ namespace QPR_Application.Controllers
             _dbContext = dbContext;
         }
 
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             //string _user = _httpContext.HttpContext.Session.GetString("UserName");
@@ -32,7 +32,7 @@ namespace QPR_Application.Controllers
             _httpContext.HttpContext.Session.Remove("ipAddress");
             _httpContext.HttpContext.Session.Remove("UserRole");
             _httpContext.HttpContext.Session.Remove("orgcode");
-            _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             foreach (var cookie in HttpContext.Request.Cookies.Keys)
             {
                 // Delete each cookie by its name
@@ -48,9 +48,17 @@ namespace QPR_Application.Controllers
             return RedirectToAction("LogoutSuccessfull");
         }
 
+        [AllowAnonymous]
         public IActionResult LogoutSuccessfull()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

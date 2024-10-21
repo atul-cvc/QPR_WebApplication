@@ -16,7 +16,7 @@
             <h3 style="font-weight:400">Welcome @ViewBag.User.userid</h3>
         </div>
         <div class="ms-auto">
-            <a class="ms-3 btn btn-primary" href="@Url.Action("Index","Dashboard")" >Back</a>
+            <a class="ms-3 btn btn-primary" href="@Url.Action("Index","Dashboard")">Back</a>
         </div>
     </div>
     @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
@@ -41,7 +41,7 @@
                         <span asp-validation-for="SelectedYear" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-2">
-                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", })
+                        @Html.DropDownList("SelectedQuarter", new SelectList(Quarters, "Value", "Text"), "------ Select Quarter ------", new { @class = "form-control text-center ", id = "quarterDropdown", onChange = "checkSave()" })
                         <span asp-validation-for="SelectedQuarter" class="text-danger"></span>
                         <span class="d-none text-danger" id="selectQuarterValidation">Please select a quarter.</span>
                     </div>
@@ -95,7 +95,7 @@
             </div>
             @* <hr /> *@
             <div class="d-flex mt-2 justify-content-center">
-                <button type="submit" class="btn btn-primary">Next</button>
+                <button type="submit" class="btn btn-primary" id="SubmitButton">Next</button>
             </div>
         </form>
     </div>
@@ -129,6 +129,16 @@
     });
 </script>
 <script>
+    function checkSave() {
+        // var year = document.getElementById("yearDropdown").value;
+        // var qtr = document.getElementById("quarterDropdown").value;
+        // //debugger;
+        // if (year == "2024" && qtr == 3) {
+        //     document.getElementById('SubmitButton').disabled = true;
+        // } else {
+        //     document.getElementById('SubmitButton').disabled = false;
+        // }
+    }
     function quarterSelection() {
         var year = document.getElementById("yearDropdown").value;
         var currentYear = new Date().getFullYear();

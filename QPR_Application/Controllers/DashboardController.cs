@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using QPR_Application.Models.Entities;
-using QPR_Application.Repository;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace QPR_Application.Controllers
 {
+    [Authorize(Roles = "ROLE_CVO")]
     public class DashboardController : Controller
     {
         private readonly IHttpContextAccessor _httpContext;
