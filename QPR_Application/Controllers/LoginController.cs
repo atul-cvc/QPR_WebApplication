@@ -50,12 +50,12 @@ namespace QPR_Application.Controllers
                 _httpContext?.HttpContext?.Session.SetString("ipAddress", ipAdd);
 
                 login.ImageData = GenerateNewCaptcha();
-                var _userRole = "";
-                if (User.Identity.IsAuthenticated)
-                {
-                    _userRole = _httpContext.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
-                    return RouteUserProfile(_userRole);
-                }
+
+                //if (User.Identity.IsAuthenticated)
+                //{
+                //    _userRole = _httpContext.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
+                //    return RouteUserProfile(_userRole);
+                //}
 
             }
             catch (Exception ex)
