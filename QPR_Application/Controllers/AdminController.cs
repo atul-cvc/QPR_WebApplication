@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using QPR_Application.Models.Entities;
 using QPR_Application.Repository;
-using System.Text.Json;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using QPR_Application.Util;
+using QPR_Application.Models.DTO.Utility;
 
 namespace QPR_Application.Controllers
 {
@@ -39,5 +37,22 @@ namespace QPR_Application.Controllers
             }
             return View();
         }
+
+        public IActionResult KeyService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult KeyService(string key_str)
+        {
+            string enc_str = CryptoEngine.EncryptNew(key_str);
+            string dec_str = CryptoEngine.DecryptNew(enc_str);
+            ViewBag.KeyResult = enc_str;
+            return View();
+        }
+
     }
+
 }

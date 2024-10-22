@@ -15,7 +15,15 @@ namespace QPR_Application.Controllers
         {
             ViewBag.VAW_URL = _httpContext?.HttpContext?.Session.GetString("VAW_URL") ?? "";            
             ViewBag.IsQPREnabled = Convert.ToBoolean(_httpContext?.HttpContext?.Session.GetString("IsQPREnabled"));
-            return View();
+            //return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","Login");
+            }
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model QPR_Application.Models.DTO.Utility.AESKeyModel;
+
+@{
+    ViewData["Title"] = "Key Encryptor";
+}
+
+
+
+<div>
+    <form asp-action="KeyEncryptor" method="post">
+        @Html.AntiForgeryToken()
+        <label>Enter Key</label>
+        <input class="form-control" type="text" asp-for="Key" required />
+        <label>Enter string</label>
+        <input class="form-control" type="text" asp-for="Plaintext" required />
+        <br />
+        <input type="submit" value="Generate Encrypted Key" />
+        <br />
+        <input readonly class="form-control" value="@ViewBag.KeyResult" />
+    </form>
+
+</div>

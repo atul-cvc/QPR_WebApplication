@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using QPR_Application.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 
@@ -20,35 +19,40 @@ namespace QPR_Application.Controllers
             _dbContext = dbContext;
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index()
         {
-            //string _user = _httpContext.HttpContext.Session.GetString("UserName");
-            //"UserName"
-            //"ipAddress"
-            //"UserRole"
-            //orgcode
-            _httpContext.HttpContext.Session.Remove("CurrentUser");
-            _httpContext.HttpContext.Session.Remove("UserName");
-            _httpContext.HttpContext.Session.Remove("ipAddress");
-            _httpContext.HttpContext.Session.Remove("UserRole");
-            _httpContext.HttpContext.Session.Remove("orgcode");
-            await _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            foreach (var cookie in HttpContext.Request.Cookies.Keys)
+            try
             {
-                // Delete each cookie by its name
-                Response.Cookies.Delete(cookie);
+                // Clear session
+                _httpContext.HttpContext.Session.Remove("CurrentUser");
+                _httpContext.HttpContext.Session.Remove("UserName");
+                _httpContext.HttpContext.Session.Remove("ipAddress");
+                _httpContext.HttpContext.Session.Remove("UserRole");
+                _httpContext.HttpContext.Session.Remove("orgcode");
+
+                // Sign out
+                await _httpContext.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+                // Delete cookies
+                foreach (var cookie in _httpContext.HttpContext.Request.Cookies.Keys)
+                {
+                    _httpContext.HttpContext.Response.Cookies.Delete(cookie);
+                }
+
+                // Log success
+                _logger.LogInformation("User logged out successfully.");
             }
-            await _dbContext.Database.CloseConnectionAsync();
-            var connection = _dbContext.Database.GetDbConnection();
-            if (connection.State == System.Data.ConnectionState.Open)
+            catch (Exception ex)
             {
-                await connection.CloseAsync();
+                _logger.LogError(ex, "Error occurred during logout.");
+                // Optionally, handle the error or redirect to an error page
             }
-            _logger.LogInformation("User logged out successfully.");
-            return RedirectToAction("LogoutSuccessfull");
+
+            return RedirectToAction("Index", "Login");
         }
 
-        [AllowAnonymous]
         public IActionResult LogoutSuccessfull()
         {
             if (!User.Identity.IsAuthenticated)

@@ -11,13 +11,14 @@ using SMS_EMAIL_Models;
 
 var time = 30; //Minutes
 var builder = WebApplication.CreateBuilder(args);
+var _connString = builder.Configuration.GetConnectionString("SQLConnection");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<QPRContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection")));
+        options.UseSqlServer(CryptoEngine.DecryptNew(_connString)));
 
 builder.Services.AddHttpContextAccessor();
 //builder.Services.AddControllersWithViews(options =>
@@ -81,6 +82,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.LoginPath = "/Login/Index";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(time);
         option.Cookie.HttpOnly = true;
+        option.LogoutPath = "/Logout/Index";
         //option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         //option.Cookie.SameSite = SameSiteMode.Strict;
     });

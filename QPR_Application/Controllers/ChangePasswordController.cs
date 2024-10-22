@@ -93,7 +93,8 @@ namespace QPR_Application.Controllers
                     var changeSuccessful = await _changePasswordRepo.ChangePassword(cp, userObject, ip);
                     if (changeSuccessful)
                     {
-                        return RedirectToAction("Index", "Logout");
+                        ViewBag.ComplaintsMessage = "Password changed successfully";
+                        return View();
                     }
                 }
             }

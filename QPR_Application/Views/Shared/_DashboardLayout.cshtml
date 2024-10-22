@@ -82,7 +82,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <div >
+                <div>
                     @Html.Partial("_CvcLogo")
                 </div>
                 <a class="navbar-brand text-white" onclick="return false;" style="font-size:30px; padding-bottom:10px">QPR </a>
@@ -91,17 +91,24 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                    @* 
+                    <ul class="navbar-nav flex-grow-1">
+                        @*
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                         </li>
-                    *@
+                        *@
                     </ul>
                     <div class="d-flex">
+                        @* <form></form> *@
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item ms-auto">
-                                <a class="nav-link btn btn-secondary text-white " asp-area="" asp-controller="Logout" asp-action="Index">Logout</a>
+                                @using (Html.BeginForm("Index", "Logout", FormMethod.Post, new { id = "LogoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @* <a class="nav-link btn btn-secondary text-white " asp-area="" asp-controller="Logout" asp-action="Index">Logout</a> *@
+                                    @* </li> *@
+                                    <a class="nav-link navbar-brand btn btn-secondary text-white" href="javascript:document.getElementById('LogoutForm').submit()">Logout</a>
+                                }
                             </li>
                         </ul>
                     </div>

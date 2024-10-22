@@ -1,0 +1,19 @@
+﻿@model string;
+@{
+    ViewData["Title"] = "Key Service";
+    // Layout = "~";
+}
+
+<div>
+    <form asp-action="KeyService" method="post">
+        @Html.AntiForgeryToken()
+        <label>Enter string</label>
+        <input class="form-control" type="text" name="key_str" required />
+        <br />
+        <input class="btn btn-outline-primary" type="submit" value="Generate Encrypted Key" />
+        <br/>
+        @* <span>@ViewBag.KeyResult</span> *@
+        <input readonly class="form-control mt-3" value="@ViewBag.KeyResult " />
+    </form>
+  
+</div>
