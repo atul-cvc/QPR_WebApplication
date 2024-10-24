@@ -7,6 +7,7 @@ using QPR_Application.Models.DTO.Utility;
 using QPR_Application.Models.Entities;
 using QPR_Application.Models.ViewModels;
 using QPR_Application.Util;
+using System.Collections.Generic;
 using System.Data;
 using System.Security.Cryptography;
 
@@ -143,6 +144,18 @@ namespace QPR_Application.Repository
             }
         }
 
+        public async Task<IEnumerable<registration>> GetAllUsersForPasswordHashing()
+        {
+            try
+            {
+                return await _dbContext.registration.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Fetching all users list failed.");
+                return new List<registration>();
+            }
+        }
         public async Task<AllUsersViewModel> GetUserDetails(string Id)
         {
             try

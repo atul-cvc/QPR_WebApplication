@@ -36,7 +36,7 @@ namespace QPR_Application.Controllers
             _otp_Util = otp_Util;
             _adminRepo = adminRepo;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             Login login = new Login();
             try
@@ -51,6 +51,10 @@ namespace QPR_Application.Controllers
 
                 login.ImageData = GenerateNewCaptcha();
 
+                AdminSettings _AS = await _adminRepo.GetAdminSettingsAsync();
+
+                //ViewBag.AdminTestString = _AS.Test_String ?? "";
+
                 //if (User.Identity.IsAuthenticated)
                 //{
                 //    _userRole = _httpContext.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
@@ -60,6 +64,7 @@ namespace QPR_Application.Controllers
             }
             catch (Exception ex)
             {
+                //ViewBag.AdminTestStringEx = "Failed to fetch details from AdminSetting table.Exception caught. Return from Index.";
                 _logger.LogError(ex, "Login Page view failed");
             }
 

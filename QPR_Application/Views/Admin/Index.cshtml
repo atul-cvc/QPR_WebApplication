@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Index";
-    // var redirectLink = "https://localhost:44381/Account/LoginByQPR?token=" + ViewBag.LoginToken + "&key=" + ViewBag.LoginKey;
 }
 
 <style>
@@ -11,13 +10,10 @@
 <div class="container mt-5 mb-5" style="margin-bottom: 45em !important;">
 
     <h2>Admin</h2>
+
     <a class="btn btn-primary" asp-action="AllUsers" asp-controller="ManageUser">
         Manage Users
     </a>
-@* 
-    <a class="ms-3 btn btn-primary" asp-action="CreateUser" asp-controller="ManageUser">
-        Create User
-    </a> *@
 
     <a class="ms-3 btn btn-primary" asp-action="Index" asp-controller="ManageQPR">
         Manage QPR
@@ -26,9 +22,10 @@
     <a class="ms-3 btn btn-primary" asp-controller="ManageOrg" asp-action="Index">
         Manage Organisations
     </a>
-    @* <a class="ms-3 btn btn-primary" href="@redirectLink" target="_blank">
-        VAW
-    </a> *@
+
+    <a class="ms-3 btn btn-primary" asp-controller="Admin" asp-action="AdminSettings">
+        Settings
+    </a>
 
 </div>
 
