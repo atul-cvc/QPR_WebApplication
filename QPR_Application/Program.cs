@@ -18,7 +18,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<QPRContext>(options =>
-        options.UseSqlServer(CryptoEngine.DecryptNew(_connString)));
+        options.UseSqlServer(_connString));
+
+//builder.Services.AddDbContext<QPRContext>(options =>
+//        options.UseSqlServer(CryptoEngine.DecryptNew(_connString)));
 
 builder.Services.AddHttpContextAccessor();
 //builder.Services.AddControllersWithViews(options =>
