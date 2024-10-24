@@ -25,5 +25,6 @@ namespace QPR_Application.Models.Entities
         public DateTime? QPR_Active_To { get; set; }
 
         public string SecretKey { get; set; }
+        public string? Test_String { get; set; }
     }
 }

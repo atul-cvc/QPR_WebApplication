@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QPR_Application.Models.Entities
 {
-    [Keyless]
     public partial class viginvestigationqrs
     {
         [Key]
