@@ -153,6 +153,7 @@ namespace SMS_EMAIL_Models
             {
                 _logger.LogError(ex, "Sending Email notification failed");
                 returnCode = "failed" + "|" + OTP;
+                throw ex;
             }
             return returnCode;
         }

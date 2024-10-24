@@ -36,11 +36,16 @@ namespace QPR_Application.Controllers
             _otp_Util = otp_Util;
             _adminRepo = adminRepo;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string message = "")
         {
             Login login = new Login();
             try
             {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    ViewBag.LoginMessage = message;
+                }
+
                 string ipAdd = Response.HttpContext.Connection.RemoteIpAddress.ToString();
                 if (ipAdd == "::1")
                 {
@@ -77,7 +82,7 @@ namespace QPR_Application.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                 if (!ModelState.IsValid)
                 {
                     return View(login);
                 }
@@ -93,10 +98,11 @@ namespace QPR_Application.Controllers
                     UserDetails uDetails = await _loginRepo.Login(login);
                     AdminSettings adminSetting = await _adminRepo.GetAdminSettingsAsync();
                     var isOTPVerificationEnabled = adminSetting.Enable_Multi_Auth ? adminSetting.Enable_Multi_Auth : false;
-                    //var VAW_URL_ADMIN = "https://localhost:44381/Account/LoginByQPR"; //adminSetting.VAW_URL ?? "";
+                    //var VAW_URL_ADMIN = "https://localhost:44381/Account/LoginByQPR"; 
+                    //adminSetting.VAW_URL ?? "";
                     var VAW_URL_ADMIN = adminSetting.VAW_URL ?? "";
                     var SECRET_KEY = adminSetting.SecretKey ?? "";
-                    
+
                     var currDate = DateTime.Now;
                     if (currDate > adminSetting.QPR_Active_From && currDate < adminSetting.QPR_Active_To)
                     {
@@ -109,7 +115,6 @@ namespace QPR_Application.Controllers
 
                     if (uDetails.User != null)
                     {
-
                         string userObj = System.Text.Json.JsonSerializer.Serialize(uDetails.User);
                         if (!String.IsNullOrEmpty(userObj))
                         {
@@ -168,7 +173,7 @@ namespace QPR_Application.Controllers
                                 }
                                 else
                                 {
-                                    return View(login);
+                                    return RedirectToAction("Index", new { message = "Could not send OTP." });
                                 }
                             }
                             else
@@ -191,7 +196,7 @@ namespace QPR_Application.Controllers
                 _logger.LogError(ex, "User login failed");
                 ViewBag.Error = "Invalid credentials.";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {message = "Invalid credentials" });
         }
 
         public IActionResult VerifyOTP()
